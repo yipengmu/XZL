@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:id="@+id/user_main_frame" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/btn_About"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about" />
+
+        <TextView
+            android:id="@+id/btn_PushSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="92dp"
+            android:text="@string/PushSwitch" />
+
+    </RelativeLayout>
+
+    <RelativeLayout style="@style/header" >
+
+        <Button
+            android:id="@+id/btn_back"
+            style="@style/header_back"
+            android:onClick="onClick" />
+
+        <Button
+            android:id="@+id/btn_forward"
+            style="@style/header_submit"
+            android:onClick="onClick"
+            android:text="编辑" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            style="@style/header_title"
+            android:text="我的" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D4CFC3"
+        android:orientation="horizontal"
+        android:padding="9dp" >
+
+        <net.xinzeling.lib.CircleImageView
+            android:id="@+id/img_avata"
+            style="@style/avata"
+            app:border_color="#FFD8FA17"
+            app:border_width="1.5dp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#D8FA17" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2" >
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="昵称" />
+
+            <TextView
+                android:id="@+id/usr_nick"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="姓名" />
+
+            <TextView
+                android:id="@+id/usr_name"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="性别" />
+
+            <TextView
+                android:id="@+id/usr_gender"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="出生年月及时辰" />
+
+            <TextView
+                android:id="@+id/usr_birthtime"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="手机号" />
+
+            <TextView
+                android:id="@+id/usr_phone"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="邮箱" />
+
+            <TextView
+                android:id="@+id/usr_email"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+        </GridLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="#D8FA17" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2" >
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="出生地" />
+
+            <TextView
+                android:id="@+id/usr_birth_addr"
+                style="@style/usr_val"
+                android:layout_gravity="left"
+                 />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="现居住地" />
+
+            <TextView
+                android:id="@+id/usr_now_addr"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="职业" />
+
+            <TextView
+                android:id="@+id/usr_job"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+            <TextView
+                style="@style/usr_label"
+                android:layout_gravity="left"
+                android:text="婚否" />
+
+            <TextView
+                android:id="@+id/usr_hunyin"
+                style="@style/usr_val"
+                android:layout_gravity="left" />
+
+            <View
+                android:layout_height="1dp"
+                android:layout_columnSpan="2"
+                android:layout_gravity="left"
+                android:background="#EDE8DE" />
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

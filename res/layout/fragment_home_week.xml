@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/net.xinzeling2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/calendar_txt"
+    android:orientation="vertical" >
+
+    <net.xinzeling.lib.WeekView
+        android:id="@+id/week_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/calendar_txt"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:textColor="@color/white"
+        android:textSize="13sp" />
+
+    <net.xinzeling.lib.CalendarView
+        android:id="@+id/calendar_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:grid_color="#6F9E8D"
+        app:is_week="true"
+        app:pass_select_color="#e6e5e6"
+        app:select_color="#9FB521"
+        app:text_color="@color/calendar_txt" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#393B31" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical" >
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radio_note"
+                style="@style/about_tab"
+                android:layout_width="wrap_content"
+                android:checked="true"
+                android:text="记事" />
+
+            <RadioButton
+                android:id="@+id/radio_gua"
+                style="@style/about_tab"
+                android:layout_width="wrap_content"
+                android:text="卦象" />
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/goback_today"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/radiogroup"
+            android:singleLine="true"
+            android:src="@drawable/btn_calendar_today" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_note"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:scrollbars="@null" />
+
+</LinearLayout>

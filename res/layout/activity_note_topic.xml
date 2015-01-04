@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_note_zhuti_cancel" />
+
+    <TableLayout
+        android:id="@+id/table_zhuti"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#b2b2b2"
+        android:collapseColumns="true" >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/note_topic_1"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_1" />
+
+            <CheckBox
+                android:id="@+id/note_topic_2"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_2" />
+
+            <CheckBox
+                android:id="@+id/note_topic_3"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_3" />
+
+            <CheckBox
+                android:id="@+id/note_topic_4"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_4" />
+
+            <CheckBox
+                android:id="@+id/note_topic_5"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_5" />
+
+            <CheckBox
+                android:id="@+id/note_topic_6"
+                style="@style/note_topic_item"
+                android:layout_marginRight="0dp"
+                android:drawableTop="@drawable/note_topic_6" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="11dp" >
+
+            <CheckBox
+                android:id="@+id/note_topic_7"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_7" />
+
+            <CheckBox
+                android:id="@+id/note_topic_8"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_8" />
+
+            <CheckBox
+                android:id="@+id/note_topic_9"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_9" />
+
+            <CheckBox
+                android:id="@+id/note_topic_10"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_10" />
+
+            <CheckBox
+                android:id="@+id/note_topic_11"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_11" />
+
+            <CheckBox
+                android:id="@+id/note_topic_12"
+                style="@style/note_topic_item"
+                android:layout_marginRight="0dp"
+                android:drawableTop="@drawable/note_topic_12" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/note_topic_13"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_13" />
+
+            <CheckBox
+                android:id="@+id/note_topic_14"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_14" />
+
+            <CheckBox
+                android:id="@+id/note_topic_15"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_15" />
+
+            <CheckBox
+                android:id="@+id/note_topic_16"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_16" />
+
+            <CheckBox
+                android:id="@+id/note_topic_17"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_17" />
+
+            <CheckBox
+                android:id="@+id/note_topic_18"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_18" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <CheckBox
+                android:id="@+id/note_topic_19"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_19" />
+
+            <CheckBox
+                android:id="@+id/note_topic_20"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_20" />
+
+            <CheckBox
+                android:id="@+id/note_topic_21"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_21" />
+
+            <CheckBox
+                android:id="@+id/note_topic_22"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_22" />
+
+            <CheckBox
+                android:id="@+id/note_topic_23"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_23" />
+
+            <CheckBox
+                android:id="@+id/note_topic_24"
+                style="@style/note_topic_item"
+                android:drawableTop="@drawable/note_topic_24" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/btn_note_zhuti_ok" />
+
+</LinearLayout>

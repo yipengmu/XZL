@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.xinzeling2"
+    android:versionCode="2"
+    android:versionName="2.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name="net.xinzeling.lib.AppBase"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5325b01556240b15591976b5" >
+        </meta-data>
+
+        <activity
+            android:name="net.xinzeling.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="net.xinzeling.TestActivity"
+            android:label="test入口"
+            android:screenOrientation="portrait" >
+         <!--   <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter> -->
+        </activity>
+        
+        <!-- ###################注册SDK使用的Activity###################### -->
+        <!-- 分享编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
+        </activity>
+        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1103520665" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+        <!-- ############ 微信和微信朋友圈的回调 ############### -->
+        <activity
+            android:name="net.xinzeling.wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- 其他继续 -->
+
+        <activity
+            android:name="net.xinzeling.setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.setting.MainSettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.EarlyDateTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.PushSwitchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.news.GuaNewsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.news.GuaNewsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.news.GuaShiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.setting.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.DateActivity"
+            android:theme="@style/translucent" />
+        <activity
+            android:name="net.xinzeling.DateTimeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo" />
+        <activity
+            android:name="net.xinzeling.TimeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo" />
+        <activity
+            android:name="net.xinzeling.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.setting.SigninActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.setting.UsrActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.setting.UsrEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.gua.GuaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.gua.QiuGuaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.gua.GuaInstruActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.news.GuaNewsShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.gua.JieGuaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.gua.ShareActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="net.xinzeling.share.WeiboShareActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="net.xinzeling.setting.GuaListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.note.NoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.note.TopicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.note.NoteCheckActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent" />
+
+        <receiver android:name="net.xinzeling.receiver.AlarmReceiver" >
+            <intent-filter>
+                <action android:name="xinzeling_alarm" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

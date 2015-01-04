@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/view_date_title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2014-10-05"
+            android:textSize="18sp"
+            android:textColor="#eee" />
+
+        <ImageView
+            android:id="@+id/view_date_title_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/btn_white_tri" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp" >
+
+        <TextView
+            android:id="@+id/view_date_title_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="甲午年甲午月甲午日"
+            android:textSize="18sp"
+            android:textColor="#eee" />
+    </RelativeLayout>
+	
+</RelativeLayout>

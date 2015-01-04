@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:left="-4dp"
+        android:right="-4dp"
+        android:top="-4dp"
+        android:bottom="0dp">
+        <shape>
+            <solid android:color="@color/setting_menu_bg" />
+            <stroke
+                android:width="3dp"
+                android:color="@color/bg_green" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,99 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="16dp"
+    android:background="@drawable/back_huangli_wraper"
+    android:paddingBottom="28dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="12dp" >
+
+    <Button
+        android:id="@+id/btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_close_huangli"
+        android:onClick="onClick" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:padding="1dp" >
+
+        <RadioButton
+            android:id="@+id/switch_yi"
+            style="@style/huangli_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:drawableTop="@drawable/icon_radio_huangli_yi"
+            android:onClick="onClick" />
+
+        <RadioButton
+            android:id="@+id/switch_ji"
+            style="@style/huangli_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/icon_radio_huangli_ji"
+            android:onClick="onClick" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/btn_close"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back_huangli_content"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/img_huangli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/img_huangli_ji" />
+
+                <TextView
+                    android:id="@+id/txt_photo"
+                    style="@style/activity_lunar_title"
+                    android:text="老黄历新解" />
+
+                <TextView
+                    android:id="@+id/txt_huangli_new"
+                    style="@style/activity_lunar_content" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_margin="15dp"
+                    android:background="@color/bg_green" />
+
+                <TextView
+                    android:id="@+id/txt_camera"
+                    style="@style/activity_lunar_title"
+                    android:text="老黄历原文" />
+
+                <TextView
+                    android:id="@+id/txt_huangli_old"
+                    style="@style/activity_lunar_content" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res/net.xinzeling2">
+
+    <RelativeLayout
+        android:id="@+id/frame_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:id="@+id/home_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/calendar_txt"
+            android:padding="3dp"
+            android:paddingBottom="8dp" >
+
+            <net.xinzeling.lib.ImageViewWithCount
+                android:id="@+id/msgnotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/notificationicon"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="1dp"
+                app:circle_color="#d9d2b6"
+                app:cnt_font_color="#657411"
+                app:cnt_font_size="15sp"
+                 />
+
+            <net.xinzeling.lib.DateTitleView
+                android:id="@+id/home_title"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="title"
+                android:textSize="15sp" />
+
+            <RadioGroup
+                android:id="@+id/mode_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal"
+                android:padding="1dp" >
+
+                <RadioButton
+                    android:id="@+id/mode_month"
+                    style="@style/selector_tab"
+                    android:onClick="onClick"
+                    android:text="月" />
+
+                <RadioButton
+                    android:id="@+id/mode_day"
+                    style="@style/selector_tab"
+                    android:onClick="onClick"
+                    android:text="日" />
+            </RadioGroup>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/home_header"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lunar_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+
+        <fragment
+            android:id="@+id/lunar_fragment"
+            android:name="net.xinzeling.fragment.LunarFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:layout_margin="10dp"
+            />
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="22dp"
+        android:src="@drawable/icon_about_intro" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="『信则灵』 是结合了起卦和黄历、日历、记事等功能的一个软件。我们特色的起卦功能，是根据中国古代流传下来的传统术数之一的『梅花易数』而整理发展出来的。
+        当然，我们结合了很多现代的科技手段和符合现在特点的解释，努力使得这个功能可以符合如今这个时代。同时，我们也希望，可以把这门神奇的技术，从故纸堆里的陈腐里，从江湖术士的神神叨叨遮遮掩掩里，从被一棍子打死的所谓迷信里解放出来。
+        当然，我们的努力可能还微小，但我们愿意为了这个目标而努力。\n
+        事实上，我们的起卦功能在目前看来还是比较简单的，在完整的梅花易数系统里，还应该含有『错卦』和『综卦』，但是这两者会非常复杂，并不适合在这样一个小程序里完整的反映出来（是的，这也是『错综复杂』这个词的由来，笑。）。当然
+        我们始终抱有希望，在不久的将来，我们可以把这个移动版的起卦功能更加完善，更加准确，也更加有趣。\n
+        而我们的日历和记事功能上面也做得非常有时尚感和特色，考虑到了不同层面用户的需求，例如就有针对女性用户的月事记录功能。\n
+        同时，在日历和记事的基础上，我们还辅助以现代化的黄历宜忌解释，再加上起卦，可以让你更好地掌控你生活的方方面面。\n
+        最后，我们想要提醒一点，就是求卦者，需要心存敬畏之心，请勿测算任何违法、违纪、违反道德、危害他人等等的事情，这样出发点不端正的问题，是不能得到正确的结果的，请切记！\n
+        希望你喜欢信则灵。我们这里瑾祝安好！"
+        android:textSize="16sp" />
+
+</LinearLayout>

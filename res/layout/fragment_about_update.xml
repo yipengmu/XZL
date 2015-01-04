@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/icon_logo" />
+
+    <TextView
+        android:id="@+id/txt_ver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="xzl 1.1" />
+
+    <TextView
+        android:id="@+id/txt_ver_msg"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="已为最新版本"
+        android:textColor="#ff0000"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txt_ver_log"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="16dp"
+        android:text="1.全新的界面设计；\n\n 2.更多的求卦类别；\n\n 全新的信则灵等你来体验！"
+        android:textSize="18sp" />
+
+</LinearLayout>

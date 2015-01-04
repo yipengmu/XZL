@@ -1,0 +1,177 @@
+package net.xinzeling;
+
+import net.xinzeling.gua.GuaActivity;
+import net.xinzeling.lib.AppManager;
+import net.xinzeling.note.NoteActivity;
+import net.xinzeling.setting.GuaListActivity;
+import net.xinzeling.setting.MainSettingActivity;
+import net.xinzeling2.R;
+import android.app.AlertDialog;
+import android.app.TabActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector.OnGestureListener;
+import android.view.GestureDetector;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends TabActivity implements OnTouchListener,
+		OnGestureListener {
+
+	private static final int FLING_MIN_DISTANCE = 100;
+	private static final int FLING_MIN_VELOCITY = 0;
+	private static final int FLING_MAX_Y_VELOCITY = 30;
+	private TabHost tabHost;
+	private GestureDetector mGestureDetector;
+	private LinearLayout[] tab_menu;
+	private int[] tab_default_selector = {R.drawable.tab_home_selector,R.drawable.tab_gua_selector,R.drawable.tab_note_selector,R.drawable.tab_usr_selector}; 
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		AppManager.getAppManager().addActivity(getCurrentActivity());
+		mGestureDetector = new GestureDetector(this);
+		LinearLayout ll = (LinearLayout) findViewById(R.id.linew);
+		ll.setOnTouchListener(this);
+		ll.setLongClickable(true);
+		initTab();
+	}
+
+	private void initTab() {
+		// TODO Auto-generated method stub
+		tabHost = getTabHost();
+		LinearLayout menu_view_home = createView(0);
+		tabHost.addTab(tabHost.newTabSpec("home").setIndicator(menu_view_home)
+				.setContent(new Intent(this, HomeActivity.class)));
+		LinearLayout menu_view_gua = createView(1);
+		tabHost.addTab(tabHost.newTabSpec("gua").setIndicator(menu_view_gua)
+				.setContent(new Intent(this, GuaActivity.class)));
+		LinearLayout menu_view_note = createView(2);
+		tabHost.addTab(tabHost.newTabSpec("note").setIndicator(menu_view_note)
+				.setContent(new Intent(this, NoteActivity.class)));
+		LinearLayout menu_view_setting = createView(3);
+		tabHost.addTab(tabHost.newTabSpec("setting").setIndicator(menu_view_setting)
+				.setContent(new Intent(this, MainSettingActivity.class)));
+		
+		tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+			public void onTabChanged(String arg0) {
+			}
+		});
+	}
+	
+	private LinearLayout createView(int id) {
+		tab_menu = new LinearLayout[4];
+		tab_menu[id] = (LinearLayout) getLayoutInflater().inflate(
+				R.layout.tab_wighet, null);
+		ImageView tab_imageView = (ImageView) tab_menu[id]
+				.findViewById(R.id.tab_imageView);
+		//tab_imageView.setImageDrawable(getResources().getDrawable(drawable_id));
+		tab_imageView.setImageResource(tab_default_selector[id]);
+		return tab_menu[id];
+	}
+
+	public boolean onDown(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {
+		if(Math.abs(velocityY)>FLING_MAX_Y_VELOCITY) return false;
+		int total = tabHost.getTabWidget().getChildCount();
+		int current = tabHost.getCurrentTab();
+		int index = 0;
+		if (e1.getX() - e2.getX() > FLING_MIN_DISTANCE
+				&& Math.abs(velocityX) > FLING_MIN_VELOCITY) {
+			// Fling left
+			//Toast.makeText(this, "向左手势", Toast.LENGTH_SHORT).show();
+
+			index = current + 1 > total ? total - 1 : current + 1;
+			tabHost.setCurrentTab(index);
+		} else if (e2.getX() - e1.getX() > FLING_MIN_DISTANCE
+				&& Math.abs(velocityX) > FLING_MIN_VELOCITY) {
+			// Fling right
+			index = current - 1 < 0 ? 0 : current - 1;
+			//Toast.makeText(this, "向右手势", Toast.LENGTH_SHORT).show();
+			tabHost.setCurrentTab(index);
+		}
+
+		return false;
+	}
+
+	public void onLongPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
+			float arg3) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void onShowPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean onSingleTapUp(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean onTouch(View arg0, MotionEvent event) {
+		// TODO Auto-generated method stub
+		return mGestureDetector.onTouchEvent(event);
+	}
+
+	@Override
+	public boolean dispatchKeyEvent(KeyEvent event) {
+		// TODO Auto-generated method stub
+		int keyCode = event.getKeyCode();
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+//			AlertDialog.Builder builder = new AlertDialog.Builder(cont);
+//			builder.setIcon(android.R.drawable.ic_dialog_info);
+////			builder.setTitle(R.string.app_menu_surelogout);
+////			builder.setPositiveButton(R.string.sure,
+//////					new DialogInterface.OnClickListener() {
+//////						public void onClick(DialogInterface dialog, int which) {
+//////							// 退出
+//////							AppManager.getAppManager().AppExit(cont);
+//////							dialog.dismiss();					
+//////						}
+//////					});
+////			builder.setNegativeButton(R.string.cancle,
+////					new DialogInterface.OnClickListener() {
+////						public void onClick(DialogInterface dialog, int which) {
+////							dialog.dismiss();
+////						}
+////					});
+//			builder.show();
+		}
+		return super.dispatchKeyEvent(event);
+	}
+
+	/**
+	 * listview 和水平滑动事件冲突
+	 */
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		if (mGestureDetector.onTouchEvent(event)) {
+			event.setAction(MotionEvent.ACTION_CANCEL);
+		}
+
+		return super.dispatchTouchEvent(event);
+	}
+
+}

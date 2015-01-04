@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:paddingLeft="18dp" >
+
+    <View
+        android:layout_width="1.5dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:background="#C2BBA1" />
+
+    <ImageButton
+        android:id="@+id/gua_item_icon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/note_item_icon" />
+
+    <TextView
+        android:id="@+id/gua_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:text="求卦标题"
+        android:textColor="#7B7964"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/gua_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="6dp"
+        android:layout_toRightOf="@id/gua_item_title"
+        android:text="13:29"
+        android:textColor="#7B7964"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/gua_item_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gua_item_title"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="3dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="适合多交女朋友少吃饭，少睡觉，少开房"
+        android:textColor="#7B7964"
+        android:textSize="15sp" />
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="CalendarView">
+        <attr name="grid_color" format="color" />
+        <!-- 选中背景颜色 -->
+        <attr name="select_color" format="color" />
+        <!-- 灰色背景颜色 -->
+        <attr name="pass_select_color" format="color" />
+        <attr name="is_week" format="boolean"/>
+        <!-- 字体颜色共分三种：选中 默认 非本月 -->
+        <!-- 默认 -->
+        <attr name="text_color" format="color" />
+		<!-- 选中 -->
+        <attr name="select_text_color" format="color" />
+    	<!-- 非本月 -->
+        <attr name="not_text_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ImageLayout">
+        <attr name="image" format="reference" />
+        <attr name="imageWidth" format="integer" />
+        <attr name="imageHeight" format="integer" />
+        <attr name="fit">
+            <flag name="vertical" value="0" />
+            <flag name="horizontal" value="1" />
+            <flag name="both" value="2" />
+            <flag name="auto" value="3" />
+        </attr>
+        <attr name="android:gravity" />
+    </declare-styleable>
+    <declare-styleable name="ImageLayout_Layout">
+        <attr name="layout_width" format="integer" />
+        <attr name="layout_height" format="integer" />
+        <attr name="layout_maxWidth" format="integer" />
+        <attr name="layout_maxHeight" format="integer" />
+        <attr name="layout_centerX" format="integer" />
+        <attr name="layout_centerY" format="integer" />
+        <attr name="layout_left" format="integer" />
+        <attr name="layout_top" format="integer" />
+        <attr name="layout_right" format="integer" />
+        <attr name="layout_bottom" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="IconButton">
+        <attr name="defaultColor" format="color" />
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="iconResource" format="integer" />
+        <attr name="iconPosition" format="enum">
+            <enum name="left" value="1" />
+            <enum name="top" value="3" />
+        </attr>
+        <attr name="borderColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="focusColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="type" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="ImageViewWithCount">
+        <attr name="cnt_font_size" format="dimension" />
+        <attr name="cnt_font_color" format="color" />
+        <attr name="bg_width" format="dimension"  />
+        <attr name="bg_height" format="dimension" />
+        <attr name="circle_radius" format="dimension" />
+        <attr name="circle_color" format="color" />
+    </declare-styleable>
+
+</resources>

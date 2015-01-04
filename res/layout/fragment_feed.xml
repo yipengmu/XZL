@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/input_feed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="18"
+        android:lines="8"
+        android:gravity="top"
+        android:hint="畅快说出来吧～～～"
+        android:inputType="textMultiLine" >
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/input_feed"
+        android:text="ok" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input_feed"
+        android:layout_toLeftOf="@id/btn_ok"
+        android:text="cancel" />
+
+</RelativeLayout>

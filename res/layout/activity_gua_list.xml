@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout style="@style/header" >
+
+        <Button
+            android:id="@+id/btn_back"
+            style="@style/header_home"
+            android:onClick="onClick" />
+
+        <TextView
+            style="@style/header_title"
+            android:text="我的卜卦" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/icon_box_color" />
+
+    <ExpandableListView
+        android:id="@+id/list_gua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:groupIndicator="@null"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginTop="3dp"
+        android:scrollbars="@null" >
+    </ExpandableListView>
+
+</LinearLayout>
