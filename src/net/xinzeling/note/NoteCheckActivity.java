@@ -56,7 +56,7 @@ public class NoteCheckActivity extends Activity {
 			noteContent.setText(note.content);
 			noteAlarm.setText(note.iscancel==0?"否":"是");
 		}
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(NoteCheckActivity.this), NoteCheckActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(NoteCheckActivity.this), NoteCheckActivity.this);
 	}
 
 	public void onClick(View view) {

@@ -552,7 +552,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			init_cellHeight((int)AppBase.getWidthHeight()[0]);
 			
 			datePaint.setFakeBoldText(false);
-			datePaint.setTypeface(FontManager.getTypeface(context));
+//			datePaint.setTypeface(FontManager.getTypeface(context));
 			
 			cellBgPaint = new Paint();
 			cellBgPaint.setAntiAlias(true);

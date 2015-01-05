@@ -5,7 +5,7 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:textColor">@color/calendar_txt</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
     <!-- item name="android:windowBackground"         设置背景透明度及其颜色值 -->
     <!-- item name="android:windowIsTranslucent"      设置当前Activity是否透明 -->
@@ -25,7 +25,7 @@
 
     <style name="header">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_height">48dp</item>
         <item name="android:padding">8dp</item>
         <item name="android:background">@color/calendar_txt</item>
     </style>
@@ -163,10 +163,9 @@
         <item name="android:button">@null</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/activity_note_repeat_textSize</item>
+        <item name="android:textSize">12sp</item>
+         <item name="android:textColor">@color/calendar_txt</item>
         <item name="android:gravity">center</item>
-        <item name="android:padding">@dimen/activity_note_repeat_padding</item>
-        <item name="android:layout_marginRight">5dp</item>
     </style>
 
     <style name="note_label">
@@ -174,7 +173,7 @@
         <item name="android:drawablePadding">@dimen/note_label_drawablePadding</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_gravity">bottom</item>
         <item name="android:layout_marginLeft">@dimen/note_label_layout_marginLeft</item>
         <item name="android:textColor">@color/calendar_txt</item>
     </style>
@@ -183,9 +182,8 @@
         <item name="android:textSize">@dimen/note_input_textSize</item>
         <item name="android:background">@null</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/note_input_layout_height</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">bottom</item>
-        <item name="android:layout_marginRight">@dimen/note_input_layout_marginRight</item>
         <item name="android:textColorHint">@color/calendar_grid</item>
         <item name="android:drawableBottom">@drawable/line_note_input</item>
         <item name="android:textColor">@color/calendar_txt</item>
@@ -320,15 +318,19 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#2970B0</item>
     </style>
+    
+     <style name="common_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/common_green</item>
+    </style>
 
     <style name="note_select_date_input_begin">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_gravity">right</item>
-        <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">32dp</item>
-        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:onClick">onClick</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -346,9 +348,15 @@
 
     <style name="input_date_line_view">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_height">1px</item>
         <item name="android:layout_marginLeft">36dp</item>
         <item name="android:layout_marginRight">36dp</item>
+        <item name="android:background">#b2b2b2</item>
+    </style>
+
+    <style name="common_input_line_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
         <item name="android:background">#b2b2b2</item>
     </style>
 
@@ -360,14 +368,20 @@
         <item name="android:background">#b2b2b2</item>
     </style>
 
+    <style name="common_vercial_input_line_view">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">20px</item>
+        <item name="android:background">#b2b2b2</item>
+    </style>
+
     <style name="earlier_input">
-        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
         <item name="android:drawableBottom">@drawable/line_earlier_input</item>
         <item name="android:gravity">center</item>
         <item name="android:focusable">false</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/calendar_txt</item>
         <item name="android:textSize">@dimen/activity_note_earlier_input_textSize</item>
     </style>
 

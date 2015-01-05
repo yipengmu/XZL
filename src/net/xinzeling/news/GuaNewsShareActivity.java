@@ -43,7 +43,7 @@ public class GuaNewsShareActivity extends Activity implements OnClickListener{
 		int news_id = intent.getIntExtra("news_id", 0);
 		if(news_id>0)AppBase.setNewsReaded(news_id);
 		showNews.loadUrl(AppBase.kanfa_detail_url + news_id);
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsShareActivity.this),GuaNewsShareActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsShareActivity.this),GuaNewsShareActivity.this);
 	}
 
 	@Override

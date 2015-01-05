@@ -181,7 +181,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 			}
 		});
 		
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this), NoteActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this), NoteActivity.this);
 	}
 
 	private void loadNote(int noteid){

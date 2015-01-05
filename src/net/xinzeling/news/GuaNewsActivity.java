@@ -34,13 +34,13 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 	private Context context;
 	private boolean showSel;
 	private Handler myHandler;
-	private Typeface tf;
+//	private Typeface tf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gua_news);
 		
-		tf = FontManager.getTypeface(this);
+//		tf = FontManager.getTypeface(this);
 		TabSel = (ImageView)findViewById(R.id.TabSel);
 		BackHome = (ImageView)findViewById(R.id.backHome);
 		
@@ -51,7 +51,7 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		dashidetail_sel = (RelativeLayout)findViewById(R.id.dashidetail_sel);
 		
 		context = this.getApplicationContext();
-		listview_adapter = new DashikanfaItemAdapter(context,tf);
+		listview_adapter = new DashikanfaItemAdapter(context);
 		dashikanfa_listview.setAdapter(listview_adapter);
 		
 		myHandler = new Handler() {
@@ -76,7 +76,7 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		
 		dashijianjie.setOnClickListener(this);
 		mychuanbo.setOnClickListener(this);
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsActivity.this), GuaNewsActivity.this,tf);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsActivity.this), GuaNewsActivity.this,tf);
 	}
 
 	@Override

@@ -22,7 +22,7 @@ import java.util.List;
 
 public class WheelView extends ScrollView {
     public static final String TAG = WheelView.class.getSimpleName();
-    private Typeface tf;
+//    private Typeface tf;
     public static class OnWheelViewListener {
         public void onSelected(int selectedIndex, String item) {
         }
@@ -92,7 +92,7 @@ public class WheelView extends ScrollView {
 
     private void init(Context context) {
         this.context = context;
-        tf = FontManager.getTypeface(context);
+//        tf = FontManager.getTypeface(context);
         this.setVerticalScrollBarEnabled(false);
 
         views = new LinearLayout(context);
@@ -173,7 +173,7 @@ public class WheelView extends ScrollView {
 
     private TextView createView(String item) {
         TextView tv = new TextView(context);
-        tv.setTypeface(tf);
+//        tv.setTypeface(tf);
         
         tv.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         tv.setSingleLine(true);
@@ -271,7 +271,7 @@ public class WheelView extends ScrollView {
             if (null == itemView) {
                 return;
             }
-            itemView.setTypeface(tf);
+//            itemView.setTypeface(tf);
             if (position == i) {
                 itemView.setTextColor(Color.parseColor("#0288ce"));
             } else {

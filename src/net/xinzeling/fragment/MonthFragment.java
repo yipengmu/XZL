@@ -95,18 +95,18 @@ public class MonthFragment extends Fragment implements OnClickListener,
 		back_line_widthsize.setLayoutParams(back_line_widthsize_layout);
 				
 		lunarTitle = (TextView)view.findViewById(R.id.lunar_title);
-		lunarTitle.setTypeface(homeActivity.tf);
+//		lunarTitle.setTypeface(homeActivity.tf);
 		//android:drawablePadding="4dp"
 		lunarTitle.getPaint().setFakeBoldText(true);//加粗
 		
 		lunarSubTitle = (TextView)view.findViewById(R.id.lunar_sub_title);
-		lunarSubTitle.setTypeface(homeActivity.tf);
+//		lunarSubTitle.setTypeface(homeActivity.tf);
 
 		lunarLucky= (TextView) view.findViewById(R.id.lunar_lucky);
-		lunarLucky.setTypeface(homeActivity.tf);
+//		lunarLucky.setTypeface(homeActivity.tf);
 
 		lunarDemon = (TextView) view.findViewById(R.id.lunar_demon);
-		lunarDemon.setTypeface(homeActivity.tf);
+//		lunarDemon.setTypeface(homeActivity.tf);
 		
 		view.findViewById(R.id.lunar_layout).setOnClickListener(this);
 		

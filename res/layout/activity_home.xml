@@ -21,11 +21,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/notificationicon"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
                 app:circle_color="#d9d2b6"
                 app:cnt_font_color="#657411"
-                app:cnt_font_size="15sp"
+                app:cnt_font_size="14sp"
                  />
 
             <net.xinzeling.lib.DateTitleView
@@ -35,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:text="title"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <RadioGroup
                 android:id="@+id/mode_radio"
@@ -60,6 +61,7 @@
                     android:onClick="onClick"
                     android:text="日" />
             </RadioGroup>
+            
         </RelativeLayout>
 
         <LinearLayout

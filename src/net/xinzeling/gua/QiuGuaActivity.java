@@ -89,7 +89,7 @@ public class QiuGuaActivity extends Activity {
 		}
 
 		setInGuaTitle(type);
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(QiuGuaActivity.this), QiuGuaActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(QiuGuaActivity.this), QiuGuaActivity.this);
 	}
 
 	private boolean isDouble(int type) {

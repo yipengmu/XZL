@@ -52,7 +52,7 @@ import android.widget.TextView;
 import net.xinzeling2.R;
 
 public class HomeActivity extends Activity  implements OnClickListener{
-	public Typeface tf;
+//	public Typeface tf;
 	
 	private RadioButton modeMonth;
 	private FragmentManager fManager =getFragmentManager();
@@ -71,7 +71,7 @@ public class HomeActivity extends Activity  implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		tf = FontManager.getTypeface(HomeActivity.this);
+//		tf = FontManager.getTypeface(HomeActivity.this);
 		//System.out.println(AppBase.getDeviceInfo(this.getApplicationContext()));
 		//finish();
 		setContentView(R.layout.activity_home);

@@ -38,11 +38,11 @@ import android.widget.TextView;
 public class DashikanfaItemAdapter extends BaseAdapter {
 	private LayoutInflater inflater;
 	private ArrayList<String[]> msg_list_data;
-	private Typeface tf;
+//	private Typeface tf;
 	public Context context;
 
 	public DashikanfaItemAdapter(Context ctx,Typeface tf) {
-		this.tf = tf;
+//		this.tf = tf;
 		context = ctx;
 		inflater =LayoutInflater.from(ctx);
 		//		String[] item1 = {"1","1","0","2014-10-11","click_id"};//内部编号 是否是日期标题 是否读过 标题值 新闻id
@@ -51,6 +51,17 @@ public class DashikanfaItemAdapter extends BaseAdapter {
 		//		msg_list_data.add(item1);
 		//		msg_list_data.add(item2);
 	}
+	
+	public DashikanfaItemAdapter(Context ctx) {
+		context = ctx;
+		inflater =LayoutInflater.from(ctx);
+		//		String[] item1 = {"1","1","0","2014-10-11","click_id"};//内部编号 是否是日期标题 是否读过 标题值 新闻id
+		//		String[] item2 = {"2","0","0","xxxx","23"};
+		msg_list_data = new ArrayList<String[]>();
+		//		msg_list_data.add(item1);
+		//		msg_list_data.add(item2);
+	}
+
 
 	public void setData(JSONArray arr) throws JSONException {
 		if(arr.length()<=0)return;
@@ -132,7 +143,7 @@ public class DashikanfaItemAdapter extends BaseAdapter {
 
 		if(isOnlyDateTitle){
 			TextView title_date = (TextView)arg1.findViewById(R.id.date_title);
-			title_date.setTypeface(tf);
+//			title_date.setTypeface(tf);
 			title_date.setText(item[3].replace("-", "."));
 
 			only_title_line.setTag(isOnlyDateTitle);
@@ -147,7 +158,7 @@ public class DashikanfaItemAdapter extends BaseAdapter {
 				read_status.setImageResource(R.drawable.back_huangli_content);
 			}
 			TextView msg_title = (TextView)arg1.findViewById(R.id.msg_title);
-			msg_title.setTypeface(tf);
+//			msg_title.setTypeface(tf);
 			msg_title.setTag(item[4]);
 			msg_title.setText(item[3]);
 			msg_title.setOnClickListener(new OnClickListener(){

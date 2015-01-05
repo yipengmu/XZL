@@ -17,4 +17,6 @@
     <color name="black">#000</color>
     <color name="gua_back_line">#dadada</color>
 	<color name="setting_menu_bg">#f1f1f1</color>
+	<color name="grey">#b2b2b2</color>
+	<color name="common_green">#9fb521</color>
 </resources>

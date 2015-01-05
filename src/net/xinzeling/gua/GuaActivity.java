@@ -91,7 +91,7 @@ public class GuaActivity extends Activity implements OnClickListener,OnCheckedCh
 		myradiogroup.setOnCheckedChangeListener(this);
 		
 		((RadioGroup)findViewById(R.id.radiogroup_type_menu)).setOnCheckedChangeListener(this);;
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this), GuaActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this), GuaActivity.this);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class GuaActivity extends Activity implements OnClickListener,OnCheckedCh
 		for(int i=0;i<list.size();i++){
 			Button btn = new Button(context);
 			btn.setText(list.get(i).buttonName);
-			btn.setTypeface(FontManager.getTypeface(context));
+//			btn.setTypeface(FontManager.getTypeface(context));
 			btn.setOnClickListener(list.get(i).mclickListener);
 			float btn_width = list.get(i).buttonName.length()*2*16+15;
 			

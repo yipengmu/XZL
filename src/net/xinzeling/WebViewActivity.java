@@ -43,7 +43,7 @@ public class WebViewActivity extends Activity {
 			webView.loadUrl(AppBase.webview_passwd_url);
 			txtTitle.setText("忘记密码");
 		}
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(WebViewActivity.this), WebViewActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(WebViewActivity.this), WebViewActivity.this);
 	}
 	
 	public void onClick(View view){

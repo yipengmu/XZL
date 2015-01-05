@@ -39,10 +39,10 @@ public class LunarFragment extends Fragment implements OnTouchListener,OnClickLi
 		View view = inflater.inflate(R.layout.activity_lunar, container, false);
 		
 		txtHuangliNew = (TextView) view.findViewById(R.id.txt_huangli_new);
-		txtHuangliNew.setTypeface(homeActivity.tf);
+//		txtHuangliNew.setTypeface(homeActivity.tf);
 
 		txtHuangliOld = (TextView) view.findViewById(R.id.txt_huangli_old);
-		txtHuangliOld.setTypeface(homeActivity.tf);
+//		txtHuangliOld.setTypeface(homeActivity.tf);
 
 		imgHuangli = (ImageView) view.findViewById(R.id.img_huangli);
 		radioJI = (RadioButton) view.findViewById(R.id.switch_ji);

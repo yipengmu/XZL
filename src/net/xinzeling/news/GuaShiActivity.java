@@ -30,7 +30,7 @@ public class GuaShiActivity extends Activity implements OnClickListener {
 		jianjie_info = (WebView)findViewById(R.id.dashijianjie_info);
 		jianjie_info.loadUrl(AppBase.dashijianjie_info_url);
 		
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaShiActivity.this),GuaShiActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaShiActivity.this),GuaShiActivity.this);
 	}
 
 	@Override

@@ -4,21 +4,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-import net.xinzeling.HomeActivity;
-import net.xinzeling2.R;
-import net.xinzeling.setting.SigninActivity;
 import net.xinzeling.gua.GuaActivity;
-import net.xinzeling.model.LunarModel.Lunar;
 import net.xinzeling.receiver.AlarmReceiver;
+import net.xinzeling2.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +31,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
@@ -49,7 +43,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ListView;
+import cn.jpush.android.api.JPushInterface;
 
 public class AppBase extends Application{
 	public final static String Weibo_APP_ID = "2045436852";//"3665317294";
@@ -180,6 +174,10 @@ public class AppBase extends Application{
 
 		dbHelper =  new DBHelper(context, "xinzeling.db");
 		dbh =dbHelper.getWritableDatabase();
+		
+		// push
+		JPushInterface.setDebugMode(true);
+		JPushInterface.init(this);
 	}		
 
 	public static String sdcardPath(){

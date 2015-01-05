@@ -118,7 +118,7 @@ public class UsrEditActivity extends Activity {
 		if(avata !=null){
 			avataImg.setImageBitmap(avata);
 		}
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(UsrEditActivity.this), UsrEditActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(UsrEditActivity.this), UsrEditActivity.this);
 	}
 
 	public void onClick(View view) {

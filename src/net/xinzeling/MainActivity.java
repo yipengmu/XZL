@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 	private static final int FLING_MAX_Y_VELOCITY = 30;
 	private TabHost tabHost;
 	private GestureDetector mGestureDetector;
-	private LinearLayout[] tab_menu;
+	private RelativeLayout[] tab_menu;
 	private int[] tab_default_selector = {R.drawable.tab_home_selector,R.drawable.tab_gua_selector,R.drawable.tab_note_selector,R.drawable.tab_usr_selector}; 
 
 	@Override
@@ -40,7 +41,7 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 		setContentView(R.layout.activity_main);
 		AppManager.getAppManager().addActivity(getCurrentActivity());
 		mGestureDetector = new GestureDetector(this);
-		LinearLayout ll = (LinearLayout) findViewById(R.id.linew);
+		RelativeLayout ll = (RelativeLayout) findViewById(R.id.linew);
 		ll.setOnTouchListener(this);
 		ll.setLongClickable(true);
 		initTab();
@@ -49,16 +50,18 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 	private void initTab() {
 		// TODO Auto-generated method stub
 		tabHost = getTabHost();
-		LinearLayout menu_view_home = createView(0);
+		
+		//初始化 4个模块
+		RelativeLayout menu_view_home = createView(0);
 		tabHost.addTab(tabHost.newTabSpec("home").setIndicator(menu_view_home)
 				.setContent(new Intent(this, HomeActivity.class)));
-		LinearLayout menu_view_gua = createView(1);
+		RelativeLayout menu_view_gua = createView(1);
 		tabHost.addTab(tabHost.newTabSpec("gua").setIndicator(menu_view_gua)
 				.setContent(new Intent(this, GuaActivity.class)));
-		LinearLayout menu_view_note = createView(2);
+		RelativeLayout menu_view_note = createView(2);
 		tabHost.addTab(tabHost.newTabSpec("note").setIndicator(menu_view_note)
 				.setContent(new Intent(this, NoteActivity.class)));
-		LinearLayout menu_view_setting = createView(3);
+		RelativeLayout menu_view_setting = createView(3);
 		tabHost.addTab(tabHost.newTabSpec("setting").setIndicator(menu_view_setting)
 				.setContent(new Intent(this, MainSettingActivity.class)));
 		
@@ -68,9 +71,9 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 		});
 	}
 	
-	private LinearLayout createView(int id) {
-		tab_menu = new LinearLayout[4];
-		tab_menu[id] = (LinearLayout) getLayoutInflater().inflate(
+	private RelativeLayout createView(int id) {
+		tab_menu = new RelativeLayout[4];
+		tab_menu[id] = (RelativeLayout) getLayoutInflater().inflate(
 				R.layout.tab_wighet, null);
 		ImageView tab_imageView = (ImageView) tab_menu[id]
 				.findViewById(R.id.tab_imageView);

@@ -71,7 +71,7 @@ public class JieGuaActivity extends Activity {
 		}else{
 			findViewById(R.id.linearlayout_inference).setVisibility(View.GONE);			
 		}
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(JieGuaActivity.this),JieGuaActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(JieGuaActivity.this),JieGuaActivity.this);
 	}
 
 	public void onClick(View view) {

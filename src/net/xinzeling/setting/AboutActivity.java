@@ -33,7 +33,7 @@ public class AboutActivity extends Activity {
 		frag_instruct = new InstructionFragment(); 
 		frag_update = new UpdateFragment();
 
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(AboutActivity.this), AboutActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(AboutActivity.this), AboutActivity.this);
 
 		radioIntro = (RadioButton) this.findViewById(R.id.radio_intro);
 		this.onClick(radioIntro);

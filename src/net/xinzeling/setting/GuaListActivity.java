@@ -30,7 +30,7 @@ public class GuaListActivity extends Activity {
 		setContentView(R.layout.activity_gua_list);
 		listView = (ExpandableListView)findViewById(R.id.list_gua);
 		new LoadGuaTask().execute();
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaListActivity.this), GuaListActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaListActivity.this), GuaListActivity.this);
 	}
 
 	public void onClick(View view) {

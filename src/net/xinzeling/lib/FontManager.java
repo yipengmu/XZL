@@ -16,19 +16,19 @@ public class FontManager {
 	}
 	
 	public static void changeFonts(ViewGroup root, Activity act) {
-		Typeface tf = Typeface.createFromAsset(act.getAssets(),fontsname);
-		for (int i = 0; i < root.getChildCount(); i++) {
-			View v = root.getChildAt(i);
-			if (v instanceof TextView) {
-				((TextView) v).setTypeface(tf);
-			} else if (v instanceof Button) {
-				((Button) v).setTypeface(tf);
-			} else if (v instanceof EditText) {
-				((EditText) v).setTypeface(tf);
-			} else if (v instanceof ViewGroup) {
-				changeFonts((ViewGroup) v, act);
-			}    
-		}
+//		Typeface tf = Typeface.createFromAsset(act.getAssets(),fontsname);
+//		for (int i = 0; i < root.getChildCount(); i++) {
+//			View v = root.getChildAt(i);
+//			if (v instanceof TextView) {
+//				((TextView) v).setTypeface(tf);
+//			} else if (v instanceof Button) {
+//				((Button) v).setTypeface(tf);
+//			} else if (v instanceof EditText) {
+//				((EditText) v).setTypeface(tf);
+//			} else if (v instanceof ViewGroup) {
+//				changeFonts((ViewGroup) v, act);
+//			}    
+//		}
 	}
 
 	public static void changeFonts(ViewGroup root, Activity act,Typeface tf) {
