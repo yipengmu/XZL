@@ -2,8 +2,6 @@ package net.xinzeling.gua;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,12 +9,9 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-import net.xinzeling.HomeActivity;
-import net.xinzeling2.R;
 import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.DateTime;
-import net.xinzeling.lib.FontManager;
 import net.xinzeling.lib.HttpCommon;
 import net.xinzeling.model.GuaCntModel;
 import net.xinzeling.model.GuaCntModel.GuaCnt;
@@ -24,8 +19,8 @@ import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;
 import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
+import net.xinzeling2.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -37,10 +32,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 

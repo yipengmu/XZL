@@ -24,6 +24,7 @@ import net.xinzeling.setting.SettingActivity;
 import net.xinzeling.setting.SigninActivity;
 import net.xinzeling.setting.UsrActivity;
 import net.xinzeling.setting.UsrEditActivity;
+import net.xinzeling.share.CommonShareActivity;
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -99,6 +100,8 @@ public class TestActivity extends Activity {
 		params.put("解卦页面", new Intent(TestActivity.this,JieGuaActivity.class).putExtra("mode", 3).putExtra("type", 15).putExtra("isOld", false));		
 		params.put("解卦已算页面", new Intent(TestActivity.this,JieGuaActivity.class).putExtra("mode", 3).putExtra("type", 15).putExtra("isOld", true));		
 		params.put("设置页面", new Intent(TestActivity.this,MainSettingActivity.class));		
-		params.put("内设置页面", new Intent(TestActivity.this,SettingActivity.class));		
+		params.put("内设置页面", new Intent(TestActivity.this,SettingActivity.class));			
+		params.put("分享页面", new Intent(TestActivity.this,CommonShareActivity.class));
+		
 	}
 }

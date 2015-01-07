@@ -22,17 +22,17 @@
                 android:id="@+id/radioButton1"
                 style="@style/setting_menu_item"
                 android:checked="true"
-                android:text="登陆" />
+                android:text="关于我们" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
                 style="@style/setting_menu_item"
-                android:text="设置" />
+                android:text="意见反馈" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
                 style="@style/setting_menu_item"
-                android:text="我的" />
+                android:text="消息推送" />
         </RadioGroup>
 
     </LinearLayout>

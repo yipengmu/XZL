@@ -1,14 +1,11 @@
 package net.xinzeling.news;
 
-import net.xinzeling2.R;
-import net.xinzeling.gua.JieGuaActivity;
 import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
+import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
 import android.widget.ImageView;

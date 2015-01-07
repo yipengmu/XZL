@@ -1,20 +1,25 @@
 package net.xinzeling.setting;
 
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
+import net.xinzeling.base.BaseActivity;
 import net.xinzeling2.R;
-import net.xinzeling2.R.layout;
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.ViewGroup;
+import android.view.View;
+import android.view.View.OnClickListener;
 
-public class SettingActivity extends Activity {
+public class SettingActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setting);
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(SettingActivity.this), SettingActivity.this);
+		
+		setTitle(getResources().getString(R.string.setting));
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

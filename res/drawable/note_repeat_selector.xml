@@ -4,6 +4,6 @@
     <item android:state_checked="true" android:drawable="@drawable/note_repeat_back_s"/>
     <item  android:drawable="@drawable/note_repeat_back" />
 -->
-    <item android:state_checked="true" android:drawable="@drawable/note_repeat_back_s"/>
-    <item  android:drawable="@drawable/note_repeat_back" />
+    <item android:state_checked="true" android:drawable="@drawable/rect_btn_common_grey_bg"/>
+    <item  android:drawable="@drawable/rect_btn_common_grey_bg" />
 </selector>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/share_main_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@null" >
+	
+    <View android:id="@+id/view_share_pop_dismiss" 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/ll_share_icons" ></View>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_share_icons"
+        android:layout_alignParentBottom="true"
+        android:background="@color/global_background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_share_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="分享到"
+            android:layout_margin="4dp"
+            android:textColor="@color/dark_grey"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+	
+        <View style="@style/cent_secant" android:layout_marginTop="2dp" android:layout_marginBottom="2dp"/>
+        <GridView
+            android:id="@+id/gridview_share_main_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="10dp"
+            android:numColumns="4"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" >
+        </GridView>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -3,25 +3,20 @@ package net.xinzeling;
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.AppManager;
 import net.xinzeling.note.NoteActivity;
-import net.xinzeling.setting.GuaListActivity;
-import net.xinzeling.setting.MainSettingActivity;
+import net.xinzeling.setting.SigninActivity;
 import net.xinzeling2.R;
-import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TabHost;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends TabActivity implements OnTouchListener,
@@ -33,7 +28,8 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 	private TabHost tabHost;
 	private GestureDetector mGestureDetector;
 	private RelativeLayout[] tab_menu;
-	private int[] tab_default_selector = {R.drawable.tab_home_selector,R.drawable.tab_gua_selector,R.drawable.tab_note_selector,R.drawable.tab_usr_selector}; 
+	private int[] tab_default_selector = {R.drawable.tab_home_selector,R.drawable.tab_gua_selector,R.drawable.tab_note_selector,R.drawable.tab_usr_selector};
+	private long mFirstime = 0L; 
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +59,7 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 				.setContent(new Intent(this, NoteActivity.class)));
 		RelativeLayout menu_view_setting = createView(3);
 		tabHost.addTab(tabHost.newTabSpec("setting").setIndicator(menu_view_setting)
-				.setContent(new Intent(this, MainSettingActivity.class)));
+				.setContent(new Intent(this, SigninActivity.class)));
 		
 		tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String arg0) {
@@ -162,6 +158,22 @@ public class MainActivity extends TabActivity implements OnTouchListener,
 //			builder.show();
 		}
 		return super.dispatchKeyEvent(event);
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondtime = System.currentTimeMillis();
+			if (secondtime - mFirstime  > 3000) {
+				Toast.makeText(MainActivity.this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+				mFirstime = System.currentTimeMillis();
+				return true;
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	/**

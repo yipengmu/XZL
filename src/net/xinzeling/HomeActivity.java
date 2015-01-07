@@ -4,52 +4,39 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import net.xinzeling.fragment.FeedFragment;
-import net.xinzeling.fragment.LogoutFragment;
 import net.xinzeling.fragment.LunarFragment;
 import net.xinzeling.fragment.MonthFragment;
 import net.xinzeling.fragment.WeekFragment;
-import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.BlurMaskTask;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.lib.DateTitleView;
-import net.xinzeling.lib.FontManager;
 import net.xinzeling.lib.HttpCommon;
 import net.xinzeling.lib.ImageViewWithCount;
 import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
 import net.xinzeling.news.GuaNewsActivity;
-import net.xinzeling.note.NoteActivity;
-import net.xinzeling.setting.GuaListActivity;
+import net.xinzeling2.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.TextView;
-import net.xinzeling2.R;
 
 public class HomeActivity extends Activity  implements OnClickListener{
 //	public Typeface tf;
@@ -117,7 +104,7 @@ public class HomeActivity extends Activity  implements OnClickListener{
 		registerReceiver(receiverNDBD, new IntentFilter(AppBase.SELECT_NEW_DATE_BROADCAST));
 
 		this.onClick(modeMonth);
-		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this),HomeActivity.this);
+//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this),HomeActivity.this);
 	}
 
 	public void onResume(){

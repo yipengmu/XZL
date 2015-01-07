@@ -140,6 +140,7 @@ public class AppBase extends Application{
 	public static List<String> userinfo_params_key = Arrays.asList(
 			new String[]{"nick","firstName","name","birthday","birthTime","phone","email","birthAddress",
 					"nowaddr","career","marriage","gender"});
+	
 	public void onCreate(){
 		context = getApplicationContext();
 
@@ -179,6 +180,10 @@ public class AppBase extends Application{
 		JPushInterface.setDebugMode(true);
 		JPushInterface.init(this);
 	}		
+	
+	public static Context getContext() {
+		return context;
+	}
 
 	public static String sdcardPath(){
 		File sdDir = null; 
@@ -344,7 +349,7 @@ public class AppBase extends Application{
 		editor.putString("userTokeExpire", userTokenExpire);
 		editor.putString("renewalToken", renewalToken);
 		editor.putString("renewalTokenExpire", renewalTokenExpire);
-		editor.commit();
+		editor.apply();
 		AppBase.userToken=userToken;
 		AppBase.userTokenExpire=userTokenExpire;
 		AppBase.renewalToken=renewalToken;
@@ -452,7 +457,7 @@ public class AppBase extends Application{
 		}  
 	}  
 
-	public static Bitmap generatorContactCountIcon(Typeface tf,Bitmap icon, String cnt,int font_size,int font_color,int circle_color){ 
+	public static Bitmap generatorContactCountIcon(Bitmap icon, String cnt,int font_size,int font_color,int circle_color){ 
 		//初始化画布  
 		Bitmap contactIcon=Bitmap.createBitmap(icon.getWidth(), icon.getHeight(), Config.ARGB_8888);  
 		Canvas canvas=new Canvas(contactIcon);  
@@ -472,7 +477,7 @@ public class AppBase extends Application{
 			canvas.drawCircle((float)(icon.getWidth()*0.83), (float)1.1*radius, radius, iconPaint);
 			//启用抗锯齿和使用设备的文本字距  
 			Paint countPaint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.DEV_KERN_TEXT_FLAG);  
-			countPaint.setTypeface(tf);
+//			countPaint.setTypeface(tf);
 			countPaint.setColor(font_color);  
 			countPaint.setTextSize(font_size);  
 			//再加个圆形就可以了

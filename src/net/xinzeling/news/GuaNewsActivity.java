@@ -2,25 +2,23 @@ package net.xinzeling.news;
 
 import java.io.IOException;
 
+import net.xinzeling.HomeActivity;
+import net.xinzeling.adapter.DashikanfaItemAdapter;
+import net.xinzeling.lib.AppBase;
+import net.xinzeling.lib.HttpCommon;
+import net.xinzeling2.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import net.xinzeling.HomeActivity;
-import net.xinzeling2.R;
-import net.xinzeling.adapter.DashikanfaItemAdapter;
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
-import net.xinzeling.lib.HttpCommon;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;

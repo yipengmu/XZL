@@ -16,4 +16,5 @@
     <string name="about">关于我们</string>
     <string name="PushSwitch">消息推送</string>
 	<string name="UsrEditImg"><u>更改头像</u></string>
+    <string name="setting">设置</string>
 </resources>

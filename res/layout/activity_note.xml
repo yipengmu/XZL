@@ -41,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingBottom="15dp"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:paddingBottom="15dp" >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -131,29 +131,29 @@
                         android:paddingLeft="4dp"
                         android:text=" 填写内容：" />
 
-                    <EditText
+                    <net.xinzeling.widget.LineEditText
                         android:id="@+id/input_note_content"
-                        android:layout_width="match_parent"
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="6dp"
-                        android:background="@drawable/edit_multi_line"
+                        android:background="@null"
                         android:freezesText="false"
                         android:gravity="top"
                         android:inputType="textMultiLine"
                         android:lineSpacingExtra="5dp"
                         android:lineSpacingMultiplier="1.1"
-                        android:lines="3"
-                        android:minHeight="30dp" />
+                        android:minHeight="100dp"
+                        android:textColor="@color/calendar_txt"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/activity_note_line_layout_height"
-                    android:layout_marginTop="@dimen/activity_note_line_layout_marginTop"
+                    android:layout_marginTop="20dp"
                     android:background="@color/bg_green" />
 
                 <!-- 时间相关 -->
-
 
                 <TextView
                     android:layout_width="match_parent"
@@ -173,10 +173,11 @@
                     android:orientation="vertical"
                     android:paddingTop="@dimen/activity_note_selecttime_paddingTop" >
 
-                    <View style="@style/common_input_line_view" 
-                        android:layout_marginLeft="30dp" 
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="30dp"/>
+                    <View
+                        style="@style/common_input_line_view"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginTop="10dp" />
 
                     <LinearLayout
                         android:id="@+id/alert_begin"
@@ -234,9 +235,10 @@
                             android:text="21分" />
                     </LinearLayout>
 
-                    <View style="@style/common_input_line_view" 
-                        android:layout_marginLeft="30dp" 
-                        android:layout_marginRight="30dp"/>
+                    <View
+                        style="@style/common_input_line_view"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp" />
 
                     <LinearLayout
                         android:id="@+id/alert_end"
@@ -293,9 +295,10 @@
                             android:text="21分" />
                     </LinearLayout>
 
-                    <View style="@style/common_input_line_view" 
-                        android:layout_marginLeft="30dp" 
-                        android:layout_marginRight="30dp"/>
+                    <View
+                        style="@style/common_input_line_view"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp" />
                 </LinearLayout>
 
                 <TextView
@@ -363,8 +366,8 @@
 
                         <EditText
                             android:id="@+id/earlier_hour"
-                            android:layout_marginLeft="8dp"
                             style="@style/earlier_input"
+                            android:layout_marginLeft="8dp"
                             android:layout_marginRight="@dimen/activity_note_earlier_input_layout_marginRight"
                             android:onClick="onClick"
                             android:text="00" />
@@ -378,8 +381,8 @@
 
                         <EditText
                             android:id="@+id/earlier_min"
-                            android:layout_marginLeft="8dp"
                             style="@style/earlier_input"
+                            android:layout_marginLeft="8dp"
                             android:layout_marginRight="@dimen/activity_note_earlier_input_layout_marginRight"
                             android:onClick="onClick"
                             android:text="00" />
@@ -442,11 +445,34 @@
 
                 <Button
                     android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/rect_btn_common_green_bg"
                     android:onClick="onClick"
+                    android:text="保存"
+                    android:textSize="20dp" />
+                
+                  <Button
+                    android:id="@+id/btn_save"
+                                style="@style/note_repeat_item"
+                    android:text="保存"
+                    android:textSize="20dp" />
+                
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/note_repeat_back"
+                    android:text="保存"
+                    
+                    />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    style="@style/common_btn"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    style="@style/common_btn"
+                    android:background="@drawable/rect_btn_common_green_bg"
+                    android:onClick="onClick"
                     android:text="保存" />
             </LinearLayout>
         </ScrollView>

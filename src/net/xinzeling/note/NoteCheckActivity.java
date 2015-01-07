@@ -3,13 +3,10 @@ package net.xinzeling.note;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.DateTime;
-import net.xinzeling.lib.FontManager;
 import net.xinzeling.model.NoteModel;
 import net.xinzeling.model.NoteModel.Note;
+import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +14,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class NoteCheckActivity extends Activity {

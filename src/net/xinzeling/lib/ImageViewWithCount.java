@@ -71,7 +71,7 @@ public class ImageViewWithCount extends LinearLayout implements OnClickListener 
 			icon = AppBase.getResIcon(getResources(), R.drawable.notificationicon);
 		}
 		if(icon!=null){
-			Bitmap new_icon = AppBase.generatorContactCountIcon(FontManager.getTypeface(context),icon, cnt,cnt_font_size,cnt_font_color,circle_color);
+			Bitmap new_icon = AppBase.generatorContactCountIcon(icon, cnt,cnt_font_size,cnt_font_color,circle_color);
 			if(new_icon!=null){
 				mBg.setImageBitmap(new_icon);
 			}

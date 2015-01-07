@@ -79,15 +79,14 @@
         <activity
             android:name="net.xinzeling.TestActivity"
             android:label="test入口"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
 
-            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            -->
         </activity>
 
         <!-- ###################注册SDK使用的Activity###################### -->
@@ -118,7 +117,7 @@
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+        </activity>jkc
         <!-- ############ 微信和微信朋友圈的回调 ############### -->
         <activity
             android:name="net.xinzeling.wxapi.WXEntryActivity"
@@ -225,6 +224,10 @@
                 <action android:name="xinzeling_alarm" />
             </intent-filter>
         </receiver>
+         <activity
+            android:name="net.xinzeling.share.CommonShareActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/translucent" />
         
         
         <!-- jiguang start -->

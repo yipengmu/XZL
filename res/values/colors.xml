@@ -1,6 +1,7 @@
 <resources>
 
     <color name="translucent_background">#DF000000</color>
+    <color name="translucent">#00000000</color>
     <color name="white">#ffffffff</color>
     <color name="calendar_bg">#3A8378</color>
     <color name="calendar_grid">#D9D2B6</color>
@@ -18,5 +19,8 @@
     <color name="gua_back_line">#dadada</color>
 	<color name="setting_menu_bg">#f1f1f1</color>
 	<color name="grey">#b2b2b2</color>
+    <color name="half_transparent">#7f000000</color>
 	<color name="common_green">#9fb521</color>
+    <color name="global_background">#FFF5F5F5</color>
+    <color name="dark_grey">#ff4c4c49</color>
 </resources>

@@ -1,5 +1,6 @@
 package net.xinzeling.setting;
 
+import net.xinzeling2.R;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -9,11 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
-import net.xinzeling2.R;
-import net.xinzeling2.R.id;
-import net.xinzeling2.R.layout;
 
 public class AboutActivity extends Activity {
 

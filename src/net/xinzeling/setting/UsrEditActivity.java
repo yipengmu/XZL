@@ -5,14 +5,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
-import net.xinzeling2.R.id;
-import net.xinzeling2.R.layout;
 import net.xinzeling.adapter.BirthAdapter;
 import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
 import net.xinzeling.lib.HttpCommon;
+import net.xinzeling2.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -29,7 +26,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -39,7 +35,6 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import net.xinzeling2.R;
 
 public class UsrEditActivity extends Activity {
 	private View avataChose;

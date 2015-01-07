@@ -1,5 +1,21 @@
 package net.xinzeling.gua;
 
+import net.xinzeling.lib.AppBase;
+import net.xinzeling.lib.AppBase.share_id;
+import net.xinzeling.lib.BlurBehind;
+import net.xinzeling.model.GuaModel;
+import net.xinzeling.model.GuaModel.Gua;
+import net.xinzeling2.R;
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -10,23 +26,6 @@ import com.umeng.socialize.sso.SinaSsoHandler;
 import com.umeng.socialize.sso.TencentWBSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
-
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.AppBase.share_id;
-import net.xinzeling.lib.BlurBehind;
-import net.xinzeling.model.GuaModel;
-import net.xinzeling.model.GuaModel.Gua;
-import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class ShareActivity extends Activity {
 	private UMSocialService mController;
@@ -76,12 +75,12 @@ public class ShareActivity extends Activity {
 	
 	public void onClick(View view){
 		// 添加微信平台
-		UMWXHandler wxHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
-		wxHandler.addToSocialSDK();
-		// 添加微信朋友圈
-		UMWXHandler wxCircleHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
-		wxCircleHandler.setToCircle(true);
-		wxCircleHandler.addToSocialSDK();
+//		UMWXHandler wxHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
+//		wxHandler.addToSocialSDK();
+//		// 添加微信朋友圈
+//		UMWXHandler wxCircleHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
+//		wxCircleHandler.setToCircle(true);
+//		wxCircleHandler.addToSocialSDK();
 
 		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
 		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, AppBase.QQ_APP_ID,
@@ -127,8 +126,8 @@ public class ShareActivity extends Activity {
 
 	private void share_weixin(){
 		// 添加微信平台
-		UMWXHandler wxHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
-		wxHandler.addToSocialSDK();
+//		UMWXHandler wxHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
+//		wxHandler.addToSocialSDK();
 		//mController.openShare(ShareActivity.this, false);
 		//微信
 		mController.postShare(ShareActivity.this,SHARE_MEDIA.WEIXIN, 
@@ -186,9 +185,9 @@ public class ShareActivity extends Activity {
 	
 	private void share_pengyouquan(){
 		// 添加微信朋友圈
-		UMWXHandler wxCircleHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
-		wxCircleHandler.setToCircle(true);
-		wxCircleHandler.addToSocialSDK();
+//		UMWXHandler wxCircleHandler = new UMWXHandler(ShareActivity.this,AppBase.WEIXIN_APP_ID,AppBase.WEIXIN_APP_KEY);
+//		wxCircleHandler.setToCircle(true);
+//		wxCircleHandler.addToSocialSDK();
 		//mController.openShare(ShareActivity.this, false);
 		//微信朋友圈
 		mController.postShare(ShareActivity.this,SHARE_MEDIA.WEIXIN_CIRCLE, 

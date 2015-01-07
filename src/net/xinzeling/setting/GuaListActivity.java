@@ -2,20 +2,17 @@ package net.xinzeling.setting;
 
 import java.util.ArrayList;
 
-import net.xinzeling2.R;
 import net.xinzeling.adapter.GuaListAdapter;
 import net.xinzeling.adapter.GuaListAdapter.onGuaContentClickListener;
 import net.xinzeling.gua.JieGuaActivity;
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
 import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;
+import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
 public class GuaListActivity extends Activity {

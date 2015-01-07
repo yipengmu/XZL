@@ -1,17 +1,15 @@
 package net.xinzeling;
 
+import net.xinzeling.lib.AppBase;
+import net.xinzeling2.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.FontManager;
-import net.xinzeling2.R;
 
 public class WebViewActivity extends Activity {
 	private TextView txtTitle;
@@ -54,11 +52,13 @@ public class WebViewActivity extends Activity {
 		}
 	}
 	
-	public boolean onKeyDown(int keyCoder,KeyEvent event){  
-        if(webView.canGoBack() && keyCoder == KeyEvent.KEYCODE_BACK){  
-        	webView.goBack();
-            return true;  
-         }  
-         return false;  
+	public boolean onKeyDown(int keyCode, KeyEvent event){  
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (webView.canGoBack()) {
+				webView.goBack();
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}  
 }

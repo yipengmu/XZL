@@ -2,18 +2,15 @@ package net.xinzeling.gua;
 
 import java.util.HashMap;
 
-import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.AppBase.share_id;
 import net.xinzeling.lib.BlurBehind;
-import net.xinzeling.lib.FontManager;
 import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;
+import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 

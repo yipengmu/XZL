@@ -2,11 +2,8 @@ package net.xinzeling.fragment;
 
 import net.xinzeling.HomeActivity;
 import net.xinzeling2.R;
-import net.xinzeling.lib.FontManager;
-import net.xinzeling.model.LunarModel.Lunar;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;

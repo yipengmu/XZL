@@ -1,6 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
+    <style name="AppBaseTheme" parent="android:style/Theme.Light.NoTitleBar"></style>
 
     <style name="AppTheme" parent="AppBaseTheme">
         <item name="android:textColor">@color/calendar_txt</item>
@@ -11,11 +11,11 @@
     <!-- item name="android:windowIsTranslucent"      设置当前Activity是否透明 -->
     <!-- item name="android:windowAnimationStyle"     设置当前Activity进出方式 -->
     <style name="translucent">
-        <item name="android:windowBackground">@color/translucent_background</item>
+        <item name="android:windowBackground">@color/translucent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
-
+        
     <style name="textview_gua_share_datetime">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -152,10 +152,11 @@
         <item name="android:button">@null</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/calendar_txt</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">@dimen/activity_note_repeat_textSize</item>
         <item name="android:gravity">center</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">10dp</item>
     </style>
 
     <style name="note_repeat_item">
@@ -164,6 +165,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">8dp</item>
          <item name="android:textColor">@color/calendar_txt</item>
         <item name="android:gravity">center</item>
     </style>
@@ -373,6 +375,12 @@
         <item name="android:layout_height">20px</item>
         <item name="android:background">#b2b2b2</item>
     </style>
+    
+     <style name="common_vercial_input_line_view_fill_parent">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">#b2b2b2</item>
+    </style>
 
     <style name="earlier_input">
         <item name="android:layout_width">30dp</item>
@@ -403,5 +411,12 @@
         <item name="android:padding">3dp</item>
         <item name="android:textSize">18sp</item>
     </style>
+    
+      <style name="cent_secant">
+        <item name="android:background">#cccccc</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1px</item>
+    </style>
+    
 
 </resources>
