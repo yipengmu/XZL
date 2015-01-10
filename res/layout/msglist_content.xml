@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:text="@string/msgdatetitle"
-            android:textColor="@color/black" />
+            android:textColor="@color/dark_grey" />
 
     </LinearLayout>
 
@@ -28,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" >
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,9 +47,10 @@
             <TextView
                 android:id="@+id/msg_title"
                 android:layout_width="wrap_content"
+                android:textSize="12sp"
                 android:layout_height="wrap_content"
                 android:text="@string/msg_title"
-                android:textColor="#4b5608" />
+                android:textColor="@color/common_green" />
 
         </LinearLayout>
     </LinearLayout>

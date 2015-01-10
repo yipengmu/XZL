@@ -146,7 +146,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		for (int i = 0; i < list.size(); i++) {
 			Button btn = new Button(context);
 			btn.setText(list.get(i).buttonName);
-			// btn.setTypeface(FontManager.getTypeface(context));
+			btn.setTextSize(20);
 			btn.setOnClickListener(list.get(i).mclickListener);
 			float btn_width = list.get(i).buttonName.length() * 2 * 16 + 15;
 

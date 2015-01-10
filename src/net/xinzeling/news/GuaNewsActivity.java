@@ -32,13 +32,11 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 	private Context context;
 	private boolean showSel;
 	private Handler myHandler;
-//	private Typeface tf;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gua_news);
 		
-//		tf = FontManager.getTypeface(this);
 		TabSel = (ImageView)findViewById(R.id.TabSel);
 		BackHome = (ImageView)findViewById(R.id.backHome);
 		

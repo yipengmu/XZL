@@ -108,7 +108,6 @@ public class HomeActivity extends Activity  implements OnClickListener{
 		registerReceiver(receiverNDBD, new IntentFilter(AppBase.SELECT_NEW_DATE_BROADCAST));
 
 		this.onClick(modeMonth);
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this),HomeActivity.this);
 	}
 
 	public void onResume(){

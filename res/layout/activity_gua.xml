@@ -23,6 +23,7 @@
             <Button
                 android:id="@+id/btn_home"
                 style="@style/header_home"
+                android:visibility="gone"
                 android:layout_alignParentRight="true"
                 android:onClick="onClick" />
 
@@ -228,7 +229,7 @@
                 android:id="@+id/radiogroup_type_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#aa000000"
+                android:background="@color/translucent_background_light"
                 android:orientation="horizontal" >
 
                 <RadioButton
