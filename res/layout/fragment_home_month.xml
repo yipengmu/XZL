@@ -51,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:padding="4dp" >
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -68,13 +69,15 @@
                             android:id="@+id/lunar_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp" />
+                            android:textColor="@color/dark_grey"
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/lunar_sub_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="12dp"
+                            android:textColor="@color/dark_grey"
                             android:textSize="14sp" />
                     </LinearLayout>
 
@@ -103,22 +106,26 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:drawableLeft="@drawable/icon_yi"
-                        android:drawablePadding="4dp"
+                        android:drawablePadding="5dp"
                         android:text="宜"
+                        android:textColor="@color/dark_grey"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/lunar_lucky"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:ellipsize="end"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:orientation="horizontal" >
 
                     <TextView
@@ -126,16 +133,20 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="3dp"
                         android:drawableLeft="@drawable/icon_ji"
-                        android:drawablePadding="4dp"
+                        android:drawablePadding="5dp"
                         android:text="忌"
+                        android:textColor="@color/dark_grey"
                         android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/lunar_demon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:ellipsize="end"
-                        android:singleLine="true" />
+                        android:singleLine="true"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
@@ -166,7 +177,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:orientation="horizontal" >
 
             <RadioButton
@@ -195,9 +205,10 @@
             android:layout_height="match_parent"
             android:layout_below="@id/btn_expand"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:divider="@null"
-            android:padding="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:scrollbars="@null" />
     </RelativeLayout>
 

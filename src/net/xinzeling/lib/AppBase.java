@@ -13,6 +13,8 @@ import java.util.Locale;
 
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.receiver.AlarmReceiver;
+import net.xinzeling.setting.SigninActivity;
+import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 
 import org.json.JSONException;
@@ -36,6 +38,7 @@ import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -45,13 +48,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import cn.jpush.android.api.JPushInterface;
 
-public class AppBase extends Application{
-	public final static String Weibo_APP_ID = "2045436852";//"3665317294";
+public class AppBase extends Application {
+	public final static String Weibo_APP_ID = "2045436852";// "3665317294";
 	public final static String Weibo_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
-	public static final String Weibo_SCOPE =  
-			"email,direct_messages_read,direct_messages_write,"
-					+ "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
-					+ "follow_app_official_microblog," + "invitation_write";
+	public static final String Weibo_SCOPE = "email,direct_messages_read,direct_messages_write," + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
+			+ "follow_app_official_microblog," + "invitation_write";
 
 	public final static String QQ_APP_ID = "1103520665";
 	public final static String QQ_APP_KEY = "4aiyBe5G7H20CSs0";
@@ -85,12 +86,9 @@ public class AppBase extends Application{
 	public final static String gua_time_url = server + "webservice/XZLService.asmx/divine14Time";
 	public final static String check_usrname_isused = server + "webservice/XZLService.asmx/account04CheckUserName?username=";
 
-	public final static int[] note_topics = {
-		R.id.note_topic_1,R.id.note_topic_2,R.id.note_topic_3,R.id.note_topic_4,R.id.note_topic_5,R.id.note_topic_6,
-		R.id.note_topic_7,R.id.note_topic_8,R.id.note_topic_9,R.id.note_topic_10,R.id.note_topic_11,R.id.note_topic_12,
-		R.id.note_topic_13,R.id.note_topic_14,R.id.note_topic_15,R.id.note_topic_16,R.id.note_topic_17,R.id.note_topic_18,
-		R.id.note_topic_19,R.id.note_topic_20,R.id.note_topic_21,R.id.note_topic_22,R.id.note_topic_23,R.id.note_topic_24
-	};
+	public final static int[] note_topics = { R.id.note_topic_1, R.id.note_topic_2, R.id.note_topic_3, R.id.note_topic_4, R.id.note_topic_5, R.id.note_topic_6, R.id.note_topic_7, R.id.note_topic_8,
+			R.id.note_topic_9, R.id.note_topic_10, R.id.note_topic_11, R.id.note_topic_12, R.id.note_topic_13, R.id.note_topic_14, R.id.note_topic_15, R.id.note_topic_16, R.id.note_topic_17,
+			R.id.note_topic_18, R.id.note_topic_19, R.id.note_topic_20, R.id.note_topic_21, R.id.note_topic_22, R.id.note_topic_23, R.id.note_topic_24 };
 
 	public final static int REPEAT_EMPTY = 0;
 	public final static int REPEAT_TYPE_YEAR = 1;
@@ -98,28 +96,19 @@ public class AppBase extends Application{
 	public final static int REPEAT_TYPE_WEEK = 3;
 	public final static int REPEAT_TYPE_DAY = 4;
 
-	public static enum note_error_code{
-		EMPTY_TITLE,
-		EMPTY_CONTACT,
-		EMPTY_CONTENT,
-		EMPTY_STARTTIME,
-		EMPTY_ENDTIME,
-		ERROR_ENDTIME,
+	public static enum note_error_code {
+		EMPTY_TITLE, EMPTY_CONTACT, EMPTY_CONTENT, EMPTY_STARTTIME, EMPTY_ENDTIME, ERROR_ENDTIME,
 	};
 
-	public static enum share_id{
-		SHARE_QQ_PENGYOUQUAN,
-		SHARE_QQZONE,
-		SHARE_WEIBO,
-		SHARE_WEIXIN,
+	public static enum share_id {
+		SHARE_QQ_PENGYOUQUAN, SHARE_QQZONE, SHARE_WEIBO, SHARE_WEIXIN,
 	};
+
 	public final static int xz_id_day = 1;
 	public final static int xz_id_month = 2;
 	public final static int xz_id_year = 3;
 
-	public final static int[] double_type_int = {
-		2,201,202,203,27,2801,2802
-	};
+	public final static int[] double_type_int = { 2, 201, 202, 203, 27, 2801, 2802 };
 	public final static int nav_gua_num = 1;
 	public final static int nav_gua_photo = 2;
 	public final static int nav_gua_time = 3;
@@ -128,29 +117,28 @@ public class AppBase extends Application{
 	private static DBHelper dbHelper;
 	public static SharedPreferences sharedPreference;
 
-	public static int usrId =-1;
+	public static int usrId = -1;
 	public static String usrName;
-	public static int gender=2;
+	public static int gender = 2;
 
 	public static String userToken;
-	public static String userTokenExpire;
+	public static String userTokenExpireDate;
 	public static String renewalToken;
 	public static String renewalTokenExpire;
 
-	public static List<String> userinfo_params_key = Arrays.asList(
-			new String[]{"nick","firstName","name","birthday","birthTime","phone","email","birthAddress",
-					"nowaddr","career","marriage","gender"});
-	
-	public void onCreate(){
+	public static List<String> userinfo_params_key = Arrays.asList(new String[] { "nick", "firstName", "name", "birthday", "birthTime", "phone", "email", "birthAddress", "nowaddr", "career",
+			"marriage", "gender" });
+
+	public void onCreate() {
 		context = getApplicationContext();
 
 		sharedPreference = context.getSharedPreferences("usr", Context.MODE_APPEND);
 
-		///test begin
-		Editor editor=sharedPreference.edit();
+		// /test begin
+		Editor editor = sharedPreference.edit();
 		editor.putString("nick", "小白");
-		editor.putString("firstName", "白");//姓
-		editor.putString("name", "明江");//名
+		editor.putString("firstName", "白");// 姓
+		editor.putString("name", "明江");// 名
 		editor.putString("birthday", "1982-1-21");
 		editor.putString("birthTime", "08:21:00");
 		editor.putString("phone", "13776104530");
@@ -159,55 +147,67 @@ public class AppBase extends Application{
 		editor.putString("birthAddress", "山东济宁");
 		editor.putString("nowaddr", "苏州");
 		editor.putString("career", "IT");
-		editor.putString("marriage", "已婚");//已婚 单身 未婚 离异
+		editor.putString("marriage", "已婚");// 已婚 单身 未婚 离异
 
-		editor.putInt("gender", 0);//0 男 1女
+		editor.putInt("gender", 0);// 0 男 1女
 		editor.commit();
-		///test end
+		// /test end
 
 		usrName = sharedPreference.getString("nick", "");
 		gender = sharedPreference.getInt("gender", 2);
 
-		AppBase.userToken=sharedPreference.getString("userToken", null);
-		AppBase.userTokenExpire = sharedPreference.getString("userTokenExpire", "");
+		// for auto login
+		AppBase.userToken = sharedPreference.getString("userToken", null);
+		AppBase.userTokenExpireDate = sharedPreference.getString("userTokenExpireDate", "");
 		AppBase.renewalToken = sharedPreference.getString("renewalToken", null);
-		AppBase.renewalTokenExpire=sharedPreference.getString("renewalTokenExpire", "");
+		AppBase.renewalTokenExpire = sharedPreference.getString("renewalTokenExpire", "");
+		checkIfNeedReautoLogin(AppBase.userTokenExpireDate, AppBase.renewalToken);
 
-		dbHelper =  new DBHelper(context, "xinzeling.db");
-		dbh =dbHelper.getWritableDatabase();
-		
+		dbHelper = new DBHelper(context, "xinzeling.db");
+		dbh = dbHelper.getWritableDatabase();
+
 		// push
 		JPushInterface.setDebugMode(true);
 		JPushInterface.init(this);
-	}		
-	
+	}
+
+	private void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
+		if (TextUtils.isEmpty(userTokenExpireDate) || TextUtils.isEmpty(renewalToken)) {
+			// 首次登录
+			return;
+		}
+
+		long timeNow = System.currentTimeMillis();
+		if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDataByStringyyyyMMdd(userTokenExpireDate).getTime())) {
+			new AutoLoginTask(renewalToken).equals(null);
+		}
+	}
+
 	public static Context getContext() {
 		return context;
 	}
 
-	public static String sdcardPath(){
-		File sdDir = null; 
-		boolean sdCardExist = Environment.getExternalStorageState()   
-				.equals(Environment.MEDIA_MOUNTED);   //判断sd卡是否存在 
-		if   (sdCardExist)   
-		{                               
-			sdDir = Environment.getExternalStorageDirectory();//获取跟目录 
-			return sdDir.toString();        
-		}else{
+	public static String sdcardPath() {
+		File sdDir = null;
+		boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
+		if (sdCardExist) {
+			sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
+			return sdDir.toString();
+		} else {
 			return null;
 		}
 	}
 
-	public static void editUserInfo(HashMap<String,String> params){
-		if(params.size()>0){
+	public static void editUserInfo(HashMap<String, String> params) {
+		if (params.size() > 0) {
 
-			Editor editor=sharedPreference.edit();
-			for(String key:userinfo_params_key){
-				if(params.containsKey(key)){
-					if("gender".equals(key)){
+			Editor editor = sharedPreference.edit();
+			for (String key : userinfo_params_key) {
+				if (params.containsKey(key)) {
+					if ("gender".equals(key)) {
 						editor.putInt(key, Integer.valueOf(params.get(key)));
-					}else{
-						editor.putString(key, params.get(key));						
+					} else {
+						editor.putString(key, params.get(key));
 					}
 				}
 			}
@@ -218,29 +218,34 @@ public class AppBase extends Application{
 
 	/**
 	 * sendAlarmBroadCast 发送闹铃广播
+	 * 
 	 * @param context
-	 * @param isRepeat 定时器是否重复
-	 * @param firsttime 第一次触发时间离现在的秒数
-	 * @param repeat_time 定时器重复的间隔秒数
-	 * @param alarmId 定时器自定义id
+	 * @param isRepeat
+	 *            定时器是否重复
+	 * @param firsttime
+	 *            第一次触发时间离现在的秒数
+	 * @param repeat_time
+	 *            定时器重复的间隔秒数
+	 * @param alarmId
+	 *            定时器自定义id
 	 */
-	public static void sendAlarmBroadCast(Context context,boolean isRepeat,long firsttime,long repeat_time,int alarmId) {
-		Intent intent =new Intent(context, AlarmReceiver.class);
+	public static void sendAlarmBroadCast(Context context, boolean isRepeat, long firsttime, long repeat_time, int alarmId) {
+		Intent intent = new Intent(context, AlarmReceiver.class);
 		intent.setAction("xinzeling_alarm");
 		intent.putExtra("alarm_id", alarmId);
 		PendingIntent sender = PendingIntent.getBroadcast(context, alarmId, intent, 0);
-		AlarmManager alarm=(AlarmManager)context.getSystemService(ALARM_SERVICE);
-		if(!isRepeat){
-			alarm.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+firsttime*1000, sender);
-		}else{
-			alarm.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, System.currentTimeMillis()+firsttime, repeat_time, sender);
+		AlarmManager alarm = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+		if (!isRepeat) {
+			alarm.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + firsttime * 1000, sender);
+		} else {
+			alarm.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, System.currentTimeMillis() + firsttime, repeat_time, sender);
 		}
 	}
 
-	public static long NowTime(){
+	public static long NowTime() {
 		long ret = 0;
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		//获取系统当前时间
+		// 获取系统当前时间
 		ret = now.getTime();
 		ret = ret / 1000;
 		return ret;
@@ -248,28 +253,28 @@ public class AppBase extends Application{
 
 	/**
 	 * cancelAlarm 取消定时器
+	 * 
 	 * @param context
-	 * @param alarmId 定时器自定义id
+	 * @param alarmId
+	 *            定时器自定义id
 	 */
-	public static void cancelAlarm(Context context,int alarmId) {
-		Intent intent =new Intent(context, AlarmReceiver.class);
+	public static void cancelAlarm(Context context, int alarmId) {
+		Intent intent = new Intent(context, AlarmReceiver.class);
 		intent.setAction("xinzeling_alarm");
 		intent.putExtra("alarm_id", alarmId);
-		PendingIntent sender=PendingIntent.getBroadcast(context, alarmId, intent, 0);
-		AlarmManager alarm=(AlarmManager)context.getSystemService(ALARM_SERVICE);
+		PendingIntent sender = PendingIntent.getBroadcast(context, alarmId, intent, 0);
+		AlarmManager alarm = (AlarmManager) context.getSystemService(ALARM_SERVICE);
 		alarm.cancel(sender);
 	}
 
-	public static View getRootView(Activity context)  
-	{  
-		return ((ViewGroup)context.findViewById(android.R.id.content)).getChildAt(0);  
-	}  
+	public static View getRootView(Activity context) {
+		return ((ViewGroup) context.findViewById(android.R.id.content)).getChildAt(0);
+	}
 
 	public static String getDeviceInfo(Context context) {
-		try{
+		try {
 			org.json.JSONObject json = new org.json.JSONObject();
-			android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context
-					.getSystemService(Context.TELEPHONY_SERVICE);
+			android.telephony.TelephonyManager tm = (android.telephony.TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 
 			String device_id = tm.getDeviceId();
 
@@ -278,18 +283,18 @@ public class AppBase extends Application{
 			String mac = wifi.getConnectionInfo().getMacAddress();
 			json.put("mac", mac);
 
-			if( TextUtils.isEmpty(device_id) ){
+			if (TextUtils.isEmpty(device_id)) {
 				device_id = mac;
 			}
 
-			if( TextUtils.isEmpty(device_id) ){
-				device_id = android.provider.Settings.Secure.getString(context.getContentResolver(),android.provider.Settings.Secure.ANDROID_ID);
+			if (TextUtils.isEmpty(device_id)) {
+				device_id = android.provider.Settings.Secure.getString(context.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
 			}
 
 			json.put("device_id", device_id);
 
 			return json.toString();
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -315,7 +320,7 @@ public class AppBase extends Application{
 	}
 
 	public static void setPushSW(boolean isPush) {
-		Editor editor=sharedPreference.edit();
+		Editor editor = sharedPreference.edit();
 		editor.putBoolean("isPush", isPush);
 		editor.commit();
 	}
@@ -329,7 +334,8 @@ public class AppBase extends Application{
 		result[1] = db.getHeight();
 		return result;
 	}
-	public static float[] getWidthHeightPixels(){
+
+	public static float[] getWidthHeightPixels() {
 		DisplayMetrics dm = context.getResources().getDisplayMetrics();
 		float[] result = new float[2];
 		result[0] = dm.widthPixels;
@@ -337,23 +343,23 @@ public class AppBase extends Application{
 		return result;
 	}
 
-	public static void goGuaActivity(Context context,int mode){
+	public static void goGuaActivity(Context context, int mode) {
 		Intent guaIntent = new Intent(context, GuaActivity.class);
 		guaIntent.putExtra("mode", mode);
 		context.startActivity(guaIntent);
 	}
 
-	public static void onSignin(String userToken, String userTokenExpire,String renewalToken,String renewalTokenExpire){
-		Editor editor=sharedPreference.edit();
+	public static void onSignin(String userToken, String userTokenExpireDate, String renewalToken, String renewalTokenExpire) {
+		Editor editor = sharedPreference.edit();
 		editor.putString("userToken", userToken);
-		editor.putString("userTokeExpire", userTokenExpire);
+		editor.putString("userTokeExpire", userTokenExpireDate);
 		editor.putString("renewalToken", renewalToken);
 		editor.putString("renewalTokenExpire", renewalTokenExpire);
 		editor.apply();
-		AppBase.userToken=userToken;
-		AppBase.userTokenExpire=userTokenExpire;
-		AppBase.renewalToken=renewalToken;
-		AppBase.renewalTokenExpire=renewalTokenExpire;
+		AppBase.userToken = userToken;
+		AppBase.userTokenExpireDate = userTokenExpireDate;
+		AppBase.renewalToken = renewalToken;
+		AppBase.renewalTokenExpire = renewalTokenExpire;
 		sendBroadcastAboutUsrStatus(true);
 	}
 
@@ -362,8 +368,8 @@ public class AppBase extends Application{
 		context.sendBroadcast(it);
 	}
 
-	public static void sendBroadcastNewSelectDate(Date d){
-		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.CHINA);
+	public static void sendBroadcastNewSelectDate(Date d) {
+		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
 		String date = sdFormat.format(d);
 		sendBroadcastNewSelectDate(date);
 	}
@@ -391,7 +397,7 @@ public class AppBase extends Application{
 		editor.commit();
 	}
 
-	public static int getunreadmsg_cnt(){
+	public static int getunreadmsg_cnt() {
 		return sharedPreference.getInt("unreadmsgcnt", 0);
 	}
 
@@ -401,18 +407,18 @@ public class AppBase extends Application{
 		editor.commit();
 	}
 
-	public static boolean isNewsReaded(int id){
-		return sharedPreference.getBoolean("news_"+id, false);
+	public static boolean isNewsReaded(int id) {
+		return sharedPreference.getBoolean("news_" + id, false);
 	}
 
-	public static void setNewsReaded(int id){
+	public static void setNewsReaded(int id) {
 		Editor editor = sharedPreference.edit();
-		editor.putBoolean("news_"+id, true);
+		editor.putBoolean("news_" + id, true);
 		editor.commit();
 	}
 
-	public static void logout(){
-		Editor editor=sharedPreference.edit();
+	public static void logout() {
+		Editor editor = sharedPreference.edit();
 		editor.remove("userToken");
 		editor.remove("renewalToken");
 		editor.commit();
@@ -422,71 +428,110 @@ public class AppBase extends Application{
 		sendBroadcastAboutUsrStatus(false);
 	}
 
-	public static boolean isSignin(){
-		if(AppBase.userToken !=null){
+	public static boolean isSignin() {
+		if (AppBase.userToken != null) {
 			return true;
 		}
 		return false;
 	}
 
-	//刷新token
-	public static void renewalToken() throws IOException, JSONException{
+	// 刷新token
+	public static void renewalToken() throws IOException, JSONException {
 		JSONObject jsonResp = HttpCommon.getGet(refresh_token_url);
 		int resCode = jsonResp.getInt("resCode");
 
 		if (resCode == 0) {
 			String userToken = jsonResp.getString("userToken");
-			String userTokenExpire = jsonResp.getString("userTokenExpireDate");
+			String userTokenExpireDateDate = jsonResp.getString("userTokenExpireDateDate");
 			String renewalToken = jsonResp.getString("renewalToken");
-			String renewalTokenExpire =jsonResp.getString("renewalTokenExpire");
-			AppBase.onSignin(userToken,userTokenExpire,renewalToken,renewalTokenExpire);
+			String renewalTokenExpire = jsonResp.getString("renewalTokenExpire");
+			AppBase.onSignin(userToken, userTokenExpireDate, renewalToken, renewalTokenExpire);
 		}
 	}
 
-	public static Bitmap getResIcon(int resId){
-		return getResIcon(context.getResources(),resId);
+	public static Bitmap getResIcon(int resId) {
+		return getResIcon(context.getResources(), resId);
 	}
 
-	public static Bitmap getResIcon(Resources res,int resId){  
-		Drawable icon=res.getDrawable(resId);  
-		if(icon instanceof BitmapDrawable){  
-			BitmapDrawable bd=(BitmapDrawable)icon;  
-			return bd.getBitmap();  
-		}else{  
-			return null;  
-		}  
-	}  
+	public static Bitmap getResIcon(Resources res, int resId) {
+		Drawable icon = res.getDrawable(resId);
+		if (icon instanceof BitmapDrawable) {
+			BitmapDrawable bd = (BitmapDrawable) icon;
+			return bd.getBitmap();
+		} else {
+			return null;
+		}
+	}
 
-	public static Bitmap generatorContactCountIcon(Bitmap icon, String cnt,int font_size,int font_color,int circle_color){ 
-		//初始化画布  
-		Bitmap contactIcon=Bitmap.createBitmap(icon.getWidth(), icon.getHeight(), Config.ARGB_8888);  
-		Canvas canvas=new Canvas(contactIcon);  
+	public static Bitmap generatorContactCountIcon(Bitmap icon, String cnt, int font_size, int font_color, int circle_color) {
+		// 初始化画布
+		Bitmap contactIcon = Bitmap.createBitmap(icon.getWidth(), icon.getHeight(), Config.ARGB_8888);
+		Canvas canvas = new Canvas(contactIcon);
 
-		//拷贝图片  
-		Paint iconPaint=new Paint();  
-		iconPaint.setDither(true);//防抖动  
-		iconPaint.setFilterBitmap(true);//用来对Bitmap进行滤波处理，这样，当你选择Drawable时，会有抗锯齿的效果  
-		Rect src=new Rect(0, 0, icon.getWidth(), icon.getHeight());  
-		canvas.drawBitmap(icon, src, src, iconPaint);  
+		// 拷贝图片
+		Paint iconPaint = new Paint();
+		iconPaint.setDither(true);// 防抖动
+		iconPaint.setFilterBitmap(true);// 用来对Bitmap进行滤波处理，这样，当你选择Drawable时，会有抗锯齿的效果
+		Rect src = new Rect(0, 0, icon.getWidth(), icon.getHeight());
+		canvas.drawBitmap(icon, src, src, iconPaint);
 
-		if(!"".equals(cnt)){
-			//背景圆
-			float radius = (float)0.28*icon.getHeight();
+		if (!"".equals(cnt)) {
+			// 背景圆
+			float radius = (float) 0.28 * icon.getHeight();
 			iconPaint.setColor(circle_color);
 			iconPaint.setAntiAlias(true);
-			canvas.drawCircle((float)(icon.getWidth()*0.83), (float)1.1*radius, radius, iconPaint);
-			//启用抗锯齿和使用设备的文本字距  
-			Paint countPaint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.DEV_KERN_TEXT_FLAG);  
-//			countPaint.setTypeface(tf);
-			countPaint.setColor(font_color);  
-			countPaint.setTextSize(font_size);  
-			//再加个圆形就可以了
-			canvas.drawText(cnt, (float)(icon.getWidth()*0.83 - 9), (float)(1.2*radius+4), countPaint); 
+			canvas.drawCircle((float) (icon.getWidth() * 0.83), (float) 1.1 * radius, radius, iconPaint);
+			// 启用抗锯齿和使用设备的文本字距
+			Paint countPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
+			// countPaint.setTypeface(tf);
+			countPaint.setColor(font_color);
+			countPaint.setTextSize(font_size);
+			// 再加个圆形就可以了
+			canvas.drawText(cnt, (float) (icon.getWidth() * 0.83 - 9), (float) (1.2 * radius + 4), countPaint);
 		}
-		return contactIcon;  
+		return contactIcon;
 	}
 
-	public static class usr{
+	public static class usr {
+
+	}
+
+	public class AutoLoginTask extends AsyncTask {
+		private HashMap<String, Object> paramsData = new HashMap<String, Object>();
+
+		public AutoLoginTask(String renewalTokenString) {
+			paramsData.put("renewalToken", renewalTokenString);
+		}
+
+		@Override
+		protected Object doInBackground(Object... params) {
+			JSONObject jsonResp;
+			try {
+				jsonResp = HttpCommon.getGet(AppBase.account01Verification, paramsData);
+				int resCode = jsonResp.getInt("resCode");
+				if (resCode == 0) {
+					String userToken = jsonResp.getString("userToken");
+					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
+					String renewalToken = jsonResp.getString("renewalToken");
+					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
+					AppBase.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					return true;
+				} else {
+					// 自动登录失败
+					jsonResp.getString("resMsg");
+				}
+			} catch (IOException | JSONException e) {
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Object result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+		}
 
 	}
 }

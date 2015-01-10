@@ -6,13 +6,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 
 public class Utils {
-	
+
 	/** 分享的url */
 	public static String SNS_SHARE_BUNDLE_WEIXIN_TITLE = "信则聆";
 	/** 分享的内容文案 */
@@ -23,7 +26,7 @@ public class Utils {
 	public static String SNS_SHARE_BUNDLE_BITMAP_URL = "http://tp3.sinaimg.cn/5319290870/180/40069366120/1";
 	/** 微信 仅分享的文字 */
 	public static String SNS_SHARE_BUNDLE_WEIXIN_ONLY_TEXT = "false";
-	
+
 	/** 根据image url 获取bitmap */
 	public static Bitmap getBitmapFromURL(String urlSrc) {
 		try {
@@ -54,5 +57,23 @@ public class Utils {
 			return null;
 		}
 	}
-}
 
+	/** 检查 当前时间 是否在规定时间内 */
+	public static boolean isInCorrectTimeSection(long now, long start, long end) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		long limitDaySecond = 1000 * 60 * 60 * 24;
+		return now <= end + limitDaySecond && now >= start ? true : false;
+	}
+
+	public static Date getDataByStringyyyyMMdd(String str) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		try {
+			return sdf.parse(str);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+}

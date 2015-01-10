@@ -37,12 +37,12 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class HomeActivity extends Activity  implements OnClickListener{
 //	public Typeface tf;
 	
 	private RadioButton modeMonth;
-	private FragmentManager fManager =getFragmentManager();
 	private DateTitleView titleTxt;
 	private ImageViewWithCount notificationIcon;
 	private Handler myHandler;
@@ -50,17 +50,21 @@ public class HomeActivity extends Activity  implements OnClickListener{
 	private View lunarView;
 	private Animation scaleYupAnim; 
 	private Animation scaleYdownAnim;
-	public LunarFragment lunarFragment;
+	
 	private UserStatusBroadcastReceiver usrBReceiver;
 	private ReceiverNewDateBDcast receiverNDBD;
+	
+	//老黄历新旧解释，弹出浮层
+	public LunarFragment lunarFragment;
 	private WeekFragment weekfragment;
 	private MonthFragment monthfragment;
+	private FragmentManager fManager =getFragmentManager();
+	
+	private long mFirstime = 0L;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		tf = FontManager.getTypeface(HomeActivity.this);
-		//System.out.println(AppBase.getDeviceInfo(this.getApplicationContext()));
-		//finish();
 		setContentView(R.layout.activity_home);
 		lunar = LunarModel.fetchByDate(new Date());
 		notificationIcon = (ImageViewWithCount)this.findViewById(R.id.msgnotification);	
@@ -181,13 +185,17 @@ public class HomeActivity extends Activity  implements OnClickListener{
 
 	@Override
 	public boolean onKeyDown(int keyCode,KeyEvent event){
-//		if(keyCode == KeyEvent.KEYCODE_BACK  && !tabHome.isChecked()){
-//			navNote.setVisibility(View.INVISIBLE);
-//			navUsr.setVisibility(View.INVISIBLE);
-//			navGua.setVisibility(View.INVISIBLE);
-//			tabHome.setChecked(true);
-//			return false;
-//		}
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondtime = System.currentTimeMillis();
+			if (secondtime - mFirstime   > 3000) {
+				Toast.makeText(HomeActivity.this, "再按一次返回键退出信则聆", Toast.LENGTH_SHORT).show();
+				mFirstime = System.currentTimeMillis();
+				return true;
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
 		return super.onKeyDown(keyCode, event);
 	}
 

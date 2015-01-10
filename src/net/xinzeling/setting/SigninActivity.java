@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import net.xinzeling.HomeActivity;
+import net.xinzeling.MainActivity;
 import net.xinzeling.WebViewActivity;
 import net.xinzeling.base.BaseActivity;
 import net.xinzeling.lib.AppBase;
@@ -22,7 +23,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,31 +48,52 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 	private UMSocialService mController;
 	private EditText emailInput;
 	private EditText passwdInput;
+	private LinearLayout ll_login_container;
+	private Button btn_logout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signin);
+		
+		findViews();
+		initView();
+		mController = UMServiceFactory.getUMSocialService("com.umeng.login");
+
+		checkLoginState();
+	}
+
+	private void checkLoginState() {
+		if(!AppBase.isSignin()){
+			ll_login_container.setVisibility(View.VISIBLE);
+			btn_logout.setVisibility(View.GONE);
+		}else{
+			ll_login_container.setVisibility(View.GONE);
+			btn_logout.setVisibility(View.VISIBLE);
+		}
+	}
+
+	private void findViews() {
 		TextView forgetPasswd = (TextView) this.findViewById(R.id.btn_forget_passwd);
 		forgetPasswd.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
 		emailInput = (EditText) findViewById(R.id.email);
 		passwdInput = (EditText) findViewById(R.id.password);
-		mController = UMServiceFactory.getUMSocialService("com.umeng.login");
-
-		initView();
-
+		ll_login_container = (LinearLayout) findViewById(R.id.ll_login_container);
+		btn_logout = (Button) findViewById(R.id.btn_logout);
 	}
 
 	private void initView() {
 		setTitle(getAppName());
 		findViewById(R.id.rb_setting).setOnClickListener(this);
 		findViewById(R.id.rb_my).setOnClickListener(this);
+		findViewById(R.id.btn_logout).setOnClickListener(this);
+		
 	}
 
 	public void onClick(View view) {
 
 		Intent intent = new Intent();
-		
+
 		switch (view.getId()) {
 		case R.id.btn_back:
 			this.startActivity(new Intent(this, HomeActivity.class));
@@ -104,7 +128,11 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			intent.setClass(this, UsrEditActivity.class);
 			this.startActivity(intent);
 			break;
-			
+		case R.id.btn_logout:
+			AppBase.logout();
+			checkLoginState();
+			break;
+
 		}
 	}
 
@@ -303,7 +331,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
 					AppBase.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
 					SigninActivity.this.runOnUiThread(new Runnable() {
-						
+
 						@Override
 						public void run() {
 							toast("登录成功");
@@ -326,7 +354,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 				progress.dismiss();
 			}
 			if (result) {
-				Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
+				Intent intent = new Intent(SigninActivity.this, MainActivity.class);
 				startActivity(intent);
 				finish();
 			} else {
@@ -348,7 +376,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			}
 		} catch (Exception e) {
 		}
-		
+
 	}
 
 	// 第三方登陆，每次离开后记得清理登陆信息<退出>

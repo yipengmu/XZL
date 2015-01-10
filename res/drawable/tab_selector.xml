@@ -9,7 +9,7 @@
         <item >
     <shape>
         <stroke android:width="0.5dp" android:color="@color/bg_green"/>
-        <solid android:color="#ebebeb" />
+        <solid android:color="@color/white" />
     </shape>
 </item>
 </selector>

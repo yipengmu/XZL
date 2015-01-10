@@ -1,6 +1,7 @@
 <resources>
 
     <color name="translucent_background">#DF000000</color>
+    <color name="translucent_background_light">#DF000000</color>
     <color name="translucent">#00000000</color>
     <color name="white">#ffffffff</color>
     <color name="calendar_bg">#3A8378</color>

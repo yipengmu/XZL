@@ -31,6 +31,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * 首页 日历控件 主类
+ * 
+ * 负责绘制日历控件
+ * 
+ * 
+ * */
 public class CalendarView extends TextView implements View.OnTouchListener {
 	private Date today = new Date();
 	private Date downDate; // 手指按下状态时临时日期
@@ -616,7 +623,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//cellBgPaint.setColor(Color.parseColor("#dd0000"));
 				//canvas.drawRect(left, n_top, left + 10, n_top + 10, cellBgPaint);
 				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_2);
-				canvas.drawBitmap(iconbit, left + 0.2f*iconbit.getWidth() - borderWidth, top + cellHeight - borderWidth - 1.2f* iconbit.getHeight(), cellBgPaint);
+				canvas.drawBitmap(iconbit, left + 0.2f*iconbit.getWidth() - borderWidth, top + cellHeight - borderWidth - 1.5f* iconbit.getHeight(), cellBgPaint);
 			}
 			if((oth & 1)>0){
 				//右下角
@@ -624,26 +631,28 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//float n_top = top + cellHeight - borderWidth - 10;
 				//cellBgPaint.setColor(Color.parseColor("#00AA00"));
 				//canvas.drawRect(n_left, n_top, n_left + 10, n_top + 10, cellBgPaint);
+				//绘制当前有算卦的 小八卦
 				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_1);
-				canvas.drawBitmap(iconbit, left + cellWidth - 1.2f*iconbit.getWidth() - borderWidth, top + cellHeight - borderWidth - 1.2f*iconbit.getHeight(), cellBgPaint);
+				canvas.drawBitmap(iconbit, left + cellWidth - 1.5f*iconbit.getWidth() - borderWidth , top + cellHeight - borderWidth - 1.5f*iconbit.getHeight(), cellBgPaint);
 			}
 		}
 
-		//绘制单元格字符
+		//绘制单元格字符,即公历日期 和 农历日期
 		void drawCellText(Canvas canvas, int index, String text,String lunar, int color) {
 			int x = getXByIndex(index);
 			int y = getYByIndex(index);
 			datePaint.setColor(color);
 			
 			datePaint.setTextSize(2*textSize);
-
+			//公历日期
 			float cellY =  (y - 1)* cellHeight + fontHeight * (textLineSpaceCellHeightBegin+1.0f);//字是以中文点为计算点的
 			float cellX = (cellWidth * (x - 1))+ (cellWidth - datePaint.measureText(text))/ 2f;
 			canvas.drawText(text, cellX, cellY, datePaint);
 
 			datePaint.setTextSize(textSize);
-
-			cellY = (y - 1)* cellHeight + fontHeight*(textLineSpaceCellHeightBegin+1.0f+1.0f);
+			// 农历日期
+			float topMagin = 12f;
+			cellY = (y - 1)* cellHeight + fontHeight*(textLineSpaceCellHeightBegin+1.0f+1.0f ) + topMagin;
 			cellX = (cellWidth * (x - 1))+ (cellWidth - datePaint.measureText(lunar))/ 2f;
 			canvas.drawText(lunar, cellX, cellY, datePaint);
 		}

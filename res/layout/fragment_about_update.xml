@@ -35,6 +35,6 @@
         android:layout_marginTop="20dp"
         android:padding="16dp"
         android:text="1.全新的界面设计；\n\n 2.更多的求卦类别；\n\n 全新的信则灵等你来体验！"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

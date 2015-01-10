@@ -152,7 +152,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="用"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/body_down"
@@ -161,7 +161,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="体"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout

@@ -41,6 +41,12 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author laomu
+ * 首页主体部分
+ * 
+ * */
 public class MonthFragment extends Fragment implements OnClickListener,
 		OnItemClickListener, OnCheckedChangeListener, OnTouchListener,CalendarListener {
 	private HomeActivity homeActivity;
@@ -62,6 +68,7 @@ public class MonthFragment extends Fragment implements OnClickListener,
 	private LinearLayout back_line_widthsize;
 	private int selectDateYYYYMMDD;
 	private int selectGuaOrNote;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -261,7 +268,6 @@ public class MonthFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onDoubleClick(Date date) {
-		// TODO Auto-generated method stub
 		this.startActivity(new Intent(homeActivity, NoteActivity.class));
 	}
 

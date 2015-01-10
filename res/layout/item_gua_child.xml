@@ -25,7 +25,7 @@
         android:layout_marginLeft="26dp"
         android:text="求卦标题"
         android:textColor="#7B7964"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/gua_item_time"

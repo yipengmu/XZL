@@ -25,6 +25,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 public class HttpCommon {
@@ -59,6 +60,11 @@ public class HttpCommon {
 	
 	public static String paramsEncode(HashMap<String,Object> params){
 		StringBuffer sb = new StringBuffer();
+		
+		if(params.get("renewalTokenExpire") == null && !TextUtils.isEmpty(AppBase.renewalTokenExpire)){
+			params.put("renewalTokenExpire",AppBase.renewalTokenExpire);
+		}
+		
 		if(params !=null && !params.isEmpty()){
 			try {
 				for(Map.Entry<String, Object> entry:params.entrySet()){

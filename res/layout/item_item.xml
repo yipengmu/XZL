@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:descendantFocusability="blocksDescendants"
     android:layout_width="match_parent"
-    android:layout_height="45dp" >
+    android:layout_height="45dp"
+    android:descendantFocusability="blocksDescendants" >
 
-    <View
-        android:layout_width="1.5dp"
+    <RelativeLayout
+        android:id="@+id/rl_note_item_icon"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="19dp"
-        android:background="#8B856F" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10px" >
 
-    <ImageButton
-        android:id="@+id/note_item_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/dot" />
+        <ImageView
+            android:id="@+id/note_item_icon"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/rect_btn_common_cycle_green" />
+
+        <ImageView
+            android:id="@+id/v_timeline"
+            android:layout_below="@+id/note_item_icon"
+            android:layout_width="2px"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:background="#8B856F" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/note_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
-        android:layout_toRightOf="@id/note_item_icon"
+        android:layout_toRightOf="@id/rl_note_item_icon"
         android:text="记事内容"
-        android:textSize="15sp" />
+        android:textColor="@color/dark_grey"
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/note_item_alarm"
@@ -32,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
         android:src="@drawable/icon_alarm" />
 
     <TextView
@@ -41,6 +53,7 @@
         android:layout_alignLeft="@+id/note_item_content"
         android:layout_below="@+id/note_item_content"
         android:text="记事日期"
-        android:textSize="15sp" />
+        android:textColor="@color/dark_grey"
+        android:textSize="12sp" />
 
 </RelativeLayout>

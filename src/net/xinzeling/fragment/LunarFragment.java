@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+/**
+ * 老黄历新旧解释，弹出浮层
+ * */
 public class LunarFragment extends Fragment implements OnTouchListener,OnClickListener {
 	private TextView txtHuangliNew,txtHuangliOld;
 	private ImageView imgHuangli;

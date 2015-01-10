@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="确定要退出当前“％s”的账号？"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

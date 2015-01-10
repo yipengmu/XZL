@@ -13,16 +13,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/calendar_txt"
-            android:padding="3dp"
-            android:paddingBottom="8dp" >
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <net.xinzeling.lib.ImageViewWithCount
                 android:id="@+id/msgnotification"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/notificationicon"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 app:circle_color="#d9d2b6"
                 app:cnt_font_color="#657411"
@@ -44,10 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginRight="14dp"
-                android:layout_marginTop="14dp"
-                android:orientation="horizontal"
-                android:padding="1dp" >
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
 
                 <RadioButton
                     android:id="@+id/mode_month"
