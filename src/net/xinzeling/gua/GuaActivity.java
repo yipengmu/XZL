@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
@@ -26,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GuaActivity extends Activity implements OnClickListener, OnCheckedChangeListener {
 	private int mode;
@@ -40,6 +42,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 	private RadioGroup myradiogroup;
 	private RelativeLayout r_title;
 	private float ButtonOneWordWidth;
+	private long mFirstime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,8 +148,8 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		final float ln_width = AppBase.getWidthHeight()[0];
 		for (int i = 0; i < list.size(); i++) {
 			Button btn = new Button(context);
-			btn.setText(list.get(i).buttonName);
-			btn.setTextSize(20);
+			btn.setText(list.get(i).buttonName);	
+			btn.setTextSize(12);
 			btn.setOnClickListener(list.get(i).mclickListener);
 			float btn_width = list.get(i).buttonName.length() * 2 * 16 + 15;
 
@@ -200,6 +203,23 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode,KeyEvent event){
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondtime = System.currentTimeMillis();
+			if (secondtime - mFirstime   > 3000) {
+				Toast.makeText(this, "再按一次返回键退出信则聆", Toast.LENGTH_SHORT).show();
+				mFirstime = System.currentTimeMillis();
+				return true;
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch (checkedId) {

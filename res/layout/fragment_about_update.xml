@@ -8,7 +8,7 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="center"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="23dp"
         android:src="@drawable/icon_logo" />
 
     <TextView
@@ -16,25 +16,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/dark_grey"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
         android:text="xzl 1.1" />
 
-    <TextView
+    <Button
         android:id="@+id/txt_ver_msg"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="@drawable/rect_btn_common_green_selector"
         android:text="已为最新版本"
-        android:textColor="#ff0000"
-        android:textSize="15sp" />
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/common_green"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/txt_ver_log"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:textColor="@color/dark_grey"
         android:padding="16dp"
-        android:text="1.全新的界面设计；\n\n 2.更多的求卦类别；\n\n 全新的信则灵等你来体验！"
-        android:textSize="16sp" />
+        android:text="1.全新的界面设计；\n\n2.更多的求卦类别；\n\n全新的信则灵等你来体验！"
+        android:textSize="12sp" />
 
 </LinearLayout>

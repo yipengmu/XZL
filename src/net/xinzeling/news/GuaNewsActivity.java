@@ -3,6 +3,7 @@ package net.xinzeling.news;
 import java.io.IOException;
 
 import net.xinzeling.HomeActivity;
+import net.xinzeling.MainActivity;
 import net.xinzeling.adapter.DashikanfaItemAdapter;
 import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.HttpCommon;
@@ -84,7 +85,7 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 			setInitShow(showSel);
 			break;
 		case R.id.backHome:
-			intent = new Intent(GuaNewsActivity.this, HomeActivity.class);
+			intent = new Intent(GuaNewsActivity.this, MainActivity.class);
 			startActivity(intent);
 			this.finish();
 			break;

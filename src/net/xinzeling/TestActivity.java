@@ -17,7 +17,7 @@ import net.xinzeling.news.GuaNewsShareActivity;
 import net.xinzeling.news.GuaShiActivity;
 import net.xinzeling.note.NoteActivity;
 import net.xinzeling.note.NoteCheckActivity;
-import net.xinzeling.setting.AboutActivity;
+import net.xinzeling.setting.SettingActivity;
 import net.xinzeling.setting.GuaListActivity;
 import net.xinzeling.setting.MainSettingActivity;
 import net.xinzeling.setting.SettingActivity;
@@ -84,7 +84,7 @@ public class TestActivity extends Activity {
 		params.put("选择年月日", new Intent(TestActivity.this,DateActivity.class));
 		params.put("记事页", new Intent(TestActivity.this,NoteActivity.class));
 		params.put("记事小页", new Intent(TestActivity.this,NoteCheckActivity.class));
-		params.put("关于页", new Intent(TestActivity.this,AboutActivity.class));
+		params.put("关于页", new Intent(TestActivity.this,SettingActivity.class));
 		params.put("求卦列表页", new Intent(TestActivity.this,GuaListActivity.class));
 		params.put("登陆页", new Intent(TestActivity.this,SigninActivity.class));
 		params.put("用户信息页", new Intent(TestActivity.this,UsrActivity.class));

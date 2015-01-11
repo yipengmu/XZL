@@ -623,7 +623,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//cellBgPaint.setColor(Color.parseColor("#dd0000"));
 				//canvas.drawRect(left, n_top, left + 10, n_top + 10, cellBgPaint);
 				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_2);
-				canvas.drawBitmap(iconbit, left + 0.2f*iconbit.getWidth() - borderWidth, top + cellHeight - borderWidth - 1.5f* iconbit.getHeight(), cellBgPaint);
+				canvas.drawBitmap(iconbit, left + 0.2f*iconbit.getWidth() - borderWidth, top + cellHeight - borderWidth - 1.4f* iconbit.getHeight(), cellBgPaint);
 			}
 			if((oth & 1)>0){
 				//右下角
@@ -633,7 +633,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//canvas.drawRect(n_left, n_top, n_left + 10, n_top + 10, cellBgPaint);
 				//绘制当前有算卦的 小八卦
 				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_1);
-				canvas.drawBitmap(iconbit, left + cellWidth - 1.5f*iconbit.getWidth() - borderWidth , top + cellHeight - borderWidth - 1.5f*iconbit.getHeight(), cellBgPaint);
+				canvas.drawBitmap(iconbit, left + cellWidth - 1.4f*iconbit.getWidth() - borderWidth , top + cellHeight - borderWidth - 1.4f*iconbit.getHeight(), cellBgPaint);
 			}
 		}
 

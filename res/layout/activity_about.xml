@@ -10,12 +10,42 @@
         android:layout_height="wrap_content"
         layout="@layout/include_header" />
 
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RadioGroup
+            android:id="@+id/linear_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/rb_about_us"
+                style="@style/setting_menu_item"
+                android:checked="true"
+                android:text="关于我们" />
+
+            <RadioButton
+                android:id="@+id/rb_advice_order"
+                style="@style/setting_menu_item"
+                android:text="意见反馈" />
+
+            <RadioButton
+                android:id="@+id/rb_push_config"
+                style="@style/setting_menu_item"
+                android:text="消息推送" />
+        </RadioGroup>
+
+    </LinearLayout>
+    
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginRight="14dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:id="@+id/rgs_about_us_container"
         android:orientation="horizontal" >
 
         <RadioButton

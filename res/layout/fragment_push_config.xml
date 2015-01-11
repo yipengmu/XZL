@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="right"
+    android:orientation="vertical"
+    android:paddingTop="23dp" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/grey" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="4dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+			android:textColor="@color/dark_grey"
+			android:textSize="14sp"
+            android:text="是否接受推送消息" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radio_push_open"
+                style="@style/about_tab"
+                android:checked="true"
+                android:onClick="onClick"
+                android:text="开" />
+
+            <RadioButton
+                android:id="@+id/radio_push_close"
+                style="@style/about_tab"
+                android:onClick="onClick"
+                android:text="关" />
+        </RadioGroup>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="4dp"
+        android:background="@color/grey" />
+
+</LinearLayout>

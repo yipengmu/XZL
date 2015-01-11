@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:paddingTop="23dp" >
+
+    <net.xinzeling.widget.LineEditText
+        android:id="@+id/input_advice_order_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="6dp"
+        android:background="@null"
+        android:freezesText="false"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:lineSpacingExtra="5dp"
+        android:lineSpacingMultiplier="1.1"
+        android:minHeight="100dp"
+        android:textColor="@color/calendar_txt"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button1"
+        style="@style/common_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/rect_btn_common_green_selector"
+        android:text="确认提交" />
+
+</LinearLayout>

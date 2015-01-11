@@ -8,13 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="26dp"
         android:src="@drawable/icon_about_intro" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:textColor="@color/grey"
         android:text="『信则灵』 是结合了起卦和黄历、日历、记事等功能的一个软件。我们特色的起卦功能，是根据中国古代流传下来的传统术数之一的『梅花易数』而整理发展出来的。
         当然，我们结合了很多现代的科技手段和符合现在特点的解释，努力使得这个功能可以符合如今这个时代。同时，我们也希望，可以把这门神奇的技术，从故纸堆里的陈腐里，从江湖术士的神神叨叨遮遮掩掩里，从被一棍子打死的所谓迷信里解放出来。
         当然，我们的努力可能还微小，但我们愿意为了这个目标而努力。\n
@@ -24,6 +27,6 @@
         同时，在日历和记事的基础上，我们还辅助以现代化的黄历宜忌解释，再加上起卦，可以让你更好地掌控你生活的方方面面。\n
         最后，我们想要提醒一点，就是求卦者，需要心存敬畏之心，请勿测算任何违法、违纪、违反道德、危害他人等等的事情，这样出发点不端正的问题，是不能得到正确的结果的，请切记！\n
         希望你喜欢信则灵。我们这里瑾祝安好！"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

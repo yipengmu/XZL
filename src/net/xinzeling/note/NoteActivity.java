@@ -23,6 +23,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
 import android.util.SparseIntArray;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -76,6 +77,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 
 	public int[] EarlyDateTimeValue = new int[]{0,0,0,0};//月日时分
 	public SparseIntArray selected = new SparseIntArray();//主题选项
+	private long mFirstime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -361,6 +363,23 @@ public class NoteActivity extends Activity implements OnClickListener{
 			}}).execute();
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode,KeyEvent event){
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondtime = System.currentTimeMillis();
+			if (secondtime - mFirstime   > 3000) {
+				Toast.makeText(this, "再按一次返回键退出信则聆", Toast.LENGTH_SHORT).show();
+				mFirstime = System.currentTimeMillis();
+				return true;
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+
+	
 	public void hideDateTimeFragment(){
 		datetimeView.startAnimation(scaleYdownAnim);
 		switch(DateTimeSelectId){

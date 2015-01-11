@@ -23,9 +23,9 @@
             <Button
                 android:id="@+id/btn_home"
                 style="@style/header_home"
-                android:visibility="gone"
                 android:layout_alignParentRight="true"
-                android:onClick="onClick" />
+                android:onClick="onClick"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -33,14 +33,21 @@
                 android:layout_centerInParent="true"
                 android:gravity="center" >
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/btn_nav_gua_num" />
+
                 <TextView
                     android:id="@+id/txt_title"
+                    android:layout_marginLeft="5dp"
                     style="@style/header_title" />
 
                 <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="15dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:background="@drawable/btn_title_bar_down_nav_arraw" />
             </LinearLayout>
         </RelativeLayout>
@@ -67,6 +74,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:orientation="horizontal"
                         android:layout_height="wrap_content" >
 
                         <RadioButton
@@ -77,8 +85,8 @@
 
                         <RadioButton
                             android:id="@+id/gua_menu_17"
-                            style="@style/gua_list_item2"
                             android:checked="false"
+                            style="@style/gua_list_item2"
                             android:drawableTop="@drawable/icon_gua_2"
                             android:text="今日穿啥" />
 
@@ -97,6 +105,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:orientation="horizontal"
                         android:layout_height="wrap_content" >
 
                         <RadioButton
@@ -126,6 +135,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
 
@@ -201,7 +211,7 @@
 
                         <RadioButton
                             android:id="@+id/gua_menu_15"
-                            style="@style/gua_list_item2"
+                            style="@style/gua_list_item"
                             android:drawableTop="@drawable/icon_gua_15"
                             android:text="考试" />
                     </LinearLayout>

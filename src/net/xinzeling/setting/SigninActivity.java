@@ -21,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -50,6 +51,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 	private EditText passwdInput;
 	private LinearLayout ll_login_container;
 	private Button btn_logout;
+	private long mFirstime;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -443,7 +445,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 				progress.dismiss();
 			}
 			if (resCode == 0) {
-				Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
+				Intent intent = new Intent(SigninActivity.this, MainActivity.class);
 				startActivity(intent);
 				finish();
 			} else {
@@ -452,6 +454,22 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			thirdsignintask = null;
 		}
 
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode,KeyEvent event){
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondtime = System.currentTimeMillis();
+			if (secondtime - mFirstime   > 3000) {
+				Toast.makeText(this, "再按一次返回键退出信则聆", Toast.LENGTH_SHORT).show();
+				mFirstime = System.currentTimeMillis();
+				return true;
+			} else {
+				finish();
+				System.exit(0);
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 }

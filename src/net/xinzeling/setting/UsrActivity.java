@@ -93,7 +93,7 @@ public class UsrActivity extends Activity implements OnClickListener {
 			this.startActivity(new Intent(this, UsrEditActivity.class));
 			break;
 		case R.id.btn_About:
-			intent = new Intent(UsrActivity.this,AboutActivity.class);
+			intent = new Intent(UsrActivity.this,SettingActivity.class);
 			startActivity(intent);
 			break;
 		case R.id.btn_PushSwitch:

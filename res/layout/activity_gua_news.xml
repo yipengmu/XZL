@@ -102,7 +102,7 @@
                     android:id="@+id/mychuanbo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/btn_myzhuanfa" />
+                    android:src="@drawable/my_share" />
 
                 <TextView
                     android:id="@+id/txt_camera"

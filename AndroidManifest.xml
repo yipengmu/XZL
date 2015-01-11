@@ -152,7 +152,7 @@
             android:name="net.xinzeling.news.GuaShiActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="net.xinzeling.setting.AboutActivity"
+            android:name="net.xinzeling.setting.SettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.DateActivity"
