@@ -1,6 +1,6 @@
 package net.xinzeling.share.weixin;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import android.content.ComponentName;
 import android.content.Intent;
 
@@ -19,7 +19,7 @@ public class WeixinManager {
 	public WeixinManager() {
 		// 初始化一个WXTextObject对象
 		textObj = new WXTextObject();
-		api = WXAPIFactory.createWXAPI(AppBase.getContext(), APP_ID);
+		api = WXAPIFactory.createWXAPI(MyApplication.getContext(), APP_ID);
 		
 	}
 

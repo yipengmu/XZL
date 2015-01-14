@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import android.database.Cursor;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
 //记事和求卦的一个索引
-public class ItemModel extends AppBase{
+public class ItemModel extends MyApplication{
 	public static final int REFER_GUA=1;
 	public static final int REFER_NOTE=2;
 	public static final int REFER_MEM=3;

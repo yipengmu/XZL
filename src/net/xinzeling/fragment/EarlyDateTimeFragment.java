@@ -3,7 +3,7 @@ package net.xinzeling.fragment;
 import java.util.Arrays;
 
 import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.WheelView;
 import net.xinzeling.note.NoteActivity;
 import android.app.Fragment;

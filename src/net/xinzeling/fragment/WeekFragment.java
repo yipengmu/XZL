@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import net.xinzeling.HomeActivity;
+import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import net.xinzeling.adapter.GuaDailyAdapter;
 import net.xinzeling.adapter.ItemAdapter;
 import net.xinzeling.adapter.ItemDailyAdapter;
 import net.xinzeling.gua.JieGuaActivity;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.CalendarView;
 import net.xinzeling.lib.CalendarView.CalendarListener;

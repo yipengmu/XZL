@@ -5,7 +5,8 @@ import java.util.List;
 
 import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
+import net.xinzeling.common.PreferenceManager;
 import net.xinzeling.lib.RadioGroup;
 import net.xinzeling.lib.RadioGroup.OnCheckedChangeListener;
 import net.xinzeling2.R;
@@ -43,24 +44,25 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 	private RelativeLayout r_title;
 	private float ButtonOneWordWidth;
 	private long mFirstime;
+	private final String PreferTag = "gua_mode";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gua);
-		mode = getIntent().getIntExtra("mode", AppBase.nav_gua_num);
-		// mode = getIntent().getIntExtra("mode", AppBase.nav_gua_photo);
-
+		
+		mode = getIntent().getIntExtra("mode",PreferenceManager.getInstance().getPreferenceInt(PreferTag, MyApplication.nav_gua_num));
+		
 		txtTitle = (TextView) findViewById(R.id.txt_title);
 
 		switch (mode) {
-		case AppBase.nav_gua_num:
+		case MyApplication.nav_gua_num:
 			txtTitle.setText("数字求卦");
 			break;
-		case AppBase.nav_gua_photo:
+		case MyApplication.nav_gua_photo:
 			txtTitle.setText("照片求卦");
 			break;
-		case AppBase.nav_gua_time:
+		case MyApplication.nav_gua_time:
 			txtTitle.setText("时间求卦");
 			break;
 		}
@@ -76,7 +78,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		popupAnim.setDelay(1);
 
 		backhomeBReceiver = new BackHomeBroadcastReceiver();
-		registerReceiver(backhomeBReceiver, new IntentFilter(AppBase.GUA_BACK_HOME_BROADCAST));
+		registerReceiver(backhomeBReceiver, new IntentFilter(MyApplication.GUA_BACK_HOME_BROADCAST));
 
 		myradiogroup = (RadioGroup) findViewById(R.id.gua_myradiogroup);
 		myradiogroup.setOnCheckedChangeListener(this);
@@ -145,10 +147,10 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		lastShowChildView.addView(ln);
 
 		float now_width = 0L;
-		final float ln_width = AppBase.getWidthHeight()[0];
+		final float ln_width = MyApplication.getWidthHeight()[0];
 		for (int i = 0; i < list.size(); i++) {
 			Button btn = new Button(context);
-			btn.setText(list.get(i).buttonName);	
+			btn.setText(list.get(i).buttonName);
 			btn.setTextSize(12);
 			btn.setOnClickListener(list.get(i).mclickListener);
 			float btn_width = list.get(i).buttonName.length() * 2 * 16 + 15;
@@ -204,10 +206,10 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode,KeyEvent event){
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			long secondtime = System.currentTimeMillis();
-			if (secondtime - mFirstime   > 3000) {
+			if (secondtime - mFirstime > 3000) {
 				Toast.makeText(this, "再按一次返回键退出信则聆", Toast.LENGTH_SHORT).show();
 				mFirstime = System.currentTimeMillis();
 				return true;
@@ -219,20 +221,24 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		return super.onKeyDown(keyCode, event);
 	}
 
-	
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch (checkedId) {
 		case R.id.radio_num:
-			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", AppBase.nav_gua_num));
+			PreferenceManager.getInstance().setPreference(PreferTag, MyApplication.nav_gua_num);
+			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", MyApplication.nav_gua_num));
 			finish();
 			return;
 		case R.id.radio_photo:
-			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", AppBase.nav_gua_photo));
+			PreferenceManager.getInstance().setPreference(PreferTag, MyApplication.nav_gua_photo);
+
+			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", MyApplication.nav_gua_photo));
 			finish();
 			return;
 		case R.id.radio_time:
-			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", AppBase.nav_gua_time));
+			PreferenceManager.getInstance().setPreference(PreferTag, MyApplication.nav_gua_time);
+
+			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", MyApplication.nav_gua_time));
 			finish();
 			return;
 		}

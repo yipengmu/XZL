@@ -1,7 +1,7 @@
 package net.xinzeling.fragment;
 
 import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,13 +26,13 @@ public  class LogoutFragment extends DialogFragment implements OnClickListener{
     	 if(true){
     		 ((ImageView)view.findViewById(R.id.header_left_btn)).setImageResource(R.drawable.tab_usr_s);
     	 }
-    	 ((TextView)view.findViewById(R.id.header_main_title)).setText("确定要退出当前“"+AppBase.usrName+"”的账号？");;
+    	 ((TextView)view.findViewById(R.id.header_main_title)).setText("确定要退出当前“"+MyApplication.usrName+"”的账号？");;
     	 return view;
     }
     
     public void onClick(View view){
     	if(view.getId()==R.id.btn_ok){
-    		AppBase.logout();
+    		MyApplication.logout();
     	}
     	this.dismiss();
     }

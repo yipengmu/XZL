@@ -13,7 +13,7 @@
         android:layout_height="wrap_content" >
 
         <RadioGroup
-            android:id="@+id/linear_3"
+            android:id="@+id/rg_signin_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >

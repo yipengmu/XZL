@@ -10,8 +10,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import net.xinzeling.MyApplication;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.text.TextUtils;
 
 public class Utils {
@@ -76,4 +83,39 @@ public class Utils {
 
 		return null;
 	}
+
+	// 打开APK程序代码
+	private void openFile(File file) {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent();
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		intent.setAction(android.content.Intent.ACTION_VIEW);
+		intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+		MyApplication.getContext().startActivity(intent);
+	}
+
+	public static void downloadApk(String url) {
+		if (TextUtils.isEmpty(url)) {
+			return;
+		}
+		if (url.endsWith(".apk")) {
+			Uri uri = Uri.parse(url);
+			Intent viewIntent = new Intent(Intent.ACTION_VIEW, uri);
+			viewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			MyApplication.getContext().startActivity(viewIntent);
+		}
+	}
+
+	public static int getAppVersion(Context c) {
+		PackageManager nPackageManager = c.getPackageManager();// 得到包管理器
+		int localVersion = 0;
+		try {
+			PackageInfo nPackageInfo = nPackageManager.getPackageInfo(c.getPackageName(), PackageManager.GET_CONFIGURATIONS);
+			localVersion = nPackageInfo.versionCode;// 得到现在app的版本号
+		} catch (NameNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		return localVersion;
+	}
+
 }

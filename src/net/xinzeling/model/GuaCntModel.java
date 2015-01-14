@@ -2,11 +2,11 @@ package net.xinzeling.model;
 
 import java.util.ArrayList;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class GuaCntModel extends AppBase{
+public class GuaCntModel extends MyApplication{
 	
 	public static void update(GuaCnt guacnt){
 		ContentValues values = new ContentValues();
@@ -34,7 +34,7 @@ public class GuaCntModel extends AppBase{
 	
 	private static void checkUsable(GuaCnt guacnt){
 		if(guacnt!=null&&guacnt.next_time!=0){
-			long now_timestamp = AppBase.NowTime();
+			long now_timestamp = MyApplication.NowTime();
 			if(guacnt.next_time>now_timestamp)return;
 		}
 		guacnt.isUsable = true;

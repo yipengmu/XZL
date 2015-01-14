@@ -1,11 +1,12 @@
 package net.xinzeling.model;
 
 import java.util.Date;
-import net.xinzeling.lib.AppBase;
+
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
 import android.database.Cursor;
 
-public class LunarModel extends AppBase{
+public class LunarModel extends MyApplication{
 	
 	public static Lunar fetchByDate(Date date){
 		return fetchByDate(DateTime.Date2String(date,"yyyy-MM-dd"));

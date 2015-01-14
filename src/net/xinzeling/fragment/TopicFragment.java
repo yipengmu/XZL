@@ -1,7 +1,7 @@
 package net.xinzeling.fragment;
 
 import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.note.NoteActivity;
 import android.app.Fragment;
 import android.os.Bundle;

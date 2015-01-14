@@ -12,6 +12,8 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.xinzeling.MyApplication;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -40,6 +42,8 @@ public class HttpCommon {
 			surl =surl+"?"+paramsEncode(params);
 		}
 		HttpURLConnection conn = null;
+
+		Log.i("xzl http : ","url: " + surl);
 		try {
 			URL url = new URL(surl);
 			conn = (HttpURLConnection)url.openConnection();
@@ -54,15 +58,15 @@ public class HttpCommon {
 				conn.disconnect();
 			}
 		}
-		Log.i("http", response);
+		Log.i("xzl http : ", "response " +response);
 		return new JSONObject(response);
 	}
 	
 	public static String paramsEncode(HashMap<String,Object> params){
 		StringBuffer sb = new StringBuffer();
 		
-		if(params.get("renewalTokenExpire") == null && !TextUtils.isEmpty(AppBase.renewalTokenExpire)){
-			params.put("renewalTokenExpire",AppBase.renewalTokenExpire);
+		if(params.get("renewalTokenExpire") == null && !TextUtils.isEmpty(MyApplication.renewalTokenExpire)){
+			params.put("renewalTokenExpire",MyApplication.renewalTokenExpire);
 		}
 		
 		if(params !=null && !params.isEmpty()){

@@ -6,10 +6,10 @@ import java.util.Set;
 
 import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
-import net.xinzeling.WebViewActivity;
+import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.webview.WebViewActivity;
 import net.xinzeling2.R;
 
 import org.json.JSONObject;
@@ -27,6 +27,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,9 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 	private LinearLayout ll_login_container;
 	private Button btn_logout;
 	private long mFirstime;
+	private int FLAG_SETTING = 2;
+	private int FLAG_MY = 3;
+	private RadioGroup rg_signin_container;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +70,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void checkLoginState() {
-		if(!AppBase.isSignin()){
+		if(!MyApplication.isSignin()){
 			ll_login_container.setVisibility(View.VISIBLE);
 			btn_logout.setVisibility(View.GONE);
 		}else{
@@ -82,6 +86,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		passwdInput = (EditText) findViewById(R.id.password);
 		ll_login_container = (LinearLayout) findViewById(R.id.ll_login_container);
 		btn_logout = (Button) findViewById(R.id.btn_logout);
+		rg_signin_container = (RadioGroup) findViewById(R.id.rg_signin_container);
 	}
 
 	private void initView() {
@@ -89,7 +94,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		findViewById(R.id.rb_setting).setOnClickListener(this);
 		findViewById(R.id.rb_my).setOnClickListener(this);
 		findViewById(R.id.btn_logout).setOnClickListener(this);
-		
+		rg_signin_container.check(R.id.rb_login);
 	}
 
 	public void onClick(View view) {
@@ -124,14 +129,14 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.rb_setting:
 			intent.setClass(this, SettingActivity.class);
-			this.startActivity(intent);
+			this.startActivityForResult(intent, FLAG_SETTING );
 			break;
 		case R.id.rb_my:
 			intent.setClass(this, UsrEditActivity.class);
-			this.startActivity(intent);
+			this.startActivityForResult(intent, FLAG_MY );
 			break;
 		case R.id.btn_logout:
-			AppBase.logout();
+			MyApplication.logout();
 			checkLoginState();
 			break;
 
@@ -140,7 +145,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	// QQ登录
 	private void signinQQ() {
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SigninActivity.this, AppBase.QQ_APP_ID, AppBase.QQ_APP_KEY);
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SigninActivity.this, MyApplication.QQ_APP_ID, MyApplication.QQ_APP_KEY);
 		qqSsoHandler.addToSocialSDK();
 		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.QQ, new UMAuthListener() {
 			@Override
@@ -243,7 +248,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	// 微信登录
 	private void signinWeixin() {
-		UMWXHandler wxHandler = new UMWXHandler(SigninActivity.this, AppBase.WEIXIN_APP_ID, AppBase.WEIXIN_APP_KEY);
+		UMWXHandler wxHandler = new UMWXHandler(SigninActivity.this, MyApplication.WEIXIN_APP_ID, MyApplication.WEIXIN_APP_KEY);
 		wxHandler.addToSocialSDK();
 
 		int flag = SocializeConstants.FLAG_USER_CENTER_LOGIN_VERIFY | SocializeConstants.FLAG_USER_CENTER_HIDE_LOGININFO;
@@ -324,14 +329,14 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		@Override
 		protected Boolean doInBackground(Void... args) {
 			try {
-				JSONObject jsonResp = HttpCommon.getGet(AppBase.account01Verification, params);
+				JSONObject jsonResp = HttpCommon.getGet(MyApplication.account01Verification, params);
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
 					String userToken = jsonResp.getString("userToken");
 					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
 					String renewalToken = jsonResp.getString("renewalToken");
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
-					AppBase.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
 					SigninActivity.this.runOnUiThread(new Runnable() {
 
 						@Override
@@ -368,7 +373,6 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 
 		try {
@@ -378,6 +382,14 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			}
 		} catch (Exception e) {
 		}
+
+//		if(requestCode == FLAG_SETTING){
+//			rg_signin_container.check(R.id.rb_setting);
+//		}else if(requestCode == FLAG_MY){
+//			rg_signin_container.check(R.id.rb_my);
+//		}
+
+		rg_signin_container.check(R.id.rb_login);
 
 	}
 
@@ -407,7 +419,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 				params.put("auth", type);
 				usrinfoMap.put("gender", "男".equals(gender) ? "0" : "1");
 			}
-			AppBase.editUserInfo(usrinfoMap);
+			MyApplication.editUserInfo(usrinfoMap);
 		}
 
 		@Override
@@ -420,10 +432,10 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			// 先验证是否已经注册过了，注册过了就注册过了，不用重新注册了
 
 			try {
-				JSONObject jsonResp = HttpCommon.getGet(AppBase.check_usrname_isused + params.get("username"), null);
+				JSONObject jsonResp = HttpCommon.getGet(MyApplication.check_usrname_isused + params.get("username"), null);
 				resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
-					jsonResp = HttpCommon.getGet(AppBase.third_regist_url, this.params);
+					jsonResp = HttpCommon.getGet(MyApplication.third_regist_url, this.params);
 					resCode = jsonResp.getInt("resCode");
 					if (resCode == 0) {
 						// AppBase.onSignin(userToken,userTokenExpire,renewalToken,renewalTokenExpire);

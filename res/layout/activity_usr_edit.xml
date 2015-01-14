@@ -239,6 +239,7 @@
                 <Spinner
                     android:id="@+id/spinner_birth"
                     android:layout_width="286dp"
+                    android:background="@color/grey"
                     android:layout_height="40dp" />
             </TableRow>
 
@@ -336,6 +337,7 @@
                     android:id="@+id/birth_addr"
                     style="@style/usr_input"
                     android:layout_width="83dp"
+                    android:layout_marginLeft="10dp"
                     android:hint="出生地" />
 
                 <TextView
@@ -346,6 +348,7 @@
                     android:id="@+id/now_addr"
                     style="@style/usr_input"
                     android:layout_width="83dp"
+                    android:layout_marginLeft="10dp"
                     android:hint="现居住地" />
             </TableRow>
 
@@ -373,6 +376,7 @@
                 <EditText
                     android:id="@+id/job"
                     style="@style/usr_input"
+                    android:layout_marginLeft="10dp"
                     android:layout_width="83dp"
                     android:hint="职业" />
 
@@ -384,6 +388,7 @@
                     android:id="@+id/hunyin"
                     style="@style/usr_input"
                     android:layout_width="83dp"
+                    android:layout_marginLeft="10dp"
                     android:hint="婚否" />
             </TableRow>
         </TableLayout>

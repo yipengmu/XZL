@@ -7,7 +7,6 @@ import java.util.Date;
 import net.xinzeling.fragment.LunarFragment;
 import net.xinzeling.fragment.MonthFragment;
 import net.xinzeling.fragment.WeekFragment;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.BlurMaskTask;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.lib.DateTitleView;
@@ -99,13 +98,14 @@ public class HomeActivity extends Activity  implements OnClickListener{
 				super.handleMessage(msg);
 			}
 		};
-		//(new UpdateNotificationMsgCnt(this.getApplicationContext())).start();
+		//启动左上角消息计数
+		new UpdateNotificationMsgCnt(MyApplication.getContext()).start();
 		weekfragment = new WeekFragment();
 		monthfragment = new MonthFragment();
 		usrBReceiver = new UserStatusBroadcastReceiver();
-		registerReceiver(usrBReceiver, new IntentFilter(AppBase.USER_STATUS_CHANGE_BROADCAST));
+		registerReceiver(usrBReceiver, new IntentFilter(MyApplication.USER_STATUS_CHANGE_BROADCAST));
 		receiverNDBD = new ReceiverNewDateBDcast();
-		registerReceiver(receiverNDBD, new IntentFilter(AppBase.SELECT_NEW_DATE_BROADCAST));
+		registerReceiver(receiverNDBD, new IntentFilter(MyApplication.SELECT_NEW_DATE_BROADCAST));
 
 		this.onClick(modeMonth);
 	}
@@ -235,7 +235,7 @@ public class HomeActivity extends Activity  implements OnClickListener{
 		@SuppressWarnings("unused")
 		@Override
 		public void run() {
-			setUserStatus(AppBase.isSignin());
+			setUserStatus(MyApplication.isSignin());
 		}
 	}
 	
@@ -258,21 +258,20 @@ public class HomeActivity extends Activity  implements OnClickListener{
 		@Override
 		public void run() {
 			String today_ymd = DateTime.getTodayYmd(null);
-			String last_ymd = AppBase.getLastUpdateMsgCnt();
+			String last_ymd = MyApplication.getLastUpdateMsgCnt();
 			if(last_ymd!=null&&today_ymd.equals(last_ymd))return;
 			try {
-				JSONObject res = HttpCommon.getGet(AppBase.update_notification_cnt);
+				JSONObject res = HttpCommon.getGet(MyApplication.update_notification_cnt);
 				if(res!=null){
 					int update_cnt = Integer.valueOf(res.getString("badge"));
-					//notificationIcon.reDrawCount(update_cnt);
+					notificationIcon.reDrawCount(update_cnt);
 					Message message = new Message();
 					message.what = 1;
 					message.arg1 = update_cnt;
 					myHandler.sendMessage(message);
-					AppBase.setLastUpdateMsgCnt();
+					MyApplication.setLastUpdateMsgCnt();
 				}
 			} catch (IOException | JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			super.run();
@@ -286,7 +285,7 @@ public class HomeActivity extends Activity  implements OnClickListener{
 			int cmd = arg1.getIntExtra("cmd", -1);
 			if(cmd!=-1){
 				switch(cmd){
-				case AppBase.USER_STATUS_CHANGE:
+				case MyApplication.USER_STATUS_CHANGE:
 					if(!arg1.getBooleanExtra("isLogin",false)){
 						//未登录
 						((HomeActivity)arg0).setUserStatus(false);

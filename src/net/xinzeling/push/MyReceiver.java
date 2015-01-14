@@ -1,7 +1,7 @@
 package net.xinzeling.push;
 
 import net.xinzeling.MainActivity;
-import net.xinzeling.TestActivity;
+import net.xinzeling.test.TestActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;

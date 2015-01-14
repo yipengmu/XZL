@@ -12,23 +12,23 @@
         android:src="@drawable/icon_logo" />
 
     <TextView
-        android:id="@+id/txt_ver"
+        android:id="@+id/txt_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="@color/dark_grey"
         android:textSize="12sp"
         android:layout_marginTop="5dp"
-        android:text="xzl 1.1" />
+        android:text="xzl 1.0" />
 
     <Button
-        android:id="@+id/txt_ver_msg"
+        android:id="@+id/btn_check_msg"
         android:layout_marginTop="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/rect_btn_common_green_selector"
-        android:text="已为最新版本"
+        android:text="已是最新版本"
         android:paddingTop="6dp"
         android:paddingBottom="6dp"
         android:paddingLeft="10dp"
@@ -37,13 +37,12 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/txt_ver_log"
+        android:id="@+id/tv_app_update_info_readme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:textColor="@color/dark_grey"
         android:padding="16dp"
-        android:text="1.全新的界面设计；\n\n2.更多的求卦类别；\n\n全新的信则灵等你来体验！"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
+import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.DashikanfaItemAdapter;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.HttpCommon;
 import net.xinzeling2.R;
 
@@ -66,14 +66,13 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		};
 		(new getMsgList(context,listview_adapter)).start();
 		showSel = false;
-		//setInitShow(showSel);
+		setInitShow(showSel);
 		
 		TabSel.setOnClickListener(this);
 		BackHome.setOnClickListener(this);
 		
 		dashijianjie.setOnClickListener(this);
 		mychuanbo.setOnClickListener(this);
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsActivity.this), GuaNewsActivity.this,tf);
 	}
 
 	@Override
@@ -100,16 +99,18 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 	}
 
 	private void setInitShow(boolean show) {
+//		if(showSel){
+//			dashidetail_sel.setVisibility(View.VISIBLE);
+//		}else{
+//			dashidetail_sel.setVisibility(View.GONE);
+//		}
 		if(showSel){
-			dashikanfa_listview.setVisibility(View.INVISIBLE);
-			dashidetail_sel.setVisibility(View.VISIBLE);
+			findViewById(R.id.ll_dashi_menu_cell).setVisibility(View.VISIBLE);
 		}else{
-			dashikanfa_listview.setVisibility(View.VISIBLE);
-			dashidetail_sel.setVisibility(View.INVISIBLE);
+			findViewById(R.id.ll_dashi_menu_cell).setVisibility(View.GONE);
 		}
 	}
 	
-	//
 	private class getMsgList extends Thread {
 
 		private Context context;
@@ -122,13 +123,12 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		@Override
 		public void run() {
 			try {
-				JSONObject res = HttpCommon.getGet(AppBase.dashikanfa_url);
+				JSONObject res = HttpCommon.getGet(MyApplication.dashikanfa_url);
 				this.listview_adapter.setData(res.getJSONArray("pushList"));
 				Message message = new Message();
 				message.what = 1;
 				myHandler.sendMessage(message);
 			} catch (IOException | JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			super.run();

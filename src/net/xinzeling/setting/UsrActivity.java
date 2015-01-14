@@ -1,11 +1,11 @@
 package net.xinzeling.setting;
 
+import net.xinzeling.MyApplication;
 import net.xinzeling.HomeActivity.NavRunner;
 import net.xinzeling2.R.id;
 import net.xinzeling2.R.layout;
 import net.xinzeling.fragment.FeedFragment;
 import net.xinzeling.fragment.PushSWFragment;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.BlurMaskTask;
 import android.app.Activity;
 import android.content.Intent;
@@ -59,7 +59,7 @@ public class UsrActivity extends Activity implements OnClickListener {
 	
 	protected void onStart(){
 		super.onStart();
-		SharedPreferences usr = AppBase.sharedPreference;
+		SharedPreferences usr = MyApplication.sharedPreference;
 		inputNick.setText(usr.getString("nick", ""));
 		inputName.setText(usr.getString("firstName", "")+" "+usr.getString("name", ""));
 		inputBirth.setText(usr.getString("birthday", "")+usr.getString("birthAddress", ""));

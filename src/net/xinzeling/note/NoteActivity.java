@@ -3,10 +3,10 @@ package net.xinzeling.note;
 import java.text.ParseException;
 import java.util.Calendar;
 
+import net.xinzeling.MyApplication;
 import net.xinzeling.fragment.DateTimeFragment;
 import net.xinzeling.fragment.EarlyDateTimeFragment;
 import net.xinzeling.fragment.TopicFragment;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.BlurMaskTask;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.model.NoteModel;
@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NoteActivity extends Activity implements OnClickListener{
@@ -54,11 +55,18 @@ public class NoteActivity extends Activity implements OnClickListener{
 	private EditText etimeMin;
 
 	private EditText earlyMonth,earlyDay,earlyHour,earlyMin;
+	
 	private RadioButton radioRepeatYear;
 	private RadioButton radioRepeatMonth;
 	private RadioButton radioRepeatWeek;
 	private RadioButton radioRepeatDay;
 	private RadioButton radioRepeatNo;
+
+//	private TextView tv_repeat_year;
+//	private TextView tv_repeat_month;
+//	private TextView tv_repeat_year;
+//	private TextView tv_repeat_year;
+//	private TextView tv_repeat_year;
 
 	private int REQUEST_CODE;
 	private int noteid=-1;
@@ -163,19 +171,19 @@ public class NoteActivity extends Activity implements OnClickListener{
 				int radioButtonId = arg0.getCheckedRadioButtonId();
 				switch(radioButtonId){
 				case R.id.radio_repeat_year:
-					repeat_type = AppBase.REPEAT_TYPE_YEAR;
+					repeat_type = MyApplication.REPEAT_TYPE_YEAR;
 					break;
 				case R.id.radio_repeat_month:
-					repeat_type = AppBase.REPEAT_TYPE_MONTH;
+					repeat_type = MyApplication.REPEAT_TYPE_MONTH;
 					break;
 				case R.id.radio_repeat_week:
-					repeat_type = AppBase.REPEAT_TYPE_WEEK;
+					repeat_type = MyApplication.REPEAT_TYPE_WEEK;
 					break;
 				case R.id.radio_repeat_day:
-					repeat_type = AppBase.REPEAT_TYPE_DAY;
+					repeat_type = MyApplication.REPEAT_TYPE_DAY;
 					break;
 				case R.id.radio_repeat_no:
-					repeat_type = AppBase.REPEAT_EMPTY;
+					repeat_type = MyApplication.REPEAT_EMPTY;
 					break;
 				}
 			}
@@ -212,19 +220,19 @@ public class NoteActivity extends Activity implements OnClickListener{
 			radioRepeatDay  =(RadioButton)findViewById(R.id.radio_repeat_day);
 			radioRepeatNo = (RadioButton) findViewById(R.id.radio_repeat_no);
 			switch(note.repeat_type){
-			case AppBase.REPEAT_EMPTY:
+			case MyApplication.REPEAT_EMPTY:
 				radioRepeatNo.setChecked(true);
 				break;
-			case AppBase.REPEAT_TYPE_DAY:
+			case MyApplication.REPEAT_TYPE_DAY:
 				radioRepeatDay.setChecked(true);
 				break;
-			case AppBase.REPEAT_TYPE_WEEK:
+			case MyApplication.REPEAT_TYPE_WEEK:
 				radioRepeatWeek.setChecked(true);
 				break;
-			case AppBase.REPEAT_TYPE_MONTH:
+			case MyApplication.REPEAT_TYPE_MONTH:
 				radioRepeatMonth.setChecked(true);
 				break;
-			case AppBase.REPEAT_TYPE_YEAR:
+			case MyApplication.REPEAT_TYPE_YEAR:
 				radioRepeatYear.setChecked(true);
 				break;
 			}
@@ -266,7 +274,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 		}
 		if(topic_fragment!=null){
 			for(int i=0;i<24;i++){
-				((CheckBox)(topic_fragment.getView().findViewById(AppBase.note_topics[i]))).setChecked(false);
+				((CheckBox)(topic_fragment.getView().findViewById(MyApplication.note_topics[i]))).setChecked(false);
 			}	
 		}
 	}
@@ -426,7 +434,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 
 	private class SubmitTask extends AsyncTask<Void,Void,Void>{
 		private boolean isValidate;
-		private AppBase.note_error_code error_code;
+		private MyApplication.note_error_code error_code;
 
 		@Override
 		protected Void doInBackground(Void... params) {
@@ -434,17 +442,17 @@ public class NoteActivity extends Activity implements OnClickListener{
 			isValidate = false;
 			String title = inputTopic.getText().toString();
 			if("".equals(title)||title.isEmpty()){
-				error_code = AppBase.note_error_code.EMPTY_TITLE;
+				error_code = MyApplication.note_error_code.EMPTY_TITLE;
 				return null;
 			}
 			String contact = inputContact.getText().toString();
 			if("".equals(contact)||contact.isEmpty()){
-				error_code = AppBase.note_error_code.EMPTY_CONTACT;
+				error_code = MyApplication.note_error_code.EMPTY_CONTACT;
 				return null;
 			}
 			String content = inputContent.getText().toString();
 			if("".equals(content)||content.isEmpty()){
-				error_code = AppBase.note_error_code.EMPTY_CONTENT;
+				error_code = MyApplication.note_error_code.EMPTY_CONTENT;
 				return null;
 			}
 			String syear = stimeYear.getText().toString().replace("年","");
@@ -460,7 +468,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 			String emin = etimeMin.getText().toString().replace("分", "");
 
 			if((syear+smonth+sday+shour+smin).compareTo(eyear+emonth+sday+shour+smin)>0){
-				error_code = AppBase.note_error_code.ERROR_ENDTIME;
+				error_code = MyApplication.note_error_code.ERROR_ENDTIME;
 				return null;
 			}
 			isValidate = true;
@@ -476,7 +484,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 			 * @param repeat_time 定时器重复的间隔秒数
 			 * @param alarmId 定时器自定义id
 			 */
-			AppBase.sendAlarmBroadCast(NoteActivity.this,false,10,0,1001);
+			MyApplication.sendAlarmBroadCast(NoteActivity.this,false,10,0,1001);
 			try {
 				//这个％02d%02d%02d%02d 月 天 时 分
 				String before_str = String.format("%02d%02d%02d%02d",Integer.valueOf(earlyMonth.getText().toString())

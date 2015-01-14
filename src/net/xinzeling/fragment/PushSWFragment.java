@@ -1,7 +1,7 @@
 package net.xinzeling.fragment;
 
 import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.setting.UsrActivity;
 import android.app.DialogFragment;
 import android.content.Intent;
@@ -39,10 +39,10 @@ public  class PushSWFragment extends DialogFragment implements OnClickListener{
 		
 		switch(view.getId()){
 		case R.id.btn_yes:
-			AppBase.setPushSW(true);
+			MyApplication.setPushSW(true);
 			break;
 		case R.id.btn_no:
-			AppBase.setPushSW(false);
+			MyApplication.setPushSW(false);
 			break;
 		}
     	this.dismiss();

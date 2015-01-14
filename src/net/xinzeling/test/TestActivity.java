@@ -1,4 +1,4 @@
-package net.xinzeling;
+package net.xinzeling.test;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,10 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.xinzeling.DateActivity;
+import net.xinzeling.HomeActivity;
+import net.xinzeling.MainActivity;
+import net.xinzeling.MyApplication;
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.gua.JieGuaActivity;
 import net.xinzeling.gua.QiuGuaActivity;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.news.GuaNewsActivity;
 import net.xinzeling.news.GuaNewsDetailActivity;
 import net.xinzeling.news.GuaNewsShareActivity;
@@ -25,6 +28,7 @@ import net.xinzeling.setting.SigninActivity;
 import net.xinzeling.setting.UsrActivity;
 import net.xinzeling.setting.UsrEditActivity;
 import net.xinzeling.share.CommonShareActivity;
+import net.xinzeling.webview.WebViewActivity;
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -45,7 +49,7 @@ public class TestActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_test);
 		
-		File is_debug_file = new File(AppBase.sdcardPath()+"/debug.txt");
+		File is_debug_file = new File(MyApplication.sdcardPath()+"/debug.txt");
 		
 //		if(!is_debug_file.exists()){
 //			startActivity(new Intent(TestActivity.this,MainActivity.class));

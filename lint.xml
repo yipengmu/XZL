@@ -4,5 +4,6 @@
     <issue id="ExtraTranslation" severity="ignore" />
     <issue id="HardcodedDebugMode" severity="ignore" />
     <issue id="MissingTranslation" severity="ignore" />
+    <issue id="NewApi" severity="ignore" />
     <issue id="ResourceAsColor" severity="ignore" />
 </lint>

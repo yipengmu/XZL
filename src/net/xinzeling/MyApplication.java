@@ -1,4 +1,4 @@
-package net.xinzeling.lib;
+package net.xinzeling;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,8 +12,12 @@ import java.util.List;
 import java.util.Locale;
 
 import net.xinzeling.gua.GuaActivity;
+import net.xinzeling.lib.DBHelper;
+import net.xinzeling.lib.DateTime;
+import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.push.PushManager;
 import net.xinzeling.receiver.AlarmReceiver;
-import net.xinzeling.setting.SigninActivity;
+import net.xinzeling.setting.net.AppUpdateBean;
 import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 
@@ -35,7 +39,6 @@ import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -48,7 +51,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import cn.jpush.android.api.JPushInterface;
 
-public class AppBase extends Application {
+public class MyApplication extends Application {
 	public final static String Weibo_APP_ID = "2045436852";// "3665317294";
 	public final static String Weibo_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
 	public static final String Weibo_SCOPE = "email,direct_messages_read,direct_messages_write," + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
@@ -85,6 +88,9 @@ public class AppBase extends Application {
 	public final static String gua_photo_url = server + "webservice/XZLService.asmx/divine12Photo";
 	public final static String gua_time_url = server + "webservice/XZLService.asmx/divine14Time";
 	public final static String check_usrname_isused = server + "webservice/XZLService.asmx/account04CheckUserName?username=";
+	public final static String check_app_update = server + "webservice/XZLService.asmx/system01CheckVersion";
+	/**意见反馈*/
+	public final static String check_advice_order = server + "webservice/XZLService.asmx/system02AddFeedback";
 
 	public final static int[] note_topics = { R.id.note_topic_1, R.id.note_topic_2, R.id.note_topic_3, R.id.note_topic_4, R.id.note_topic_5, R.id.note_topic_6, R.id.note_topic_7, R.id.note_topic_8,
 			R.id.note_topic_9, R.id.note_topic_10, R.id.note_topic_11, R.id.note_topic_12, R.id.note_topic_13, R.id.note_topic_14, R.id.note_topic_15, R.id.note_topic_16, R.id.note_topic_17,
@@ -120,6 +126,8 @@ public class AppBase extends Application {
 	public static int usrId = -1;
 	public static String usrName;
 	public static int gender = 2;
+	/**true代表打开，false 关闭  默认开启*/
+	public static boolean pushSwitch = true;
 
 	public static String userToken;
 	public static String userTokenExpireDate;
@@ -129,46 +137,48 @@ public class AppBase extends Application {
 	public static List<String> userinfo_params_key = Arrays.asList(new String[] { "nick", "firstName", "name", "birthday", "birthTime", "phone", "email", "birthAddress", "nowaddr", "career",
 			"marriage", "gender" });
 
+	public static AppUpdateBean mAppUpdateBean = new AppUpdateBean();
+	
 	public void onCreate() {
 		context = getApplicationContext();
 
 		sharedPreference = context.getSharedPreferences("usr", Context.MODE_APPEND);
 
 		// /test begin
-		Editor editor = sharedPreference.edit();
-		editor.putString("nick", "小白");
-		editor.putString("firstName", "白");// 姓
-		editor.putString("name", "明江");// 名
-		editor.putString("birthday", "1982-1-21");
-		editor.putString("birthTime", "08:21:00");
-		editor.putString("phone", "13776104530");
-		editor.putString("email", "351035557@qq.com");
-
-		editor.putString("birthAddress", "山东济宁");
-		editor.putString("nowaddr", "苏州");
-		editor.putString("career", "IT");
-		editor.putString("marriage", "已婚");// 已婚 单身 未婚 离异
-
-		editor.putInt("gender", 0);// 0 男 1女
-		editor.commit();
+//		Editor editor = sharedPreference.edit();
+//		editor.putString("nick", "小白");
+//		editor.putString("firstName", "白");// 姓
+//		editor.putString("name", "明江");// 名
+//		editor.putString("birthday", "1982-1-21");
+//		editor.putString("birthTime", "08:21:00");
+//		editor.putString("phone", "13776104530");
+//		editor.putString("email", "351035557@qq.com");
+//
+//		editor.putString("birthAddress", "山东济宁");
+//		editor.putString("nowaddr", "苏州");
+//		editor.putString("career", "IT");
+//		editor.putString("marriage", "已婚");// 已婚 单身 未婚 离异
+//
+//		editor.putInt("gender", 0);// 0 男 1女
+//		editor.apply();
 		// /test end
 
 		usrName = sharedPreference.getString("nick", "");
 		gender = sharedPreference.getInt("gender", 2);
+		pushSwitch = sharedPreference.getBoolean("pushSwitch", true);
 
 		// for auto login
-		AppBase.userToken = sharedPreference.getString("userToken", null);
-		AppBase.userTokenExpireDate = sharedPreference.getString("userTokenExpireDate", "");
-		AppBase.renewalToken = sharedPreference.getString("renewalToken", null);
-		AppBase.renewalTokenExpire = sharedPreference.getString("renewalTokenExpire", "");
-		checkIfNeedReautoLogin(AppBase.userTokenExpireDate, AppBase.renewalToken);
+		MyApplication.userToken = sharedPreference.getString("userToken", null);
+		MyApplication.userTokenExpireDate = sharedPreference.getString("userTokenExpireDate", "");
+		MyApplication.renewalToken = sharedPreference.getString("renewalToken", null);
+		MyApplication.renewalTokenExpire = sharedPreference.getString("renewalTokenExpire", "");
+		checkIfNeedReautoLogin(MyApplication.userTokenExpireDate, MyApplication.renewalToken);
 
 		dbHelper = new DBHelper(context, "xinzeling.db");
 		dbh = dbHelper.getWritableDatabase();
 
 		// push
-		JPushInterface.setDebugMode(true);
-		JPushInterface.init(this);
+		PushManager.getInstance().init();
 	}
 
 	private void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
@@ -211,7 +221,7 @@ public class AppBase extends Application {
 					}
 				}
 			}
-			editor.commit();
+			editor.apply();
 
 		}
 	}
@@ -322,7 +332,7 @@ public class AppBase extends Application {
 	public static void setPushSW(boolean isPush) {
 		Editor editor = sharedPreference.edit();
 		editor.putBoolean("isPush", isPush);
-		editor.commit();
+		editor.apply();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -356,15 +366,15 @@ public class AppBase extends Application {
 		editor.putString("renewalToken", renewalToken);
 		editor.putString("renewalTokenExpire", renewalTokenExpire);
 		editor.apply();
-		AppBase.userToken = userToken;
-		AppBase.userTokenExpireDate = userTokenExpireDate;
-		AppBase.renewalToken = renewalToken;
-		AppBase.renewalTokenExpire = renewalTokenExpire;
+		MyApplication.userToken = userToken;
+		MyApplication.userTokenExpireDate = userTokenExpireDate;
+		MyApplication.renewalToken = renewalToken;
+		MyApplication.renewalTokenExpire = renewalTokenExpire;
 		sendBroadcastAboutUsrStatus(true);
 	}
 
 	public static void sendBroadcastBackHomeFromThread() {
-		Intent it = new Intent(AppBase.GUA_BACK_HOME_BROADCAST);
+		Intent it = new Intent(MyApplication.GUA_BACK_HOME_BROADCAST);
 		context.sendBroadcast(it);
 	}
 
@@ -375,14 +385,14 @@ public class AppBase extends Application {
 	}
 
 	public static void sendBroadcastNewSelectDate(String newYYYYmmdd) {
-		Intent it = new Intent(AppBase.SELECT_NEW_DATE_BROADCAST);
+		Intent it = new Intent(MyApplication.SELECT_NEW_DATE_BROADCAST);
 		it.putExtra("newDateString", newYYYYmmdd);
 		context.sendBroadcast(it);
 	}
 
 	public static void sendBroadcastAboutUsrStatus(boolean isLogin) {
-		Intent it = new Intent(AppBase.USER_STATUS_CHANGE_BROADCAST);
-		it.putExtra("cmd", AppBase.USER_STATUS_CHANGE);
+		Intent it = new Intent(MyApplication.USER_STATUS_CHANGE_BROADCAST);
+		it.putExtra("cmd", MyApplication.USER_STATUS_CHANGE);
 		it.putExtra("isLogin", isLogin);
 		context.sendBroadcast(it);
 	}
@@ -394,7 +404,7 @@ public class AppBase extends Application {
 	public static void setLastUpdateMsgCnt() {
 		Editor editor = sharedPreference.edit();
 		editor.putString("last_updatemsgcnt", DateTime.getTodayYmd(null));
-		editor.commit();
+		editor.apply();
 	}
 
 	public static int getunreadmsg_cnt() {
@@ -404,7 +414,7 @@ public class AppBase extends Application {
 	public static void setunreadmsg_cnt(int cnt) {
 		Editor editor = sharedPreference.edit();
 		editor.putInt("unreadmsgcnt", cnt);
-		editor.commit();
+		editor.apply();
 	}
 
 	public static boolean isNewsReaded(int id) {
@@ -414,22 +424,22 @@ public class AppBase extends Application {
 	public static void setNewsReaded(int id) {
 		Editor editor = sharedPreference.edit();
 		editor.putBoolean("news_" + id, true);
-		editor.commit();
+		editor.apply();
 	}
 
 	public static void logout() {
 		Editor editor = sharedPreference.edit();
 		editor.remove("userToken");
 		editor.remove("renewalToken");
-		editor.commit();
-		AppBase.userToken = null;
-		AppBase.usrId = -1;
-		AppBase.usrName = null;
+		editor.apply();
+		MyApplication.userToken = null;
+		MyApplication.usrId = -1;
+		MyApplication.usrName = null;
 		sendBroadcastAboutUsrStatus(false);
 	}
 
 	public static boolean isSignin() {
-		if (AppBase.userToken != null) {
+		if (MyApplication.userToken != null) {
 			return true;
 		}
 		return false;
@@ -445,7 +455,7 @@ public class AppBase extends Application {
 			String userTokenExpireDateDate = jsonResp.getString("userTokenExpireDateDate");
 			String renewalToken = jsonResp.getString("renewalToken");
 			String renewalTokenExpire = jsonResp.getString("renewalTokenExpire");
-			AppBase.onSignin(userToken, userTokenExpireDate, renewalToken, renewalTokenExpire);
+			MyApplication.onSignin(userToken, userTokenExpireDate, renewalToken, renewalTokenExpire);
 		}
 	}
 
@@ -507,14 +517,14 @@ public class AppBase extends Application {
 		protected Object doInBackground(Object... params) {
 			JSONObject jsonResp;
 			try {
-				jsonResp = HttpCommon.getGet(AppBase.account01Verification, paramsData);
+				jsonResp = HttpCommon.getGet(MyApplication.account01Verification, paramsData);
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
 					String userToken = jsonResp.getString("userToken");
 					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
 					String renewalToken = jsonResp.getString("renewalToken");
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
-					AppBase.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
 					return true;
 				} else {
 					// 自动登录失败

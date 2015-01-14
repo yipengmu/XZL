@@ -2,12 +2,12 @@ package net.xinzeling.model;
 
 import java.util.ArrayList;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class GuaModel extends AppBase{
+public class GuaModel extends MyApplication{
 	
 	public static long save(Gua gua){
 		ContentValues values = new ContentValues();

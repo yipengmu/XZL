@@ -1,5 +1,6 @@
 package net.xinzeling.lib;
 
+import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +50,7 @@ public class ImageViewWithCount extends LinearLayout implements OnClickListener 
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = inflater.inflate(R.layout.imageviewwithcount, this,true);
 		mBg = (ImageView)layout.findViewById(R.id.notification);
-		reDrawCount(AppBase.getunreadmsg_cnt());
+		reDrawCount(MyApplication.getunreadmsg_cnt());
 	}
 
 	public void reDrawCount(int count) {
@@ -60,18 +61,18 @@ public class ImageViewWithCount extends LinearLayout implements OnClickListener 
 			cnt = count+"";
 		}
 		if(count==0){
-			AppBase.setunreadmsg_cnt(0);
+			MyApplication.setunreadmsg_cnt(0);
 		}else{
-			AppBase.setunreadmsg_cnt(count);
+			MyApplication.setunreadmsg_cnt(count);
 		}
 		Bitmap icon;
 		if(count==0){
-			icon = AppBase.getResIcon(getResources(), R.drawable.notificationicon_read);			
+			icon = MyApplication.getResIcon(getResources(), R.drawable.notificationicon_read);			
 		}else{
-			icon = AppBase.getResIcon(getResources(), R.drawable.notificationicon);
+			icon = MyApplication.getResIcon(getResources(), R.drawable.notificationicon);
 		}
 		if(icon!=null){
-			Bitmap new_icon = AppBase.generatorContactCountIcon(icon, cnt,cnt_font_size,cnt_font_color,circle_color);
+			Bitmap new_icon = MyApplication.generatorContactCountIcon(icon, cnt,cnt_font_size,cnt_font_color,circle_color);
 			if(new_icon!=null){
 				mBg.setImageBitmap(new_icon);
 			}

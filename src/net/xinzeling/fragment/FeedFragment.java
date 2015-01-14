@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.HttpCommon;
 
 import org.json.JSONException;
@@ -68,7 +68,7 @@ public  class FeedFragment extends DialogFragment implements OnClickListener{
   		@Override
   		protected Boolean doInBackground(Void... args) {  			
   			try {
-				JSONObject jsonResp = HttpCommon.getGet(AppBase.system_feed_url,params);
+				JSONObject jsonResp = HttpCommon.getGet(MyApplication.system_feed_url,params);
 				int resCode = jsonResp.getInt("resCode");
 				if(resCode !=0){
 					resMsg = jsonResp.getString("resMsg");

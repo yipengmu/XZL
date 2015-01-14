@@ -5,8 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 
+import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.BirthAdapter;
-import net.xinzeling.lib.AppBase;
 import net.xinzeling.lib.HttpCommon;
 import net.xinzeling2.R;
 
@@ -68,7 +68,7 @@ public class UsrEditActivity extends Activity {
 		spinnerBirth = (Spinner)findViewById(R.id.spinner_birth);
 		spinnerBirth.setAdapter(new BirthAdapter(this));
 		
-		SharedPreferences usr = AppBase.sharedPreference;
+		SharedPreferences usr = MyApplication.sharedPreference;
 		inputNick.setText(usr.getString("nick", ""));
 		inputName.setText(usr.getString("name", ""));
 		inputSurname.setText(usr.getString("firstName", ""));
@@ -142,7 +142,7 @@ public class UsrEditActivity extends Activity {
 	}
 
 	private void onSubmit() {
-		Editor editor = AppBase.sharedPreference.edit();
+		Editor editor = MyApplication.sharedPreference.edit();
 		editor.putString("nick", inputNick.getText().toString());
 		editor.putString("name", inputName.getText().toString());
 		editor.putString("firstName", inputSurname.getText().toString());
@@ -156,10 +156,10 @@ public class UsrEditActivity extends Activity {
 		
 		if(radioMale.isChecked()){
 			editor.putInt("gender", 0);
-			AppBase.gender=0;
+			MyApplication.gender=0;
 		}else if(radioFemale.isChecked()){
 			editor.putInt("gender", 1);
-			AppBase.gender=1;
+			MyApplication.gender=1;
 		}
 		
 		editor.putString("birthAddress", inputBirthAddr.getText().toString());
@@ -167,7 +167,7 @@ public class UsrEditActivity extends Activity {
 		editor.putString("career", inputJob.getText().toString());
 		editor.putString("marriage", inputHunyin.getText().toString());
 		
-		editor.commit();
+		editor.apply();
 
 		if(avataImg !=null){
 			try {
@@ -218,8 +218,8 @@ public class UsrEditActivity extends Activity {
 		
 		@Override
 		protected Boolean doInBackground(Void... args) {
-			SharedPreferences usr = AppBase.sharedPreference;
-			params.put("usertoken", AppBase.userToken);//授权令牌
+			SharedPreferences usr = MyApplication.sharedPreference;
+			params.put("usertoken", MyApplication.userToken);//授权令牌
 			params.put("nickName", usr.getString("nick", ""));//昵称
 			params.put("firstName", usr.getString("firstName", ""));//姓
 			params.put("secondName", usr.getString("name", ""));//名
@@ -234,7 +234,7 @@ public class UsrEditActivity extends Activity {
 			params.put("marriage", 0);//婚姻  0未婚1结婚
 			
 			try {
-				JSONObject jsonResp = HttpCommon.getPost(AppBase.update_usr_profile_url, params);
+				JSONObject jsonResp = HttpCommon.getPost(MyApplication.update_usr_profile_url, params);
 				int resCode = jsonResp.getInt("resCode");
 				if(resCode ==0){
 					return true;

@@ -3,12 +3,12 @@ package net.xinzeling.model;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-public class NoteModel extends AppBase{
+public class NoteModel extends MyApplication{
 	
 	public static long add(String title,String contact,String content,long started,long ended,int befored,int repeat_type){
 		ContentValues value=new ContentValues();

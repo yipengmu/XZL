@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 import net.xinzeling2.R;
+import net.xinzeling.MyApplication;
 import net.xinzeling.model.ItemModel;
 import net.xinzeling.model.ItemModel.DayItem;
 import net.xinzeling.model.LunarModel;
@@ -556,7 +557,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			fontHeight = datePaint.measureText("中")*fontHeightWidthRate;
 			minHeight = fontHeight*(2.0f + textLineSpaceCellHeightBegin*2.0f);//中 该字体的高宽比 2倍
 
-			init_cellHeight((int)AppBase.getWidthHeight()[0]);
+			init_cellHeight((int)MyApplication.getWidthHeight()[0]);
 			
 			datePaint.setFakeBoldText(false);
 //			datePaint.setTypeface(FontManager.getTypeface(context));
@@ -613,7 +614,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//float n_left = left + cellWidth - borderWidth - 10;
 				//cellBgPaint.setColor(Color.parseColor("#AA0000"));
 				//canvas.drawRect(n_left, top, n_left + 10, top + 10, cellBgPaint);
-				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_4);
+				Bitmap iconbit = MyApplication.getResIcon(R.drawable.dr_7_4);
 				canvas.drawBitmap(iconbit, left+cellWidth-borderWidth - iconbit.getWidth(), top -  borderWidth,cellBgPaint);
 			}
 			//b10
@@ -622,7 +623,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//float n_top = top + cellHeight - borderWidth - 10;
 				//cellBgPaint.setColor(Color.parseColor("#dd0000"));
 				//canvas.drawRect(left, n_top, left + 10, n_top + 10, cellBgPaint);
-				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_2);
+				Bitmap iconbit = MyApplication.getResIcon(R.drawable.dr_7_2);
 				canvas.drawBitmap(iconbit, left + 0.2f*iconbit.getWidth() - borderWidth, top + cellHeight - borderWidth - 1.4f* iconbit.getHeight(), cellBgPaint);
 			}
 			if((oth & 1)>0){
@@ -632,7 +633,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//cellBgPaint.setColor(Color.parseColor("#00AA00"));
 				//canvas.drawRect(n_left, n_top, n_left + 10, n_top + 10, cellBgPaint);
 				//绘制当前有算卦的 小八卦
-				Bitmap iconbit = AppBase.getResIcon(R.drawable.dr_7_1);
+				Bitmap iconbit = MyApplication.getResIcon(R.drawable.dr_7_1);
 				canvas.drawBitmap(iconbit, left + cellWidth - 1.4f*iconbit.getWidth() - borderWidth , top + cellHeight - borderWidth - 1.4f*iconbit.getHeight(), cellBgPaint);
 			}
 		}

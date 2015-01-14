@@ -2,7 +2,7 @@ package net.xinzeling.gua;
 
 import java.util.HashMap;
 
-import net.xinzeling.lib.AppBase.share_id;
+import net.xinzeling.MyApplication.share_id;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;

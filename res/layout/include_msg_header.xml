@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@color/alpha"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp" >
+    style="@style/header" >
 
     <ImageView
         android:id="@+id/header_right_btn"

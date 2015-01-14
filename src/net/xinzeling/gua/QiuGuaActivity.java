@@ -9,7 +9,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.lib.HttpCommon;
@@ -57,21 +57,21 @@ public class QiuGuaActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		BlurBehind.getInstance().withAlpha(240).setBackground(this);
 		Intent reqIntent = getIntent();
-		mode = reqIntent.getIntExtra("mode", AppBase.nav_gua_time);
+		mode = reqIntent.getIntExtra("mode", MyApplication.nav_gua_time);
 		type = reqIntent.getIntExtra("type", 0);
 
 		switch (mode) {
-		case AppBase.nav_gua_num:
+		case MyApplication.nav_gua_num:
 			this.setContentView(R.layout.activity_gua_num);
 			this.isNum=true;			
 			this.num1Input = (EditText)this.findViewById(R.id.input_num);
 			this.num2Input = (EditText)this.findViewById(R.id.input_num_other);
 			break;
-		case AppBase.nav_gua_photo:
+		case MyApplication.nav_gua_photo:
 			this.setContentView(R.layout.activity_gua_photo);
 			this.isPhoto=true;
 			break;
-		case AppBase.nav_gua_time:
+		case MyApplication.nav_gua_time:
 			this.setContentView(R.layout.activity_gua_time);
 			break;
 		}
@@ -87,8 +87,8 @@ public class QiuGuaActivity extends Activity {
 
 	private boolean isDouble(int type) {
 		boolean ret = false;
-		for(int i=0;i<AppBase.double_type_int.length;i++){
-			if(AppBase.double_type_int[i]==type){
+		for(int i=0;i<MyApplication.double_type_int.length;i++){
+			if(MyApplication.double_type_int[i]==type){
 				ret = true;break;
 			}
 		}
@@ -353,7 +353,7 @@ public class QiuGuaActivity extends Activity {
 			startActivityForResult(camera, REQUEST_CAMERA);
 			break;
 		case R.id.btn_home:
-			AppBase.sendBroadcastBackHomeFromThread();
+			MyApplication.sendBroadcastBackHomeFromThread();
 			finish();
 			break;
 		}
@@ -379,7 +379,7 @@ public class QiuGuaActivity extends Activity {
 		private ProgressDialog progress;
 		private String resMsg="";
 		private HashMap<String,Object> params = new HashMap<String,Object>();
-		private String url=AppBase.gua_time_url;
+		private String url=MyApplication.gua_time_url;
 		private long guaid=0;
 
 		public GuaPostTask(){
@@ -387,18 +387,18 @@ public class QiuGuaActivity extends Activity {
 				gua_xz_info = GuaCntModel.fetch(type);
 			}
 
-			params.put("usertoken", AppBase.userToken);
+			params.put("usertoken", MyApplication.userToken);
 			params.put("type", type);
 
-			params.put("gender", AppBase.gender);
+			params.put("gender", MyApplication.gender);
 			params.put("nameone", name1Input.getText().toString());
 			params.put("nametwo", isDouble(type)?name2Input.getText().toString():"");
 			if(isNum){
 				params.put("numone", Integer.valueOf(num1Input.getText().toString()));
 				params.put("numtwo", Integer.valueOf(num2Input.getText().toString()));
-				url = AppBase.gua_double_num_url;
+				url = MyApplication.gua_double_num_url;
 			}else if(isPhoto){
-				AppBase.saveBitmap(photo);
+				MyApplication.saveBitmap(photo);
 				rgb = photo.getPixel(10, 10);
 				rgb = rgb & 0x00ffffff;
 				int red = rgb >>16;
@@ -406,7 +406,7 @@ public class QiuGuaActivity extends Activity {
 		int blue = (rgb & 0xff);
 		params.put("colorone", red+","+green+","+blue);//颜色一 255,255,255 就用屏幕中间的那个像素点
 		params.put("colortwo", "");//颜色二不需要填
-		url=AppBase.gua_photo_url;
+		url=MyApplication.gua_photo_url;
 			}
 		}
 
@@ -422,8 +422,8 @@ public class QiuGuaActivity extends Activity {
 			params.put("lunardate", lunar.lunarCalendar);
 			try {
 				JSONObject jsonResp;
-				if(mode==AppBase.nav_gua_photo){
-					jsonResp = HttpCommon.getPost(url,params,new File(AppBase.photo_path));
+				if(mode==MyApplication.nav_gua_photo){
+					jsonResp = HttpCommon.getPost(url,params,new File(MyApplication.photo_path));
 				}else{
 					jsonResp = HttpCommon.getGet(url,params);
 				}
@@ -443,21 +443,21 @@ public class QiuGuaActivity extends Activity {
 							String str;
 							Date date1;
 							switch(guacnt.xz_id){
-							case AppBase.xz_id_day:
+							case MyApplication.xz_id_day:
 								calendar.add(calendar.DATE, 1);
 								s = new SimpleDateFormat("yyyy-MM-dd");
 								str = s.format(calendar.getTime());
 								date1 = s.parse(str);
 								guacnt.next_time = (int)(date1.getTime() / 1000);
 								break;
-							case AppBase.xz_id_month:
+							case MyApplication.xz_id_month:
 								calendar.add(calendar.MONTH, 1);
 								s = new SimpleDateFormat("yyyy-MM-01");
 								str = s.format(calendar.getTime());
 								date1 = s.parse(str);
 								guacnt.next_time = (int)(date1.getTime() / 1000);
 								break;
-							case AppBase.xz_id_year:
+							case MyApplication.xz_id_year:
 								calendar.add(calendar.YEAR, 1);
 								s = new SimpleDateFormat("yyyy-01-01");
 								str = s.format(calendar.getTime());

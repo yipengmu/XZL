@@ -1,6 +1,6 @@
 package net.xinzeling.news;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -38,8 +38,8 @@ public class GuaNewsShareActivity extends Activity implements OnClickListener{
 		
 		Intent intent = getIntent();
 		int news_id = intent.getIntExtra("news_id", 0);
-		if(news_id>0)AppBase.setNewsReaded(news_id);
-		showNews.loadUrl(AppBase.kanfa_detail_url + news_id);
+		if(news_id>0)MyApplication.setNewsReaded(news_id);
+		showNews.loadUrl(MyApplication.kanfa_detail_url + news_id);
 //		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsShareActivity.this),GuaNewsShareActivity.this);
 	}
 

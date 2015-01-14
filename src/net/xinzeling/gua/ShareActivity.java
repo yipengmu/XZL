@@ -1,7 +1,7 @@
 package net.xinzeling.gua;
 
-import net.xinzeling.lib.AppBase;
-import net.xinzeling.lib.AppBase.share_id;
+import net.xinzeling.MyApplication;
+import net.xinzeling.MyApplication.share_id;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;
@@ -83,8 +83,8 @@ public class ShareActivity extends Activity {
 //		wxCircleHandler.addToSocialSDK();
 
 		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, AppBase.QQ_APP_ID,
-				AppBase.QQ_APP_KEY);
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
+				MyApplication.QQ_APP_KEY);
 		qqSsoHandler.addToSocialSDK();  
 
 		//设置新浪SSO handler
@@ -94,8 +94,8 @@ public class ShareActivity extends Activity {
 		mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 
 		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(ShareActivity.this, AppBase.QQ_APP_ID,
-				AppBase.QQ_APP_KEY);
+		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
+				MyApplication.QQ_APP_KEY);
 		qZoneSsoHandler.addToSocialSDK();
 		//mController.openShare(ShareActivity.this, false);
 		//微信朋友圈
@@ -217,8 +217,8 @@ public class ShareActivity extends Activity {
 	
 	private void share_qq(){
 		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, AppBase.QQ_APP_ID,
-				AppBase.QQ_APP_KEY);
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
+				MyApplication.QQ_APP_KEY);
 		qqSsoHandler.addToSocialSDK();  
 		//mController.openShare(ShareActivity.this, false);
 		//qq

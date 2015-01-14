@@ -1,6 +1,6 @@
-package net.xinzeling;
+package net.xinzeling.webview;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -35,10 +35,10 @@ public class WebViewActivity extends Activity {
 		
 		String target = this.getIntent().getStringExtra("target");
 		if(target.equals("regist")){
-			webView.loadUrl(AppBase.webview_regist_url); 
+			webView.loadUrl(MyApplication.webview_regist_url); 
 			txtTitle.setText("注册");
 		}else{
-			webView.loadUrl(AppBase.webview_passwd_url);
+			webView.loadUrl(MyApplication.webview_passwd_url);
 			txtTitle.setText("忘记密码");
 		}
 //		FontManager.changeFonts((ViewGroup)AppBase.getRootView(WebViewActivity.this), WebViewActivity.this);

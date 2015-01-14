@@ -23,7 +23,7 @@
         android:textSize="14sp" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btn_submit"
         style="@style/common_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

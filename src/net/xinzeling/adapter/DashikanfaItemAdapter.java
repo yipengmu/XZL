@@ -17,7 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import net.xinzeling2.R;
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling.lib.LunarCalendar;
 import net.xinzeling.news.GuaNewsDetailActivity;
 import android.content.Context;
@@ -154,7 +154,7 @@ public class DashikanfaItemAdapter extends BaseAdapter {
 			ImageView read_status = (ImageView)arg1.findViewById(R.id.msg_read_status);
 
 			//判断是否读过了
-			if(AppBase.isNewsReaded(Integer.valueOf(item[4]))){
+			if(MyApplication.isNewsReaded(Integer.valueOf(item[4]))){
 				read_status.setImageResource(R.drawable.back_huangli_content);
 			}
 			TextView msg_title = (TextView)arg1.findViewById(R.id.msg_title);

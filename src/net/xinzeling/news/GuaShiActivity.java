@@ -1,6 +1,6 @@
 package net.xinzeling.news;
 
-import net.xinzeling.lib.AppBase;
+import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.os.Bundle;
@@ -26,7 +26,7 @@ public class GuaShiActivity extends Activity implements OnClickListener {
 		gohome.setOnClickListener(this);
 		
 		jianjie_info = (WebView)findViewById(R.id.dashijianjie_info);
-		jianjie_info.loadUrl(AppBase.dashijianjie_info_url);
+		jianjie_info.loadUrl(MyApplication.dashijianjie_info_url);
 		
 //		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaShiActivity.this),GuaShiActivity.this);
 	}

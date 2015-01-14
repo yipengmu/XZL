@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import net.xinzeling.DateActivity;
+import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
@@ -114,7 +115,7 @@ public class DateTitleView extends LinearLayout implements OnClickListener {
 					lunar = LunarModel.fetchByDate(dstr);
 					setViewDateTitle(lunar);
 					//发广播
-					AppBase.sendBroadcastNewSelectDate(dstr);
+					MyApplication.sendBroadcastNewSelectDate(dstr);
 				}
 				break;
 			}
