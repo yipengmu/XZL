@@ -3,17 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_margin="16dp"
+    android:layout_margin="25dp"
     android:background="@drawable/back_huangli_wraper"
-    android:paddingBottom="28dp"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp"
-    android:paddingTop="12dp" >
+    android:padding="10dp" >
 
     <Button
         android:id="@+id/btn_close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="44dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
         android:background="@drawable/btn_close_huangli"
         android:onClick="onClick" />
 
@@ -21,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal"
         android:padding="1dp" >
 
@@ -44,21 +43,24 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/btn_close"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/back_huangli_content"
         android:orientation="vertical" >
 
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:paddingBottom="20dp" >
 
                 <ImageView
                     android:id="@+id/img_huangli"
@@ -76,22 +78,26 @@
 
                 <TextView
                     android:id="@+id/txt_huangli_new"
-                    style="@style/activity_lunar_content" />
+                    style="@style/activity_lunar_content"
+                    android:layout_marginTop="15dp" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_margin="15dp"
+                    android:layout_marginRight="15dp"
                     android:background="@color/bg_green" />
 
                 <TextView
                     android:id="@+id/txt_camera"
                     style="@style/activity_lunar_title"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
                     android:text="老黄历原文" />
 
                 <TextView
                     android:id="@+id/txt_huangli_old"
-                    style="@style/activity_lunar_content" />
+                    style="@style/activity_lunar_content"
+                    android:layout_marginTop="15dp" />
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

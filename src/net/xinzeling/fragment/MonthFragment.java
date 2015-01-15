@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import net.xinzeling.HomeActivity;
+import net.xinzeling.MainActivity;
 import net.xinzeling.adapter.ItemAdapter;
 import net.xinzeling.gua.JieGuaActivity;
 import net.xinzeling.lib.BlurBehind;
@@ -268,7 +269,9 @@ public class MonthFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onDoubleClick(Date date) {
-		this.startActivity(new Intent(homeActivity, NoteActivity.class));
+		Intent intent = new Intent(homeActivity, MainActivity.class);
+		intent.putExtra("tabIndex", MainActivity.Maintab_Index_Note);
+		this.startActivity(intent);
 	}
 
 }

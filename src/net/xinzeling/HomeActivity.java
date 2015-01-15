@@ -121,6 +121,11 @@ public class HomeActivity extends Activity  implements OnClickListener{
 		super.onDestroy();
 	}
 
+	@Override
+		protected void onNewIntent(Intent intent) {
+			super.onNewIntent(intent);
+		}
+	
 	public void onClick(View view) {
 
 		switch (view.getId()){

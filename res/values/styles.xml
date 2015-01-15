@@ -165,9 +165,11 @@
     <style name="note_repeat_item">
         <item name="android:background">@drawable/note_repeat_selector</item>
         <item name="android:button">@null</item>
-        <item name="android:layout_width">45dp</item>
-        <item name="android:layout_height">28dp</item>
+        <item name="android:layout_width">53dp</item>
+        <item name="android:layout_height">30dp</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingBottom">2dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/calendar_txt</item>
         <item name="android:gravity">center</item>
@@ -275,8 +277,8 @@
     <style name="huangli_tab">
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
         <item name="android:textSize">0sp</item>
         <item name="android:button">@null</item>
         <item name="android:background">@drawable/tab_selector</item>
@@ -422,12 +424,11 @@
     <style name="activity_lunar">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">20dp</item>
         <item name="android:textColor">#687711</item>
     </style>
 
     <style name="activity_lunar_title" parent="activity_lunar">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">20sp</item>
     </style>
 
     <style name="activity_lunar_content" parent="activity_lunar">
@@ -435,7 +436,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:lineSpacingMultiplier">1.4</item>
         <item name="android:padding">3dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="cent_secant">

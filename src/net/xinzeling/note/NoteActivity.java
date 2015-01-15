@@ -265,11 +265,12 @@ public class NoteActivity extends Activity implements OnClickListener{
 		for(int i=0;i<this.selected.size();i++){
 			int drawable_id = selected.get(selected.keyAt(i));
 			String sp_pre = "_x_icon_y_"+drawable_id+"_";//_x_icon_y_1_
-			//System.out.println(sp_pre);
 			ImageSpan span = new ImageSpan(this, getResources().getIdentifier("small_note_topic_"+drawable_id, "drawable", "net.xinzeling"));
 			SpannableString spanStr = new SpannableString(sp_pre);
 			spanStr.setSpan(span, 0, sp_pre.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
-			inputTopic.append(spanStr);
+			if(inputTopic != null){
+				inputTopic.append(spanStr + "");
+			}
 			selected.removeAt(i);
 		}
 		if(topic_fragment!=null){

@@ -35,7 +35,7 @@ public class ImageViewWithCount extends LinearLayout implements OnClickListener 
 		super(context, attrs, defStyle);
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ImageViewWithCount, defStyle, 0);
 
-		cnt_font_size = a.getDimensionPixelSize(R.styleable.ImageViewWithCount_cnt_font_size, 20);
+		cnt_font_size = a.getDimensionPixelSize(R.styleable.ImageViewWithCount_cnt_font_size, 12);
 		cnt_font_color = a.getColor(R.styleable.ImageViewWithCount_cnt_font_color, Color.RED);
 		circle_color = a.getColor(R.styleable.ImageViewWithCount_circle_color, Color.YELLOW);
 		

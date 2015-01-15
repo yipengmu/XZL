@@ -178,9 +178,9 @@ public class SNSShareMenu {
 //		}
 		
 		if(info.icon == R.drawable.btn_weixin_friend_timeline_dark){
-			new WeixinManager().sendReq(mShareMsgContent, true);
+			new WeixinManager(mContext).sendReq(mShareMsgContent, true);
 		}else if(info.icon == R.drawable.btn_weibo_im_dark){
-			new WeixinManager().sendReq(mShareMsgContent, false);
+			new WeixinManager(mContext).sendReq(mShareMsgContent, false);
 		}else{
 			// 非直接分享 ,intent Action 方式
 			gotoShare(info, null, mShareMsgContent, mShareUrl);

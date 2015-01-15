@@ -2,6 +2,7 @@ package net.xinzeling.share.weixin;
 
 import net.xinzeling.MyApplication;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
@@ -15,11 +16,13 @@ public class WeixinManager {
     public static final String APP_ID = "wx4acd7a106495b9ed";
 	private IWXAPI api;
 	WXTextObject textObj;
+	private Context mContext;
 
-	public WeixinManager() {
+	public WeixinManager(Context c) {
+		mContext = c;
 		// 初始化一个WXTextObject对象
 		textObj = new WXTextObject();
-		api = WXAPIFactory.createWXAPI(MyApplication.getContext(), APP_ID);
+		api = WXAPIFactory.createWXAPI(mContext, APP_ID);
 		
 	}
 

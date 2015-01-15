@@ -1,13 +1,24 @@
 package net.xinzeling;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.AppManager;
+import net.xinzeling.lib.HttpCommon;
 import net.xinzeling.note.NoteActivity;
 import net.xinzeling.setting.SigninActivity;
+import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.TabActivity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.KeyEvent;
@@ -30,6 +41,12 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 	private int[] tab_default_selector = { R.drawable.tab_home_selector, R.drawable.tab_gua_selector, R.drawable.tab_note_selector, R.drawable.tab_usr_selector };
 	private long mFirstime = 0L;
 
+	public static int Maintab_Index_Home = 0;
+	public static int Maintab_Index_Gua = 1;
+	public static int Maintab_Index_Note = 2;
+	public static int Maintab_Index_My = 3;
+	private int deFaultTab = Maintab_Index_Home;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,6 +57,20 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 		ll.setOnTouchListener(this);
 		ll.setLongClickable(true);
 		initTab();
+
+		// MyApplication.initApplication();
+
+		checkIfNeedReautoLogin(MyApplication.userTokenExpireDate, MyApplication.renewalToken);
+
+		deFaultTab = getIntent().getIntExtra("tabIndex", Maintab_Index_Home);
+		setTabIndex(deFaultTab);
+	}
+
+	private void setTabIndex(int tabIndex) {
+		if (tabHost == null) {
+			return;
+		}
+		tabHost.setCurrentTab(tabIndex);
 	}
 
 	private void initTab() {
@@ -60,6 +91,16 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 			public void onTabChanged(String arg0) {
 			}
 		});
+	}
+
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+
+		if (getIntent().getIntArrayExtra("tabIndex") != null) {
+			deFaultTab = getIntent().getIntExtra("tabIndex", Maintab_Index_Home);
+		}
+		setTabIndex(deFaultTab);
 	}
 
 	private RelativeLayout createView(int id) {
@@ -149,6 +190,19 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 		return super.onKeyDown(keyCode, event);
 	}
 
+	private static void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
+
+		if (TextUtils.isEmpty(userTokenExpireDate) || TextUtils.isEmpty(renewalToken)) {
+			// 首次登录
+			return;
+		}
+		long timeNow = System.currentTimeMillis();
+		if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDataByStringyyyyMMdd(userTokenExpireDate).getTime())) {
+			// new AutoLoginTask(renewalToken).equals(null);
+		}
+
+	}
+
 	/**
 	 * listview 和水平滑动事件冲突
 	 */
@@ -160,6 +214,37 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 		}
 
 		return super.dispatchTouchEvent(event);
+	}
+
+	public class AutoLoginTask extends AsyncTask {
+		private HashMap<String, Object> paramsData = new HashMap<String, Object>();
+
+		public AutoLoginTask(String renewalTokenString) {
+			paramsData.put("renewalToken", renewalTokenString);
+		}
+
+		@Override
+		protected Object doInBackground(Object... params) {
+			JSONObject jsonResp;
+			try {
+				jsonResp = HttpCommon.getGet(MyApplication.account01Verification, paramsData);
+				int resCode = jsonResp.getInt("resCode");
+				if (resCode == 0) {
+					String userToken = jsonResp.getString("userToken");
+					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
+					String renewalToken = jsonResp.getString("renewalToken");
+					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
+					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					return true;
+				} else {
+					// 自动登录失败
+					jsonResp.getString("resMsg");
+				}
+			} catch (IOException | JSONException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	}
 
 }

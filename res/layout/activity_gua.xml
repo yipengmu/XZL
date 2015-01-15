@@ -34,6 +34,7 @@
                 android:gravity="center" >
 
                 <ImageView
+                    android:id="@+id/iv_title_mid_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -41,8 +42,8 @@
 
                 <TextView
                     android:id="@+id/txt_title"
-                    android:layout_marginLeft="5dp"
-                    style="@style/header_title" />
+                    style="@style/header_title"
+                    android:layout_marginLeft="5dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -74,8 +75,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
 
                         <RadioButton
                             android:id="@+id/gua_menu_16"
@@ -85,8 +86,8 @@
 
                         <RadioButton
                             android:id="@+id/gua_menu_17"
-                            android:checked="false"
                             style="@style/gua_list_item2"
+                            android:checked="false"
                             android:drawableTop="@drawable/icon_gua_2"
                             android:text="今日穿啥" />
 
@@ -105,8 +106,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
 
                         <RadioButton
                             android:id="@+id/gua_menu_danshen"
@@ -135,9 +136,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" >
 
                         <RadioButton
                             android:id="@+id/gua_menu_yihundashi"
@@ -187,12 +188,14 @@
                             android:text="事业工作" />
                     </LinearLayout>
 
+                    <HorizontalScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
                     <LinearLayout
                         android:id="@+id/child_tag_4"
                         style="@style/gua_menu_line_child"
                         android:orientation="vertical" >
                     </LinearLayout>
-
+                    </HorizontalScrollView>
+ 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
@@ -212,7 +215,7 @@
                         <RadioButton
                             android:id="@+id/gua_menu_15"
                             style="@style/gua_list_item"
-                            android:drawableTop="@drawable/icon_gua_15"
+                            android:drawableTop="@drawable/icon_gua_15_selector"
                             android:text="考试" />
                     </LinearLayout>
 

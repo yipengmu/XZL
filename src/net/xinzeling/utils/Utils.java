@@ -81,7 +81,7 @@ public class Utils {
 			e.printStackTrace();
 		}
 
-		return null;
+		return new Date();
 	}
 
 	// 打开APK程序代码
@@ -106,12 +106,12 @@ public class Utils {
 		}
 	}
 
-	public static int getAppVersion(Context c) {
-		PackageManager nPackageManager = c.getPackageManager();// 得到包管理器
-		int localVersion = 0;
+	public static float getAppVersion(Context c) {
+		float localVersion = 0;
 		try {
+			PackageManager nPackageManager = c.getPackageManager();// 得到包管理器
 			PackageInfo nPackageInfo = nPackageManager.getPackageInfo(c.getPackageName(), PackageManager.GET_CONFIGURATIONS);
-			localVersion = nPackageInfo.versionCode;// 得到现在app的版本号
+			localVersion = Float.valueOf(nPackageInfo.versionName);// 得到现在app的版本号
 		} catch (NameNotFoundException e1) {
 			e1.printStackTrace();
 		}

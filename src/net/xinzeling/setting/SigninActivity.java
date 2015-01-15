@@ -95,6 +95,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		findViewById(R.id.rb_my).setOnClickListener(this);
 		findViewById(R.id.btn_logout).setOnClickListener(this);
 		rg_signin_container.check(R.id.rb_login);
+		findViewById(R.id.btn_back).setVisibility(View.GONE);
 	}
 
 	public void onClick(View view) {

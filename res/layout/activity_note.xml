@@ -142,7 +142,7 @@
                         android:inputType="textMultiLine"
                         android:lineSpacingExtra="5dp"
                         android:lineSpacingMultiplier="1.1"
-                        android:minHeight="100dp"
+                        android:minHeight="80dp"
                         android:textColor="@color/calendar_txt"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -150,7 +150,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/activity_note_line_layout_height"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:background="@color/bg_green" />
 
                 <!-- 时间相关 -->
@@ -418,27 +418,35 @@
                             <RadioButton
                                 android:id="@+id/radio_repeat_year"
                                 style="@style/note_repeat_item"
-                                android:text="每年  " />
+                                android:layout_marginLeft="2dp"
+                                android:text="每年" />
 
                             <RadioButton
                                 android:id="@+id/radio_repeat_month"
                                 style="@style/note_repeat_item"
-                                android:text="每月  " />
+                                android:layout_marginLeft="2dp"
+                                android:text="每月" />
 
                             <RadioButton
                                 android:id="@+id/radio_repeat_week"
                                 style="@style/note_repeat_item"
-                                android:text="每周  " />
+                                android:layout_marginLeft="2dp"
+                                android:text="每周" />
 
                             <RadioButton
                                 android:id="@+id/radio_repeat_day"
                                 style="@style/note_repeat_item"
-                                android:text="每天  " />
+                                android:layout_marginLeft="2dp"
+                                android:text="每天" />
 
                             <RadioButton
                                 android:id="@+id/radio_repeat_no"
                                 style="@style/note_repeat_item"
-                                android:text="不重复  " />
+                                android:layout_width="56dp"
+                                android:layout_height="30dp"
+                                android:checked="true"
+                                android:layout_marginLeft="2dp"
+                                android:text="不重复" />
                         </RadioGroup>
                     </LinearLayout>
                 </LinearLayout>
@@ -448,6 +456,7 @@
                     style="@style/common_btn"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
                     android:background="@drawable/rect_btn_common_green_bg"
                     android:onClick="onClick"
                     android:text="保存" />

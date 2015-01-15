@@ -24,6 +24,7 @@ import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -43,6 +44,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 	private RadioGroup myradiogroup;
 	private RelativeLayout r_title;
 	private float ButtonOneWordWidth;
+	private ImageView iv_title_mid_icon;
 	private long mFirstime;
 	private final String PreferTag = "gua_mode";
 
@@ -54,29 +56,16 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		mode = getIntent().getIntExtra("mode",PreferenceManager.getInstance().getPreferenceInt(PreferTag, MyApplication.nav_gua_num));
 		
 		txtTitle = (TextView) findViewById(R.id.txt_title);
-
-		switch (mode) {
-		case MyApplication.nav_gua_num:
-			txtTitle.setText("数字求卦");
-			break;
-		case MyApplication.nav_gua_photo:
-			txtTitle.setText("照片求卦");
-			break;
-		case MyApplication.nav_gua_time:
-			txtTitle.setText("时间求卦");
-			break;
-		}
-
+		iv_title_mid_icon = (ImageView) findViewById(R.id.iv_title_mid_icon);
 		txtTitle.setOnClickListener(this);
 		winFrame = findViewById(R.id.frame_main);
 		r_title = (RelativeLayout) findViewById(R.id.select_type_menu);
 		display = this.getResources().getDisplayMetrics();
 		fadeInAnim = new LayoutAnimationController(AnimationUtils.loadAnimation(this, R.anim.fade_in));
-		fadeInAnim.setDelay(1);
-
+		
 		popupAnim = new LayoutAnimationController(AnimationUtils.loadAnimation(this, R.anim.popup));
-		popupAnim.setDelay(1);
 
+		findViewById(R.id.btn_back).setVisibility(View.GONE);
 		backhomeBReceiver = new BackHomeBroadcastReceiver();
 		registerReceiver(backhomeBReceiver, new IntentFilter(MyApplication.GUA_BACK_HOME_BROADCAST));
 
@@ -84,8 +73,37 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		myradiogroup.setOnCheckedChangeListener(this);
 
 		((RadioGroup) findViewById(R.id.radiogroup_type_menu)).setOnCheckedChangeListener(this);
+		
+		UpdateContentView();
+		
 	}
 
+	private void UpdateContentView() {
+		popupAnim.setDelay(1);
+		fadeInAnim.setDelay(1);
+		updateTitleGuaStyle(mode);
+	}
+
+
+	private void updateTitleGuaStyle(int mode){
+		switch (mode) {
+		case MyApplication.nav_gua_num:
+			txtTitle.setText("数字求卦");
+			iv_title_mid_icon.setBackground(getResources().getDrawable(R.drawable.btn_nav_gua_num));
+			break;
+		case MyApplication.nav_gua_photo:
+			txtTitle.setText("照片求卦");	
+			iv_title_mid_icon.setBackground(getResources().getDrawable(R.drawable.btn_nav_gua_camera));
+			break;
+		case MyApplication.nav_gua_time:
+			txtTitle.setText("时间求卦");
+			iv_title_mid_icon.setBackground(getResources().getDrawable(R.drawable.btn_nav_gua_time));
+			break;
+		}
+		//隐藏menu
+		r_title.setVisibility(View.GONE);
+
+	}
 	@Override
 	protected void onDestroy() {
 		unregisterReceiver(backhomeBReceiver);
@@ -158,8 +176,9 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 			lp.setMargins(5, 5, 10, 5);
 			btn.setLayoutParams(lp);
-			btn.setPadding(5, 5, 5, 5);
+			btn.setPadding(2,2,2,2);
 			btn.setTextAppearance(this, R.style.gua_add_child_button);
+			btn.setTextSize(14);
 			btn.setTextColor(getResources().getColor(R.color.bg_green));
 			btn.setBackground(getResources().getDrawable(R.drawable.add_child_selector));
 
@@ -190,7 +209,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 
 	private void gototarget(int type) {
 		Intent intent = new Intent(GuaActivity.this, QiuGuaActivity.class);
-		// intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 		intent.putExtra("mode", mode);
 		intent.putExtra("type", type);
 		startActivity(intent);
@@ -226,21 +245,19 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		switch (checkedId) {
 		case R.id.radio_num:
 			PreferenceManager.getInstance().setPreference(PreferTag, MyApplication.nav_gua_num);
-			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", MyApplication.nav_gua_num));
-			finish();
-			return;
+			mode = MyApplication.nav_gua_num;
+			UpdateContentView();
+			break;
 		case R.id.radio_photo:
 			PreferenceManager.getInstance().setPreference(PreferTag, MyApplication.nav_gua_photo);
-
-			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", MyApplication.nav_gua_photo));
-			finish();
-			return;
+			mode = MyApplication.nav_gua_photo;
+			UpdateContentView();
+			break;
 		case R.id.radio_time:
 			PreferenceManager.getInstance().setPreference(PreferTag, MyApplication.nav_gua_time);
-
-			startActivity(new Intent(GuaActivity.this, GuaActivity.class).putExtra("mode", MyApplication.nav_gua_time));
-			finish();
-			return;
+			mode = MyApplication.nav_gua_time;
+			UpdateContentView();
+			break;
 		}
 
 		if (lastShowChildView != null && lastShowChildView.getVisibility() == View.VISIBLE) {

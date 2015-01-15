@@ -9,10 +9,11 @@ public class PreferenceManager {
 
 	public static PreferenceManager ins;
 
-	private static Editor editor;
+	private static Editor editor ;
 	public static SharedPreferences sharedPreference = MyApplication.getContext().getSharedPreferences("usr", Context.MODE_PRIVATE);
 	
 	private PreferenceManager() {
+		editor = sharedPreference.edit();
 	}
 	
 	public static PreferenceManager getInstance(){

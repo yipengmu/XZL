@@ -49,7 +49,6 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import cn.jpush.android.api.JPushInterface;
 
 public class MyApplication extends Application {
 	public final static String Weibo_APP_ID = "2045436852";// "3665317294";
@@ -133,41 +132,31 @@ public class MyApplication extends Application {
 	public static String userTokenExpireDate;
 	public static String renewalToken;
 	public static String renewalTokenExpire;
-
+	private static boolean mApplicationIsInited = false;
 	public static List<String> userinfo_params_key = Arrays.asList(new String[] { "nick", "firstName", "name", "birthday", "birthTime", "phone", "email", "birthAddress", "nowaddr", "career",
 			"marriage", "gender" });
 
 	public static AppUpdateBean mAppUpdateBean = new AppUpdateBean();
-	
+
 	public void onCreate() {
 		context = getApplicationContext();
 
-		sharedPreference = context.getSharedPreferences("usr", Context.MODE_APPEND);
+		initApplication();
+		
+	}
 
-		// /test begin
-//		Editor editor = sharedPreference.edit();
-//		editor.putString("nick", "小白");
-//		editor.putString("firstName", "白");// 姓
-//		editor.putString("name", "明江");// 名
-//		editor.putString("birthday", "1982-1-21");
-//		editor.putString("birthTime", "08:21:00");
-//		editor.putString("phone", "13776104530");
-//		editor.putString("email", "351035557@qq.com");
-//
-//		editor.putString("birthAddress", "山东济宁");
-//		editor.putString("nowaddr", "苏州");
-//		editor.putString("career", "IT");
-//		editor.putString("marriage", "已婚");// 已婚 单身 未婚 离异
-//
-//		editor.putInt("gender", 0);// 0 男 1女
-//		editor.apply();
-		// /test end
+	public void initApplication() {
+		if(mApplicationIsInited){
+			return;
+		}
+		
+		// for auto login
+		sharedPreference = context.getSharedPreferences("usr", Context.MODE_APPEND);
 
 		usrName = sharedPreference.getString("nick", "");
 		gender = sharedPreference.getInt("gender", 2);
 		pushSwitch = sharedPreference.getBoolean("pushSwitch", true);
-
-		// for auto login
+		
 		MyApplication.userToken = sharedPreference.getString("userToken", null);
 		MyApplication.userTokenExpireDate = sharedPreference.getString("userTokenExpireDate", "");
 		MyApplication.renewalToken = sharedPreference.getString("renewalToken", null);
@@ -179,6 +168,8 @@ public class MyApplication extends Application {
 
 		// push
 		PushManager.getInstance().init();
+		
+		mApplicationIsInited = true;
 	}
 
 	private void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
@@ -490,14 +481,14 @@ public class MyApplication extends Application {
 			float radius = (float) 0.28 * icon.getHeight();
 			iconPaint.setColor(circle_color);
 			iconPaint.setAntiAlias(true);
-			canvas.drawCircle((float) (icon.getWidth() * 0.83), (float) 1.1 * radius, radius, iconPaint);
+			canvas.drawCircle((float) (icon.getWidth() * 0.78), (float) 1.1 * radius, radius, iconPaint);
 			// 启用抗锯齿和使用设备的文本字距
 			Paint countPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DEV_KERN_TEXT_FLAG);
 			// countPaint.setTypeface(tf);
 			countPaint.setColor(font_color);
-			countPaint.setTextSize(font_size);
+			countPaint.setTextSize(26);
 			// 再加个圆形就可以了
-			canvas.drawText(cnt, (float) (icon.getWidth() * 0.83 - 9), (float) (1.2 * radius + 4), countPaint);
+			canvas.drawText(cnt, (float) (icon.getWidth() * 0.78- 14), (float) (1.2 * radius + 8), countPaint);
 		}
 		return contactIcon;
 	}

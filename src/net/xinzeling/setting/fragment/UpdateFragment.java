@@ -114,7 +114,7 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				resMsg = "请求失败，请重试";
+				resMsg = "暂无更新信息";
 				return false;
 			}
 			MyApplication.mAppUpdateBean.parseJson(jsonResp);

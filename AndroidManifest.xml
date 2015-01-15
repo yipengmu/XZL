@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.xinzeling2"
     android:versionCode="2"
-    android:versionName="2.0" >
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -69,6 +69,7 @@
         <activity
             android:name="net.xinzeling.MainActivity"
             android:label="@string/app_name"
+            android:hardwareAccelerated="true"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -128,13 +129,12 @@
         <!-- 其他继续 -->
 
         <activity
-            android:name="net.xinzeling.setting.SettingActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="net.xinzeling.setting.MainSettingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.HomeActivity"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.EarlyDateTimeActivity"
