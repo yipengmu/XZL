@@ -24,6 +24,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+/**
+ * 大师介绍页
+ * */
 public class GuaNewsActivity extends Activity implements OnClickListener {
 
 	private ImageView TabSel,BackHome,dashijianjie,mychuanbo;

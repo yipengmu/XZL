@@ -4,7 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout style="@style/header" >
+    <RelativeLayout style="@style/header" 
+        
+        android:layout_width="fill_parent"
+        android:layout_height="48dp">
 
         <Button
             android:id="@+id/btn_back"

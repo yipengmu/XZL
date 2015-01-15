@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/header" >
+    style="@style/header"
+    android:layout_width="fill_parent"
+    android:layout_height="48dp" >
 
     <ImageView
         android:id="@+id/header_right_btn"
@@ -8,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/header_left_btn"
-        android:layout_marginRight="14dp"
         android:src="@drawable/btn_returnhome_white" />
 
     <ImageView
@@ -17,15 +18,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="14dp"
         android:src="@drawable/btn_return" />
 
     <TextView
         android:id="@+id/header_main_title"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="TextView" />
+        android:maxLength="10"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"
+        android:text=""
+        android:textColor="@color/white" />
 
 </RelativeLayout>

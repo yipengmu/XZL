@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 	public final static int REQ_WEIBO_CMD = 1;
 
-	private WebView showNews;
+	private WebView mWebview;
 	private LinearLayout btn_share_line;
 	private TextView header_main_title;
 	private ImageView header_left_btn,header_right_btn;
@@ -27,13 +28,13 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
-		showNews = (WebView)findViewById(R.id.showNews);
+		mWebview = (WebView)findViewById(R.id.showNews);
 		btn_share_line = (LinearLayout)findViewById(R.id.btn_share_line);
 		isShowShare = false;
 		//showShareLine(isShowShare);
 		header_main_title = (TextView)findViewById(R.id.header_main_title);
 		header_main_title.setText("大师看法");
-
+		header_main_title.setVisibility(View.VISIBLE);
 		header_left_btn = (ImageView)findViewById(R.id.header_left_btn);
 		header_right_btn = (ImageView)findViewById(R.id.header_right_btn);
 		header_left_btn.setOnClickListener(this);
@@ -42,14 +43,22 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 		Intent intent = getIntent();
 		int news_id = intent.getIntExtra("news_id", 0);
 		if(news_id>0)MyApplication.setNewsReaded(news_id);
-		showNews.loadUrl(MyApplication.kanfa_detail_url + news_id);
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaNewsDetailActivity.this), GuaNewsDetailActivity.this);
+		mWebview.setWebChromeClient(new WebChromeClient(){
+			@Override
+			public void onReceivedTitle(WebView view, String title) {
+				super.onReceivedTitle(view, title);
+				header_main_title.setText(title);
+			}
+			
+		});
+		mWebview.loadUrl(MyApplication.kanfa_detail_url + news_id);
 	}
 
 	@Override
 	public void onClick(View arg0) {
 		switch(arg0.getId()){
 		case R.id.header_left_btn:
+			finish();
 			break;
 		case R.id.header_right_btn:
 			showShareLine(isShowShare);
