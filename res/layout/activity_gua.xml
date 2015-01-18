@@ -98,11 +98,16 @@
                             android:text="财运" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/child_tag_1"
-                        style="@style/gua_menu_line_child"
-                        android:orientation="vertical" >
-                    </LinearLayout>
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:id="@+id/child_tag_1"
+                            style="@style/gua_menu_line_child"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </HorizontalScrollView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -129,11 +134,16 @@
                             android:text="日常购物" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/child_tag_2"
-                        style="@style/gua_menu_line_child"
-                        android:orientation="vertical" >
-                    </LinearLayout>
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:id="@+id/child_tag_2"
+                            style="@style/gua_menu_line_child"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </HorizontalScrollView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -159,11 +169,16 @@
                             android:text="居家建设" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/child_tag_3"
-                        style="@style/gua_menu_line_child"
-                        android:orientation="vertical" >
-                    </LinearLayout>
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:id="@+id/child_tag_3"
+                            style="@style/gua_menu_line_child"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </HorizontalScrollView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -188,14 +203,17 @@
                             android:text="事业工作" />
                     </LinearLayout>
 
-                    <HorizontalScrollView android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/child_tag_4"
-                        style="@style/gua_menu_line_child"
-                        android:orientation="vertical" >
-                    </LinearLayout>
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:id="@+id/child_tag_4"
+                            style="@style/gua_menu_line_child"
+                            android:orientation="vertical" >
+                        </LinearLayout>
                     </HorizontalScrollView>
- 
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
@@ -219,11 +237,16 @@
                             android:text="考试" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/child_tag_5"
-                        style="@style/gua_menu_line_child"
-                        android:orientation="vertical" >
-                    </LinearLayout>
+                    <HorizontalScrollView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content" >
+
+                        <LinearLayout
+                            android:id="@+id/child_tag_5"
+                            style="@style/gua_menu_line_child"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </HorizontalScrollView>
                 </net.xinzeling.lib.RadioGroup>
             </LinearLayout>
         </ScrollView>

@@ -51,19 +51,18 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		AppManager.getAppManager().addActivity(getCurrentActivity());
-		mGestureDetector = new GestureDetector(this);
+		deFaultTab = getIntent().getIntExtra("tabIndex", Maintab_Index_Home);
+		initView();
+		
+	}
+
+	private void initView() {
 		RelativeLayout ll = (RelativeLayout) findViewById(R.id.linew);
 		ll.setOnTouchListener(this);
 		ll.setLongClickable(true);
+		mGestureDetector = new GestureDetector(this);
 		initTab();
-
-		// MyApplication.initApplication();
-
-		checkIfNeedReautoLogin(MyApplication.userTokenExpireDate, MyApplication.renewalToken);
-
-		deFaultTab = getIntent().getIntExtra("tabIndex", Maintab_Index_Home);
-		setTabIndex(deFaultTab);
+		
 	}
 
 	private void setTabIndex(int tabIndex) {
@@ -74,7 +73,6 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 	}
 
 	private void initTab() {
-
 		tabHost = getTabHost();
 
 		// 初始化 4个模块
@@ -91,6 +89,8 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 			public void onTabChanged(String arg0) {
 			}
 		});
+		
+		setTabIndex(deFaultTab);
 	}
 
 	@Override

@@ -77,7 +77,7 @@ public class QiuGuaActivity extends BaseActivity {
 			break;
 		case MyApplication.nav_gua_time:
 			this.setContentView(R.layout.activity_gua_time);
-			this.findViewById(R.id.input_name_other).setVisibility(View.VISIBLE);
+//			findViewById(R.id.ll_qiugua_name_cell).setVisibility(View.GONE);
 			break;
 		}
 		this.name1Input = (EditText) this.findViewById(R.id.input_name);
@@ -151,182 +151,182 @@ public class QiuGuaActivity extends BaseActivity {
 		// 近期财运（财运）
 		case 10:
 			title = "财运·近期财运";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_1);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_1_pure);
 			break;
 		// 求财之事（财运）
 		case 11:
 			title = "财运·求财之事";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_3);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_3_pure);
 			break;
 		// 借贷（财运）
 		case 12:
 			title = "财运·借贷";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_3);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_3_pure);
 			break;
 		// 讨债（财运）
 		case 13:
 			title = "财运·讨债";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_3);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_3_pure);
 			break;
 		// 学业
 		case 14:
 			title = "学业";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_13);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_13_pure);
 			break;
 		// 考试
 		case 15:
 			title = "考试";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_15);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_15_pure);
 			break;
 		// 今日吃啥
 		case 16:
 			title = "今日吃啥";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_1);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_1_pure);
 			break;
 		// 今日穿啥
 		case 17:
 			title = "今日穿啥";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_2);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_2_pure);
 			break;
 		// 公务出差（出行）
 		case 18:
 			title = "出行·公务出差";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_14);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_14_pure);
 			break;
 		// 旅游出游（出行）
 		case 19:
 			title = "出行·旅游出游";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_14);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_14_pure);
 			break;
 		// 每日出行（出行）
 		case 20:
 			title = "出行·每日出行";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_14);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_14_pure);
 			break;
 		// 单身－今日运程（单身）
 		case 21:
 			title = "单身·今日运程";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_8);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_8_pure);
 			break;
 		// 单身－近期桃花（单身）
 		case 22:
 			title = "单身·近期桃花";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_4);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_4_pure);
 			break;
 		// 有恋人－今日运程（恋爱）
 		case 23:
 			title = "有恋人·今日运程";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_5);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_5_pure);
 			break;
 		// 有恋人－恋爱状况（恋爱）
 		case 24:
 			title = "有恋人·恋爱状况";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_5);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_5_pure);
 			break;
 		// 有恋人－今日桃花（恋爱）
 		case 25:
 			title = "有恋人·今日桃花";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_5);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_5_pure);
 			break;
 		// 婚姻状况（已婚）
 		case 26:
 			title = "已婚·婚姻状况";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_7);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_7_pure);
 			break;
 		// 将来婚姻状况（未婚）
 		case 27:
 			title = "未婚·将来婚姻状况";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_8);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_8_pure);
 			break;
 		// 婚事情况（已婚）
 		case 28:
 			title = "已婚·婚事情况";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_7);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_7_pure);
 			break;
 		// 年内事业运（事业）
 		case 29:
 			title = "事业·年内事业运";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_12);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_12_pure);
 			break;
 		// 创业选择（事业）
 		case 30:
 			title = "事业·创业选择";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_12);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_12_pure);
 			break;
 		// 合作项目（事业）
 		case 31:
 			title = "事业·合作项目";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_12);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_12_pure);
 			break;
 		// 谈判成败（事业）
 		case 32:
 			title = "事业·谈判成败";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_12);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_12_pure);
 			break;
 		// 另谋高就（事业）
 		case 33:
 			title = "事业·另谋高就";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_12);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_12_pure);
 			break;
 		// 今日运程（事业）
 		case 34:
 			title = "事业·今日运程";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_12);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_12_pure);
 			break;
 		// 去逛街（购物）
 		case 35:
 			title = "购物·去逛街";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_6);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_6_pure);
 			break;
 		// 网购（购物）
 		case 36:
 			title = "购物·网购";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_6);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_6_pure);
 			break;
 		// 买房（居家建设）
 		case 37:
 			title = "居家建设·买车";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_9);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_9_pure);
 			break;
 		// 买车（居家建设）
 		case 38:
 			title = "居家建设·买车";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_9);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_9_pure);
 			break;
 		// 装修（居家建设）
 		case 39:
 			title = "居家建设·今日运程";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_9);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_9_pure);
 			break;
 		// 今日运程（健康）
 		case 40:
 			title = "健康·今日运程";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_10);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_10_pure);
 			break;
 		// 近期状况（健康）
 		case 41:
 			title = "健康·近期状况";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_10);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_10_pure);
 			break;
 		// 病症状况（健康）
 		case 42:
 			title = "健康·病症状况";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_10);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_10_pure);
 			break;
 		// 家宅房屋（房屋）
 		case 43:
 			title = "房屋·家宅房屋";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_11);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_11_pure);
 			break;
 		// 出租房屋（房屋）
 		case 44:
 			title = "房屋·出租房屋";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_11);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_11_pure);
 			break;
 		// 求租房屋（房屋）
 		case 45:
 			title = "房屋·求租房屋";
-			qiuguaIcon.setImageResource(R.drawable.icon_gua_11);
+			qiuguaIcon.setImageResource(R.drawable.icon_gua_11_pure);
 			break;
 		// 投诉申诉（其他）
 		case 46:

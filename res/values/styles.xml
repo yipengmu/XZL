@@ -243,7 +243,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:visibility">gone</item>
-        <item name="android:padding">5dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
     </style>
 

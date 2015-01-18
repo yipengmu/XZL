@@ -37,9 +37,8 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
+/**首页*/
 public class HomeActivity extends Activity  implements OnClickListener{
-//	public Typeface tf;
 	
 	private RadioButton modeMonth;
 	private DateTitleView titleTxt;
@@ -57,7 +56,7 @@ public class HomeActivity extends Activity  implements OnClickListener{
 	public LunarFragment lunarFragment;
 	private WeekFragment weekfragment;
 	private MonthFragment monthfragment;
-	private FragmentManager fManager =getFragmentManager();
+	private FragmentManager fManager ;
 	
 	private long mFirstime = 0L;
 	
@@ -65,12 +64,12 @@ public class HomeActivity extends Activity  implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
 		lunar = LunarModel.fetchByDate(new Date());
 		notificationIcon = (ImageViewWithCount)this.findViewById(R.id.msgnotification);	
 		notificationIcon.setOnClickListener(this);
-
+		fManager = getFragmentManager();
 		titleTxt = (DateTitleView)this.findViewById(R.id.home_title);
-
 		modeMonth = (RadioButton)findViewById(R.id.mode_month);
 		modeMonth.setChecked(true);
 		findViewById(R.id.lunar_frame).setOnClickListener(this);
@@ -98,20 +97,26 @@ public class HomeActivity extends Activity  implements OnClickListener{
 				super.handleMessage(msg);
 			}
 		};
-		//启动左上角消息计数
-		new UpdateNotificationMsgCnt(MyApplication.getContext()).start();
 		weekfragment = new WeekFragment();
 		monthfragment = new MonthFragment();
 		usrBReceiver = new UserStatusBroadcastReceiver();
-		registerReceiver(usrBReceiver, new IntentFilter(MyApplication.USER_STATUS_CHANGE_BROADCAST));
 		receiverNDBD = new ReceiverNewDateBDcast();
-		registerReceiver(receiverNDBD, new IntentFilter(MyApplication.SELECT_NEW_DATE_BROADCAST));
-
 		this.onClick(modeMonth);
 	}
 
 	public void onResume(){
 		super.onResume();
+		new Handler(getMainLooper()).postDelayed(new Runnable() {
+			
+			@Override
+			public void run() {
+				registerReceiver(receiverNDBD, new IntentFilter(MyApplication.SELECT_NEW_DATE_BROADCAST));
+				registerReceiver(usrBReceiver, new IntentFilter(MyApplication.USER_STATUS_CHANGE_BROADCAST));
+				
+				//启动左上角消息计数
+				new UpdateNotificationMsgCnt(HomeActivity.this).start();
+			}
+		}, 1500);
 	}
 
 	@Override
@@ -268,8 +273,13 @@ public class HomeActivity extends Activity  implements OnClickListener{
 			try {
 				JSONObject res = HttpCommon.getGet(MyApplication.update_notification_cnt);
 				if(res!=null){
-					int update_cnt = Integer.valueOf(res.getString("badge"));
-					notificationIcon.reDrawCount(update_cnt);
+					final int update_cnt = Integer.valueOf(res.getString("badge"));
+					HomeActivity.this.runOnUiThread(new Runnable() {
+						@Override
+						public void run() {
+							notificationIcon.reDrawCount(update_cnt);
+						}
+					});
 					Message message = new Message();
 					message.what = 1;
 					message.arg1 = update_cnt;

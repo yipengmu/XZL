@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/back_note_mem" >
+
+    <ImageView
+        android:id="@+id/iv_top_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/icon_logo_big" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_top_appname"
+        android:text="神秘的选择也是一种选择"
+        android:textColor="@color/calendar_txt"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tv_top_appname"
+        android:layout_centerInParent="true"
+        android:textColor="@color/calendar_txt"
+        android:layout_marginTop="100dp"
+        android:text="\@ 2015"
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp" />
+
+</RelativeLayout>

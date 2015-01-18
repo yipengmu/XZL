@@ -174,7 +174,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 			float btn_width = list.get(i).buttonName.length() * 2 * 16 + 15;
 
 			LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-			lp.setMargins(5, 5, 10, 5);
+			lp.setMargins(5, 5, 50, 5);
 			btn.setLayoutParams(lp);
 			btn.setPadding(2,2,2,2);
 			btn.setTextAppearance(this, R.style.gua_add_child_button);

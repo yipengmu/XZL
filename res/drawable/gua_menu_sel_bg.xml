@@ -3,7 +3,7 @@
 
     <item android:drawable="@color/bg_green"/>
     <item
-        android:top="100dp"
+        android:top="104dp"
         android:bottom="0dp"
         android:drawable="@drawable/gua_sel_bg">
     </item>

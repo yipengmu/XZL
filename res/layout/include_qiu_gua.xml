@@ -3,89 +3,91 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|top"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="50dp"
+        android:gravity="center"
         android:orientation="horizontal" >
 
         <ImageView
             android:id="@+id/icon_qiugua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_gua_1" />
+            android:src="@drawable/icon_gua_1_pure" />
 
         <TextView
             android:id="@+id/txt_qiugua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left|center"
-            android:textColor="@color/calendar_txt"
-            android:layout_marginLeft="4dp"
             android:text="求卦类型"
-            android:textSize="20sp" />
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/calendar_txt"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:layout_marginTop="10dp"
         android:background="#D8FA17" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:gravity="center_vertical|center_horizontal"
-        android:orientation="horizontal"
-        android:padding="18dp" >
+        android:orientation="horizontal" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="当前时间"
             android:textColor="@color/calendar_txt"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
-        <View 
+        <View
             android:layout_width="20px"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:background="@color/calendar_txt"
             android:layout_height="2px"
-            />
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/calendar_txt" />
+
         <DigitalClock
             android:layout_width="wrap_content"
-            android:textColor="@color/calendar_txt"
             android:layout_height="wrap_content"
-            android:textSize="20sp" />
+            android:textColor="@color/calendar_txt"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="4dp"
-        android:layout_marginTop="10dp"
         android:background="#D8FA17" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:paddingRight="20dp"
         android:gravity="center"
-        android:padding="28dp" >
+        android:id="@+id/ll_qiugua_name_cell"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="35dp" >
 
         <EditText
             android:id="@+id/input_name"
             style="@style/gua_input"
             android:gravity="center_vertical|center_horizontal"
             android:hint="你的名字"
-            android:maxWidth="100dp"
+            android:maxWidth="80dp"
             android:visibility="visible" />
 
         <EditText
             android:id="@+id/input_name_other"
             style="@style/gua_input"
+            android:maxWidth="80dp"
             android:layout_marginLeft="20dp"
             android:hint="对方的名字" />
     </LinearLayout>

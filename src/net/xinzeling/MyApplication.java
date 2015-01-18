@@ -118,8 +118,8 @@ public class MyApplication extends Application {
 	public final static int nav_gua_photo = 2;
 	public final static int nav_gua_time = 3;
 	protected static Context context;
-	protected static SQLiteDatabase dbh;
-	private static DBHelper dbHelper;
+	public static SQLiteDatabase dbh;
+	public static DBHelper dbHelper;
 	public static SharedPreferences sharedPreference;
 
 	public static int usrId = -1;
@@ -150,39 +150,9 @@ public class MyApplication extends Application {
 			return;
 		}
 		
-		// for auto login
-		sharedPreference = context.getSharedPreferences("usr", Context.MODE_APPEND);
-
-		usrName = sharedPreference.getString("nick", "");
-		gender = sharedPreference.getInt("gender", 2);
-		pushSwitch = sharedPreference.getBoolean("pushSwitch", true);
-		
-		MyApplication.userToken = sharedPreference.getString("userToken", null);
-		MyApplication.userTokenExpireDate = sharedPreference.getString("userTokenExpireDate", "");
-		MyApplication.renewalToken = sharedPreference.getString("renewalToken", null);
-		MyApplication.renewalTokenExpire = sharedPreference.getString("renewalTokenExpire", "");
-		checkIfNeedReautoLogin(MyApplication.userTokenExpireDate, MyApplication.renewalToken);
-
-		dbHelper = new DBHelper(context, "xinzeling.db");
-		dbh = dbHelper.getWritableDatabase();
-
-		// push
-		PushManager.getInstance().init();
-		
 		mApplicationIsInited = true;
 	}
 
-	private void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
-		if (TextUtils.isEmpty(userTokenExpireDate) || TextUtils.isEmpty(renewalToken)) {
-			// 首次登录
-			return;
-		}
-
-		long timeNow = System.currentTimeMillis();
-		if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDataByStringyyyyMMdd(userTokenExpireDate).getTime())) {
-			new AutoLoginTask(renewalToken).equals(null);
-		}
-	}
 
 	public static Context getContext() {
 		return context;
@@ -493,46 +463,4 @@ public class MyApplication extends Application {
 		return contactIcon;
 	}
 
-	public static class usr {
-
-	}
-
-	public class AutoLoginTask extends AsyncTask {
-		private HashMap<String, Object> paramsData = new HashMap<String, Object>();
-
-		public AutoLoginTask(String renewalTokenString) {
-			paramsData.put("renewalToken", renewalTokenString);
-		}
-
-		@Override
-		protected Object doInBackground(Object... params) {
-			JSONObject jsonResp;
-			try {
-				jsonResp = HttpCommon.getGet(MyApplication.account01Verification, paramsData);
-				int resCode = jsonResp.getInt("resCode");
-				if (resCode == 0) {
-					String userToken = jsonResp.getString("userToken");
-					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
-					String renewalToken = jsonResp.getString("renewalToken");
-					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
-					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
-					return true;
-				} else {
-					// 自动登录失败
-					jsonResp.getString("resMsg");
-				}
-			} catch (IOException | JSONException e) {
-				e.printStackTrace();
-			}
-
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(Object result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-		}
-
-	}
 }
