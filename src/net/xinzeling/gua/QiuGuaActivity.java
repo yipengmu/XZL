@@ -13,13 +13,13 @@ import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.DateTime;
-import net.xinzeling.lib.HttpCommon;
 import net.xinzeling.model.GuaCntModel;
 import net.xinzeling.model.GuaCntModel.GuaCnt;
 import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;
 import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling2.R;
 
 import org.json.JSONObject;
@@ -48,6 +48,7 @@ public class QiuGuaActivity extends BaseActivity {
 	private Bitmap photo;
 	private EditText name1Input;
 	private EditText name2Input;
+	private View ll_qiugua_name_cell;
 	private EditText num1Input;
 	private EditText num2Input;
 	private String title = "";
@@ -61,7 +62,6 @@ public class QiuGuaActivity extends BaseActivity {
 		Intent reqIntent = getIntent();
 		mode = reqIntent.getIntExtra("mode", MyApplication.nav_gua_time);
 		type = reqIntent.getIntExtra("type", 0);
-
 		switch (mode) {
 		case MyApplication.nav_gua_num:
 			this.setContentView(R.layout.activity_gua_num);
@@ -80,15 +80,32 @@ public class QiuGuaActivity extends BaseActivity {
 //			findViewById(R.id.ll_qiugua_name_cell).setVisibility(View.GONE);
 			break;
 		}
+
+		ll_qiugua_name_cell = findViewById(R.id.ll_qiugua_name_cell);
 		this.name1Input = (EditText) this.findViewById(R.id.input_name);
 		this.name2Input = (EditText) this.findViewById(R.id.input_name_other);
-		if (!isDouble(type)) {
+		if (isSingle(type)) {
+			ll_qiugua_name_cell.setVisibility(View.VISIBLE);
 			name2Input.setVisibility(View.GONE);
+		}else if (isDouble(type)) {
+			ll_qiugua_name_cell.setVisibility(View.VISIBLE);
+		}else{
+			ll_qiugua_name_cell.setVisibility(View.GONE);
 		}
 
 		setInGuaTitle(type);
-		// FontManager.changeFonts((ViewGroup)AppBase.getRootView(QiuGuaActivity.this),
-		// QiuGuaActivity.this);
+		
+	}
+
+	private boolean isSingle(int type) {
+		boolean ret = false;
+		for (int i = 0; i < MyApplication.single_type_int.length; i++) {
+			if (MyApplication.single_type_int[i] == type) {
+				ret = true;
+				break;
+			}
+		}
+		return ret;
 	}
 
 	private boolean isDouble(int type) {
@@ -455,9 +472,9 @@ public class QiuGuaActivity extends BaseActivity {
 			try {
 				JSONObject jsonResp;
 				if (mode == MyApplication.nav_gua_photo) {
-					jsonResp = HttpCommon.getPost(url, params, new File(MyApplication.photo_path));
+					jsonResp = RequestManager.getPost(url, params, new File(MyApplication.photo_path));
 				} else {
-					jsonResp = HttpCommon.getGet(url, params);
+					jsonResp = RequestManager.getGet(url, params);
 				}
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
@@ -539,7 +556,7 @@ public class QiuGuaActivity extends BaseActivity {
 				finish();
 			} else {
 				if (gua_xz_info.isUsable) {
-					Toast.makeText(getApplicationContext(), resMsg, Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), resMsg , Toast.LENGTH_LONG).show();
 				} else {
 					String d = DateTime.Timestamp2String(((long) gua_xz_info.next_time * 1000), "yyyy年MM月dd日");
 					Toast.makeText(getApplicationContext(), "今天不可算了,下次可算时间：" + d, Toast.LENGTH_LONG).show();

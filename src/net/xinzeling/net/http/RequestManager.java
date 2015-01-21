@@ -1,4 +1,4 @@
-package net.xinzeling.lib;
+package net.xinzeling.net.http;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -12,7 +12,10 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
+import net.xinzeling.common.CommonDefine;
+import net.xinzeling.utils.Utils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -27,10 +30,11 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 
-public class HttpCommon {
+public class RequestManager {
 	
 	public static JSONObject getGet(String surl) throws IOException, JSONException{
 		return getGet(surl, null);
@@ -59,9 +63,45 @@ public class HttpCommon {
 			}
 		}
 		Log.i("xzl http : ", "response " +response);
-		return new JSONObject(response);
+
+		JSONObject result = baseHandleHttpResult(response);
+		return result;
 	}
 	
+	protected static JSONObject baseHandleHttpResult(String response) {
+		JSONObject jo ;
+		try {
+			jo = new JSONObject(response);
+			reWriteErrorMsg(jo);
+			checkNeedAutoLogin(jo);
+			
+		
+			return jo;
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+
+	private static void reWriteErrorMsg(JSONObject jo) {
+		if(CommonDefine.ERROR_MSG_UNKNOW_USER.equals(jo.optString("resMsg"))){
+			try {
+				jo.put("resMsg", "请先登录,然后方可求卦");
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private static void checkNeedAutoLogin(JSONObject jo) {
+		if(CommonDefine.ERROR_CODE_UNKNOW_USER.equals(jo.optString("resCode"))){
+			//需要登录
+			MyApplication.getContext().startActivity(Utils.getMaintabIndexIntent(MyApplication.getContext(), MainActivity.Maintab_Index_My));
+		}
+	}
+
 	public static String paramsEncode(HashMap<String,Object> params){
 		StringBuffer sb = new StringBuffer();
 		

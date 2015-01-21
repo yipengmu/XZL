@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import net.xinzeling.HomeActivity;
+import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling2.R;
 import net.xinzeling.adapter.GuaDailyAdapter;
@@ -20,6 +21,7 @@ import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.GuaModel.Gua;
 import net.xinzeling.note.NoteActivity;
 import net.xinzeling.note.NoteCheckActivity;
+import net.xinzeling.utils.Utils;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -204,7 +206,7 @@ public class WeekFragment extends Fragment implements CalendarListener,OnClickLi
 
 	@Override
 	public void onDoubleClick(Date date) {
-		// TODO Auto-generated method stub
-		this.startActivity(new Intent(homeActivity, NoteActivity.class));
+		Intent intent = Utils.getMaintabIndexIntent(homeActivity, MainActivity.Maintab_Index_Note);
+		this.startActivity(intent);
 	}
 }

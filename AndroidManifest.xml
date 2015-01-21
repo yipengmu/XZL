@@ -63,7 +63,7 @@
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="5325b01556240b15591976b5" >
+            android:value="54bba965fd98c59536000290" >
         </meta-data>
 
         <activity
@@ -229,7 +229,11 @@
         <activity
             android:name="net.xinzeling.note.NoteCheckActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/translucent" />
+            android:theme="@style/translucent"
+           />  
+            <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" 
+            -->
+          
 
         <receiver android:name="net.xinzeling.receiver.AlarmReceiver" >
             <intent-filter>

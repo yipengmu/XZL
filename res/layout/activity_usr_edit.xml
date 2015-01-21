@@ -4,435 +4,474 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
-
-        <RelativeLayout style="@style/header" >
-
-            <Button
-                android:id="@+id/btn_back"
-                style="@style/header_back"
-                android:onClick="onClick" />
-
-            <Button
-                android:id="@+id/btn_forward"
-                style="@style/header_submit"
-                android:onClick="onClick"
-                android:text="保存" />
-
-            <TextView
-                android:id="@+id/txt_title"
-                style="@style/header_title"
-                android:text="编辑我的信息" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="9dp" >
-
-            <net.xinzeling.lib.CircleImageView
-                android:id="@+id/img_avata"
-                style="@style/avata"
-                android:layout_marginTop="10dp"
-                app:border_color="#FFD8FA17"
-                app:border_width="2dp" />
-
-            <Button
-                android:id="@+id/btn_avata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/img_avata"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:background="@null"
-                android:onClick="onClick"
-                android:text="@string/UsrEditImg" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="#D7F728" />
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" >
-
-            <TableRow
-                android:id="@+id/tableRow1"
-                style="@style/usr_edit_line"
-                android:baselineAligned="true" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/btn_photo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="昵称：" />
-
-                <EditText
-                    android:id="@+id/input_nick"
-                    style="@style/usr_input"
-                    android:layout_width="fill_parent"
-                    android:hint="请输入昵称" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView01"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="姓氏：" />
-
-                <EditText
-                    android:id="@+id/input_firstName"
-                    style="@style/usr_input"
-                    android:hint="请输入姓氏" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow3"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView02"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="名字：" />
-
-                <EditText
-                    android:id="@+id/input_name"
-                    style="@style/usr_input"
-                    android:hint="请输入名字" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow4"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView05"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="性别：" />
-
-                <RadioGroup android:orientation="horizontal" >
-
-                    <RadioButton
-                        android:id="@+id/radio_male"
-                        style="@style/about_tab"
-                        android:layout_width="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:paddingRight="6dp"
-                        android:text="男" />
-
-                    <RadioButton
-                        android:id="@+id/radio_female"
-                        style="@style/about_tab"
-                        android:layout_width="wrap_content"
-                        android:paddingLeft="6dp"
-                        android:paddingRight="6dp"
-                        android:text="女" />
-                </RadioGroup>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow5"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView07"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="出生年月：" />
-
-                <EditText
-                    android:id="@+id/input_birthday"
-                    style="@style/usr_input" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/TableRow01"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView09"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="出生时辰：" />
-
-                <Spinner
-                    android:id="@+id/spinner_birth"
-                    android:layout_width="286dp"
-                    android:background="@color/grey"
-                    android:layout_height="40dp" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/TableRow02"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="手机号码：" />
-
-                <EditText
-                    android:id="@+id/input_phone"
-                    style="@style/usr_input"
-                    android:hint="请输入手机号码"
-                    android:inputType="phone" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/TableRow03"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="电子邮箱：" />
-
-                <EditText
-                    android:id="@+id/input_email"
-                    style="@style/usr_input"
-                    android:hint="请输入电子邮箱"
-                    android:inputType="textEmailAddress" />
-            </TableRow>
-        </TableLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginBottom="6dp"
-            android:layout_marginTop="10dp"
-            android:background="#D8FA17" />
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white" >
-
-            <TableRow
-                android:id="@+id/tableRow6"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="出生地" />
-
-                <EditText
-                    android:id="@+id/birth_addr"
-                    style="@style/usr_input"
-                    android:layout_width="83dp"
-                    android:layout_marginLeft="10dp"
-                    android:hint="出生地" />
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="现居住地" />
-
-                <EditText
-                    android:id="@+id/now_addr"
-                    style="@style/usr_input"
-                    android:layout_width="83dp"
-                    android:layout_marginLeft="10dp"
-                    android:hint="现居住地" />
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow7"
-                style="@style/usr_edit_line" >
-
-                <LinearLayout
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:id="@+id/ImageView03"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/red_dot" />
-                </LinearLayout>
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="职业" />
-
-                <EditText
-                    android:id="@+id/job"
-                    style="@style/usr_input"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="83dp"
-                    android:hint="职业" />
-
-                <TextView
-                    style="@style/usr_label"
-                    android:text="婚否" />
-
-                <EditText
-                    android:id="@+id/hunyin"
-                    style="@style/usr_input"
-                    android:layout_width="83dp"
-                    android:layout_marginLeft="10dp"
-                    android:hint="婚否" />
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/layout_avata_chose"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#aa000000"
-        android:onClick="onClick"
-        android:visibility="gone" >
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
-            android:padding="12dp" >
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/btn_avata_camera"
-                style="@style/chose_btn"
-                android:onClick="onClick"
-                android:text="拍照" />
-
-            <View
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#9E9E9E" />
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-            <Button
-                android:id="@+id/btn_avata_album"
-                style="@style/chose_btn"
-                android:onClick="onClick"
-                android:text="从相册选取" />
+                <RelativeLayout
+                    style="@style/header"
+                    android:layout_width="match_parent" >
 
-            <Button
-                android:id="@+id/btn_avata_cancel"
-                style="@style/chose_btn"
-                android:layout_marginTop="18dp"
+                    <Button
+                        android:id="@+id/btn_back"
+                        style="@style/header_back"
+                        android:onClick="onClick" />
+
+                    <Button
+                        android:id="@+id/btn_forward"
+                        style="@style/header_submit"
+                        android:onClick="onClick"
+                        android:text="保存" />
+
+                    <TextView
+                        android:id="@+id/txt_title"
+                        style="@style/header_title"
+                        android:text="编辑我的信息" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:padding="9dp" >
+
+                    <net.xinzeling.lib.CircleImageView
+                        android:id="@+id/img_avata"
+                        style="@style/avata"
+                        android:layout_marginTop="10dp"
+                        app:border_color="#FFD8FA17"
+                        app:border_width="2dp" />
+
+                    <Button
+                        android:id="@+id/btn_avata"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/img_avata"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@null"
+                        android:onClick="onClick"
+                        android:text="@string/UsrEditImg" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#D7F728" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white" >
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        style="@style/usr_edit_line"
+                        android:baselineAligned="true" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/btn_photo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="昵称：" />
+
+                        <EditText
+                            android:id="@+id/input_nick"
+                            style="@style/usr_input"
+                            android:layout_width="fill_parent"
+                            android:hint="请输入昵称" >
+
+                            <requestFocus />
+                        </EditText>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow2"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView01"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="姓氏：" />
+
+                        <EditText
+                            android:id="@+id/input_firstName"
+                            style="@style/usr_input"
+                            android:hint="请输入姓氏" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow3"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView02"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="名字：" />
+
+                        <EditText
+                            android:id="@+id/input_name"
+                            style="@style/usr_input"
+                            android:hint="请输入名字" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow4"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView05"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="性别：" />
+
+                        <RadioGroup android:orientation="horizontal" >
+
+                            <RadioButton
+                                android:id="@+id/radio_male"
+                                style="@style/about_tab"
+                                android:layout_width="wrap_content"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="6dp"
+                                android:text="男" />
+
+                            <RadioButton
+                                android:id="@+id/radio_female"
+                                style="@style/about_tab"
+                                android:layout_width="wrap_content"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="6dp"
+                                android:text="女" />
+                        </RadioGroup>
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow5"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView07"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="出生年月：" />
+
+                        <EditText
+                            android:id="@+id/input_birthday"
+                            style="@style/usr_input" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow01"
+                        style="@style/usr_edit_line"
+                        android:gravity="bottom" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView09"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="出生时辰：" />
+
+                        <Spinner
+                            android:id="@+id/spinner_birth"
+                            android:layout_width="286dp"
+                            android:layout_height="40dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow02"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="手机号码：" />
+
+                        <EditText
+                            android:id="@+id/input_phone"
+                            style="@style/usr_input"
+                            android:hint="请输入手机号码"
+                            android:inputType="phone" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/TableRow03"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView13"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="电子邮箱：" />
+
+                        <EditText
+                            android:id="@+id/input_email"
+                            style="@style/usr_input"
+                            android:hint="请输入电子邮箱"
+                            android:inputType="textEmailAddress" />
+                    </TableRow>
+                </TableLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#D8FA17" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white" >
+
+                    <TableRow
+                        android:id="@+id/tableRow6"
+                        style="@style/usr_edit_line" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="出生地" />
+
+                        <EditText
+                            android:id="@+id/birth_addr"
+                            style="@style/usr_input"
+                            android:layout_width="83dp"
+                            android:layout_marginLeft="10dp"
+                            android:hint="出生地" />
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="现居住地" />
+
+                        <EditText
+                            android:id="@+id/now_addr"
+                            style="@style/usr_input"
+                            android:layout_width="83dp"
+                            android:layout_marginLeft="10dp"
+                            android:hint="现居住地" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow7"
+                        style="@style/usr_edit_line"
+                        android:gravity="bottom" >
+
+                        <LinearLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <ImageView
+                                android:id="@+id/ImageView03"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/red_dot" />
+                        </LinearLayout>
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="职业" />
+
+                        <EditText
+                            android:id="@+id/job"
+                            style="@style/usr_input"
+                            android:layout_width="83dp"
+                            android:layout_marginLeft="10dp"
+                            android:hint="职业" />
+
+                        <TextView
+                            style="@style/usr_label"
+                            android:text="婚否" />
+
+                        <RadioGroup
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:orientation="horizontal" >
+
+                            <RadioButton
+                                android:id="@+id/radio_weihun"
+                                style="@style/about_tab"
+                                android:layout_width="wrap_content"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="6dp"
+                                android:text="未婚" />
+
+                            <RadioButton
+                                android:id="@+id/radio_yihun"
+                                style="@style/about_tab"
+                                android:layout_width="wrap_content"
+                                android:paddingLeft="6dp"
+                                android:paddingRight="6dp"
+                                android:text="已婚" />
+                        </RadioGroup>
+
+                        <EditText
+                            android:id="@+id/hunyin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_avata_chose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#aa000000"
                 android:onClick="onClick"
-                android:text="取消" />
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="vertical"
+                    android:padding="12dp" >
+
+                    <Button
+                        android:id="@+id/btn_avata_camera"
+                        style="@style/chose_btn"
+                        android:onClick="onClick"
+                        android:text="拍照" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#9E9E9E" />
+
+                    <Button
+                        android:id="@+id/btn_avata_album"
+                        style="@style/chose_btn"
+                        android:onClick="onClick"
+                        android:text="从相册选取" />
+
+                    <Button
+                        android:id="@+id/btn_avata_cancel"
+                        style="@style/chose_btn"
+                        android:layout_marginTop="18dp"
+                        android:onClick="onClick"
+                        android:text="取消" />
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
-    </RelativeLayout>
+
+    </ScrollView>
 
 </FrameLayout>

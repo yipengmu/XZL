@@ -8,7 +8,8 @@ import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.common.SinaWeiboAccountManager;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.webview.WebViewActivity;
 import net.xinzeling2.R;
 
@@ -182,6 +183,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 							Log.d("TestData", "发生错误：" + status);
 						}
 					}
+					
 				});
 			}
 
@@ -203,39 +205,51 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onCancel(SHARE_MEDIA arg0) {
-				// TODO Auto-generated method stub
 				System.out.println("cancel");
 			}
 
 			@Override
 			public void onComplete(Bundle arg0, SHARE_MEDIA arg1) {
-				// TODO Auto-generated method stub
 				System.out.println("complete");
 				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.SINA, new UMDataListener() {
 					@Override
 					public void onStart() {
-						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+						Toast.makeText(SigninActivity.this, "正在获取微博sso信息。。。", Toast.LENGTH_SHORT).show();
 					}
 
 					@Override
 					public void onComplete(int status, Map<String, Object> info) {
 						if (status == 200 && info != null) {
-							StringBuilder sb = new StringBuilder();
-							Set<String> keys = info.keySet();
-							for (String key : keys) {
-								sb.append(key + "=" + info.get(key).toString() + "\r\n");
-							}
-							Log.d("TestData", sb.toString());
+							
+							updateAccountInfoFromSinaSso(info);
+							Log.d("TestData", info.toString());
 						} else {
 							Log.d("TestData", "发生错误：" + status);
 						}
+					}
+
+					private void updateAccountInfoFromSinaSso(Map<String, Object> info) {
+
+						SinaWeiboAccountManager.getInstance().uid = (int) info.get("uid");
+						SinaWeiboAccountManager.getInstance().favourites_count = (int) info.get("favourites_count");
+						SinaWeiboAccountManager.getInstance().location = (String) info.get("location");
+						SinaWeiboAccountManager.getInstance().description = (String) info.get("description");
+						SinaWeiboAccountManager.getInstance().verified = (boolean) info.get("verified");
+						SinaWeiboAccountManager.getInstance().friends_count = (int) info.get("friends_count");
+						SinaWeiboAccountManager.getInstance().gender = (int) info.get("gender");
+						SinaWeiboAccountManager.getInstance().screen_name = (String) info.get("screen_name");
+						SinaWeiboAccountManager.getInstance().statuses_count = (int) info.get("statuses_count");
+						SinaWeiboAccountManager.getInstance().followers_count = (int) info.get("followers_count");
+						SinaWeiboAccountManager.getInstance().profile_image_url = (String) info.get("profile_image_url");
+						SinaWeiboAccountManager.getInstance().access_token = (String) info.get("access_token");
+
+						new SigninTask(String.valueOf(SinaWeiboAccountManager.getInstance().uid),"",1).execute();
 					}
 				});
 			}
 
 			@Override
 			public void onError(SocializeException arg0, SHARE_MEDIA arg1) {
-				// TODO Auto-generated method stub
 				System.out.println("error");
 			}
 
@@ -305,7 +319,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			String email = emailInput.getText().toString();
 			String password = passwdInput.getText().toString();
 			if (!TextUtils.isEmpty(password) && !TextUtils.isEmpty(email)) {
-				signinTask = new SigninTask(email, password);
+				signinTask = new SigninTask(email, password,0);
 				signinTask.execute();
 			}
 		}
@@ -316,10 +330,15 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		private String errorDesc;
 		private HashMap<String, Object> params = new HashMap<String, Object>();
 
-		public SigninTask(String email, String passwd) {
+		/**
+		 * auth 0 api 方式登录
+		 * auth 1 微博
+		 * auth 2 qq
+		 * */
+		public SigninTask(String email, String passwd,int auth) {
 			params.put("username", email);
 			params.put("password", passwd);
-			params.put("auth", 0);
+			params.put("auth", auth);
 		}
 
 		@Override
@@ -330,7 +349,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		@Override
 		protected Boolean doInBackground(Void... args) {
 			try {
-				JSONObject jsonResp = HttpCommon.getGet(MyApplication.account01Verification, params);
+				JSONObject jsonResp = RequestManager.getGet(MyApplication.account01Verification, params);
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
 					String userToken = jsonResp.getString("userToken");
@@ -433,10 +452,10 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			// 先验证是否已经注册过了，注册过了就注册过了，不用重新注册了
 
 			try {
-				JSONObject jsonResp = HttpCommon.getGet(MyApplication.check_usrname_isused + params.get("username"), null);
+				JSONObject jsonResp = RequestManager.getGet(MyApplication.check_usrname_isused + params.get("username"), null);
 				resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
-					jsonResp = HttpCommon.getGet(MyApplication.third_regist_url, this.params);
+					jsonResp = RequestManager.getGet(MyApplication.third_regist_url, this.params);
 					resCode = jsonResp.getInt("resCode");
 					if (resCode == 0) {
 						// AppBase.onSignin(userToken,userTokenExpire,renewalToken,renewalTokenExpire);

@@ -6,7 +6,7 @@ import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.DashikanfaItemAdapter;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling2.R;
 
 import org.json.JSONException;
@@ -126,7 +126,7 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		@Override
 		public void run() {
 			try {
-				JSONObject res = HttpCommon.getGet(MyApplication.dashikanfa_url);
+				JSONObject res = RequestManager.getGet(MyApplication.dashikanfa_url);
 				this.listview_adapter.setData(res.getJSONArray("pushList"));
 				Message message = new Message();
 				message.what = 1;

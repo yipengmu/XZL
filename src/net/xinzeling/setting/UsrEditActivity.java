@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.BirthAdapter;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling2.R;
 
 import org.json.JSONObject;
@@ -41,6 +41,10 @@ public class UsrEditActivity extends Activity {
 	private ImageView avataView;
 	private EditText inputNick,inputName,inputSurname,inputBirthday,inputPhone,inputEmail;
 	private EditText inputBirthAddr,inputNowAddr,inputJob,inputHunyin;
+	
+
+	private RadioButton radioWeihun;
+	private RadioButton radiohun;
 	
 	private RadioButton radioMale;
 	private RadioButton radioFemale;
@@ -234,7 +238,7 @@ public class UsrEditActivity extends Activity {
 			params.put("marriage", 0);//婚姻  0未婚1结婚
 			
 			try {
-				JSONObject jsonResp = HttpCommon.getPost(MyApplication.update_usr_profile_url, params);
+				JSONObject jsonResp = RequestManager.getPost(MyApplication.update_usr_profile_url, params);
 				int resCode = jsonResp.getInt("resCode");
 				if(resCode ==0){
 					return true;

@@ -10,7 +10,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
+import net.xinzeling.note.NoteActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -118,4 +120,21 @@ public class Utils {
 		return localVersion;
 	}
 
+	/**
+	 * 
+		intent.putExtra("tabIndex", MainActivity.Maintab_Index_Home);
+	 * 
+	 * 	public static int Maintab_Index_Home = 0;
+		public static int Maintab_Index_Gua = 1;
+		public static int Maintab_Index_Note = 2;
+		public static int Maintab_Index_My = 3;
+	 * 
+	 * */
+	public static Intent getMaintabIndexIntent(Context c,int index){
+		Intent intent = new Intent(c, MainActivity.class);
+		intent.putExtra("tabIndex",index);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return intent;
+	}
 }

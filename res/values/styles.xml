@@ -13,6 +13,8 @@
     <style name="translucent">
         <item name="android:windowBackground">@color/translucent</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
 
@@ -135,6 +137,7 @@
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_width">wrap_content</item>
+        <item name="android:padding">4dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
@@ -306,8 +309,7 @@
     </style>
 
     <style name="gua_input">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">120dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
         <item name="android:drawableBottom">@drawable/line_qiugua_input</item>

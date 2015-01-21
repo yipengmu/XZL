@@ -295,7 +295,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 			break;
 		case R.id.gua_menu_yihundashi:
 			params = new ArrayList<NewButton>();
-			params.add(createNewButton("近期桃花", 25));
+//			params.add(createNewButton("近期桃花", 25));
 			params.add(createNewButton("婚姻状况", 26));
 			createChild(R.id.child_tag_3, GuaActivity.this, params);
 			break;

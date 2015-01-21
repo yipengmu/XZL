@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseFragment;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.widget.LineEditText;
 import net.xinzeling2.R;
 
@@ -79,7 +79,7 @@ public class AdviceOrderFragment extends BaseFragment{
 		@Override
 		protected Boolean doInBackground(Void... args) {
 			try {
-				jsonResp = HttpCommon.getGet(MyApplication.check_advice_order, params);
+				jsonResp = RequestManager.getGet(MyApplication.check_advice_order, params);
 
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode != 0) {

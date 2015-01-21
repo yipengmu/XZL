@@ -3,7 +3,7 @@ package net.xinzeling.setting.fragment;
 import java.util.HashMap;
 
 import net.xinzeling.MyApplication;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 
@@ -105,7 +105,7 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 		@Override
 		protected Boolean doInBackground(Void... args) {
 			try {
-				jsonResp = HttpCommon.getGet(MyApplication.check_app_update, params);
+				jsonResp = RequestManager.getGet(MyApplication.check_app_update, params);
 
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode != 0) {

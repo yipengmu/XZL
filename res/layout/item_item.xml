@@ -20,31 +20,33 @@
 
         <ImageView
             android:id="@+id/v_timeline"
-            android:layout_below="@+id/note_item_icon"
             android:layout_width="2px"
             android:layout_height="fill_parent"
+            android:layout_below="@+id/note_item_icon"
             android:layout_centerInParent="true"
             android:background="#8B856F" />
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/note_item_alarm"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/rl_note_item_icon"
+        android:orientation="vertical" >
+        
+        
     <TextView
         android:id="@+id/note_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
+        android:layout_toLeftOf="@+id/note_item_alarm"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@id/rl_note_item_icon"
         android:text="记事内容"
         android:textColor="@color/dark_grey"
         android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/note_item_alarm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/icon_alarm" />
 
     <TextView
         android:id="@+id/note_item_daytime"
@@ -52,8 +54,20 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/note_item_content"
         android:layout_below="@+id/note_item_content"
+        android:layout_toLeftOf="@+id/note_item_alarm"
         android:text="记事日期"
         android:textColor="@color/dark_grey"
         android:textSize="12sp" />
+        
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/note_item_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/icon_alarm" />
 
 </RelativeLayout>

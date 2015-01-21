@@ -21,3 +21,229 @@
 
 备注：
 暂时代码里用的应用appkey是我自己申请的，到时候换成你的吧，上线了再改成他们的吧，主要我最近不在状态，该项目托了很久，界面上不是太擅长，辛苦你了，希望她早日上线吧！
+
+
+//sina sso login ok data
+uid=1310602621
+favourites_count=9
+location=浙江 杭州
+description=纸上得来终觉浅，绝知此事要躬行
+verified=true
+friends_count=782
+gender=1
+screen_name=老穆_boom
+statuses_count=1968
+followers_count=641
+profile_image_url=http://tp2.sinaimg.cn/1310602621/180/5635546650/1
+access_token=2.00xbJh7BVGmUoBf2a29e98b103Dj_B
+
+//http  未登录 请求结果
+01-21 22:22:54.621: I/xzl http :(14035): url: http://115.29.5.162/webservice/XZLService.asmx/divine11DoubleNum?nametwo=%E5%95%8A&numone=12&nameone=%E5%B0%B1%E8%BF%91&lunardate=%E7%94%B2%E5%8D%88%E5%B9%B4%E4%B8%81%E4%B8%91%E6%9C%88%E4%B8%81%E9%85%89%E6%97%A5&gender=2&numtwo=22&type=27&usertoken=null
+01-21 22:22:54.681: I/xzl http :(14035): response {"resCode":"0104","resMsg":"Unknown User Token"}
+
+
+
+
+
+
+
+
+
+
+
+//类型说明
+switch (type)
+            {
+                case 0:
+                    t = "出行";
+                    t += ",TypeTravel";
+                    break;
+                case 1:
+                    t = "交易";
+                    t += ",TypeTravel";
+                    break;
+                case 2:
+                    t = "婚姻";
+                    t += ",TypeTravel";
+                    break;
+                case 3:
+                    t = "恋爱·恋人";
+                    t += ",TypeTravel";
+                    break;
+                case 4:
+                    t = "求财·财运·讨债";
+                    t += ",TypeTravel";
+                    break;
+                case 5:
+                    t = "事业·工作";
+                    t += ",TypeTravel";
+                    break;
+                case 6:
+                    t = "健康·疾病";
+                    t += ",TypeTravel";
+                    break;
+                case 7:
+                    t = "家宅·房屋";
+                    t += ",TypeTravel";
+                    break;
+                case 8:
+                    t = "官司诉讼·申诉投诉";
+                    t += ",TypeTravel";
+                    break;
+                case 9:
+                    t = "其他·难分类·谋事";
+                    t += ",TypeTravel";
+                    break;
+                case 10:
+                    t = "近期财运";
+                    t += ",TypeFortune";
+                    break;
+                case 11:
+                    t = "求财之事";
+                    t += ",TypeFortune";
+                    break;
+                case 12:
+                    t = "借贷";
+                    t += ",TypeFortune";
+                    break;
+                case 13:
+                    t = "讨债";
+                    t += ",TypeFortune";
+                    break;
+                case 14:
+                    t = "学业";
+                    t += ",TypeStudy";
+                    break;
+                case 15:
+                    t = "考试";
+                    t += ",TypeTest";
+                    break;
+                case 16:
+                    t = "今日吃啥";
+                    t += ",TypeEat";
+                    break;
+                case 17:
+                    t = "今日穿啥";
+                    t += ",TypeWear";
+                    break;
+                case 18:
+                    t = "公务出差";
+                    t += ",TypeTravel";
+                    break;
+                case 19:
+                    t = "旅行出游";
+                    t += ",TypeTravel";
+                    break;
+                case 20:
+                    t = "每日出行";
+                    t += ",TypeTravel";
+                    break;
+                case 21:
+                    t = "单身 ? 今日运程";
+                    t += ",TypeLove";
+                    break;
+                case 22:
+                    t = "单身 ? 近期桃花";
+                    t += ",TypeLove";
+                    break;
+                case 23:
+                    t = "有恋人 ? 今日运程";
+                    t += ",TypeLove";
+                    break;
+                case 24:
+                    t = "有恋人 ? 恋爱状况";
+                    t += ",TypeLove";
+                    break;
+                case 25:
+                    t = "有恋人 ? 近期桃花";
+                    t += ",TypeLove";
+                    break;
+                case 26:
+                    t = "婚姻状况";
+                    t += ",TypeMarriage";
+                    break;
+                case 27:
+                    t = "将来婚姻状况";
+                    t += ",TypeMarriage";
+                    break;
+                case 28:
+                    t = "婚事情况";
+                    t += ",TypeMarriage";
+                    break;
+                case 29:
+                    t = "年内事业运";
+                    t += ",TypeCareer";
+                    break;
+                case 30:
+                    t = "创业选择";
+                    t += ",TypeCareer";
+                    break;
+                case 31:
+                    t = "合作项目";
+                    t += ",TypeCareer";
+                    break;
+                case 32:
+                    t = "谈判成败";
+                    t += ",TypeCareer";
+                    break;
+                case 33:
+                    t = "另谋高就";
+                    t += ",TypeCareer";
+                    break;
+                case 34:
+                    t = "今日运程";
+                    t += ",TypeCareer";
+                    break;
+                case 35:
+                    t = "去逛街";
+                    t += ",TypeShopping";
+                    break;
+                case 36:
+                    t = "网购";
+                    t += ",TypeShopping";
+                    break;
+                case 37:
+                    t = "买房";
+                    t += ",TypeHome";
+                    break;
+                case 38:
+                    t = "买车";
+                    t += ",TypeHome";
+                    break;
+                case 39:
+                    t = "装修";
+                    t += ",TypeHome";
+                    break;
+                case 40:
+                    t = "今日运程";
+                    t += ",TypeHealth";
+                    break;
+                case 41:
+                    t = "近期状况";
+                    t += ",TypeHealth";
+                    break;
+                case 42:
+                    t = "病症状况";
+                    t += ",TypeHealth";
+                    break;
+                case 43:
+                    t = "家宅房屋";
+                    t += ",TypeHouse";
+                    break;
+                case 44:
+                    t = "出租房屋";
+                    t += ",TypeHouse";
+                    break;
+                case 45:
+                    t = "求租房屋";
+                    t += ",TypeHouse";
+                    break;
+                case 46:
+                    t = "投诉申诉";
+                    t += ",TypeOther";
+                    break;
+                case 47:
+                    t = "其他·难分类";
+                    t += ",TypeOther";
+                    break;
+            }

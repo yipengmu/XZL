@@ -7,7 +7,7 @@ import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
 import net.xinzeling.lib.DBHelper;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.push.PushManager;
 import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
@@ -42,7 +42,6 @@ public class SplashActivity extends BaseActivity {
 				MyApplication.dbh = MyApplication.dbHelper.getWritableDatabase();
 
 				//auto login
-				MyApplication.sharedPreference = SplashActivity.this.getSharedPreferences("usr", Context.MODE_APPEND);
 				MyApplication.usrName = MyApplication.sharedPreference.getString("nick", "");
 				MyApplication.gender = MyApplication.sharedPreference.getInt("gender", 2);
 				MyApplication.pushSwitch = MyApplication.sharedPreference.getBoolean("pushSwitch", true);
@@ -81,7 +80,7 @@ public class SplashActivity extends BaseActivity {
 		protected Object doInBackground(Object... params) {
 			JSONObject jsonResp;
 			try {
-				jsonResp = HttpCommon.getGet(MyApplication.account01Verification, paramsData);
+				jsonResp = RequestManager.getGet(MyApplication.account01Verification, paramsData);
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
 					String userToken = jsonResp.getString("userToken");

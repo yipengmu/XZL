@@ -10,10 +10,10 @@ import net.xinzeling.fragment.WeekFragment;
 import net.xinzeling.lib.BlurMaskTask;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.lib.DateTitleView;
-import net.xinzeling.lib.HttpCommon;
 import net.xinzeling.lib.ImageViewWithCount;
 import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.news.GuaNewsActivity;
 import net.xinzeling2.R;
 
@@ -121,8 +121,12 @@ public class HomeActivity extends Activity  implements OnClickListener{
 
 	@Override
 	protected void onDestroy() {
-		unregisterReceiver(usrBReceiver);
-		unregisterReceiver(receiverNDBD);
+		try {
+			unregisterReceiver(usrBReceiver);
+			unregisterReceiver(receiverNDBD);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		super.onDestroy();
 	}
 
@@ -139,53 +143,12 @@ public class HomeActivity extends Activity  implements OnClickListener{
 			startActivity(intent);
 			notificationIcon.reDrawCount(0);
 			break;
-//		case R.id.tab_note:
-//			this.startActivity(new Intent(this, NoteActivity.class));
-//			break;
-//		case R.id.tab_usr:
-//			this.startActivity(new Intent(this,MainSettingActivity.class));
-//			break;
-//		case R.id.tab_usr:
-//			new BlurMaskTask(this, findViewById(R.id.frame_main),findViewById(R.id.frame_nav), 
-//					new NavRunner(view.getId())).execute();
-//			break;
 		case R.id.mode_day:
 			fManager.beginTransaction().replace(R.id.fragment_content, weekfragment).commit();
 			break;
 		case R.id.mode_month:
 			fManager.beginTransaction().replace(R.id.fragment_content, monthfragment).commit();
 			break;
-////		case R.id.nav_gua_num:
-////			AppBase.goGuaActivity(this, AppBase.nav_gua_num);
-////			break;
-////		case R.id.nav_gua_photo:
-////			AppBase.goGuaActivity(this, AppBase.nav_gua_photo);
-////			break;
-////		case R.id.nav_gua_time:
-////			AppBase.goGuaActivity(this, AppBase.nav_gua_time);
-////			break;
-////
-////		case R.id.nav_note_index:
-////			this.startActivity(new Intent(this, NoteActivity.class));
-////			break;
-////
-////		case R.id.nav_usr_feed:
-////			new FeedFragment().show(this.getFragmentManager(),"");
-////			break;
-////		case R.id.nav_usr_index:
-////			this.startActivity(new Intent(this, UsrActivity.class));
-////			break;
-////		case R.id.nav_usr_gua:
-////			this.startActivity(new Intent(this,GuaListActivity.class));
-////			break;
-////		case R.id.nav_usr_signin:
-////			this.startActivity(new Intent(this, SigninActivity.class));
-////			break;
-////		case R.id.nav_usr_exit:
-////			new LogoutFragment().show(this.getFragmentManager(),"");
-////			//AppBase.logout();
-////			break;
-
 		case R.id.lunar_frame:
 			this.hideLunarFragment();
 			break;
@@ -271,7 +234,7 @@ public class HomeActivity extends Activity  implements OnClickListener{
 			String last_ymd = MyApplication.getLastUpdateMsgCnt();
 			if(last_ymd!=null&&today_ymd.equals(last_ymd))return;
 			try {
-				JSONObject res = HttpCommon.getGet(MyApplication.update_notification_cnt);
+				JSONObject res = RequestManager.getGet(MyApplication.update_notification_cnt);
 				if(res!=null){
 					final int update_cnt = Integer.valueOf(res.getString("badge"));
 					HomeActivity.this.runOnUiThread(new Runnable() {

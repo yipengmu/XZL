@@ -14,10 +14,11 @@ import java.util.Locale;
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.DBHelper;
 import net.xinzeling.lib.DateTime;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.push.PushManager;
 import net.xinzeling.receiver.AlarmReceiver;
 import net.xinzeling.setting.net.AppUpdateBean;
+import net.xinzeling.ui.SplashActivity;
 import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 
@@ -51,17 +52,17 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 public class MyApplication extends Application {
-	public final static String Weibo_APP_ID = "2045436852";// "3665317294";
+	public final static String Weibo_APP_ID = "1662284387";// "3665317294";
 	public final static String Weibo_REDIRECT_URL = "https://api.weibo.com/oauth2/default.html";
 	public static final String Weibo_SCOPE = "email,direct_messages_read,direct_messages_write," + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
 			+ "follow_app_official_microblog," + "invitation_write";
 
-	public final static String QQ_APP_ID = "1103520665";
-	public final static String QQ_APP_KEY = "4aiyBe5G7H20CSs0";
+	public final static String QQ_APP_ID = "1104084591";
+	public final static String QQ_APP_KEY = "JaXV3TVjt1MJRv5C";
 	public final static String QQ_SCOPE = "";
 
-	public final static String WEIXIN_APP_ID = "wx103dfd6ac8f00857";
-	public final static String WEIXIN_APP_KEY = "a1933c4de22b6466e6edfccb93c0df7c";
+	public final static String WEIXIN_APP_ID = "wx4acd7a106495b9ed";
+	public final static String WEIXIN_APP_KEY = "9d4bf1b9eb45e6671c8a8237888e01f1";
 
 	public final static int USER_STATUS_CHANGE = 1;
 	public final static String USER_STATUS_CHANGE_BROADCAST = "user_status_change_broadcast";
@@ -113,14 +114,15 @@ public class MyApplication extends Application {
 	public final static int xz_id_month = 2;
 	public final static int xz_id_year = 3;
 
-	public final static int[] double_type_int = { 2, 201, 202, 203, 27, 2801, 2802 };
+	public final static int[] single_type_int = { 16,17,43,44,45 };
+	public final static int[] double_type_int = { 23,24,26, 27, 28};
 	public final static int nav_gua_num = 1;
 	public final static int nav_gua_photo = 2;
 	public final static int nav_gua_time = 3;
 	protected static Context context;
 	public static SQLiteDatabase dbh;
 	public static DBHelper dbHelper;
-	public static SharedPreferences sharedPreference;
+	public static SharedPreferences sharedPreference ;
 
 	public static int usrId = -1;
 	public static String usrName;
@@ -149,7 +151,8 @@ public class MyApplication extends Application {
 		if(mApplicationIsInited){
 			return;
 		}
-		
+
+		MyApplication.sharedPreference = getSharedPreferences("usr", Context.MODE_APPEND);
 		mApplicationIsInited = true;
 	}
 
@@ -369,6 +372,9 @@ public class MyApplication extends Application {
 	}
 
 	public static int getunreadmsg_cnt() {
+		if(sharedPreference == null){
+			return 0;
+		}
 		return sharedPreference.getInt("unreadmsgcnt", 0);
 	}
 
@@ -408,7 +414,7 @@ public class MyApplication extends Application {
 
 	// 刷新token
 	public static void renewalToken() throws IOException, JSONException {
-		JSONObject jsonResp = HttpCommon.getGet(refresh_token_url);
+		JSONObject jsonResp = RequestManager.getGet(refresh_token_url);
 		int resCode = jsonResp.getInt("resCode");
 
 		if (resCode == 0) {

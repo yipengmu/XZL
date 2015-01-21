@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res/net.xinzeling2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/calendar_txt"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <LinearLayout

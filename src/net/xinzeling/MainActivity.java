@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.AppManager;
-import net.xinzeling.lib.HttpCommon;
+import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.note.NoteActivity;
 import net.xinzeling.setting.SigninActivity;
 import net.xinzeling.utils.Utils;
@@ -227,7 +227,7 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 		protected Object doInBackground(Object... params) {
 			JSONObject jsonResp;
 			try {
-				jsonResp = HttpCommon.getGet(MyApplication.account01Verification, paramsData);
+				jsonResp = RequestManager.getGet(MyApplication.account01Verification, paramsData);
 				int resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
 					String userToken = jsonResp.getString("userToken");

@@ -3,6 +3,7 @@ package net.xinzeling.note;
 import java.text.ParseException;
 import java.util.Calendar;
 
+import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.fragment.DateTimeFragment;
 import net.xinzeling.fragment.EarlyDateTimeFragment;
@@ -143,7 +144,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 		this.findViewById(R.id.datetime_frame).setOnClickListener(this);
 		earlydatetimeView =this.findViewById(R.id.early_datetime_fragment);
 		this.findViewById(R.id.early_datetime_frame).setOnClickListener(this);
-
+		findViewById(R.id.btn_save).setOnClickListener(this);
 		scaleYupAnim =AnimationUtils.loadAnimation(this, R.anim.scale_yup);
 		scaleYdownAnim = AnimationUtils.loadAnimation(this, R.anim.scale_ydown);
 		scaleYdownAnim.setAnimationListener(new AnimationListener(){
@@ -189,7 +190,6 @@ public class NoteActivity extends Activity implements OnClickListener{
 			}
 		});
 		
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(this), NoteActivity.this);
 	}
 
 	private void loadNote(int noteid){
@@ -314,6 +314,7 @@ public class NoteActivity extends Activity implements OnClickListener{
 			REQUEST_CODE = R.id.earlier_day;
 			this.showEarlyDateTimeFragment();
 			break;
+		case R.id.btn_save:
 		case R.id.btn_forward:
 			new SubmitTask().execute();
 			break;
@@ -535,6 +536,10 @@ public class NoteActivity extends Activity implements OnClickListener{
 		protected void onPostExecute(Void result){
 			if(isValidate){
 				Toast.makeText(getApplicationContext(), "保存成功", Toast.LENGTH_LONG).show();
+				Intent intent = new Intent(NoteActivity.this, MainActivity.class);
+				intent.putExtra("tabIndex", MainActivity.Maintab_Index_Home);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				NoteActivity.this.startActivity(intent);
 				finish();
 			}else{
 				switch(error_code){
