@@ -14,7 +14,6 @@ import net.xinzeling.lib.DateTime;
 import net.xinzeling.model.ItemModel;
 import net.xinzeling.model.ItemModel.Item;
 import net.xinzeling.model.LunarModel;
-import net.xinzeling.note.NoteActivity;
 import net.xinzeling.note.NoteCheckActivity;
 import net.xinzeling2.R;
 import android.app.Fragment;

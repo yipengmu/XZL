@@ -13,7 +13,7 @@
     <Button
         android:id="@+id/btn_close"
         android:layout_width="35dp"
-        android:layout_height="30dp"
+        android:layout_height="22dp"
         android:background="@drawable/btn_close_huangli"
         android:onClick="onClick" />
 

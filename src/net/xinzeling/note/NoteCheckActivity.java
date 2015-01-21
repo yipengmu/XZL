@@ -47,12 +47,11 @@ public class NoteCheckActivity extends Activity {
 				spanStr.setSpan(span, matcher.start(), matcher.end(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
 			}
 			noteTopic.setText(spanStr);
-			noteTime.setText(DateTime.Timestamp2String((long)note.started*1000, "yyyy年MM月dd日 HH点mm分")+" 至 "+DateTime.Timestamp2String((long)note.ended*1000,"yyyy年MM月dd日 HH点mm分"));
+			noteTime.setText(DateTime.Timestamp2String((long)note.started*1000, "MM月dd日 HH:mm")+" - "+DateTime.Timestamp2String((long)note.ended*1000,"MM月dd日 HH:mm"));
 			noteContact.setText(note.contact);
 			noteContent.setText(note.content);
 			noteAlarm.setText(note.iscancel==0?"否":"是");
 		}
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(NoteCheckActivity.this), NoteCheckActivity.this);
 	}
 
 	public void onClick(View view) {
@@ -65,6 +64,8 @@ public class NoteCheckActivity extends Activity {
 			//@todo show confirm
 		}else if(id==R.id.btn_cancel){
 			this.finish();
+		}else if(id == R.id.btn_close){
+			finish();
 		}
 	}
 }
