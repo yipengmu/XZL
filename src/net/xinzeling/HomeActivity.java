@@ -7,7 +7,6 @@ import java.util.Date;
 import net.xinzeling.fragment.LunarFragment;
 import net.xinzeling.fragment.MonthFragment;
 import net.xinzeling.fragment.WeekFragment;
-import net.xinzeling.lib.BlurMaskTask;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.lib.DateTitleView;
 import net.xinzeling.lib.ImageViewWithCount;
@@ -15,6 +14,7 @@ import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.news.GuaNewsActivity;
+import net.xinzeling.widget.BlurMask.BlurMaskTask;
 import net.xinzeling2.R;
 
 import org.json.JSONException;
@@ -130,10 +130,6 @@ public class HomeActivity extends Activity  implements OnClickListener{
 		super.onDestroy();
 	}
 
-	@Override
-		protected void onNewIntent(Intent intent) {
-			super.onNewIntent(intent);
-		}
 	
 	public void onClick(View view) {
 

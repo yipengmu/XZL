@@ -3,23 +3,24 @@ package net.xinzeling.base;
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BaseActivity extends Activity implements OnClickListener{
+public class BaseActivity extends Activity implements OnClickListener {
 
 	protected TextView txt_title;
-	Button btn_back ;
-	
+	Button btn_back;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		initTitleBar();
-		
+
 	}
 
 	protected void initTitleBar() {
@@ -38,8 +39,8 @@ public class BaseActivity extends Activity implements OnClickListener{
 
 		return getResources().getString(R.string.app_name);
 	}
-	
-	public void toast(String msg){
+
+	public void toast(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
 	}
 
@@ -53,5 +54,21 @@ public class BaseActivity extends Activity implements OnClickListener{
 		default:
 			break;
 		}
+	}
+
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// 监听按下返回键
+		if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+			/*
+			 * 已经是最后一个fragment getSupportFragmentManager()或者getFragmentManager()
+			 * 具体要看你add to back stack 是用哪个
+			 */
+			// if no more history in stack
+			if (this.getFragmentManager().getBackStackEntryCount() == 0) {
+				// 显示退出框业务逻辑
+				return true;
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

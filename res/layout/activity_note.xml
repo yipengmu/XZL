@@ -47,7 +47,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:minHeight="35dp"
+                    android:layout_marginTop="5dp"
                     android:paddingRight="@dimen/activity_common_padding" >
 
                     <TextView
@@ -60,13 +61,30 @@
                         android:paddingLeft="4dp"
                         android:text=" 新建主题：" />
 
-                    <EditText
-                        android:id="@+id/input_note_topic"
-                        style="@style/note_input"
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:gravity="bottom"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginRight="4dp"
                         android:layout_toLeftOf="@+id/btn_topic_add"
-                        android:layout_toRightOf="@id/label_note_topic" />
+                        android:layout_toRightOf="@id/label_note_topic"
+                        android:orientation="horizontal" >
+
+                        <TextView
+                            android:id="@+id/tv_topic_icon_themes"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:layout_toRightOf="@+id/tv_topic_icon_themes"
+                            android:layout_alignParentBottom="true"
+                            android:id="@+id/input_note_topic"
+                            style="@style/note_input"
+                            android:layout_marginRight="4dp" />
+                    </RelativeLayout>
 
                     <Button
                         android:id="@+id/btn_topic_add"
@@ -324,7 +342,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/activity_note_layout_marginBottom_tiqian"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="bottom"
                         android:onClick="onClick"
                         android:orientation="horizontal" >
@@ -398,7 +416,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="start"
                         android:orientation="horizontal" >
 
@@ -444,8 +462,8 @@
                                 style="@style/note_repeat_item"
                                 android:layout_width="56dp"
                                 android:layout_height="30dp"
-                                android:checked="true"
                                 android:layout_marginLeft="2dp"
+                                android:checked="true"
                                 android:text="不重复" />
                         </RadioGroup>
                     </LinearLayout>
@@ -456,7 +474,7 @@
                     style="@style/common_btn"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/rect_btn_common_green_bg"
                     android:onClick="onClick"
                     android:text="保存" />
@@ -479,7 +497,15 @@
             android:layout_margin="10dp" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/fl_fragment"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:paddingTop="48dp" >
+    </FrameLayout>
+
+   <!--  <RelativeLayout
         android:id="@+id/datetime_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -492,7 +518,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
-    </RelativeLayout>
+    </RelativeLayout> -->
 
     <RelativeLayout
         android:id="@+id/early_datetime_frame"

@@ -1,5 +1,6 @@
-package net.xinzeling.lib;
+package net.xinzeling.widget.BlurMask;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -8,19 +9,38 @@ import android.os.AsyncTask;
 import android.view.View;
 
 public  class BlurMaskTask extends AsyncTask<Void,Void,Void>{
-	private View winView;
-    private Bitmap drawCache;
-    private Bitmap blurMask;
-    private Runnable runnable;
-    private View showView;
-    Context ctx;
+	public View winView;
+	public Bitmap drawCache;
+    public Bitmap blurMask;
+    public Runnable runnable;
+    public View showView;
+    public Context ctx;
+    public BlurTheme mBlurTheme;
+    public Fragment mFragment;
+    
+    @Deprecated
     public BlurMaskTask(Context ctx, View frameView, View toShow,Runnable run){
     	winView= frameView;
     	this.ctx = ctx;
     	this.showView = toShow;
     	runnable = run;
     }
-     
+    
+    public BlurMaskTask(Context ctx,View toShow,Runnable run){
+    	this.ctx = ctx;
+    	this.showView = toShow;
+    	runnable = run;
+    }
+    
+    public enum BlurTheme{
+    	TopicFragment,EarlyDateTimeFragment,DateTimeFragment
+    }
+    
+    public BlurMaskTask setTheme(BlurTheme theme){
+    	mBlurTheme = theme;
+    	return this;
+    }
+    
     @Override
     protected void onPreExecute() {
         //winView.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);

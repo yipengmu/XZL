@@ -42,6 +42,8 @@ access_token=2.00xbJh7BVGmUoBf2a29e98b103Dj_B
 01-21 22:22:54.681: I/xzl http :(14035): response {"resCode":"0104","resMsg":"Unknown User Token"}
 
 
+//note check
+ mSelected:{2131165364=1, 2131165365=2, 2131165366=3, 2131165367=4, 2131165368=5, 2131165369=6}   spanStr:_x_icon_y_6_
 
 
 

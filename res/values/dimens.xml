@@ -11,7 +11,7 @@
     <dimen name="note_label_layout_marginLeft">4dp</dimen>
 
     <!-- styles note_input -->
-    <dimen name="note_input_textSize">16sp</dimen>
+    <dimen name="note_input_textSize">14sp</dimen>
     <dimen name="note_input_layout_height">30dp</dimen>
     <dimen name="note_input_layout_marginRight">32dp</dimen>
 

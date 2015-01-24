@@ -5,11 +5,17 @@ import java.util.Date;
 import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
 import android.database.Cursor;
+import android.util.Log;
 
 public class LunarModel extends MyApplication{
 	
 	public static Lunar fetchByDate(Date date){
-		return fetchByDate(DateTime.Date2String(date,"yyyy-MM-dd"));
+		try {
+			return fetchByDate(DateTime.Date2String(date,"yyyy-MM-dd"));
+		} catch (Exception e) {
+			Log.e("LunarModel ", " LunarModel fetchByDate error");
+		}
+		return new Lunar();
 	}
 	
 	public static Lunar fetchByDate(String date){

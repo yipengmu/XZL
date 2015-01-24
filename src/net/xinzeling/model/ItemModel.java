@@ -184,8 +184,8 @@ public class ItemModel extends MyApplication{
 
 			if(start!=null&&end!=null){
 				if(type==0){
-					long start_l = (long)Integer.valueOf(start)*1000;
-					long end_l = (long)Integer.valueOf(end)*1000;
+					long start_l = Long.valueOf(start)*1000;
+					long end_l = Long.valueOf(end)*1000;
 					this.showDaytime = DateTime.Timestamp2String(start_l, "MM月dd日 HH:mm")+" - "+DateTime.Timestamp2String(end_l, "MM月dd日 HH:mm");
 				}else{
 					this.showDaytime = start+""+end;

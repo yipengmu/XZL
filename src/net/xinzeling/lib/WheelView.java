@@ -180,6 +180,7 @@ public class WheelView extends ScrollView {
         tv.setTextColor(Color.parseColor("#9fb521"));
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         tv.setText(item);
+        tv.setTextIsSelectable(true);
         tv.setGravity(Gravity.CENTER);
         int padding = ABTextUtil.dip2px(context, 15);
         tv.setPadding(padding/2, padding, padding/2, padding);

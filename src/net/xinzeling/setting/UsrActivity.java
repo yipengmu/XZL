@@ -6,7 +6,7 @@ import net.xinzeling2.R.id;
 import net.xinzeling2.R.layout;
 import net.xinzeling.fragment.FeedFragment;
 import net.xinzeling.fragment.PushSWFragment;
-import net.xinzeling.lib.BlurMaskTask;
+import net.xinzeling.widget.BlurMask.BlurMaskTask;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

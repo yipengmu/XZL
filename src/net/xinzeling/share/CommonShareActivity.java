@@ -33,7 +33,6 @@ public class CommonShareActivity extends BaseActivity {
 
 		setContentView(CreateView());
 		
-		getActionBar().hide();
 		View ll_share_icons = findViewById(R.id.ll_share_icons);
 
 		ll_share_icons.setVisibility(View.VISIBLE);

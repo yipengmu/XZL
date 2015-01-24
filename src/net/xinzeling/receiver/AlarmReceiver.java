@@ -43,7 +43,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 	private void vibrator(Context context){
 		Vibrator mVibrator01;  //声明一个振动器对象
 		mVibrator01 = ( Vibrator ) context.getSystemService(Service.VIBRATOR_SERVICE);  
-		mVibrator01.vibrate( new long[]{100,1000,1000,5000},-1); 
+		mVibrator01.vibrate( new long[]{100,100,100,100,500,500},-1); 
 	}
 
 	private void ring(Context context,Uri alert,AudioManager audiomanage){

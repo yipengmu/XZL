@@ -11,7 +11,6 @@ public class BaseFragment extends Fragment{
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 	
@@ -23,5 +22,11 @@ public class BaseFragment extends Fragment{
 	
 	public void toast(String msg){
 		Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+	}
+	
+	public void popPageBackStack(){
+		if(getFragmentManager().getBackStackEntryCount() > 0){
+			getFragmentManager().popBackStack();	
+		}
 	}
 }
