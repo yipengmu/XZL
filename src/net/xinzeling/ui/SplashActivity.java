@@ -6,7 +6,7 @@ import java.util.HashMap;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
-import net.xinzeling.lib.DBHelper;
+import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.push.PushManager;
 import net.xinzeling.utils.Utils;

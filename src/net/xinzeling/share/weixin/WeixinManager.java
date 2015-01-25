@@ -1,15 +1,14 @@
 package net.xinzeling.share.weixin;
 
-import net.xinzeling.MyApplication;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 
-import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
-import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
-import com.tencent.mm.sdk.modelmsg.WXTextObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.SendMessageToWX;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.mm.sdk.openapi.WXMediaMessage;
+import com.tencent.mm.sdk.openapi.WXTextObject;
 
 public class WeixinManager {
 

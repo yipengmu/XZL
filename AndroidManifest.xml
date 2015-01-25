@@ -133,7 +133,7 @@
         </activity>jkc
         <!-- ############ 微信和微信朋友圈的回调 ############### -->
         <activity
-            android:name="net.xinzeling.wxapi.WXEntryActivity"
+            android:name="net.xinzeling2.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -159,6 +159,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.news.GuaNewsDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="net.xinzeling.share.CommonShareActivity"
+            android:theme="@style/translucent" 
             android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.news.GuaShiActivity"
@@ -240,11 +244,6 @@
                 <action android:name="xinzeling_alarm" />
             </intent-filter>
         </receiver>
-         <activity
-            android:name="net.xinzeling.share.CommonShareActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/translucent" />
-        
         
         <!-- jiguang start -->
           <!-- Required -->

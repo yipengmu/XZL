@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.gua.GuaActivity;
-import net.xinzeling.lib.DBHelper;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.push.PushManager;

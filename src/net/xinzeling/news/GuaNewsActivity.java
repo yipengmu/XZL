@@ -7,6 +7,7 @@ import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.DashikanfaItemAdapter;
 import net.xinzeling.net.http.RequestManager;
+import net.xinzeling.ui.myzhuanfa.MyZhuanfaActivity;
 import net.xinzeling2.R;
 
 import org.json.JSONException;
@@ -97,6 +98,9 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 			this.finish();
 			break;
 		case R.id.mychuanbo:
+			intent = new Intent(GuaNewsActivity.this, MyZhuanfaActivity.class);
+			startActivity(intent);
+			this.finish();
 			break;
 		}
 	}

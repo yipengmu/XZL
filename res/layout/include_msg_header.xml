@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/header_left_btn"
+        android:padding="4dp"
         android:src="@drawable/btn_returnhome_white" />
 
     <ImageView
@@ -18,19 +19,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:padding="4dp"
         android:src="@drawable/btn_return" />
 
     <TextView
         android:id="@+id/header_main_title"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:maxLength="10"
-        android:singleLine="true"
+        android:layout_centerInParent="true"
         android:ellipsize="end"
         android:lines="1"
-        android:textSize="18sp"
-        android:layout_centerInParent="true"
+        android:maxLength="10"
+        android:singleLine="true"
         android:text=""
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="18sp" />
 
 </RelativeLayout>

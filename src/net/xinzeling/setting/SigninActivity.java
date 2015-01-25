@@ -40,9 +40,7 @@ import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener
 import com.umeng.socialize.controller.listener.SocializeListeners.UMDataListener;
 import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.sso.SinaSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
 
 public class SigninActivity extends BaseActivity implements OnClickListener {
 
@@ -147,51 +145,51 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	// QQ登录
 	private void signinQQ() {
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SigninActivity.this, MyApplication.QQ_APP_ID, MyApplication.QQ_APP_KEY);
-		qqSsoHandler.addToSocialSDK();
-		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.QQ, new UMAuthListener() {
-			@Override
-			public void onStart(SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
-			}
-
-			@Override
-			public void onError(SocializeException e, SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
-			}
-
-			@Override
-			public void onComplete(Bundle value, SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
-				// 获取相关授权信息
-				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.QQ, new UMDataListener() {
-					@Override
-					public void onStart() {
-						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onComplete(int status, Map<String, Object> info) {
-						if (status == 200 && info != null) {
-							StringBuilder sb = new StringBuilder();
-							Set<String> keys = info.keySet();
-							for (String key : keys) {
-								sb.append(key + "=" + info.get(key).toString() + "\r\n");
-							}
-							Log.d("TestData", sb.toString());
-						} else {
-							Log.d("TestData", "发生错误：" + status);
-						}
-					}
-					
-				});
-			}
-
-			@Override
-			public void onCancel(SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
-			}
-		});
+//		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SigninActivity.this, MyApplication.QQ_APP_ID, MyApplication.QQ_APP_KEY);
+//		qqSsoHandler.addToSocialSDK();
+//		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.QQ, new UMAuthListener() {
+//			@Override
+//			public void onStart(SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
+//			}
+//
+//			@Override
+//			public void onError(SocializeException e, SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
+//			}
+//
+//			@Override
+//			public void onComplete(Bundle value, SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
+//				// 获取相关授权信息
+//				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.QQ, new UMDataListener() {
+//					@Override
+//					public void onStart() {
+//						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+//					}
+//
+//					@Override
+//					public void onComplete(int status, Map<String, Object> info) {
+//						if (status == 200 && info != null) {
+//							StringBuilder sb = new StringBuilder();
+//							Set<String> keys = info.keySet();
+//							for (String key : keys) {
+//								sb.append(key + "=" + info.get(key).toString() + "\r\n");
+//							}
+//							Log.d("TestData", sb.toString());
+//						} else {
+//							Log.d("TestData", "发生错误：" + status);
+//						}
+//					}
+//					
+//				});
+//			}
+//
+//			@Override
+//			public void onCancel(SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
+//			}
+//		});
 
 	}
 
@@ -263,55 +261,55 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	// 微信登录
 	private void signinWeixin() {
-		UMWXHandler wxHandler = new UMWXHandler(SigninActivity.this, MyApplication.WEIXIN_APP_ID, MyApplication.WEIXIN_APP_KEY);
-		wxHandler.addToSocialSDK();
-
-		int flag = SocializeConstants.FLAG_USER_CENTER_LOGIN_VERIFY | SocializeConstants.FLAG_USER_CENTER_HIDE_LOGININFO;
-		mController.openUserCenter(this.getApplicationContext(), flag);
-		// 设置新浪SSO handler
-		mController.getConfig().setSsoHandler(new SinaSsoHandler());
-		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.WEIXIN, new UMAuthListener() {
-			@Override
-			public void onStart(SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
-			}
-
-			@Override
-			public void onError(SocializeException e, SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
-			}
-
-			@Override
-			public void onComplete(Bundle value, SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
-				// 获取相关授权信息
-				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.WEIXIN, new UMDataListener() {
-					@Override
-					public void onStart() {
-						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
-					}
-
-					@Override
-					public void onComplete(int status, Map<String, Object> info) {
-						if (status == 200 && info != null) {
-							StringBuilder sb = new StringBuilder();
-							Set<String> keys = info.keySet();
-							for (String key : keys) {
-								sb.append(key + "=" + info.get(key).toString() + "\r\n");
-							}
-							Log.d("TestData", sb.toString());
-						} else {
-							Log.d("TestData", "发生错误：" + status);
-						}
-					}
-				});
-			}
-
-			@Override
-			public void onCancel(SHARE_MEDIA platform) {
-				Toast.makeText(SigninActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
-			}
-		});
+//		UMWXHandler wxHandler = new UMWXHandler(SigninActivity.this, MyApplication.WEIXIN_APP_ID, MyApplication.WEIXIN_APP_KEY);
+//		wxHandler.addToSocialSDK();
+//
+//		int flag = SocializeConstants.FLAG_USER_CENTER_LOGIN_VERIFY | SocializeConstants.FLAG_USER_CENTER_HIDE_LOGININFO;
+//		mController.openUserCenter(this.getApplicationContext(), flag);
+//		// 设置新浪SSO handler
+//		mController.getConfig().setSsoHandler(new SinaSsoHandler());
+//		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.WEIXIN, new UMAuthListener() {
+//			@Override
+//			public void onStart(SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
+//			}
+//
+//			@Override
+//			public void onError(SocializeException e, SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
+//			}
+//
+//			@Override
+//			public void onComplete(Bundle value, SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
+//				// 获取相关授权信息
+//				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.WEIXIN, new UMDataListener() {
+//					@Override
+//					public void onStart() {
+//						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+//					}
+//
+//					@Override
+//					public void onComplete(int status, Map<String, Object> info) {
+//						if (status == 200 && info != null) {
+//							StringBuilder sb = new StringBuilder();
+//							Set<String> keys = info.keySet();
+//							for (String key : keys) {
+//								sb.append(key + "=" + info.get(key).toString() + "\r\n");
+//							}
+//							Log.d("TestData", sb.toString());
+//						} else {
+//							Log.d("TestData", "发生错误：" + status);
+//						}
+//					}
+//				});
+//			}
+//
+//			@Override
+//			public void onCancel(SHARE_MEDIA platform) {
+//				Toast.makeText(SigninActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
+//			}
+//		});
 	}
 
 	private void onSubmit() {

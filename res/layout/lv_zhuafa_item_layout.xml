@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
+
+    <TextView
+        android:id="@+id/tv_zf_date_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="2014.05.22"
+        android:textColor="@color/grey"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tv_zf_msg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/date_title"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="[书籍]史记。。。"
+        android:textColor="@color/common_green"
+        android:textSize="12sp" />
+
+</RelativeLayout>

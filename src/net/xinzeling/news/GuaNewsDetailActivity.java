@@ -1,6 +1,7 @@
 package net.xinzeling.news;
 
 import net.xinzeling.MyApplication;
+import net.xinzeling.share.CommonShareActivity;
 import net.xinzeling.share.WeiboShareActivity;
 import net.xinzeling2.R;
 import android.app.Activity;
@@ -24,6 +25,8 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 	private ImageView header_left_btn,header_right_btn;
 	private boolean isShowShare;
 
+	private final static int FLAG_GUA_DETAIL_SHARE = 1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,6 +40,7 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 		header_main_title.setVisibility(View.VISIBLE);
 		header_left_btn = (ImageView)findViewById(R.id.header_left_btn);
 		header_right_btn = (ImageView)findViewById(R.id.header_right_btn);
+		header_right_btn.setImageDrawable(getResources().getDrawable(R.drawable.my_title_share_icon));
 		header_left_btn.setOnClickListener(this);
 		header_right_btn.setOnClickListener(this);
 
@@ -61,7 +65,7 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 			finish();
 			break;
 		case R.id.header_right_btn:
-			showShareLine(isShowShare);
+			showShareLine();
 			break;
 		case R.id.btn_share_qq:
 			break;
@@ -76,9 +80,13 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 		}
 	}
 
-	private void showShareLine(boolean isShow) {
-		btn_share_line.setVisibility(isShowShare?View.VISIBLE:View.INVISIBLE);
-		isShowShare = !isShowShare;
+	private void showShareLine() {
+//		btn_share_line.setVisibility(isShowShare?View.VISIBLE:View.INVISIBLE);
+//		isShowShare = !isShowShare;
+		Intent intent = new Intent(GuaNewsDetailActivity.this,CommonShareActivity.class);
+		intent.putExtra(CommonShareActivity.SHARE_TEXT_CONTENT, "分享内容 xzl");
+		intent.putExtra(CommonShareActivity.SHARE_TITLE, "分享title-xzl");
+		startActivityForResult(intent, FLAG_GUA_DETAIL_SHARE );
 	}
 
 	@Override
@@ -87,27 +95,38 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener{
 		if(resultCode==RESULT_OK){
 			switch(requestCode){
 			case REQ_WEIBO_CMD:
-				int result = data.getIntExtra("result", -1);
-				if(result==-1){
-					//错误
-					Toast.makeText(GuaNewsDetailActivity.this, 
-							"微博分享失败", 
-							Toast.LENGTH_SHORT).show();
-				}else if(result==0){
-					//成功
-					Toast.makeText(GuaNewsDetailActivity.this, 
-							"微博分享成功", 
-							Toast.LENGTH_SHORT).show();
-				}else if(result==1){
-					//失败
-					Toast.makeText(GuaNewsDetailActivity.this, 
-							"取消了微博分享", 
-							Toast.LENGTH_SHORT).show();
-				}
+				doOldWeibo(data);
+				break;
+			case 2:
+				saveZhuanfaDatalogic();
 				break;
 			}
+			
 		}
-		showShareLine(isShowShare);
+	}
+
+	private void saveZhuanfaDatalogic() {
+		
+	}
+
+	private void doOldWeibo(Intent data) {
+		int result = data.getIntExtra("result", -1);
+		if(result==-1){
+			//错误
+			Toast.makeText(GuaNewsDetailActivity.this, 
+					"微博分享失败", 
+					Toast.LENGTH_SHORT).show();
+		}else if(result==0){
+			//成功
+			Toast.makeText(GuaNewsDetailActivity.this, 
+					"微博分享成功", 
+					Toast.LENGTH_SHORT).show();
+		}else if(result==1){
+			//失败
+			Toast.makeText(GuaNewsDetailActivity.this, 
+					"取消了微博分享", 
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 
 }

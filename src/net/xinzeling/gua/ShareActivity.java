@@ -21,10 +21,7 @@ import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners.SnsPostListener;
-import com.umeng.socialize.sso.QZoneSsoHandler;
 import com.umeng.socialize.sso.SinaSsoHandler;
-import com.umeng.socialize.sso.TencentWBSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 
 public class ShareActivity extends Activity {
@@ -83,20 +80,20 @@ public class ShareActivity extends Activity {
 //		wxCircleHandler.addToSocialSDK();
 
 		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
-				MyApplication.QQ_APP_KEY);
-		qqSsoHandler.addToSocialSDK();  
-
-		//设置新浪SSO handler
-		mController.getConfig().setSsoHandler(new SinaSsoHandler());
-
-		//设置腾讯微博SSO handler
-		mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
-
-		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
-				MyApplication.QQ_APP_KEY);
-		qZoneSsoHandler.addToSocialSDK();
+//		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
+//				MyApplication.QQ_APP_KEY);
+//		qqSsoHandler.addToSocialSDK();  
+//
+//		//设置新浪SSO handler
+//		mController.getConfig().setSsoHandler(new SinaSsoHandler());
+//
+//		//设置腾讯微博SSO handler
+//		mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+//
+//		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
+//		QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
+//				MyApplication.QQ_APP_KEY);
+//		qZoneSsoHandler.addToSocialSDK();
 		//mController.openShare(ShareActivity.this, false);
 		//微信朋友圈
 		mController.postShare(ShareActivity.this,SHARE_MEDIA.WEIXIN_CIRCLE, 
@@ -217,33 +214,33 @@ public class ShareActivity extends Activity {
 	
 	private void share_qq(){
 		//参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
-				MyApplication.QQ_APP_KEY);
-		qqSsoHandler.addToSocialSDK();  
-		//mController.openShare(ShareActivity.this, false);
-		//qq
-		mController.postShare(ShareActivity.this,SHARE_MEDIA.QQ, 
-				new SnsPostListener(){
-			@Override
-			public void onStart() {
-				Toast.makeText(ShareActivity.this, "开始分享.", Toast.LENGTH_SHORT).show();
-			}
-
-			@Override
-			public void onComplete(SHARE_MEDIA arg0, int arg1,
-					SocializeEntity arg2) {
-				if (arg1 == 200) {
-					Toast.makeText(ShareActivity.this, "分享成功.", Toast.LENGTH_SHORT).show();
-				} else {
-					String eMsg = "";
-					if (arg1 == -101){
-						eMsg = "没有授权";
-					}
-					Toast.makeText(ShareActivity.this, "分享失败[" + arg1 + "] " + 
-							eMsg,Toast.LENGTH_SHORT).show();
-				}
-			}
-		});
+//		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(ShareActivity.this, MyApplication.QQ_APP_ID,
+//				MyApplication.QQ_APP_KEY);
+//		qqSsoHandler.addToSocialSDK();  
+//		//mController.openShare(ShareActivity.this, false);
+//		//qq
+//		mController.postShare(ShareActivity.this,SHARE_MEDIA.QQ, 
+//				new SnsPostListener(){
+//			@Override
+//			public void onStart() {
+//				Toast.makeText(ShareActivity.this, "开始分享.", Toast.LENGTH_SHORT).show();
+//			}
+//
+//			@Override
+//			public void onComplete(SHARE_MEDIA arg0, int arg1,
+//					SocializeEntity arg2) {
+//				if (arg1 == 200) {
+//					Toast.makeText(ShareActivity.this, "分享成功.", Toast.LENGTH_SHORT).show();
+//				} else {
+//					String eMsg = "";
+//					if (arg1 == -101){
+//						eMsg = "没有授权";
+//					}
+//					Toast.makeText(ShareActivity.this, "分享失败[" + arg1 + "] " + 
+//							eMsg,Toast.LENGTH_SHORT).show();
+//				}
+//			}
+//		});
 	}
 
 	@Override 
