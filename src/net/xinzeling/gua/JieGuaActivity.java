@@ -6,6 +6,7 @@ import net.xinzeling.MyApplication.share_id;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.model.GuaModel;
 import net.xinzeling.model.GuaModel.Gua;
+import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -18,6 +19,7 @@ public class JieGuaActivity extends Activity {
 	private int guaid;
 	private boolean isOld;//是否之前算过
 	private ImageView ben_up,ben_down,hu_up,hu_down,bian_up,bian_down;
+	private int FLAG_JIEGUA_SHARE = 2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +70,6 @@ public class JieGuaActivity extends Activity {
 		}else{
 			findViewById(R.id.linearlayout_inference).setVisibility(View.GONE);			
 		}
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(JieGuaActivity.this),JieGuaActivity.this);
 	}
 
 	public void onClick(View view) {
@@ -95,9 +96,25 @@ public class JieGuaActivity extends Activity {
 			}
 			BlurBehind.getInstance().execute(JieGuaActivity.this,new ShareRun(share_type));
 			break;
+		case R.id.btn_jiegua_share:
+			openShareActivity();
+			break;
 		}
 	}
 	
+	private void openShareActivity() {
+		startActivityForResult(Utils.getShareIntent(this,getShareText(),getShareTitle()), FLAG_JIEGUA_SHARE );
+	}
+
+	private String getShareText() {
+		Gua gua = GuaModel.fetch(guaid);
+		return "大师说:" + gua.inference ;
+	}
+
+	private String getShareTitle() {
+		return "我用信则聆的" + "起了一挂";
+	}
+
 	class ShareRun implements Runnable{
 		private share_id share_type;
 		public ShareRun(share_id share_type){

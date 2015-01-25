@@ -4,6 +4,7 @@ import net.xinzeling.MyApplication;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 public class PreferenceManager {
 
@@ -40,7 +41,9 @@ public class PreferenceManager {
 	}
 	
 	public static String getPreferenceString(String key){
-		return sharedPreference.getString(key, "");
+		String results = sharedPreference.getString(key, "");
+		Log.d("getPreferenceString", "results = " + results);
+		return results;
 	}
 	
 	public static int getPreferenceInt(String key,int defaultInt){

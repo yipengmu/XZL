@@ -21,6 +21,7 @@ public class ZhuanfaLvAdapter extends BaseAdapter{
 	
 	public void setData(ArrayList<ZhuanfaBean> data){
 		mData = data;
+		notifyDataSetChanged();
 	}
 	
 	@Override
@@ -46,16 +47,11 @@ public class ZhuanfaLvAdapter extends BaseAdapter{
 		TextView msg_title = (TextView) v.findViewById(R.id.tv_zf_msg_title);
 		TextView date_title = (TextView) v.findViewById(R.id.tv_zf_date_title);
 		
-		msg_title.setText(mData.get(index).msgTitle);
-		date_title.setText(mData.get(index).msgDateTime);
+		msg_title.setText(mData.get(index).title);
+		date_title.setText(mData.get(index).time);
 //		msg_title.setText(mData.get(index).msgTitle);
 	}
 	
-	public class ZhuanfaBean{
-		public String msgTitle;
-		public String msgDateTime;
-		public String msgContent;
-	}
 
 	@Override
 	public long getItemId(int position) {

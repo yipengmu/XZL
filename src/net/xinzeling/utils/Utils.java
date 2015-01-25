@@ -12,7 +12,9 @@ import java.util.Date;
 
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
+import net.xinzeling.news.GuaNewsDetailActivity;
 import net.xinzeling.note.NoteActivity;
+import net.xinzeling.share.CommonShareActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -85,6 +87,16 @@ public class Utils {
 
 		return new Date();
 	}
+	
+	/**
+	 * "yyyyMMdd"  format
+	 * 
+	 * */
+	public static String getStringByDate(String format,long time) {
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		return sdf.format(new Date(time));
+	}
+
 
 	// 打开APK程序代码
 	private void openFile(File file) {
@@ -135,6 +147,13 @@ public class Utils {
 		intent.putExtra("tabIndex",index);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		return intent;
+	}
+
+	public static Intent getShareIntent(Context c, String shareText, String shareTitle) {
+		Intent intent = new Intent(c, CommonShareActivity.class);
+		intent.putExtra(CommonShareActivity.SHARE_TEXT_CONTENT, shareText);
+		intent.putExtra(CommonShareActivity.SHARE_TITLE, shareTitle);
 		return intent;
 	}
 }

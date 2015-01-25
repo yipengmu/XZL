@@ -43,38 +43,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class NoteActivity extends BaseActivity implements OnClickListener {
-	private EditText inputTopic;
-	private EditText inputContact;
-	private LineEditText inputContent;
-	private EditText stimeYear;
-	private EditText stimeMonth;
-	private EditText stimeDay;
-	private EditText stimeHour;
-	private EditText stimeMin;
-	private EditText etimeYear;
-	private EditText etimeMonth;
-	private EditText etimeDay;
-	private EditText etimeHour;
-	private EditText etimeMin;
+	private EditText inputTopic,inputContact,stimeYear,stimeMonth,stimeDay,stimeHour,stimeMin,etimeYear;
+	private EditText etimeMonth,etimeDay,etimeHour,etimeMin;
 	private EditText earlyMonth, earlyDay, earlyHour, earlyMin;
+	private LineEditText inputContent;
 
-	private RadioButton radioRepeatYear;
-	private RadioButton radioRepeatMonth;
-	private RadioButton radioRepeatWeek;
-	private RadioButton radioRepeatDay;
-	private RadioButton radioRepeatNo;
+	private RadioButton radioRepeatYear,radioRepeatMonth,radioRepeatWeek,radioRepeatDay,radioRepeatNo;
 
 	private int REQUEST_CODE;
 	private int noteid = -1;
 	private Animation scaleYupAnim;
 	private Animation scaleYdownAnim;
-	// private View topicView, datetimeView;
 	private View earlydatetimeView;
 
 	private FragmentManager manager;
-	// private TopicFragment topic_fragment;
-	private DateTimeFragment datetime_fragment;
-	private EarlyDateTimeFragment earlydatetime_fragment;
 	private int repeat_type = 0;
 
 	public int[] DateTimeStartInfo = new int[] { 0, 0, 0, 0, 0 };// 年 月 日 时 分
@@ -85,16 +67,12 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 	public SparseIntArray mSelected = new SparseIntArray();// 主题选项
 	public ArrayList<Integer> mSelectedList = new ArrayList<>();
 	private long mFirstime;
-	private View fl_fragment;
 	private TextView tv_topic_icon_themes;
-	private FragmentTransaction fragmentTransaction;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_note);
-		fragmentTransaction = getFragmentManager().beginTransaction();
-
 		inputTopic = (EditText) findViewById(R.id.input_note_topic);
 		inputContact = (EditText) findViewById(R.id.input_note_contact);
 		inputContent = (LineEditText) findViewById(R.id.input_note_content);
@@ -116,7 +94,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 		earlyDay = (EditText) findViewById(R.id.earlier_day);
 		earlyHour = (EditText) findViewById(R.id.earlier_hour);
 		earlyMin = (EditText) findViewById(R.id.earlier_min);
-		fl_fragment = findViewById(R.id.fl_fragment);
 
 		radioRepeatYear = (RadioButton) findViewById(R.id.radio_repeat_year);
 		radioRepeatMonth = (RadioButton) findViewById(R.id.radio_repeat_month);
@@ -173,7 +150,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 		// manager.findFragmentById(R.id.topic_fragment);
 		// datetime_fragment = (DateTimeFragment)
 		// manager.findFragmentById(R.id.datetime_fragment);
-		earlydatetime_fragment = (EarlyDateTimeFragment) manager.findFragmentById(R.id.early_datetime_fragment);
 
 		RadioGroup group = (RadioGroup) this.findViewById(R.id.radio_note_repeat);
 		// 绑定一个匿名监听器

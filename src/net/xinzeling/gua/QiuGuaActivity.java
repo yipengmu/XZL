@@ -363,6 +363,7 @@ public class QiuGuaActivity extends BaseActivity {
 			this.finish();
 			break;
 		case R.id.btn_qiugua:
+			//求卦
 			if (!checkInputForm()) {
 				toast("请检查输入内容");
 				break;

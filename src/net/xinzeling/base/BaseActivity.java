@@ -66,7 +66,9 @@ public class BaseActivity extends Activity implements OnClickListener {
 			// if no more history in stack
 			if (this.getFragmentManager().getBackStackEntryCount() == 0) {
 				// 显示退出框业务逻辑
-				return true;
+				return super.onKeyDown(keyCode, event);
+			} else {
+				getFragmentManager().popBackStack();
 			}
 		}
 		return super.onKeyDown(keyCode, event);

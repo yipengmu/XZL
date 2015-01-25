@@ -3,7 +3,6 @@ package net.xinzeling.gua;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.common.PreferenceManager;
@@ -17,7 +16,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -34,16 +32,12 @@ import android.widget.Toast;
 public class GuaActivity extends Activity implements OnClickListener, OnCheckedChangeListener {
 	private int mode;
 	private TextView txtTitle;
-	private View winFrame;
 	private LinearLayout lastShowChildView;
-	private DisplayMetrics display;
 	private LayoutAnimationController fadeInAnim;
 	private LayoutAnimationController popupAnim;
-	private int type = 0;
 	private BackHomeBroadcastReceiver backhomeBReceiver;
 	private RadioGroup myradiogroup;
 	private RelativeLayout r_title;
-	private float ButtonOneWordWidth;
 	private ImageView iv_title_mid_icon;
 	private long mFirstime;
 	private final String PreferTag = "gua_mode";
@@ -58,9 +52,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		txtTitle = (TextView) findViewById(R.id.txt_title);
 		iv_title_mid_icon = (ImageView) findViewById(R.id.iv_title_mid_icon);
 		txtTitle.setOnClickListener(this);
-		winFrame = findViewById(R.id.frame_main);
 		r_title = (RelativeLayout) findViewById(R.id.select_type_menu);
-		display = this.getResources().getDisplayMetrics();
 		fadeInAnim = new LayoutAnimationController(AnimationUtils.loadAnimation(this, R.anim.fade_in));
 		
 		popupAnim = new LayoutAnimationController(AnimationUtils.loadAnimation(this, R.anim.popup));
@@ -209,7 +201,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 
 	private void gototarget(int type) {
 		Intent intent = new Intent(GuaActivity.this, QiuGuaActivity.class);
-		 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 		intent.putExtra("mode", mode);
 		intent.putExtra("type", type);
 		startActivity(intent);
@@ -240,6 +232,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 		return super.onKeyDown(keyCode, event);
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void onCheckedChanged(RadioGroup group, int checkedId) {
 		switch (checkedId) {

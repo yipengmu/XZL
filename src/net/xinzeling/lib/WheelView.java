@@ -22,15 +22,12 @@ import java.util.List;
 
 public class WheelView extends ScrollView {
     public static final String TAG = WheelView.class.getSimpleName();
-//    private Typeface tf;
     public static class OnWheelViewListener {
         public void onSelected(int selectedIndex, String item) {
         }
     }
 
-
     private Context context;
-//    private ScrollView scrollView;
 
     private LinearLayout views;
 
@@ -49,7 +46,6 @@ public class WheelView extends ScrollView {
         init(context);
     }
 
-    //    String[] items;
     List<String> items;
 
     private List<String> getItems() {

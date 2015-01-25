@@ -8,7 +8,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import net.xinzeling.share.weixin.WeixinManager;
@@ -33,7 +32,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
 public class SNSShareMenu {
 
@@ -53,7 +51,7 @@ public class SNSShareMenu {
 	private String mShareMsgContent = "信则聆";
 	private String mShareUrl = "";
 	/** mIsCleanUrl == false 代表 不需要url截取 */
-	private boolean mIsCleanUrl = true;
+	private boolean mIsCleanUrl = false;
 	private Bitmap mShareBitmap = null;
 	private String mPicUrl = null;
 	private String mTitleTag;

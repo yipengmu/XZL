@@ -14,19 +14,35 @@
             style="@style/header_back"
             android:onClick="onClick" />
 
-        <Button
-            android:id="@+id/btn_gua_info"
-            style="@style/header_home"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:background="@drawable/btn_gua_info"
-            android:onClick="onClick" />
+            android:orientation="horizontal" >
 
-        <Button
-            android:id="@+id/header_home"
-            style="@style/header_home"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/btn_gua_info"
-            android:onClick="onClick" />
+            <Button
+                android:id="@+id/btn_gua_info"
+                android:padding="2dp"
+                style="@style/header_home"
+                android:background="@drawable/btn_gua_info"
+                android:onClick="onClick" />
+
+            <Button
+                android:id="@+id/btn_jiegua_share"
+                style="@style/header_home"
+                android:padding="2dp"
+                android:layout_marginLeft="4dp"
+                android:background="@drawable/my_title_share_icon"
+                android:onClick="onClick" />
+            
+            <Button
+                android:id="@+id/header_home"
+                style="@style/header_home"
+                android:visibility="gone"
+                android:layout_marginRight="10dp"
+                android:onClick="onClick" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txt_title"
@@ -67,7 +83,6 @@
                 android:layout_margin="10dp"
                 android:text="已算过，下次再算吧"
                 android:textColor="@color/bg_green" />
-
         </LinearLayout>
 
         <TextView
@@ -77,13 +92,12 @@
             android:lineSpacingExtra="4dp"
             android:textColor="@color/calendar_txt"
             android:textSize="18sp" />
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/btn_share_line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_alignParentBottom="true"
         android:background="@color/jie_gua"
         android:orientation="vertical"

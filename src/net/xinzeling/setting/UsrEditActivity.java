@@ -81,6 +81,7 @@ public class UsrEditActivity extends Activity {
 		inputPhone.setText(usr.getString("phone", ""));
 		inputEmail.setText(usr.getString("email", ""));
 		spinnerBirth.setSelection(usr.getInt("birth_spinner", 0));
+		
 		spinnerBirth.setOnItemSelectedListener(new OnItemSelectedListener(){
 
 			@Override
@@ -117,7 +118,6 @@ public class UsrEditActivity extends Activity {
 		if(avata !=null){
 			avataImg.setImageBitmap(avata);
 		}
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(UsrEditActivity.this), UsrEditActivity.this);
 	}
 
 	public void onClick(View view) {
@@ -224,7 +224,7 @@ public class UsrEditActivity extends Activity {
 		protected Boolean doInBackground(Void... args) {
 			SharedPreferences usr = MyApplication.sharedPreference;
 			params.put("usertoken", MyApplication.userToken);//授权令牌
-			params.put("nickName", usr.getString("nick", ""));//昵称
+			params.put("NickName", usr.getString("nick", ""));//昵称
 			params.put("firstName", usr.getString("firstName", ""));//姓
 			params.put("secondName", usr.getString("name", ""));//名
 			params.put("gender", usr.getInt("gender", 0));//性别
@@ -238,7 +238,7 @@ public class UsrEditActivity extends Activity {
 			params.put("marriage", 0);//婚姻  0未婚1结婚
 			
 			try {
-				JSONObject jsonResp = RequestManager.getPost(MyApplication.update_usr_profile_url, params);
+				JSONObject jsonResp = RequestManager.getGet(MyApplication.update_usr_profile_url, params);
 				int resCode = jsonResp.getInt("resCode");
 				if(resCode ==0){
 					return true;
