@@ -76,20 +76,29 @@ public class Utils {
 		return now <= end + limitDaySecond && now >= start ? true : false;
 	}
 
-	public static Date getDataByStringyyyyMMdd(String str) {
+	public static Date getDateByStringyyyyMMdd(String str) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		try {
 			return sdf.parse(str);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return new Date();
 	}
+	/** fomatter  yyyyMMdd  yyyy年MM月dd日 HH时mm分ss秒 */
+	public static Date getDateByStringyyyyMMdd(String str,String fomatter) {
+		SimpleDateFormat sdf = new SimpleDateFormat(fomatter);
+		try {
+			return sdf.parse(str);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return new Date();
+	}
 	
 	/**
-	 * "yyyyMMdd"  format
+	 * "yyyyMMdd"  format yyyy年MM月dd日 HH时mm分ss秒
 	 * 
 	 * */
 	public static String getStringByDate(String format,long time) {

@@ -20,6 +20,14 @@ C:\Users\luoyuan.myp>adb pull /data/data/net.xinzeling2/databases/rep.db e://
 备注：
 暂时代码里用的应用appkey是我自己申请的，到时候换成你的吧，上线了再改成他们的吧，主要我最近不在状态，该项目托了很久，界面上不是太擅长，辛苦你了，希望她早日上线吧！
 
+//首页角标接口
+{"resCode":"0","downloadUrl":"http:\/\/www.baidu.com","badge":"134","version":"1.1"}
+
+//最近大师看法页接口
+[{"content":"","time":"2015.01.26","title":"【生肖日运】牛财官两旺，马多方发展","url":"http://115.29.5.162/management/news.aspx?id=181"}]
+
+//大师看法list
+http://115.29.5.162/webservice/XZLService.asmx/push01GetList?timestamp=0
 
 //sina sso login ok data
 uid=1310602621
@@ -35,7 +43,7 @@ followers_count=641
 profile_image_url=http://tp2.sinaimg.cn/1310602621/180/5635546650/1
 access_token=2.00xbJh7BVGmUoBf2a29e98b103Dj_B
 
-//http  未登录 请求结果
+//http  未登录 请求结果 、tocken问题
 01-21 22:22:54.621: I/xzl http :(14035): url: http://115.29.5.162/webservice/XZLService.asmx/divine11DoubleNum?nametwo=%E5%95%8A&numone=12&nameone=%E5%B0%B1%E8%BF%91&lunardate=%E7%94%B2%E5%8D%88%E5%B9%B4%E4%B8%81%E4%B8%91%E6%9C%88%E4%B8%81%E9%85%89%E6%97%A5&gender=2&numtwo=22&type=27&usertoken=null
 01-21 22:22:54.681: I/xzl http :(14035): response {"resCode":"0104","resMsg":"Unknown User Token"}
 

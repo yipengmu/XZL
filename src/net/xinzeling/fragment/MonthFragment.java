@@ -6,6 +6,7 @@ import java.util.Date;
 import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
 import net.xinzeling.adapter.ItemAdapter;
+import net.xinzeling.common.CommonDefine;
 import net.xinzeling.gua.JieGuaActivity;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.CalendarView;
@@ -14,10 +15,14 @@ import net.xinzeling.lib.DateTime;
 import net.xinzeling.model.ItemModel;
 import net.xinzeling.model.ItemModel.Item;
 import net.xinzeling.model.LunarModel;
+import net.xinzeling.news.GuaNewsDetailActivity;
 import net.xinzeling.note.NoteCheckActivity;
 import net.xinzeling2.R;
 import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -64,6 +69,7 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 	private TextView lunarLucky;
 	private TextView lunarDemon;
 	private LinearLayout back_line_widthsize;
+	private TextView tv_show_recent_dashi_kanfa;
 	private int selectDateYYYYMMDD;
 	private int selectGuaOrNote;
 
@@ -87,7 +93,7 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 
 		todayBtn = (ImageView) view.findViewById(R.id.goback_today);
 		todayBtn.setOnClickListener(this);
-
+		tv_show_recent_dashi_kanfa = (TextView) view.findViewById(R.id.tv_show_recent_dashi_kanfa);
 		back_line_widthsize = (LinearLayout) view.findViewById(R.id.back_line_widthsize);
 		LayoutParams back_line_widthsize_layout = back_line_widthsize.getLayoutParams();
 		DisplayMetrics dm = new DisplayMetrics();
@@ -97,19 +103,10 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 		back_line_widthsize.setLayoutParams(back_line_widthsize_layout);
 
 		lunarTitle = (TextView) view.findViewById(R.id.lunar_title);
-		// lunarTitle.setTypeface(homeActivity.tf);
-		// android:drawablePadding="4dp"
 		lunarTitle.getPaint().setFakeBoldText(true);// 加粗
-
 		lunarSubTitle = (TextView) view.findViewById(R.id.lunar_sub_title);
-		// lunarSubTitle.setTypeface(homeActivity.tf);
-
 		lunarLucky = (TextView) view.findViewById(R.id.lunar_lucky);
-		// lunarLucky.setTypeface(homeActivity.tf);
-
 		lunarDemon = (TextView) view.findViewById(R.id.lunar_demon);
-		// lunarDemon.setTypeface(homeActivity.tf);
-
 		view.findViewById(R.id.lunar_layout).setOnClickListener(this);
 
 		expandBtn = view.findViewById(R.id.btn_expand);
@@ -126,6 +123,36 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 			this.onDateSelect(new Date(), true);
 		}
 		return view;
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		IntentFilter filter = new IntentFilter();
+		filter.addAction(CommonDefine.BROAD_CAST_RECENT_DASHI_KANFA);
+		getActivity().registerReceiver(new MyRecentDashiKanFaReceiver(), filter);
+
+		super.onViewCreated(view, savedInstanceState);
+	}
+
+	class MyRecentDashiKanFaReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context context, final Intent intent) {
+			tv_show_recent_dashi_kanfa.setVisibility(View.VISIBLE);
+			tv_show_recent_dashi_kanfa.setText("大师看法: " + intent.getStringExtra("recentTitle"));
+			
+			tv_show_recent_dashi_kanfa.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent news = new Intent(getActivity(), GuaNewsDetailActivity.class);
+					Bundle bundle = new Bundle();
+					bundle.putInt("news_id", intent.getIntExtra("pushId",0));
+					news.putExtras(bundle);
+					news.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getActivity().startActivity(news);
+				}
+			});
+		}
 	}
 
 	public void onClick(View view) {

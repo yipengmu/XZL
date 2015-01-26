@@ -10,5 +10,7 @@ public class CommonDefine {
 	
 	
 
+	public static String BROAD_CAST_RECENT_DASHI_KANFA = "net.xzl.broad_cast_recent_dashi_kanfa";
 	public static String PREF_MY_ZHUANFA_KEY = "pref_my_zhuanfa_key";
+	public static String PREF_RECNET_DASHI_KANFA = "pref_recnet_dashi_kanfa";
 }

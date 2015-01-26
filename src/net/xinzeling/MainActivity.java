@@ -197,7 +197,7 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 			return;
 		}
 		long timeNow = System.currentTimeMillis();
-		if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDataByStringyyyyMMdd(userTokenExpireDate).getTime())) {
+		if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDateByStringyyyyMMdd(userTokenExpireDate).getTime())) {
 			// new AutoLoginTask(renewalToken).equals(null);
 		}
 

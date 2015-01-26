@@ -32,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class SNSShareMenu {
 
@@ -170,18 +171,23 @@ public class SNSShareMenu {
 
 		mMenu.dismiss();
 		ShareAppInfo info = mShareAppList.get(position);
-//		if (shareDirectly(info, mShareMsgContent + " " + cleanedUrl(mShareUrl))) {
-//			// 短信，复制
-//			return;
-//		}
-		
-		if(info.icon == R.drawable.btn_weixin_friend_timeline_dark){
+		// if (shareDirectly(info, mShareMsgContent + " " +
+		// cleanedUrl(mShareUrl))) {
+		// // 短信，复制
+		// return;
+		// }
+
+		if (info.icon == R.drawable.btn_weixin_friend_timeline_dark) {
 			new WeixinManager(mContext).sendReq(mShareMsgContent, true);
-		}else if(info.icon == R.drawable.btn_weibo_im_dark){
+		} else if (info.icon == R.drawable.btn_weibo_im_dark) {
 			new WeixinManager(mContext).sendReq(mShareMsgContent, false);
-		}else{
-			// 非直接分享 ,intent Action 方式
-			gotoShare(info, null, mShareMsgContent, mShareUrl);
+		} else {
+			if(!info.isInstalled){
+				Toast.makeText(mContext, "未检测到应用程序，请安装后再分享", Toast.LENGTH_SHORT).show();
+			}else{
+				// 非直接分享 ,intent Action 方式
+				gotoShare(info, null, mShareMsgContent, mShareUrl);
+			}
 		}
 
 	}
@@ -293,10 +299,32 @@ public class SNSShareMenu {
 			}
 		}
 
-		nameList.add(new ShareAppInfo(R.drawable.btn_weibo_im_dark,"微信"));
-		nameList.add(new ShareAppInfo(R.drawable.btn_weixin_friend_timeline_dark,"朋友圈"));
-		
+		nameList.add(new ShareAppInfo(R.drawable.btn_weibo_im_dark, "微信"));
+		nameList.add(new ShareAppInfo(R.drawable.btn_weixin_friend_timeline_dark, "朋友圈"));
+
+		checkShareList(nameList,list);
 		return nameList;
+	}
+
+	private void checkShareList(ArrayList<ShareAppInfo> nameList, List<ResolveInfo> list) {
+		if (!isAppInstalled(list, "com.sina.weibo")) {
+			//微博未安装，添加icon点击给出提示
+			nameList.add(new ShareAppInfo(R.drawable.btn_weibo_icon_dark, "新浪微博",false));
+		}
+		if (!isAppInstalled(list, "com.qzone")) {
+			//qzone未安装，添加icon点击给出提示
+			nameList.add(new ShareAppInfo(R.drawable.btn_share_qq_dark, "QQ空间",false));
+		}
+	}
+
+	private boolean isAppInstalled(List<ResolveInfo> list, String packagename) {
+		for (int i = 0; i < list.size(); i++) {
+			if(packagename.equals(list.get(i).activityInfo.packageName.toLowerCase())){
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 	private boolean checkInShareList(int iconId) {

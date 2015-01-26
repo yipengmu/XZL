@@ -168,8 +168,6 @@ public class DashikanfaItemAdapter extends BaseAdapter {
 				public void onClick(View arg0) {
 					try {
 						Intent news = new Intent(context, GuaNewsDetailActivity.class);
-						// news.putExtra("news_id",
-						// Integer.valueOf((String)arg0.getTag()));
 						Bundle bundle = new Bundle();
 						bundle.putInt("news_id", Integer.valueOf((String) arg0.getTag()));
 						news.putExtras(bundle);

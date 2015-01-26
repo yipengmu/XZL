@@ -59,7 +59,7 @@ public class SplashActivity extends BaseActivity {
 	private void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
 		if (!TextUtils.isEmpty(userTokenExpireDate) && !TextUtils.isEmpty(renewalToken)) {
 			long timeNow = System.currentTimeMillis();
-			if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDataByStringyyyyMMdd(userTokenExpireDate).getTime())) {
+			if (!Utils.isInCorrectTimeSection(timeNow, timeNow, Utils.getDateByStringyyyyMMdd(userTokenExpireDate).getTime())) {
 				new AutoLoginTask(renewalToken).equals(null);
 			}
 		}else{

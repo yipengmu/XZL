@@ -15,6 +15,12 @@
     <string name="alert_push">是否接收推送消息:</string>
     <string name="about">关于我们</string>
     <string name="PushSwitch">消息推送</string>
-	<string name="UsrEditImg"><u>更改头像</u></string>
+    <string name="UsrEditImg"><u>更改头像</u></string>
     <string name="setting">设置</string>
+   
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unknown">发送返回</string>
+
 </resources>

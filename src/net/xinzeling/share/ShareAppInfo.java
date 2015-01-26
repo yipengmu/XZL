@@ -18,11 +18,19 @@ public class ShareAppInfo {
 	public Intent intent;
 	/** 埋点名称 */
 	public String mUTName;
-
+	public boolean isInstalled = true;
+	
 	public ShareAppInfo(int icon, String name) {
 		this.name = name;
 		this.icon = icon;
 	}
+	
+	public ShareAppInfo(int icon, String name,boolean isInstalled) {
+		this.name = name;
+		this.icon = icon;
+		this.isInstalled = isInstalled;
+	}
+
 
 	public ShareAppInfo(int icon, String name, String uTName) {
 		this.name = name;

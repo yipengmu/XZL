@@ -12,7 +12,7 @@ import com.tencent.mm.sdk.openapi.WXTextObject;
 
 public class WeixinManager {
 
-    public static final String APP_ID = "wx4acd7a106495b9ed";
+    public static final String APP_ID = "wxa8a16a2cb4ee1af2";
 	private IWXAPI api;
 	WXTextObject textObj;
 	private Context mContext;
