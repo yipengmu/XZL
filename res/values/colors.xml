@@ -25,5 +25,6 @@
     <color name="global_background">#FFF5F5F5</color>
     <color name="dark_grey">#ff4c4c49</color>
     <color name="common_light_green">#f5fdce</color>
+    <color name="translucent_common_light_green">#559fb521</color>
     
 </resources>

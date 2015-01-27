@@ -86,6 +86,16 @@
         <item name="android:background">@drawable/tab_noborder_selector</item>
     </style>
 
+    <style name="white14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="grey14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/calendar_txt</item>
+    </style>
+
     <style name="selector_tab">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

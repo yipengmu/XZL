@@ -130,7 +130,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
-jkc
+
         <!-- ############ 微信和微信朋友圈的回调 ############### -->
         <activity
             android:name="net.xinzeling2.wxapi.WXEntryActivity"
@@ -149,6 +149,7 @@ jkc
         <activity android:name="net.xinzeling.PushSwitchActivity" />
         <activity android:name="net.xinzeling.news.GuaNewsActivity" />
         <activity android:name="net.xinzeling.news.GuaNewsDetailActivity" />
+        <activity android:name="net.xinzeling.ui.myxzl.MyXZLActivity" />
         <activity
             android:name="net.xinzeling.share.CommonShareActivity"
             android:theme="@style/translucent" />

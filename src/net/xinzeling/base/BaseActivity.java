@@ -23,7 +23,7 @@ public class BaseActivity extends Activity implements OnClickListener {
 
 	}
 
-	protected void initTitleBar() {
+	private void initTitleBar() {
 		txt_title = (TextView) findViewById(R.id.txt_title);
 		btn_back = (Button) findViewById(R.id.btn_back);
 	}

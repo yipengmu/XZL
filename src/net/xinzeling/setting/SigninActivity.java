@@ -10,6 +10,7 @@ import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
 import net.xinzeling.common.SinaWeiboAccountManager;
 import net.xinzeling.net.http.RequestManager;
+import net.xinzeling.ui.myxzl.MyXZLActivity;
 import net.xinzeling.webview.WebViewActivity;
 import net.xinzeling2.R;
 
@@ -132,7 +133,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			this.startActivityForResult(intent, FLAG_SETTING );
 			break;
 		case R.id.rb_my:
-			intent.setClass(this, UsrEditActivity.class);
+			intent.setClass(this, MyXZLActivity.class);
 			this.startActivityForResult(intent, FLAG_MY );
 			break;
 		case R.id.btn_logout:
