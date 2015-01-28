@@ -40,17 +40,18 @@ public class SplashActivity extends BaseActivity {
 				//db
 				MyApplication.dbHelper = new DBHelper(SplashActivity.this, "xinzeling.db");
 				MyApplication.dbh = MyApplication.dbHelper.getWritableDatabase();
-
-				//auto login
-				MyApplication.usrName = MyApplication.sharedPreference.getString("nick", "");
-				MyApplication.gender = MyApplication.sharedPreference.getInt("gender", 2);
+			
 				MyApplication.pushSwitch = MyApplication.sharedPreference.getBoolean("pushSwitch", true);
-				MyApplication.userToken = MyApplication.sharedPreference.getString("userToken", null);
-				MyApplication.userTokenExpireDate = MyApplication.sharedPreference.getString("userTokenExpireDate", "");
-				MyApplication.renewalToken = MyApplication.sharedPreference.getString("renewalToken", null);
-				MyApplication.renewalTokenExpire = MyApplication.sharedPreference.getString("renewalTokenExpire", "");
 				
-				checkIfNeedReautoLogin(MyApplication.userTokenExpireDate, MyApplication.renewalToken);
+				//auto login
+				MyApplication.mCommonAccountManager.usrName = MyApplication.sharedPreference.getString("nick", "");
+				MyApplication.mCommonAccountManager.gender = MyApplication.sharedPreference.getInt("gender", 2);
+				MyApplication.mCommonAccountManager.userToken = MyApplication.sharedPreference.getString("userToken", null);
+				MyApplication.mCommonAccountManager.userTokenExpireDate = MyApplication.sharedPreference.getString("userTokenExpireDate", "");
+				MyApplication.mCommonAccountManager.renewalToken = MyApplication.sharedPreference.getString("renewalToken", null);
+				MyApplication.mCommonAccountManager.renewalTokenExpire = MyApplication.sharedPreference.getString("renewalTokenExpire", "");
+				
+				checkIfNeedReautoLogin(MyApplication.mCommonAccountManager.userTokenExpireDate, MyApplication.mCommonAccountManager.renewalToken);
 			}
 		}, 1500);
 

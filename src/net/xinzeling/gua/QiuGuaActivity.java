@@ -425,10 +425,10 @@ public class QiuGuaActivity extends BaseActivity {
 				gua_xz_info = GuaCntModel.fetch(type);
 			}
 
-			params.put("usertoken", MyApplication.userToken);
+			params.put("usertoken", MyApplication.mCommonAccountManager.userToken);
 			params.put("type", type);
 
-			params.put("gender", MyApplication.gender);
+			params.put("gender", MyApplication.mCommonAccountManager.gender);
 			params.put("nameone", name1Input.getText().toString());
 			params.put("nametwo", isDouble(type) ? name2Input.getText().toString() : "");
 			try {

@@ -76,8 +76,6 @@ public class SettingActivity extends BaseActivity {
 		case R.id.radio_update:
 			fManager.beginTransaction().replace(R.id.fragment_content, frag_update).commit();
 			break;
-		case R.id.radio_dafen:
-			break;
 		}
 	}
 	

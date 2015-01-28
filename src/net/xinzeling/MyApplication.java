@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import net.xinzeling.common.account.XZLAccountManager;
+import net.xinzeling.common.account.XZLCommonAccountManager;
 import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.DateTime;
@@ -124,16 +126,15 @@ public class MyApplication extends Application {
 	public static DBHelper dbHelper;
 	public static SharedPreferences sharedPreference ;
 
-	public static int usrId = -1;
-	public static String usrName;
-	public static int gender = 2;
+	
 	/**true代表打开，false 关闭  默认开启*/
 	public static boolean pushSwitch = true;
 
-	public static String userToken;
-	public static String userTokenExpireDate;
-	public static String renewalToken;
-	public static String renewalTokenExpire;
+	public static XZLCommonAccountManager mCommonAccountManager = XZLAccountManager.commonAccount;
+//	public static String userToken;
+//	public static String userTokenExpireDate;
+//	public static String renewalToken;
+//	public static String renewalTokenExpire;
 	private static boolean mApplicationIsInited = false;
 	public static List<String> userinfo_params_key = Arrays.asList(new String[] { "nick", "firstName", "name", "birthday", "birthTime", "phone", "email", "birthAddress", "nowaddr", "career",
 			"marriage", "gender" });
@@ -330,10 +331,10 @@ public class MyApplication extends Application {
 		editor.putString("renewalToken", renewalToken);
 		editor.putString("renewalTokenExpire", renewalTokenExpire);
 		editor.apply();
-		MyApplication.userToken = userToken;
-		MyApplication.userTokenExpireDate = userTokenExpireDate;
-		MyApplication.renewalToken = renewalToken;
-		MyApplication.renewalTokenExpire = renewalTokenExpire;
+		mCommonAccountManager.userToken = userToken;
+		mCommonAccountManager.userTokenExpireDate = userTokenExpireDate;
+		mCommonAccountManager.renewalToken = renewalToken;
+		mCommonAccountManager.renewalTokenExpire = renewalTokenExpire;
 		sendBroadcastAboutUsrStatus(true);
 	}
 
@@ -399,14 +400,14 @@ public class MyApplication extends Application {
 		editor.remove("userToken");
 		editor.remove("renewalToken");
 		editor.apply();
-		MyApplication.userToken = null;
-		MyApplication.usrId = -1;
-		MyApplication.usrName = null;
+		mCommonAccountManager.userToken = null;
+		mCommonAccountManager.usrId = -1;
+		mCommonAccountManager.usrName = null;
 		sendBroadcastAboutUsrStatus(false);
 	}
 
 	public static boolean isSignin() {
-		if (MyApplication.userToken != null) {
+		if (mCommonAccountManager.userToken != null) {
 			return true;
 		}
 		return false;
@@ -422,7 +423,7 @@ public class MyApplication extends Application {
 			String userTokenExpireDateDate = jsonResp.getString("userTokenExpireDateDate");
 			String renewalToken = jsonResp.getString("renewalToken");
 			String renewalTokenExpire = jsonResp.getString("renewalTokenExpire");
-			MyApplication.onSignin(userToken, userTokenExpireDate, renewalToken, renewalTokenExpire);
+			MyApplication.onSignin(userToken, userTokenExpireDateDate, renewalToken, renewalTokenExpire);
 		}
 	}
 

@@ -8,7 +8,8 @@ import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
-import net.xinzeling.common.SinaWeiboAccountManager;
+import net.xinzeling.common.account.QQAccountManager;
+import net.xinzeling.common.account.SinaWeiboAccountManager;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.ui.myxzl.MyXZLActivity;
 import net.xinzeling.webview.WebViewActivity;
@@ -41,6 +42,7 @@ import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener
 import com.umeng.socialize.controller.listener.SocializeListeners.UMDataListener;
 import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 
 public class SigninActivity extends BaseActivity implements OnClickListener {
@@ -146,51 +148,65 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	// QQ登录
 	private void signinQQ() {
-//		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SigninActivity.this, MyApplication.QQ_APP_ID, MyApplication.QQ_APP_KEY);
-//		qqSsoHandler.addToSocialSDK();
-//		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.QQ, new UMAuthListener() {
-//			@Override
-//			public void onStart(SHARE_MEDIA platform) {
-//				Toast.makeText(SigninActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
-//			}
-//
-//			@Override
-//			public void onError(SocializeException e, SHARE_MEDIA platform) {
-//				Toast.makeText(SigninActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
-//			}
-//
-//			@Override
-//			public void onComplete(Bundle value, SHARE_MEDIA platform) {
-//				Toast.makeText(SigninActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
-//				// 获取相关授权信息
-//				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.QQ, new UMDataListener() {
-//					@Override
-//					public void onStart() {
-//						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
-//					}
-//
-//					@Override
-//					public void onComplete(int status, Map<String, Object> info) {
-//						if (status == 200 && info != null) {
-//							StringBuilder sb = new StringBuilder();
-//							Set<String> keys = info.keySet();
-//							for (String key : keys) {
-//								sb.append(key + "=" + info.get(key).toString() + "\r\n");
-//							}
-//							Log.d("TestData", sb.toString());
-//						} else {
-//							Log.d("TestData", "发生错误：" + status);
-//						}
-//					}
-//					
-//				});
-//			}
-//
-//			@Override
-//			public void onCancel(SHARE_MEDIA platform) {
-//				Toast.makeText(SigninActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
-//			}
-//		});
+		UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(SigninActivity.this, MyApplication.QQ_APP_ID, MyApplication.QQ_APP_KEY);
+		qqSsoHandler.addToSocialSDK();
+		mController.doOauthVerify(SigninActivity.this, SHARE_MEDIA.QQ, new UMAuthListener() {
+			@Override
+			public void onStart(SHARE_MEDIA platform) {
+				Toast.makeText(SigninActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onError(SocializeException e, SHARE_MEDIA platform) {
+				Toast.makeText(SigninActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onComplete(Bundle value, SHARE_MEDIA platform) {
+				Toast.makeText(SigninActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
+				// 获取相关授权信息
+				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.QQ, new UMDataListener() {
+					@Override
+					public void onStart() {
+						Toast.makeText(SigninActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+					}
+
+					@Override
+					public void onComplete(int status, Map<String, Object> info) {
+						if (status == 200 && info != null) {
+
+							updateAccountInfoFromQQSso(info);
+							
+							StringBuilder sb = new StringBuilder();
+							Set<String> keys = info.keySet();
+							for (String key : keys) {
+								sb.append(key + "=" + info.get(key).toString() + "\r\n");
+							}
+							Log.d("TestData", sb.toString());
+						} else {
+							Log.d("TestData", "发生错误：" + status);
+						}
+					}
+
+					private void updateAccountInfoFromQQSso(Map<String, Object> info) {
+						QQAccountManager.getInstance().uid = (String) info.get("uid");
+						QQAccountManager.getInstance().gender = (String) info.get("gender");
+						QQAccountManager.getInstance().screen_name = (String) info.get("screen_name");
+						QQAccountManager.getInstance().openid = (String) info.get("openid");
+						QQAccountManager.getInstance().profile_image_url = (String) info.get("profile_image_url");
+						QQAccountManager.getInstance().access_token = (String) info.get("access_token");
+						QQAccountManager.getInstance().profile_image_url = (String) info.get("profile_image_url");
+						QQAccountManager.getInstance().verified = (int) info.get("verified");
+					}
+					
+				});
+			}
+
+			@Override
+			public void onCancel(SHARE_MEDIA platform) {
+				Toast.makeText(SigninActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
+			}
+		});
 
 	}
 
@@ -254,7 +270,6 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onStart(SHARE_MEDIA arg0) {
-				// TODO Auto-generated method stub
 				System.out.println("onstart");
 			}
 		});
@@ -356,13 +371,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 					String renewalToken = jsonResp.getString("renewalToken");
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
 					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
-					SigninActivity.this.runOnUiThread(new Runnable() {
-
-						@Override
-						public void run() {
-							toast("登录成功");
-						}
-					});
+					
 					return true;
 				} else {
 					errorDesc = jsonResp.getString("resMsg");
@@ -380,6 +389,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 				progress.dismiss();
 			}
 			if (result) {
+				toast("登录成功");
 				Intent intent = new Intent(SigninActivity.this, MainActivity.class);
 				startActivity(intent);
 				finish();

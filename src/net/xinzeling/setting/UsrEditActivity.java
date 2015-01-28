@@ -160,10 +160,10 @@ public class UsrEditActivity extends Activity {
 		
 		if(radioMale.isChecked()){
 			editor.putInt("gender", 0);
-			MyApplication.gender=0;
+			MyApplication.mCommonAccountManager.gender=0;
 		}else if(radioFemale.isChecked()){
 			editor.putInt("gender", 1);
-			MyApplication.gender=1;
+			MyApplication.mCommonAccountManager.gender=1;
 		}
 		
 		editor.putString("birthAddress", inputBirthAddr.getText().toString());
@@ -223,7 +223,7 @@ public class UsrEditActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... args) {
 			SharedPreferences usr = MyApplication.sharedPreference;
-			params.put("usertoken", MyApplication.userToken);//授权令牌
+			params.put("usertoken", MyApplication.mCommonAccountManager.userToken);//授权令牌
 			params.put("NickName", usr.getString("nick", ""));//昵称
 			params.put("firstName", usr.getString("firstName", ""));//姓
 			params.put("secondName", usr.getString("name", ""));//名

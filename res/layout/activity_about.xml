@@ -64,12 +64,6 @@
             style="@style/about_tab"
             android:onClick="onClick"
             android:text="软件更新" />
-        
-        <RadioButton
-            android:id="@+id/radio_dafen"
-            style="@style/about_tab"
-            android:onClick="onClick"
-            android:text="评分" />
 
     </RadioGroup>
 

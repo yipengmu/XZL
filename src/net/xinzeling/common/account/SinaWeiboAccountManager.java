@@ -1,4 +1,4 @@
-package net.xinzeling.common;
+package net.xinzeling.common.account;
 
 public class SinaWeiboAccountManager {
 	// sina sso login ok data

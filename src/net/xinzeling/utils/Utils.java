@@ -12,8 +12,6 @@ import java.util.Date;
 
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
-import net.xinzeling.news.GuaNewsDetailActivity;
-import net.xinzeling.note.NoteActivity;
 import net.xinzeling.share.CommonShareActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +22,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.text.TextUtils;
+import android.view.WindowManager;
 
 public class Utils {
 
@@ -86,8 +85,9 @@ public class Utils {
 
 		return new Date();
 	}
-	/** fomatter  yyyyMMdd  yyyy年MM月dd日 HH时mm分ss秒 */
-	public static Date getDateByStringyyyyMMdd(String str,String fomatter) {
+
+	/** fomatter yyyyMMdd yyyy年MM月dd日 HH时mm分ss秒 */
+	public static Date getDateByStringyyyyMMdd(String str, String fomatter) {
 		SimpleDateFormat sdf = new SimpleDateFormat(fomatter);
 		try {
 			return sdf.parse(str);
@@ -96,16 +96,15 @@ public class Utils {
 		}
 		return new Date();
 	}
-	
+
 	/**
-	 * "yyyyMMdd"  format yyyy年MM月dd日 HH时mm分ss秒
+	 * "yyyyMMdd" format yyyy年MM月dd日 HH时mm分ss秒
 	 * 
 	 * */
-	public static String getStringByDate(String format,long time) {
+	public static String getStringByDate(String format, long time) {
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.format(new Date(time));
 	}
-
 
 	// 打开APK程序代码
 	private void openFile(File file) {
@@ -141,19 +140,29 @@ public class Utils {
 		return localVersion;
 	}
 
+	public static int getScreenWidth(Context c) {
+		WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
+		return wm.getDefaultDisplay().getWidth();
+	}
+
+	public static int getScreenHeight(Context c) {
+		WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
+		return wm.getDefaultDisplay().getHeight();
+	}
+	
+
 	/**
 	 * 
-		intent.putExtra("tabIndex", MainActivity.Maintab_Index_Home);
+	 intent.putExtra("tabIndex", MainActivity.Maintab_Index_Home);
 	 * 
-	 * 	public static int Maintab_Index_Home = 0;
-		public static int Maintab_Index_Gua = 1;
-		public static int Maintab_Index_Note = 2;
-		public static int Maintab_Index_My = 3;
+	 * public static int Maintab_Index_Home = 0; public static int
+	 * Maintab_Index_Gua = 1; public static int Maintab_Index_Note = 2; public
+	 * static int Maintab_Index_My = 3;
 	 * 
 	 * */
-	public static Intent getMaintabIndexIntent(Context c,int index){
+	public static Intent getMaintabIndexIntent(Context c, int index) {
 		Intent intent = new Intent(c, MainActivity.class);
-		intent.putExtra("tabIndex",index);
+		intent.putExtra("tabIndex", index);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		return intent;

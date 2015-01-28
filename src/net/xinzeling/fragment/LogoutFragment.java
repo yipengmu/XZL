@@ -26,7 +26,7 @@ public  class LogoutFragment extends DialogFragment implements OnClickListener{
     	 if(true){
     		 ((ImageView)view.findViewById(R.id.header_left_btn)).setImageResource(R.drawable.tab_usr_s);
     	 }
-    	 ((TextView)view.findViewById(R.id.header_main_title)).setText("确定要退出当前“"+MyApplication.usrName+"”的账号？");;
+    	 ((TextView)view.findViewById(R.id.header_main_title)).setText("确定要退出当前“"+MyApplication.mCommonAccountManager.usrName+"”的账号？");;
     	 return view;
     }
     

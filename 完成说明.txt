@@ -43,6 +43,17 @@ followers_count=641
 profile_image_url=http://tp2.sinaimg.cn/1310602621/180/5635546650/1
 access_token=2.00xbJh7BVGmUoBf2a29e98b103Dj_B
 
+//qq sso login ok data
+{
+    uid=A8BC19D755E2BDDFBFA2015AFE191E70,
+    gender=男,
+    screen_name=Alex,
+    openid=A8BC19D755E2BDDFBFA2015AFE191E70,
+    profile_image_url=http: //qzapp.qlogo.cn/qzapp/1104084591/A8BC19D755E2BDDFBFA2015AFE191E70/100,
+    access_token=377B62E36F530FB8167640FD3899B5EE,
+    verified=0
+}
+
 //http  未登录 请求结果 、tocken问题
 01-21 22:22:54.621: I/xzl http :(14035): url: http://115.29.5.162/webservice/XZLService.asmx/divine11DoubleNum?nametwo=%E5%95%8A&numone=12&nameone=%E5%B0%B1%E8%BF%91&lunardate=%E7%94%B2%E5%8D%88%E5%B9%B4%E4%B8%81%E4%B8%91%E6%9C%88%E4%B8%81%E9%85%89%E6%97%A5&gender=2&numtwo=22&type=27&usertoken=null
 01-21 22:22:54.681: I/xzl http :(14035): response {"resCode":"0104","resMsg":"Unknown User Token"}

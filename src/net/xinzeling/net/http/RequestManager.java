@@ -105,8 +105,8 @@ public class RequestManager {
 	public static String paramsEncode(HashMap<String,Object> params){
 		StringBuffer sb = new StringBuffer();
 		
-		if(params.get("renewalTokenExpire") == null && !TextUtils.isEmpty(MyApplication.renewalTokenExpire)){
-			params.put("renewalTokenExpire",MyApplication.renewalTokenExpire);
+		if(params.get("renewalTokenExpire") == null && !TextUtils.isEmpty(MyApplication.mCommonAccountManager.renewalTokenExpire)){
+			params.put("renewalTokenExpire",MyApplication.mCommonAccountManager.renewalTokenExpire);
 		}
 		
 		if(params !=null && !params.isEmpty()){
