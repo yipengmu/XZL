@@ -175,13 +175,16 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 		case R.id.rl_choose_time:
 			// 选择时间
 			getPopupWindowInstance();
+
+			mPopDateSectionWindow.dismiss();
+			mPopTypeChooseWindow.dismiss();
 			mPopDateSectionWindow.showAsDropDown(v, 0, 0);// X、Y方向各偏移50
 			break;
 		case R.id.rl_choose_type:
 			// 选择类型
 			getPopupWindowInstance();
-//			mPopTypeChooseWindow.showAsDropDown(v,  Utils.getScreenWidth(this) - v.getWidth(), 0);
-
+			mPopDateSectionWindow.dismiss();
+			mPopTypeChooseWindow.dismiss();
 			mPopTypeChooseWindow.showAsDropDown(v,  0, 0);
 			break;
 
