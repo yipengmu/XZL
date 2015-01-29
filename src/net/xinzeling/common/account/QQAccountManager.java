@@ -16,7 +16,7 @@ public class QQAccountManager {
 	public String openid;
 	public String profile_image_url;
 	public String access_token;
-	public int verified;
+	public String verified;
 	
 	private static QQAccountManager ins;
 

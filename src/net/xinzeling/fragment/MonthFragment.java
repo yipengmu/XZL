@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -215,13 +216,20 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 	@Override
 	public void onResume() {
 		super.onResume();
-		if (selectGuaOrNote == 0) {
-			new LoadTask().execute(0, selectDateYYYYMMDD);
-		} else if (selectGuaOrNote == R.id.radio_item_gua) {
-			new LoadTask().execute(ItemModel.REFER_GUA, selectDateYYYYMMDD);
-		} else if (selectGuaOrNote == R.id.radio_item_note) {
-			new LoadTask().execute(ItemModel.REFER_NOTE, selectDateYYYYMMDD);
-		}
+		
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				if (selectGuaOrNote == 0) {
+					new LoadTask().execute(0, selectDateYYYYMMDD);
+				} else if (selectGuaOrNote == R.id.radio_item_gua) {
+					new LoadTask().execute(ItemModel.REFER_GUA, selectDateYYYYMMDD);
+				} else if (selectGuaOrNote == R.id.radio_item_note) {
+					new LoadTask().execute(ItemModel.REFER_NOTE, selectDateYYYYMMDD);
+				}
+			}
+		}, 600);
+	
 	}
 
 	// 参数1 类型 参数2 日期
@@ -229,7 +237,11 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 
 		@Override
 		protected Void doInBackground(Integer... args) {
-			itemList = ItemModel.getItemList(args[0], args[1] + "");
+			try {
+				itemList = ItemModel.getItemList(args[0], args[1] + "");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return null;
 		}
 

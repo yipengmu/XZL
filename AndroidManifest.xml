@@ -57,10 +57,11 @@
     <application
         android:name="net.xinzeling.MyApplication"
         android:allowBackup="true"
+        android:configChanges="keyboardHidden|orientation"
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="portrait"
+        android:screenOrientation="landscape"
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="UMENG_APPKEY"
@@ -77,7 +78,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity
@@ -130,7 +131,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" >
         </activity>
-
+
         <!-- ############ 微信和微信朋友圈的回调 ############### -->
         <activity
             android:name="net.xinzeling2.wxapi.WXEntryActivity"
@@ -153,8 +154,7 @@
         <activity
             android:name="net.xinzeling.share.CommonShareActivity"
             android:theme="@style/translucent" />
-        <activity
-            android:name="net.xinzeling.ui.myzhuanfa.MyZhuanfaActivity"/>
+        <activity android:name="net.xinzeling.ui.myzhuanfa.MyZhuanfaActivity" />
         <activity android:name="net.xinzeling.news.GuaShiActivity" />
         <activity android:name="net.xinzeling.setting.SettingActivity" />
         <activity
