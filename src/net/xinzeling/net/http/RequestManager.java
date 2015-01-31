@@ -30,7 +30,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 

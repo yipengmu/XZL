@@ -2,7 +2,6 @@ package net.xinzeling.setting;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
@@ -24,7 +23,6 @@ import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,7 +46,6 @@ import com.umeng.socialize.sso.UMSsoHandler;
 
 public class SigninActivity extends BaseActivity implements OnClickListener {
 
-	private SigninTask signinTask = null;
 	private UMSocialService mController;
 	private EditText emailInput;
 	private EditText passwdInput;
@@ -187,7 +184,6 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 						qqIns.verified = (String) info.get("verified");
 						XZLAccountManager.getInstance().setmAcoutType(2).setQqAccount(qqIns);
 
-						Toast.makeText(SigninActivity.this, "正在更新帐户信息。。。", Toast.LENGTH_SHORT).show();
 						new ThirdSigninTask(qqIns.uid,qqIns.screen_name,qqIns.profile_image_url,qqIns.gender,"2").execute();
 					}
 					
@@ -223,7 +219,6 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 					
 					@Override
 					public void onStart() {
-						Toast.makeText(SigninActivity.this, "正在获取微博sso信息。。。", Toast.LENGTH_SHORT).show();
 					}
 
 					@Override
@@ -270,21 +265,18 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void onSubmit() {
-		if (signinTask == null) {
 			String email = emailInput.getText().toString();
 			String password = passwdInput.getText().toString();
 			if (!TextUtils.isEmpty(password) && !TextUtils.isEmpty(email)) {
-				signinTask = new SigninTask(email, password,0);
-				signinTask.execute();
+				new SigninTask(email, password,0).execute();
 			}
-		}
 	}
 
 	private final class SigninTask extends AsyncTask<Void, Void, Boolean> {
 		private ProgressDialog progress;
 		private String errorDesc;
 		private HashMap<String, Object> params = new HashMap<String, Object>();
-
+		private int signinType = 0;
 		/**
 		 * auth 0 api 方式登录
 		 * auth 1 微博
@@ -294,6 +286,8 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			params.put("username", username);
 			params.put("password", passwd);
 			params.put("auth", auth);
+			
+			signinType = auth;
 		}
 
 		@Override
@@ -311,7 +305,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
 					String renewalToken = jsonResp.getString("renewalToken");
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
-					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire,signinType);
 					
 					return true;
 				} else {
@@ -337,7 +331,6 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			} else {
 				Toast.makeText(getApplicationContext(), errorDesc, Toast.LENGTH_LONG).show();
 			}
-			signinTask = null;
 		}
 	}
 
@@ -351,13 +344,8 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 				ssoHandler.authorizeCallBack(requestCode, resultCode, data);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-
-//		if(requestCode == FLAG_SETTING){
-//			rg_signin_container.check(R.id.rb_setting);
-//		}else if(requestCode == FLAG_MY){
-//			rg_signin_container.check(R.id.rb_my);
-//		}
 
 		rg_signin_container.check(R.id.rb_login);
 

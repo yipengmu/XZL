@@ -47,13 +47,22 @@
                     android:orientation="horizontal"
                     android:padding="9dp" >
 
-                    <net.xinzeling.lib.CircleImageView
+                    <!-- <net.xinzeling.lib.CircleImageView
                         android:id="@+id/img_avata"
                         style="@style/avata"
                         android:layout_marginTop="10dp"
                         app:border_color="#FFD8FA17"
-                        app:border_width="2dp" />
+                        app:border_width="2dp" /> -->
 
+                    <ImageView 
+                        android:id="@+id/img_avata"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/icon_usr_touxiang_default"
+                        android:layout_width="80dp"
+                        android:scaleType="center"
+                        android:layout_height="80dp" />
+                    
                     <Button
                         android:id="@+id/btn_avata"
                         android:layout_width="wrap_content"

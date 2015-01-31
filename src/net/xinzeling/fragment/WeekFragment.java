@@ -34,6 +34,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -78,6 +79,7 @@ public class WeekFragment extends Fragment implements CalendarListener,OnClickLi
 		if(selectDateYYYYMMDD==0){
 			this.onDateSelect(new Date(),true);
 		}
+		((RadioButton)view.findViewById(R.id.radio_note)).setChecked(true);
 		return view;
 	}
 
@@ -134,17 +136,17 @@ public class WeekFragment extends Fragment implements CalendarListener,OnClickLi
 	private class NoteLoadTask extends AsyncTask<Integer,Void,Void>{
 		private ArrayList<Item> itemList;
 		@Override
-		protected Void doInBackground(Integer... params) {
-			itemList = new ArrayList<Item>();
+		protected Void doInBackground(Integer... args) {
+			itemList = ItemModel.getItemList(ItemModel.REFER_NOTE,args[0]+"");
 			return null;
 		}
 		@Override
 		protected void onPostExecute(Void result){
 			if(itemAdapter ==null){
-				itemAdapter = new ItemDailyAdapter(homeActivity);		
-				itemListView.setAdapter(itemAdapter);
+				itemGuaAdapter = new ItemAdapter(homeActivity,itemList);		
+				itemListView.setAdapter(itemGuaAdapter);
 			}else{
-				itemAdapter.notifyDataSetChanged(itemList);
+				itemGuaAdapter.notifyDataSetChanged(itemList);
 			}
 		}
 	}
@@ -171,7 +173,7 @@ public class WeekFragment extends Fragment implements CalendarListener,OnClickLi
 	@Override
 	public void onResume() {
 		super.onResume();
-		if(selectGuaOrNote!=R.id.radio_note){
+		if(selectGuaOrNote == R.id.radio_gua){
 			new GuaLoadTask().execute(selectDateYYYYMMDD);
 		}else{
 			new NoteLoadTask().execute(selectDateYYYYMMDD);
@@ -180,11 +182,11 @@ public class WeekFragment extends Fragment implements CalendarListener,OnClickLi
 	
 	@Override
 	public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-		if(checkedId==0){
-			selectGuaOrNote = 0;
-			new NoteLoadTask().execute();
-		}else{
-			selectGuaOrNote = R.id.radio_note;
+		if(checkedId == R.id.radio_note){
+			selectGuaOrNote =  R.id.radio_note;
+			new NoteLoadTask().execute(selectDateYYYYMMDD);
+		}else if (checkedId == R.id.radio_gua){
+			selectGuaOrNote = R.id.radio_gua;
 			new GuaLoadTask().execute(selectDateYYYYMMDD);
 		}
 	}

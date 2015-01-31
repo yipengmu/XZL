@@ -15,7 +15,6 @@ import net.xinzeling2.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -88,7 +87,7 @@ public class SplashActivity extends BaseActivity {
 					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
 					String renewalToken = jsonResp.getString("renewalToken");
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
-					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire,0);
 					return true;
 				} else {
 					// 自动登录失败

@@ -1,11 +1,13 @@
 package net.xinzeling.common.account;
 
+import android.util.Log;
+
 public class XZLAccountManager {
 
 	private static XZLAccountManager ins = null;
 
 	/** 0 代表xzl api帐号 1代表微博，2代表qq */
-	public static int mAcoutType = 0;
+	public int mAcoutType = 0;
 
 	public static QQAccountManager qqAccount = new QQAccountManager();
 	public static SinaWeiboAccountManager SinaAccount = new SinaWeiboAccountManager();
@@ -20,14 +22,15 @@ public class XZLAccountManager {
 	}
 
 
-	public static int getmAcoutType() {
+	public int getmAcoutType() {
 		return mAcoutType;
 	}
 
 
 	/** 0 代表xzl api帐号 1代表微博，2代表qq */
-	public XZLAccountManager setmAcoutType(int mAcoutType) {
-		XZLAccountManager.mAcoutType = mAcoutType;
+	public XZLAccountManager setmAcoutType(int type) {
+		this.mAcoutType = type;
+		Log.d("type", "type " + mAcoutType);
 		return this;
 	}
 

@@ -8,7 +8,6 @@ import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
 import net.xinzeling.fragment.DateTimeFragment;
-import net.xinzeling.fragment.EarlyDateTimeFragment;
 import net.xinzeling.fragment.TopicFragment;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.model.NoteModel;
@@ -16,7 +15,6 @@ import net.xinzeling.model.NoteModel.Note;
 import net.xinzeling.widget.LineEditText;
 import net.xinzeling.widget.BlurMask.BlurMaskTask;
 import net.xinzeling2.R;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.database.Cursor;
@@ -56,7 +54,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 	private Animation scaleYdownAnim;
 	private View earlydatetimeView;
 
-	private FragmentManager manager;
 	private int repeat_type = 0;
 
 	public int[] DateTimeStartInfo = new int[] { 0, 0, 0, 0, 0 };// 年 月 日 时 分
@@ -118,11 +115,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			etimeHour.setText(calendar.get(Calendar.HOUR) + "点");
 			etimeMin.setText(calendar.get(Calendar.MINUTE) + "分");
 		}
-		// topicView = findViewById(R.id.topic_fragment);
 		findViewById(R.id.topic_frame).setOnClickListener(this);
-
-		// datetimeView = findViewById(R.id.datetime_fragment);
-		// findViewById(R.id.datetime_frame).setOnClickListener(this);
 
 		earlydatetimeView = findViewById(R.id.early_datetime_fragment);
 		findViewById(R.id.early_datetime_frame).setOnClickListener(this);
@@ -133,7 +126,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			@Override
 			public void onAnimationEnd(Animation arg0) {
 				findViewById(R.id.topic_frame).setVisibility(View.GONE);
-				// findViewById(R.id.datetime_frame).setVisibility(View.GONE);
 				findViewById(R.id.early_datetime_frame).setVisibility(View.GONE);
 			}
 
@@ -143,13 +135,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			public void onAnimationStart(Animation arg0) {
 			}
 		});
-
-		manager = getFragmentManager();
-
-		// topic_fragment = (TopicFragment)
-		// manager.findFragmentById(R.id.topic_fragment);
-		// datetime_fragment = (DateTimeFragment)
-		// manager.findFragmentById(R.id.datetime_fragment);
 
 		RadioGroup group = (RadioGroup) this.findViewById(R.id.radio_note_repeat);
 		// 绑定一个匿名监听器
@@ -241,13 +226,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 	}
 
 	public void showTopicFragment() {
-		// new TopicBlurMaskTask(this, topic_fragment, new Runnable() {
-		// @Override
-		// public void run() {
-		// topic_fragment.getView().startAnimation(scaleYupAnim);
-		// }
-		// }).execute();
-
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
 		fragmentTransaction.replace(R.id.fl_fragment, new TopicFragment());
@@ -334,9 +312,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			// 关闭主题
 			this.saveTopicFragment();
 			break;
-		// case R.id.datetime_frame:
-		// this.hideDateTimeFragment();
-		// break;
 		case R.id.early_datetime_frame:
 			this.hideEarlyDateTimeFragment();
 			break;
@@ -380,13 +355,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			DateTimeEndInfo[4] = Integer.valueOf(etimeMin.getText().toString().replace("分", ""));
 			break;
 		}
-		// new BlurMaskTask(this, findViewById(R.id.frame_main),
-		// findViewById(R.id.datetime_frame), new Runnable() {
-		// @Override
-		// public void run() {
-		// datetimeView.startAnimation(scaleYupAnim);
-		// }
-		// }).execute();
 
 		FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 		fragmentTransaction.replace(R.id.fl_fragment, new DateTimeFragment(this).setType(iDateType));
@@ -423,7 +391,6 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 	}
 
 	public void hideDateTimeFragment() {
-		// datetimeView.startAnimation(scaleYdownAnim);
 		switch (DateTimeSelectId) {
 		case R.id.input_stime_day:
 			stimeYear.setText(DateTimeStartInfo[0] + "年");
@@ -476,6 +443,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			isValidate = false;
 			String title = inputTopic.getText().toString();
 			String iconTheme = tv_topic_icon_themes.getText().toString();
+			
 			if (TextUtils.isEmpty(title) && TextUtils.isEmpty(iconTheme)) {
 				error_code = MyApplication.note_error_code.EMPTY_TITLE;
 				return null;

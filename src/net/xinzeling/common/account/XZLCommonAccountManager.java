@@ -8,7 +8,7 @@ public class XZLCommonAccountManager {
 	public String renewalToken;
 	public String renewalTokenExpire;
 	
-	public static int usrId = -1;
-	public static String usrName;
-	public static int gender = 2;
+	public int usrId = -1;
+	public String usrName;
+	public int gender = 2;
 }

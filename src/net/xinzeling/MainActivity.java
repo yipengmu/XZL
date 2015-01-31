@@ -234,7 +234,7 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 					String userTokenExpire = jsonResp.getString("userTokenExpireDate");
 					String renewalToken = jsonResp.getString("renewalToken");
 					String renewalTokenExpire = jsonResp.getString("renewalTokenExpireDate");
-					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire);
+					MyApplication.onSignin(userToken, userTokenExpire, renewalToken, renewalTokenExpire,0);
 					return true;
 				} else {
 					// 自动登录失败

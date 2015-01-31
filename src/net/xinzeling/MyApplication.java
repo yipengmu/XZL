@@ -11,17 +11,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import net.xinzeling.common.account.QQAccountManager;
+import net.xinzeling.common.account.SinaWeiboAccountManager;
 import net.xinzeling.common.account.XZLAccountManager;
 import net.xinzeling.common.account.XZLCommonAccountManager;
 import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.gua.GuaActivity;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.net.http.RequestManager;
-import net.xinzeling.push.PushManager;
 import net.xinzeling.receiver.AlarmReceiver;
 import net.xinzeling.setting.net.AppUpdateBean;
-import net.xinzeling.ui.SplashActivity;
-import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 
 import org.json.JSONException;
@@ -44,7 +43,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -324,19 +322,32 @@ public class MyApplication extends Application {
 		context.startActivity(guaIntent);
 	}
 
-	public static void onSignin(String userToken, String userTokenExpireDate, String renewalToken, String renewalTokenExpire) {
+	public static void onSignin(String userToken, String userTokenExpireDate, String renewalToken, String renewalTokenExpire,int loginType) {
 		Editor editor = sharedPreference.edit();
 		editor.putString("userToken", userToken);
 		editor.putString("userTokeExpire", userTokenExpireDate);
 		editor.putString("renewalToken", renewalToken);
 		editor.putString("renewalTokenExpire", renewalTokenExpire);
+		if(loginType == 1){
+			//weibo
+			SinaWeiboAccountManager sinaAc = SinaWeiboAccountManager.getInstance();
+			editor.putString("nick", sinaAc.screen_name);
+			editor.putString("faceLogo", sinaAc.profile_image_url);
+			editor.putInt("gender", sinaAc.gender);
+		}else if(loginType == 2){
+
+			QQAccountManager qqAc = QQAccountManager.getInstance();
+			editor.putString("nick", qqAc.screen_name);
+			editor.putString("faceLogo", qqAc.profile_image_url);
+			editor.putInt("gender", "男".equals(qqAc.gender)?1:2);
+		}
 		editor.apply();
 		mCommonAccountManager.userToken = userToken;
 		mCommonAccountManager.userTokenExpireDate = userTokenExpireDate;
 		mCommonAccountManager.renewalToken = renewalToken;
 		mCommonAccountManager.renewalTokenExpire = renewalTokenExpire;
 		
-		XZLAccountManager.getInstance().setmAcoutType(0).setCommonAccount(mCommonAccountManager);
+		XZLAccountManager.getInstance().setmAcoutType(loginType).setCommonAccount(mCommonAccountManager);
 		
 		sendBroadcastAboutUsrStatus(true);
 	}
@@ -426,7 +437,7 @@ public class MyApplication extends Application {
 			String userTokenExpireDateDate = jsonResp.getString("userTokenExpireDateDate");
 			String renewalToken = jsonResp.getString("renewalToken");
 			String renewalTokenExpire = jsonResp.getString("renewalTokenExpire");
-			MyApplication.onSignin(userToken, userTokenExpireDateDate, renewalToken, renewalTokenExpire);
+			MyApplication.onSignin(userToken, userTokenExpireDateDate, renewalToken, renewalTokenExpire,0);
 		}
 	}
 

@@ -7,11 +7,15 @@ import java.util.HashMap;
 
 import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.BirthAdapter;
+import net.xinzeling.common.account.QQAccountManager;
+import net.xinzeling.common.account.SinaWeiboAccountManager;
 import net.xinzeling.common.account.XZLAccountManager;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling2.R;
 
 import org.json.JSONObject;
+
+import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -26,6 +30,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -51,6 +56,7 @@ public class UsrEditActivity extends Activity {
 	private RadioButton radioFemale;
 	private Bitmap avataImg;
 	private Spinner spinnerBirth;
+	private int mAccountType;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +84,13 @@ public class UsrEditActivity extends Activity {
 		inputName.setText(usr.getString("name", ""));
 		inputSurname.setText(usr.getString("firstName", ""));
 		inputBirthday.setText(usr.getString("birthday", ""));
-		
+
 		inputPhone.setText(usr.getString("phone", ""));
 		inputEmail.setText(usr.getString("email", ""));
 		spinnerBirth.setSelection(usr.getInt("birth_spinner", 0));
+		Picasso.with(this).load(usr.getString("faceLogo", "http://tp3.sinaimg.cn/5319290870/180/40069366120/1")).into((ImageView)findViewById(R.id.img_avata));
+	
+		int gender = usr.getInt("gender", 2);
 		
 		spinnerBirth.setOnItemSelectedListener(new OnItemSelectedListener(){
 
@@ -97,7 +106,6 @@ public class UsrEditActivity extends Activity {
 			}
 			
 		});
-		int gender = usr.getInt("gender", 2);
 		if(gender==0){
 			radioMale.setChecked(true);
 		}else if(gender==1){
@@ -114,18 +122,24 @@ public class UsrEditActivity extends Activity {
 		inputJob.setText(usr.getString("career", ""));
 		inputHunyin.setText(usr.getString("marriage", ""));
 		
-		Bitmap avata =BitmapFactory.decodeFile("/data/data/net.xinzeling/avata.png");
-		ImageView avataImg = (ImageView)findViewById(R.id.img_avata);
-		if(avata !=null){
-			avataImg.setImageBitmap(avata);
-		}
-		
+//		Bitmap avata =BitmapFactory.decodeFile("/data/data/net.xinzeling/avata.png");
+//		ImageView avataImg = (ImageView)findViewById(R.id.img_avata);
+//		if(avata !=null){
+//			avataImg.setImageBitmap(avata);
+//			Picasso.with(this).load(usr.getString("faceLogo", "http://tp3.sinaimg.cn/5319290870/180/40069366120/1")).into(avataImg);
+//		}
 		initViewByData();
 	}
 
 	private void initViewByData() {
-		XZLAccountManager.getInstance().getmAcoutType();
+		mAccountType = XZLAccountManager.getInstance().getmAcoutType();
+		Log.d("getmAcoutType : ","getmAcoutType " + mAccountType);
 		
+		SinaWeiboAccountManager sinaAc = XZLAccountManager.getInstance().getSinaAccount();
+		QQAccountManager qqAc = XZLAccountManager.getInstance().getQqAccount();
+
+		Log.d("getmAcoutType : ","sinaAc " + sinaAc + "  qqAc "+qqAc);
+
 	}
 
 	public void onClick(View view) {
@@ -148,7 +162,7 @@ public class UsrEditActivity extends Activity {
 			avataChose.setVisibility(View.GONE);
 			break;
 		case R.id.btn_forward:
-			this.onSubmit();
+			onSubmit();
 			break;
 		}
 	}
