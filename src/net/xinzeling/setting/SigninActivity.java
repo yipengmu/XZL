@@ -10,6 +10,7 @@ import net.xinzeling.MyApplication;
 import net.xinzeling.base.BaseActivity;
 import net.xinzeling.common.account.QQAccountManager;
 import net.xinzeling.common.account.SinaWeiboAccountManager;
+import net.xinzeling.common.account.XZLAccountManager;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling.ui.myxzl.MyXZLActivity;
 import net.xinzeling.webview.WebViewActivity;
@@ -48,7 +49,6 @@ import com.umeng.socialize.sso.UMSsoHandler;
 public class SigninActivity extends BaseActivity implements OnClickListener {
 
 	private SigninTask signinTask = null;
-	private ThirdSigninTask thirdsignintask = null;
 	private UMSocialService mController;
 	private EditText emailInput;
 	private EditText passwdInput;
@@ -170,29 +170,25 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 					@Override
 					public void onComplete(int status, Map<String, Object> info) {
 						if (status == 200 && info != null) {
-
 							updateAccountInfoFromQQSso(info);
-							
-							StringBuilder sb = new StringBuilder();
-							Set<String> keys = info.keySet();
-							for (String key : keys) {
-								sb.append(key + "=" + info.get(key).toString() + "\r\n");
-							}
-							Log.d("TestData", sb.toString());
-						} else {
-							Log.d("TestData", "发生错误：" + status);
-						}
+						} 
 					}
 
 					private void updateAccountInfoFromQQSso(Map<String, Object> info) {
-						QQAccountManager.getInstance().uid = (String) info.get("uid");
-						QQAccountManager.getInstance().gender = (String) info.get("gender");
-						QQAccountManager.getInstance().screen_name = (String) info.get("screen_name");
-						QQAccountManager.getInstance().openid = (String) info.get("openid");
-						QQAccountManager.getInstance().profile_image_url = (String) info.get("profile_image_url");
-						QQAccountManager.getInstance().access_token = (String) info.get("access_token");
-						QQAccountManager.getInstance().profile_image_url = (String) info.get("profile_image_url");
-						QQAccountManager.getInstance().verified = (String) info.get("verified");
+						QQAccountManager qqIns = QQAccountManager.getInstance();
+						
+						qqIns.uid = (String) info.get("uid");
+						qqIns.gender = (String) info.get("gender");
+						qqIns.screen_name = (String) info.get("screen_name");
+						qqIns.openid = (String) info.get("openid");
+						qqIns.profile_image_url = (String) info.get("profile_image_url");
+						qqIns.access_token = (String) info.get("access_token");
+						qqIns.profile_image_url = (String) info.get("profile_image_url");
+						qqIns.verified = (String) info.get("verified");
+						XZLAccountManager.getInstance().setmAcoutType(2).setQqAccount(qqIns);
+
+						Toast.makeText(SigninActivity.this, "正在更新帐户信息。。。", Toast.LENGTH_SHORT).show();
+						new ThirdSigninTask(qqIns.uid,qqIns.screen_name,qqIns.profile_image_url,qqIns.gender,"2").execute();
 					}
 					
 				});
@@ -218,11 +214,13 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			public void onCancel(SHARE_MEDIA arg0) {
 				System.out.println("cancel");
 			}
+			
 
 			@Override
 			public void onComplete(Bundle arg0, SHARE_MEDIA arg1) {
 				System.out.println("complete");
 				mController.getPlatformInfo(SigninActivity.this, SHARE_MEDIA.SINA, new UMDataListener() {
+					
 					@Override
 					public void onStart() {
 						Toast.makeText(SigninActivity.this, "正在获取微博sso信息。。。", Toast.LENGTH_SHORT).show();
@@ -231,30 +229,30 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 					@Override
 					public void onComplete(int status, Map<String, Object> info) {
 						if (status == 200 && info != null) {
-							
 							updateAccountInfoFromSinaSso(info);
-							Log.d("TestData", info.toString());
 						} else {
-							Log.d("TestData", "发生错误：" + status);
 						}
 					}
 
 					private void updateAccountInfoFromSinaSso(Map<String, Object> info) {
+						SinaWeiboAccountManager sinaIns = SinaWeiboAccountManager.getInstance();
+						sinaIns.uid = String.valueOf((int) info.get("uid"));
+						sinaIns.favourites_count = (int) info.get("favourites_count");
+						sinaIns.location = (String) info.get("location");
+						sinaIns.description = (String) info.get("description");
+						sinaIns.verified = (boolean) info.get("verified");
+						sinaIns.friends_count = (int) info.get("friends_count");
+						sinaIns.gender = (int) info.get("gender");
+						sinaIns.screen_name = (String) info.get("screen_name");
+						sinaIns.statuses_count = (int) info.get("statuses_count");
+						sinaIns.followers_count = (int) info.get("followers_count");
+						sinaIns.profile_image_url = (String) info.get("profile_image_url");
+						sinaIns.access_token = (String) info.get("access_token");
 
-						SinaWeiboAccountManager.getInstance().uid = (int) info.get("uid");
-						SinaWeiboAccountManager.getInstance().favourites_count = (int) info.get("favourites_count");
-						SinaWeiboAccountManager.getInstance().location = (String) info.get("location");
-						SinaWeiboAccountManager.getInstance().description = (String) info.get("description");
-						SinaWeiboAccountManager.getInstance().verified = (boolean) info.get("verified");
-						SinaWeiboAccountManager.getInstance().friends_count = (int) info.get("friends_count");
-						SinaWeiboAccountManager.getInstance().gender = (int) info.get("gender");
-						SinaWeiboAccountManager.getInstance().screen_name = (String) info.get("screen_name");
-						SinaWeiboAccountManager.getInstance().statuses_count = (int) info.get("statuses_count");
-						SinaWeiboAccountManager.getInstance().followers_count = (int) info.get("followers_count");
-						SinaWeiboAccountManager.getInstance().profile_image_url = (String) info.get("profile_image_url");
-						SinaWeiboAccountManager.getInstance().access_token = (String) info.get("access_token");
+						XZLAccountManager.getInstance().setmAcoutType(1).setSinaAccount(sinaIns);
 
-						new SigninTask(String.valueOf(SinaWeiboAccountManager.getInstance().uid),"",1).execute();
+						new ThirdSigninTask(sinaIns.access_token,sinaIns.screen_name,sinaIns.profile_image_url,String.valueOf(sinaIns.gender),"1").execute();
+						
 					}
 				});
 			}
@@ -266,7 +264,7 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 
 			@Override
 			public void onStart(SHARE_MEDIA arg0) {
-				System.out.println("onstart");
+				Toast.makeText(SigninActivity.this, "正在获取微博sso信息。。。", Toast.LENGTH_SHORT).show();
 			}
 		});
 	}
@@ -292,8 +290,8 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		 * auth 1 微博
 		 * auth 2 qq
 		 * */
-		public SigninTask(String email, String passwd,int auth) {
-			params.put("username", email);
+		public SigninTask(String username, String passwd,int auth) {
+			params.put("username", username);
 			params.put("password", passwd);
 			params.put("auth", auth);
 		}
@@ -379,8 +377,8 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			usrinfoMap = new HashMap<String, String>();
 			usrinfoMap.put("nick", nick_name);
 			if ("1".equals(type)) {
-				params.put("username", "weibo_" + name);
-				params.put("nickname", "weibo_" + nick_name);
+				params.put("username", name);
+				params.put("nickname", nick_name);
 				params.put("imageurl", profile_url);
 				params.put("auth", type);
 				usrinfoMap.put("gender", Integer.valueOf(gender) == 1 ? "0" : "1");
@@ -402,20 +400,18 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 		@Override
 		protected Void doInBackground(Void... args) {
 			// 先验证是否已经注册过了，注册过了就注册过了，不用重新注册了
-
 			try {
 				JSONObject jsonResp = RequestManager.getGet(MyApplication.check_usrname_isused + params.get("username"), null);
 				resCode = jsonResp.getInt("resCode");
 				if (resCode == 0) {
+					//第三方sns 注册接口
 					jsonResp = RequestManager.getGet(MyApplication.third_regist_url, this.params);
 					resCode = jsonResp.getInt("resCode");
-					if (resCode == 0) {
-						// AppBase.onSignin(userToken,userTokenExpire,renewalToken,renewalTokenExpire);
-					} else {
+					if (resCode != 0) {
 						errorDesc = jsonResp.getString("resMsg");
 					}
 				} else {
-					// errorDesc = jsonResp.getString("resMsg");
+					 errorDesc = jsonResp.getString("resMsg");
 				}
 			} catch (Exception e) {
 				errorDesc = "服务器错误";
@@ -428,14 +424,11 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			if (progress != null) {
 				progress.dismiss();
 			}
-			if (resCode == 0) {
-				Intent intent = new Intent(SigninActivity.this, MainActivity.class);
-				startActivity(intent);
-				finish();
+			if (resCode == 0|| resCode == 107) {
+				new SigninTask((String)params.get("username"),"", Integer.valueOf((String)params.get("auth"))).execute();
 			} else {
 				Toast.makeText(getApplicationContext(), errorDesc, Toast.LENGTH_LONG).show();
 			}
-			thirdsignintask = null;
 		}
 
 	}

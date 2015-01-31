@@ -335,6 +335,9 @@ public class MyApplication extends Application {
 		mCommonAccountManager.userTokenExpireDate = userTokenExpireDate;
 		mCommonAccountManager.renewalToken = renewalToken;
 		mCommonAccountManager.renewalTokenExpire = renewalTokenExpire;
+		
+		XZLAccountManager.getInstance().setmAcoutType(0).setCommonAccount(mCommonAccountManager);
+		
 		sendBroadcastAboutUsrStatus(true);
 	}
 

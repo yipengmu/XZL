@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.BirthAdapter;
+import net.xinzeling.common.account.XZLAccountManager;
 import net.xinzeling.net.http.RequestManager;
 import net.xinzeling2.R;
 
@@ -118,6 +119,13 @@ public class UsrEditActivity extends Activity {
 		if(avata !=null){
 			avataImg.setImageBitmap(avata);
 		}
+		
+		initViewByData();
+	}
+
+	private void initViewByData() {
+		XZLAccountManager.getInstance().getmAcoutType();
+		
 	}
 
 	public void onClick(View view) {

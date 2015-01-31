@@ -16,7 +16,7 @@ public class SinaWeiboAccountManager {
 	// access_token=2.00xbJh7BVGmUoBf2a29e98b103Dj_B
 
 	// sina sso login ok data
-	public int uid;
+	public String uid;
 	public int favourites_count;
 	public String location;
 	public String description;

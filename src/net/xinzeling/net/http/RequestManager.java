@@ -47,7 +47,7 @@ public class RequestManager {
 		}
 		HttpURLConnection conn = null;
 
-		Log.i("xzl http : ","url: " + surl);
+		Log.i("xzl http : ","http url: " + surl);
 		try {
 			URL url = new URL(surl);
 			conn = (HttpURLConnection)url.openConnection();
@@ -62,7 +62,7 @@ public class RequestManager {
 				conn.disconnect();
 			}
 		}
-		Log.i("xzl http : ", "response " +response);
+		Log.i("xzl http : ", "http response " +response);
 
 		JSONObject result = baseHandleHttpResult(response);
 		return result;
