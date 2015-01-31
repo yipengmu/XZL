@@ -2,7 +2,6 @@ package net.xinzeling.news;
 
 import java.io.IOException;
 
-import net.xinzeling.HomeActivity;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.adapter.DashikanfaItemAdapter;
@@ -23,7 +22,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 /**
  * 大师介绍页
@@ -32,7 +30,6 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 
 	private ImageView TabSel,BackHome,dashijianjie,mychuanbo;
 	private ListView dashikanfa_listview;
-	private RelativeLayout dashidetail_sel;
 	private DashikanfaItemAdapter listview_adapter;
 	private Context context;
 	private boolean showSel;
@@ -49,7 +46,6 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		mychuanbo = (ImageView)findViewById(R.id.mychuanbo);
 		
 		dashikanfa_listview = (ListView)findViewById(R.id.dashikafa_listview);
-		dashidetail_sel = (RelativeLayout)findViewById(R.id.dashidetail_sel);
 		
 		context = this.getApplicationContext();
 		listview_adapter = new DashikanfaItemAdapter(context);

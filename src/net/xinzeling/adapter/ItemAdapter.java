@@ -28,7 +28,7 @@ public class ItemAdapter extends BaseAdapter{
 
 	@Override
 	public int getCount() {
-		return dataSet.size();
+		return dataSet != null ?dataSet.size():0;
 	}
 
 	public void notifyDataSetChanged(ArrayList<Item> itemList){

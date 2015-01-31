@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS item(_id INTEGER PRIMARY KEY, refer_type INTEGER,refer_id INTEGER,date TIMESTAMP);
 CREATE TABLE IF NOT EXISTS note(_id INTEGER PRIMARY KEY,topic TEXT,contact TEXT,content TEXT,started INTEGER,ended INTEGER,befored INTEGER,iscancel INTEGER,repeat_type INTEGER);
 CREATE TABLE IF NOT EXISTS gua(_id INTEGER PRIMARY KEY, type INTEGER,title TEXT,date TEXT,time TEXT,doubleNumID INTEGER,body TEXT,yao TEXT,result TEXT,inference TEXT);
-insert into gua values(1,14,"学业","2014-12-11","21:47",0,"","","101011|010101|101111","ewrwerwerewrew");
 CREATE TABLE IF NOT EXISTS gua_tj(_id INTEGER PRIMARY KEY, type INTEGER,cnt INTEGER,all_cnt INTEGER, next_time INTEGER,xz_id INTEGER);
 insert into gua_tj values(1,1,0,1,0,1);
 insert into gua_tj values(2,2,0,1,0,1);

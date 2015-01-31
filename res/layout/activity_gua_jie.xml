@@ -31,8 +31,8 @@
             <Button
                 android:id="@+id/btn_jiegua_share"
                 style="@style/header_home"
-                android:padding="2dp"
-                android:layout_marginLeft="4dp"
+                android:padding="4dp"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/my_title_share_icon"
                 android:onClick="onClick" />
             
@@ -67,6 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:id="@+id/jieguo_next_time"
+            android:visibility="gone"
             android:orientation="vertical" >
 
             <ImageView
@@ -150,8 +152,8 @@
         android:layout_above="@+id/btn_share_line"
         android:background="@color/jie_gua"
         android:orientation="horizontal"
-        android:paddingBottom="3dp"
-        android:paddingTop="16dp" >
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp" >
 
         <LinearLayout
             android:layout_width="wrap_content"

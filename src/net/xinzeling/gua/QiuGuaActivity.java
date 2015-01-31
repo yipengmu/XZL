@@ -77,7 +77,7 @@ public class QiuGuaActivity extends BaseActivity {
 			break;
 		case MyApplication.nav_gua_time:
 			this.setContentView(R.layout.activity_gua_time);
-//			findViewById(R.id.ll_qiugua_name_cell).setVisibility(View.GONE);
+			// findViewById(R.id.ll_qiugua_name_cell).setVisibility(View.GONE);
 			break;
 		}
 
@@ -85,16 +85,22 @@ public class QiuGuaActivity extends BaseActivity {
 		this.name1Input = (EditText) this.findViewById(R.id.input_name);
 		this.name2Input = (EditText) this.findViewById(R.id.input_name_other);
 		if (isSingle(type)) {
-			ll_qiugua_name_cell.setVisibility(View.VISIBLE);
+			if (ll_qiugua_name_cell != null) {
+				ll_qiugua_name_cell.setVisibility(View.VISIBLE);
+			}
 			name2Input.setVisibility(View.GONE);
-		}else if (isDouble(type)) {
-			ll_qiugua_name_cell.setVisibility(View.VISIBLE);
-		}else{
-			ll_qiugua_name_cell.setVisibility(View.GONE);
+		} else if (isDouble(type)) {
+			if (ll_qiugua_name_cell != null) {
+				ll_qiugua_name_cell.setVisibility(View.VISIBLE);
+			}
+		} else {
+			if (ll_qiugua_name_cell != null) {
+				ll_qiugua_name_cell.setVisibility(View.GONE);
+			}
 		}
 
 		setInGuaTitle(type);
-		
+
 	}
 
 	private boolean isSingle(int type) {
@@ -363,7 +369,7 @@ public class QiuGuaActivity extends BaseActivity {
 			this.finish();
 			break;
 		case R.id.btn_qiugua:
-			//求卦
+			// 求卦
 			if (!checkInputForm()) {
 				toast("请检查输入内容");
 				break;
@@ -388,12 +394,14 @@ public class QiuGuaActivity extends BaseActivity {
 	}
 
 	public boolean checkInputForm() {
-		if (num1Input == null || num2Input == null) {
-			return false;
+		if (num1Input == null && num2Input == null) {
+			return true;
+		}else {
+			if (TextUtils.isEmpty(num1Input.getText().toString()) || TextUtils.isEmpty(num2Input.getText().toString())) {
+				return false;
+			}	
 		}
-		if (TextUtils.isEmpty(num1Input.getText().toString()) || TextUtils.isEmpty(num2Input.getText().toString())) {
-			return false;
-		}
+		
 		return true;
 	}
 
@@ -557,7 +565,7 @@ public class QiuGuaActivity extends BaseActivity {
 				finish();
 			} else {
 				if (gua_xz_info.isUsable) {
-					Toast.makeText(getApplicationContext(), resMsg , Toast.LENGTH_LONG).show();
+					Toast.makeText(getApplicationContext(), resMsg, Toast.LENGTH_LONG).show();
 				} else {
 					String d = DateTime.Timestamp2String(((long) gua_xz_info.next_time * 1000), "yyyy年MM月dd日");
 					Toast.makeText(getApplicationContext(), "今天不可算了,下次可算时间：" + d, Toast.LENGTH_LONG).show();

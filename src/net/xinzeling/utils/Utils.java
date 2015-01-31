@@ -87,7 +87,7 @@ public class Utils {
 	}
 
 	/** fomatter yyyyMMdd yyyy年MM月dd日 HH时mm分ss秒 */
-	public static Date getDateByStringyyyyMMdd(String str, String fomatter) {
+	public static Date getDateByStringFormat(String str, String fomatter) {
 		SimpleDateFormat sdf = new SimpleDateFormat(fomatter);
 		try {
 			return sdf.parse(str);
@@ -149,7 +149,6 @@ public class Utils {
 		WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);
 		return wm.getDefaultDisplay().getHeight();
 	}
-	
 
 	/**
 	 * 
@@ -173,5 +172,159 @@ public class Utils {
 		intent.putExtra(CommonShareActivity.SHARE_TEXT_CONTENT, shareText);
 		intent.putExtra(CommonShareActivity.SHARE_TITLE, shareTitle);
 		return intent;
+	}
+
+	public static String getGuaTypeFromId(int type) {
+		String t = "";
+		// 类型说明
+		switch (type) {
+		case 0:
+			t = "出行";
+			break;
+		case 1:
+			t = "交易";
+			break;
+		case 2:
+			t = "婚姻";
+			break;
+		case 3:
+			t = "恋爱·恋人";
+			break;
+		case 4:
+			t = "求财·财运·讨债";
+			break;
+		case 5:
+			t = "事业·工作";
+			break;
+		case 6:
+			t = "健康·疾病";
+			break;
+		case 7:
+			t = "家宅·房屋";
+			break;
+		case 8:
+			t = "官司诉讼·申诉投诉";
+			break;
+		case 9:
+			t = "其他·难分类·谋事";
+			break;
+		case 10:
+			t = "近期财运";
+			break;
+		case 11:
+			t = "求财之事";
+			break;
+		case 12:
+			t = "借贷";
+			break;
+		case 13:
+			t = "讨债";
+			break;
+		case 14:
+			t = "学业";
+			break;
+		case 15:
+			t = "考试";
+			break;
+		case 16:
+			t = "今日吃啥";
+			break;
+		case 17:
+			t = "今日穿啥";
+			break;
+		case 18:
+			t = "公务出差";
+			break;
+		case 19:
+			t = "旅行出游";
+			break;
+		case 20:
+			t = "每日出行";
+			break;
+		case 21:
+			t = "单身 ' 今日运程";
+			break;
+		case 22:
+			t = "单身 ' 近期桃花";
+			break;
+		case 23:
+			t = "有恋人 ' 今日运程";
+			break;
+		case 24:
+			t = "有恋人' 恋爱状况";
+			break;
+		case 25:
+			t = "有恋人'近期桃花";
+			break;
+		case 26:
+			t = "婚姻状况";
+			break;
+		case 27:
+			t = "将来婚姻状况";
+			break;
+		case 28:
+			t = "婚事情况";
+			break;
+		case 29:
+			t = "年内事业运";
+			break;
+		case 30:
+			t = "创业选择";
+			break;
+		case 31:
+			t = "合作项目";
+			break;
+		case 32:
+			t = "谈判成败";
+			break;
+		case 33:
+			t = "另谋高就";
+			break;
+		case 34:
+			t = "今日运程";
+			break;
+		case 35:
+			t = "去逛街";
+			break;
+		case 36:
+			t = "网购";
+			break;
+		case 37:
+			t = "买房";
+			break;
+		case 38:
+			t = "买车";
+			break;
+		case 39:
+			t = "装修";
+			break;
+		case 40:
+			t = "今日运程";
+			break;
+		case 41:
+			t = "近期状况";
+			break;
+		case 42:
+			t = "病症状况";
+			break;
+		case 43:
+			t = "家宅房屋";
+			break;
+		case 44:
+			t = "出租房屋";
+			break;
+		case 45:
+			t = "求租房屋";
+			break;
+		case 46:
+			t = "投诉申诉";
+			break;
+		case 47:
+			t = "其他·难分类";
+			break;
+		}
+
+		return t;
+
 	}
 }

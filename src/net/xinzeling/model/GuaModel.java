@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
+import net.xinzeling.utils.Utils;
 import android.content.ContentValues;
 import android.database.Cursor;
 
@@ -122,5 +123,9 @@ public class GuaModel extends MyApplication{
 		public String yao="";//爻
 		public String result="" ;//卦象
 		public String inference="";//解卦
+		
+		public CharSequence getTitle() {
+			return Utils.getGuaTypeFromId(type);
+		}
 	}
 }

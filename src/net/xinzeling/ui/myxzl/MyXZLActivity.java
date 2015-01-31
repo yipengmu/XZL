@@ -9,17 +9,22 @@ import java.util.Map;
 
 import net.xinzeling.adapter.ItemAdapter;
 import net.xinzeling.base.BaseActivity;
+import net.xinzeling.common.CommonDefine;
 import net.xinzeling.gua.JieGuaActivity;
 import net.xinzeling.lib.BlurBehind;
 import net.xinzeling.lib.DateTime;
+import net.xinzeling.model.GuaModel;
+import net.xinzeling.model.GuaModel.Gua;
 import net.xinzeling.model.ItemModel;
 import net.xinzeling.model.ItemModel.Item;
 import net.xinzeling.note.NoteCheckActivity;
 import net.xinzeling.setting.UsrEditActivity;
+import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -42,7 +47,6 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 	private int FLAG_INTENT_FOR_PERSONAL_INFO;
 	private RadioButton mHistoryRadioButton;
 	private ListView mHistoryGuas;
-	private MyHistoryGuaAdapter mAdatper;
 	private RelativeLayout rl_choose_time;
 	private RelativeLayout rl_choose_type;
 
@@ -63,11 +67,13 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 	private Calendar startCalendar;
 	private Calendar endCalendar;
 
-	private ArrayList<Item> itemList;
-	private ItemAdapter itemAdapter;
-	private int selectDateYYYYMMDD;
-	private Item item;// 当前选中的item
-	
+	private MyHistoryGuaAdapter itemAdapter;
+	private int selectDateYYYYMMDDstart;
+	private int selectDateYYYYMMDDEnd;
+	private Gua guaItem;// 当前选中的item
+	public ArrayList<Gua> wholeGuaList;
+	public ArrayList<Gua> currentGuaList;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -89,49 +95,29 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 		rl_choose_time.setOnClickListener(this);
 		rl_choose_type.setOnClickListener(this);
 
-		mAdatper = new MyHistoryGuaAdapter(this);
-		mAdatper.setData(getHistoryData());
-		mHistoryGuas.setAdapter(mAdatper);
-
 		startCalendar = Calendar.getInstance();
 		endCalendar = Calendar.getInstance();
 
 		findViewById(R.id.rb_my_personel_info).setOnClickListener(this);
-		
 
 		mHistoryGuas.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View itemView, int position, long id) {
-				item = itemList.get(position);
-				if (item.referType == ItemModel.REFER_GUA) {
-					Intent intent = new Intent(MyXZLActivity.this, JieGuaActivity.class);
-					intent.putExtra("guaid", item.referId);
-					MyXZLActivity.this.startActivity(intent);
-				} else if (item.referType == ItemModel.REFER_NOTE) {
-					BlurBehind.getInstance().execute(MyXZLActivity.this, new Runnable() {
-						public void run() {
-							Intent intent = new Intent(MyXZLActivity.this, NoteCheckActivity.class);
-							intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-							intent.putExtra("noteid", item.referId);
-							startActivity(intent);
-						}
-					});
-				}
+				guaItem = wholeGuaList.get(position);
+				Intent intent = new Intent(MyXZLActivity.this, JieGuaActivity.class);
+				intent.putExtra("guaid", guaItem.guaid);
+				MyXZLActivity.this.startActivity(intent);
 			}
-			
+
 		});
 	}
 
 	@Override
 	protected void onResume() {
-		updateMyGuas();
+		updateMyGuas(true);
 		super.onResume();
 
-	}
-	
-	private ArrayList<HistoryGuaBean> getHistoryData() {
-		return null;
 	}
 
 	/*
@@ -184,6 +170,8 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 				tv_choose_type.setText(ch);
 				toast(ch);
 				hidePopupWindow(FlagTypeChoose);
+				currentGuaList = getCurrentGuaListByType(ch);
+				updateMyGuas(false);
 			}
 		});
 
@@ -191,14 +179,25 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 		mPopTypeChooseWindow = new PopupWindow(popupWindow, LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 	}
 
+	protected ArrayList<Gua> getCurrentGuaListByType(String ch) {
+		ArrayList<Gua> resultList = new ArrayList<>();
+		if (TextUtils.isEmpty(ch)) {
+			return resultList;
+		}
+
+		for (Gua gua : wholeGuaList) {
+			if (ch.equals(gua.getTitle())) {
+				resultList.add(gua);
+			}
+		}
+		return resultList;
+	}
+
 	private List<? extends Map<String, ?>> getTypeChooseData() {
-
 		List<Map<String, ?>> list = new ArrayList<Map<String, ?>>();
-		String[] dataSource = new String[] { "全部", "恋爱", "财运", "日常购物" };
-
-		for (int i = 0; i < dataSource.length; i++) {
+		for (int i = 0; i < wholeGuaList.size(); i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("iteminfo", dataSource[i]);
+			map.put("iteminfo", Utils.getGuaTypeFromId(wholeGuaList.get(i).type));
 			list.add(map);
 		}
 		return list;
@@ -251,46 +250,73 @@ public class MyXZLActivity extends BaseActivity implements OnCheckedChangeListen
 			public void onClick(View v) {
 				// 确认time section
 				tv_choose_time.setText(getStartDateStr() + " ~ " + getEndDateStr());
+				currentGuaList = getCurrentGuasByTime();
+				updateMyGuas(false);
+				hidePopupWindow(FlagDateSection);
+
 			}
 		});
 	}
 
+	protected ArrayList<Gua> getCurrentGuasByTime() {
+		ArrayList<Gua> resultList = new ArrayList<>();
+
+		for (Gua gua : wholeGuaList) {
+			long guaTime = Utils.getDateByStringFormat(gua.date, "yyyy-MM-dd").getTime();
+			if ((guaTime - startCalendar.getTimeInMillis()) >= 0 && (endCalendar.getTimeInMillis() + CommonDefine.MillisTimeForDay - guaTime) >= 0) {
+				resultList.add(gua);
+			}
+		}
+		return resultList;
+	}
+
 	protected String getStartDateStr() {
-		return "" + startCalendar.get(Calendar.YEAR) + "-" + (startCalendar.get(Calendar.MONTH)+1) + "-" + startCalendar.get(Calendar.DAY_OF_MONTH);
+		return "" + startCalendar.get(Calendar.YEAR) + "-" + (startCalendar.get(Calendar.MONTH) + 1) + "-" + startCalendar.get(Calendar.DAY_OF_MONTH);
 	}
 
 	protected String getEndDateStr() {
-		return "" + endCalendar.get(Calendar.YEAR) + "-" + (endCalendar.get(Calendar.MONTH)+1) + "-" + endCalendar.get(Calendar.DAY_OF_MONTH);
+		return "" + endCalendar.get(Calendar.YEAR) + "-" + (endCalendar.get(Calendar.MONTH) + 1) + "-" + endCalendar.get(Calendar.DAY_OF_MONTH);
 	}
 
-	public void updateMyGuas(){
-		selectDateYYYYMMDD = Integer.valueOf(DateTime.getTodayYmd(startCalendar.getTime()));
-		new LoadTask().execute(0, selectDateYYYYMMDD);
-	}
-	
-	// 参数1 类型 参数2 日期
-		private class LoadTask extends AsyncTask<Integer, Void, Void> {
-
-			@Override
-			protected Void doInBackground(Integer... args) {
-				try {
-					itemList = ItemModel.getItemList(args[0], args[1] + "");
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				return null;
-			}
-
-			@Override
-			protected void onPostExecute(Void result) {
-				if (itemAdapter == null) {
-					itemAdapter = new ItemAdapter(MyXZLActivity.this, itemList);
-					mHistoryGuas.setAdapter(itemAdapter);
-				} else {
-					itemAdapter.notifyDataSetChanged(itemList);
-				}
+	public void updateMyGuas(boolean needUpdateDb) {
+		if (needUpdateDb) {
+			selectDateYYYYMMDDstart = Integer.valueOf(DateTime.getTodayYmd(startCalendar.getTime()));
+			selectDateYYYYMMDDEnd = Integer.valueOf(DateTime.getTodayYmd(endCalendar.getTime()));
+			new LoadTask().execute(0, selectDateYYYYMMDDstart, selectDateYYYYMMDDEnd);
+		} else {
+			if (itemAdapter == null) {
+				itemAdapter = new MyHistoryGuaAdapter(MyXZLActivity.this, currentGuaList);
+				mHistoryGuas.setAdapter(itemAdapter);
+			} else {
+				itemAdapter.notifyDataSetChanged(currentGuaList);
 			}
 		}
+	}
+
+	// 参数1 类型 参数2 日期
+	private class LoadTask extends AsyncTask<Integer, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Integer... args) {
+			try {
+				// 第一个参数为0 ，第二个日期 20150131 起始，第三个俄日结束日期
+				currentGuaList = wholeGuaList = GuaModel.fetchAll();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			if (itemAdapter == null) {
+				itemAdapter = new MyHistoryGuaAdapter(MyXZLActivity.this, currentGuaList);
+				mHistoryGuas.setAdapter(itemAdapter);
+			} else {
+				itemAdapter.notifyDataSetChanged(currentGuaList);
+			}
+		}
+	}
 
 	@Override
 	public void onClick(View v) {

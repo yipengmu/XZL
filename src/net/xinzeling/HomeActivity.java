@@ -185,8 +185,8 @@ public class HomeActivity extends Activity implements OnClickListener {
 				
 				//"vc_RealDate":"2014-11-02 16:52:00"
 				String prefLastedDate = jo.getString("vc_RealDate");
-				Date datePrf = Utils.getDateByStringyyyyMMdd(prefLastedDate,"yyyy-MM-dd HH:mm:ss");
-				Date dateReq = Utils.getDateByStringyyyyMMdd(recentlyObj.optString("vc_RealDate"),"yyyy-MM-dd HH:mm:ss");
+				Date datePrf = Utils.getDateByStringFormat(prefLastedDate,"yyyy-MM-dd HH:mm:ss");
+				Date dateReq = Utils.getDateByStringFormat(recentlyObj.optString("vc_RealDate"),"yyyy-MM-dd HH:mm:ss");
 				if(dateReq.getTime() >= datePrf.getTime()){
 					return true;
 				}

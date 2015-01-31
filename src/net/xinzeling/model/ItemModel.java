@@ -55,16 +55,49 @@ public class ItemModel extends MyApplication{
 		return list;
 	}
 
-	public static ArrayList<Item> getItemList(int referType,String yyyymmdd){
+	public static ArrayList<Item> getItemList(int referType,String yyyymmddStart,String yyyymmddEnd){
+		ArrayList<Item> list = new ArrayList<Item>();
+		Cursor cursor;
+		String sql ="SELECT refer_type,refer_id FROM item";
+		if(referType>0){
+			sql+=" WHERE refer_type=? and date>=? and date<=? ORDER BY _id DESC";
+			cursor = dbh.rawQuery(sql, new String[]{String.valueOf(referType),yyyymmddStart,yyyymmddEnd});
+		}else{
+			sql+=" WHERE  date>=? and date<=?  ORDER BY _id DESC";
+			cursor = dbh.rawQuery(sql, new String[]{yyyymmddStart,yyyymmddEnd});
+		}
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()){
+			int rtype = cursor.getInt(0);
+			int rid = cursor.getInt(1);
+			Item item = null;
+			if(rtype == REFER_GUA){
+				item=fetchGua(rid);
+			}else if(rtype == REFER_MEM){
+				item=fetchMem(rid);
+			}else if(rtype==REFER_NOTE){
+				item =fetchNote(rid);
+			}
+			if(item !=null){
+				list.add(item);
+			}
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return list;
+	}
+	
+
+	public static ArrayList<Item> getItemList(int referType,String yyyymmddStart){
 		ArrayList<Item> list = new ArrayList<Item>();
 		Cursor cursor;
 		String sql ="SELECT refer_type,refer_id FROM item";
 		if(referType>0){
 			sql+=" WHERE refer_type=? and date=? ORDER BY _id DESC";
-			cursor = dbh.rawQuery(sql, new String[]{String.valueOf(referType),yyyymmdd});
+			cursor = dbh.rawQuery(sql, new String[]{String.valueOf(referType),yyyymmddStart});
 		}else{
-			sql+=" WHERE date=? ORDER BY _id DESC";
-			cursor = dbh.rawQuery(sql, new String[]{yyyymmdd});
+			sql+=" WHERE  date=? ORDER BY _id DESC";
+			cursor = dbh.rawQuery(sql, new String[]{yyyymmddStart});
 		}
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()){
@@ -188,7 +221,7 @@ public class ItemModel extends MyApplication{
 					long end_l = Long.valueOf(end)*1000;
 					this.showDaytime = DateTime.Timestamp2String(start_l, "MM月dd日 HH:mm")+" - "+DateTime.Timestamp2String(end_l, "MM月dd日 HH:mm");
 				}else{
-					this.showDaytime = start+""+end;
+					this.showDaytime = start+" "+end;
 				}
 			}else{
 				this.showDaytime = "09月30日 08:21";

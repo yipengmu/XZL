@@ -52,9 +52,12 @@ public class NoteModel extends MyApplication{
 	}
 
 	public static Note fetch(int noteid){
+		if(dbh == null){
+			return null;
+		}
 		Cursor cursor = dbh.rawQuery("SELECT topic,contact,content,started,ended,befored,iscancel,repeat_type FROM note WHERE _id=?", new String[]{String.valueOf(noteid)});
 		Note note = null;
-		if(cursor.moveToFirst()){
+		if(cursor != null && cursor.moveToFirst()){
 			note=new Note(cursor.getString(0),cursor.getString(1),cursor.getString(2),
 					cursor.getInt(3),cursor.getInt(4),cursor.getInt(5),cursor.getInt(6),cursor.getInt(7));
 		}
