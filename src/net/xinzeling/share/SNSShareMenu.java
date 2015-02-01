@@ -179,7 +179,7 @@ public class SNSShareMenu {
 
 		if (info.icon == R.drawable.btn_weixin_friend_timeline_dark) {
 			new WeixinManager(mContext).sendReq(mShareMsgContent, true);
-		} else if (info.icon == R.drawable.btn_weibo_im_dark) {
+		} else if (info.icon == R.drawable.btn_weixin_im_dark) {
 			new WeixinManager(mContext).sendReq(mShareMsgContent, false);
 		} else {
 			if(!info.isInstalled){
@@ -299,7 +299,7 @@ public class SNSShareMenu {
 			}
 		}
 
-		nameList.add(new ShareAppInfo(R.drawable.btn_weibo_im_dark, "微信"));
+		nameList.add(new ShareAppInfo(R.drawable.btn_weixin_im_dark, "微信"));
 		nameList.add(new ShareAppInfo(R.drawable.btn_weixin_friend_timeline_dark, "朋友圈"));
 
 		checkShareList(nameList,list);

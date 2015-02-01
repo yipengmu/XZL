@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * 大师介绍页
@@ -126,6 +127,13 @@ public class GuaNewsActivity extends Activity implements OnClickListener {
 		@Override
 		public void run() {
 			try {
+				GuaNewsActivity.this.runOnUiThread(new Runnable() {
+					
+					@Override
+					public void run() {
+						Toast.makeText(GuaNewsActivity.this, "正在为您努力加载中...", Toast.LENGTH_SHORT).show();
+					}
+				});
 				JSONObject res = RequestManager.getGet(MyApplication.dashikanfa_url);
 				this.listview_adapter.setData(res.getJSONArray("pushList"));
 				Message message = new Message();

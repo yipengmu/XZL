@@ -4,6 +4,7 @@ import net.xinzeling.share.SNSShareMenu.CloseShareViewListener;
 import net.xinzeling.utils.Utils;
 import net.xinzeling2.R;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -49,13 +50,22 @@ public class CommonShareActivity extends Activity implements IWXAPIEventHandler 
 		ll_share_icons.startAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_up));
 
 	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+	
 	public View CreateView() {
 
 		SNSShareMenu mSNSShareMenu = new SNSShareMenu(this);
 		mSNSShareMenu.setMsgText(mShareTextMsg);
 		mSNSShareMenu.setShareUrl(mShareUrl);
-//		mSNSShareMenu.setIsCleanUrl(mIsCleanUrl);
 		mSNSShareMenu.setTitleContent(mTitleContent);
 		mSNSShareMenu.setShareBitmapUrl(mShareBitmapUrl);
 		mSNSShareMenu.setCloseListener(new CloseShareViewListener() {

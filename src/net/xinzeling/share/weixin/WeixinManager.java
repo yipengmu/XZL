@@ -43,7 +43,7 @@ public class WeixinManager {
 		req.transaction = buildTransaction("text"); // transaction字段用于唯一标识一个请求
 		req.message = msg;
 		boolean isSendTimeLine = false ;
-		if(isTimeline != null && isTimeline.length >1){
+		if(isTimeline != null && isTimeline.length >0){
 			isSendTimeLine = isTimeline[0];
 		}
 		req.scene = isSendTimeLine ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;

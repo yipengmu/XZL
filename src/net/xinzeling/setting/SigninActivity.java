@@ -129,14 +129,23 @@ public class SigninActivity extends BaseActivity implements OnClickListener {
 			this.startActivityForResult(intent, FLAG_SETTING );
 			break;
 		case R.id.rb_my:
-			intent.setClass(this, MyXZLActivity.class);
-			this.startActivityForResult(intent, FLAG_MY );
+			gotoMyXzlAct();
 			break;
 		case R.id.btn_logout:
 			MyApplication.logout();
 			checkLoginState();
 			break;
 
+		}
+	}
+
+	private void gotoMyXzlAct() {
+		if(!MyApplication.isSignin()){
+			toast("请先登录后，再查看个人信息..");
+		}else{
+			Intent intent = new Intent();
+			intent.setClass(this, MyXZLActivity.class);
+			this.startActivityForResult(intent, FLAG_MY );
 		}
 	}
 

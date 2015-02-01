@@ -11,6 +11,7 @@ import android.database.Cursor;
 public class GuaModel extends MyApplication{
 	
 	public static long save(Gua gua){
+		Utils.checkDBHInited(getContext());
 		ContentValues values = new ContentValues();
 		values.put("type", gua.type);
 		values.put("title", gua.title);
@@ -27,6 +28,7 @@ public class GuaModel extends MyApplication{
 	}
 	
 	public static Gua fetch(int guaid){
+		Utils.checkDBHInited(getContext());
 		Cursor cursor = dbh.rawQuery("SELECT _id,type,date,time,body,yao,result,inference FROM gua WHERE _id=?", new String[]{String.valueOf(guaid)});
 		if(cursor.moveToFirst()){
 			Gua gua = new Gua();
@@ -45,6 +47,7 @@ public class GuaModel extends MyApplication{
 	}
 	
 	public static Gua fetchByType(int type){
+		Utils.checkDBHInited(getContext());
 		Cursor cursor = dbh.rawQuery("SELECT _id,type,date,time,body,yao,result,inference FROM gua WHERE type=?", new String[]{String.valueOf(type)});
 		if(cursor.moveToFirst()){
 			Gua gua = new Gua();

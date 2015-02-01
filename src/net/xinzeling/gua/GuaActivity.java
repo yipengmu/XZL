@@ -222,6 +222,8 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 					Gua item = GuaModel.fetchByType((int) guaCntList.get(i)._id);
 					if(item != null){
 						Intent intent = new Intent(getApplicationContext(), JieGuaActivity.class);
+						intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 						intent.putExtra("guaid",item.guaid);
 						intent.putExtra("oldInfo","今天不可算了,下次可算时间:" + oldInfo);
 						intent.putExtra("isOld",true);

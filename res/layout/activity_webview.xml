@@ -22,8 +22,8 @@
 
         <TextView
             android:id="@+id/txt_title"
-            android:maxEms="10"
-            android:maxWidth="210px"
+            android:maxEms="12"
+            android:maxWidth="200px"
             android:singleLine="true"
             android:ellipsize="end"
             style="@style/header_title" />

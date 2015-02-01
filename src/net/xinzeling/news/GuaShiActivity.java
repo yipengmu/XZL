@@ -15,7 +15,6 @@ public class GuaShiActivity extends Activity implements OnClickListener {
 	private WebView jianjie_info;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gua_shi);
 		
@@ -28,7 +27,6 @@ public class GuaShiActivity extends Activity implements OnClickListener {
 		jianjie_info = (WebView)findViewById(R.id.dashijianjie_info);
 		jianjie_info.loadUrl(MyApplication.dashijianjie_info_url);
 		
-//		FontManager.changeFonts((ViewGroup)AppBase.getRootView(GuaShiActivity.this),GuaShiActivity.this);
 	}
 
 	@Override

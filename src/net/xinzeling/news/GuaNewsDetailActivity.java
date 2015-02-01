@@ -3,7 +3,6 @@ package net.xinzeling.news;
 import net.xinzeling.MyApplication;
 import net.xinzeling.common.CommonDefine;
 import net.xinzeling.common.PreferenceManager;
-import net.xinzeling.share.CommonShareActivity;
 import net.xinzeling.share.WeiboShareActivity;
 import net.xinzeling.ui.myzhuanfa.ZhuanfaBean;
 import net.xinzeling.ui.myzhuanfa.ZhuanfaManager;
@@ -13,14 +12,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +25,8 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener {
 	public final static int REQ_WEIBO_CMD = 1;
 
 	private WebView mWebview;
-	private LinearLayout btn_share_line;
 	private TextView header_main_title;
 	private ImageView header_left_btn, header_right_btn;
-	private boolean isShowShare;
 	private int news_id;
 	private final static int FLAG_GUA_DETAIL_SHARE = 2;
 	ZhuanfaBean zfBean = new ZhuanfaBean();
@@ -42,11 +37,7 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_detail);
 		mWebview = (WebView) findViewById(R.id.showNews);
-		btn_share_line = (LinearLayout) findViewById(R.id.btn_share_line);
-		isShowShare = false;
-		// showShareLine(isShowShare);
 		header_main_title = (TextView) findViewById(R.id.header_main_title);
-		header_main_title.setText("大师看法");
 		header_main_title.setVisibility(View.VISIBLE);
 		header_left_btn = (ImageView) findViewById(R.id.header_left_btn);
 		header_right_btn = (ImageView) findViewById(R.id.header_right_btn);
@@ -94,8 +85,6 @@ public class GuaNewsDetailActivity extends Activity implements OnClickListener {
 	}
 
 	private void showShareLine() {
-		// btn_share_line.setVisibility(isShowShare?View.VISIBLE:View.INVISIBLE);
-		// isShowShare = !isShowShare;
 		startActivityForResult(Utils.getShareIntent(this,getShareText(),getShareTitle()), FLAG_GUA_DETAIL_SHARE);
 	}
 
