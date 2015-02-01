@@ -393,6 +393,13 @@ public class QiuGuaActivity extends BaseActivity {
 		}
 	}
 
+	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+	
+	
+	
 	public boolean checkInputForm() {
 		if (num1Input == null && num2Input == null) {
 			return true;
@@ -417,7 +424,6 @@ public class QiuGuaActivity extends BaseActivity {
 		} else if (resultCode == RESULT_OK && requestCode == REQUEST_CAMERA) {
 			photo = (Bitmap) data.getExtras().get("data");
 		}
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private class GuaPostTask extends AsyncTask<Void, Void, Boolean> {

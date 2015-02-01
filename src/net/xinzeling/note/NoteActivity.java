@@ -12,6 +12,7 @@ import net.xinzeling.fragment.TopicFragment;
 import net.xinzeling.lib.DateTime;
 import net.xinzeling.model.NoteModel;
 import net.xinzeling.model.NoteModel.Note;
+import net.xinzeling.utils.Utils;
 import net.xinzeling.widget.LineEditText;
 import net.xinzeling.widget.BlurMask.BlurMaskTask;
 import net.xinzeling2.R;
@@ -493,7 +494,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			 */
 			MyApplication.sendAlarmBroadCast(NoteActivity.this, false, 10, 0, 1001);
 			try {
-				// 这个％02d%02d%02d%02d 月 天 时 分
+				// 这个％02d%02d%02d%02d 月 天 时 分 ,其他的时间
 				String before_str = String.format("%02d%02d%02d%02d", Integer.valueOf(earlyMonth.getText().toString()), Integer.valueOf(earlyDay.getText().toString()),
 						Integer.valueOf(earlyHour.getText().toString()), Integer.valueOf(earlyMin.getText().toString()));
 				int before_second = Integer.valueOf(before_str);
@@ -512,12 +513,13 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 						calendar = Calendar.getInstance();
 						for (long i = 0; i < betweenDays; i++) {
 							if (i == 0) {
-								NoteModel.add(title, contact, content, DateTime.String2Timestamp(started, "yyyy-MM-dd HH:mm"),
-										DateTime.String2Timestamp(syear + "-" + smonth + "-" + sday + " 23:59", "yyyy-MM-dd HH:mm"), before_second, repeat_type);
+								NoteModel.add(title, contact, content, Utils.getDateByStringFormat(started, "yyyy-MM-dd HH:mm").getTime(),
+										 Utils.getDateByStringFormat(syear + "-" + smonth + "-" + sday + " 23:59", "yyyy-MM-dd HH:mm").getTime()
+										, before_second, repeat_type);
 								// -23:59:59
 							} else if (i == betweenDays - 1) {
-								NoteModel.add(title, contact, content, DateTime.String2Timestamp(eyear + "-" + emonth + "-" + eday + " 00:00", "yyyy-MM-dd HH:mm"),
-										DateTime.String2Timestamp(ended, "yyyy-MM-dd HH:mm"), before_second, repeat_type);
+								NoteModel.add(title, contact, content,Utils.getDateByStringFormat( eyear + "-" + emonth + "-" + eday + " 00:00", "yyyy-MM-dd HH:mm").getTime(),
+										Utils.getDateByStringFormat(ended, "yyyy-MM-dd HH:mm").getTime(), before_second, repeat_type);
 								// 00:00:00-
 							} else {
 								calendar.add(Calendar.DAY_OF_YEAR, 1);

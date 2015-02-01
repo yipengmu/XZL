@@ -45,6 +45,7 @@ public class JieGuaActivity extends Activity {
 		}else{
 			ll_jieguo_next_time.setVisibility(View.GONE);
 		}
+		
 		Gua gua = GuaModel.fetch(guaid);
 		if(gua !=null){
 			TextView inferenceTxt = (TextView)this.findViewById(R.id.txt_inference);
@@ -74,12 +75,6 @@ public class JieGuaActivity extends Activity {
 			bian_up.setImageResource((int)resIdList.get(result[2].substring(0, 3)));
 			bian_down.setImageResource((int)resIdList.get(result[2].substring(3)));
 			
-		}
-		//如果是old就显示一个抱歉
-		if(isOld){
-			findViewById(R.id.linearlayout_inference).setVisibility(View.VISIBLE);
-		}else{
-			findViewById(R.id.linearlayout_inference).setVisibility(View.GONE);			
 		}
 	}
 

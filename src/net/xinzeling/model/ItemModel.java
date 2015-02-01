@@ -179,7 +179,7 @@ public class ItemModel extends MyApplication{
 
 	public static HashMap<String,DayItem>fetchDayFlag(int startYYYYMMDD,int endYYYYMMDD) {
 		checkDbH();
-		Cursor cursor = dbh.rawQuery("select refer_type,date from item where date>=? and date<=? order by date asc", new String[]{startYYYYMMDD+"",endYYYYMMDD+""});
+		Cursor cursor = dbh.rawQuery("select refer_type,date,_id from item where date>=? and date<=? order by date asc", new String[]{startYYYYMMDD+"",endYYYYMMDD+""});
 		HashMap<String,DayItem> ret = new HashMap<String,DayItem>();
 		if(cursor.moveToFirst()){
 			while(!cursor.isAfterLast()){

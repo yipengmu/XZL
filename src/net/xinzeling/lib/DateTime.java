@@ -7,12 +7,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
+import android.util.Log;
+
 public class DateTime {
 	public static String getTodayYmd(Date date) {
 		SimpleDateFormat sdFormat = new SimpleDateFormat("yyyyMMdd",Locale.CHINA);
 		if(date==null){
 			date = new Date();
 		}
+		
 		return sdFormat.format(date);
 	}
 

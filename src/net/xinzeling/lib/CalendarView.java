@@ -25,6 +25,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
@@ -176,8 +177,9 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 		if("1".equals(lunarList.get(index)[3])){
 			oth = oth | 1;
 		}
-		//oth = 7;
-		//System.out.println(lunarList.get(index)[0]+" "+lunarList.get(index)[1]+" "+lunarList.get(index)[2]+" "+lunarList.get(index)[3]);
+//		oth = 7;
+		Log.d("cell dian", "cell dian :" + lunarList.get(index)[0]+" "+lunarList.get(index)[1]+" "+lunarList.get(index)[2]+" "+lunarList.get(index)[3]);
+		
 		if(oth==0&&!isredrawbg)return;
 		surface.drawCellBg(canvas, index, color, oth, isredrawbg);
 	}
@@ -235,6 +237,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			}
 			String[] day_info = new String[]{down_text,"0",isNote,isGua};
 			day_info[1] = "".equals(l_info.globalHoliday)?"0":"1";
+			//TODO
 			lunarList.add(day_info);
 			dateList[dateSize] = calendar.get(Calendar.DAY_OF_MONTH);
 			calendar.add(Calendar.DAY_OF_MONTH, 1);
@@ -276,6 +279,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			}
 			String[] day_info = new String[]{down_text,"0",isNote,isGua};
 			day_info[1] = "".equals(l_info.globalHoliday)?"0":"1";
+			//TODO
 			lunarList.add(day_info);
 			dateList[dateSize]= calendar.get(Calendar.DAY_OF_MONTH);
 			if(calendar.get(Calendar.MONTH)==today.getMonth() && calendar.get(Calendar.DAY_OF_MONTH) == today.getDate()){
@@ -351,6 +355,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			}
 			String[] day_info = new String[]{down_text,"0",isNote,isGua};
 			day_info[1] = "".equals(l_info.globalHoliday)?"0":"1";
+			//TODO
 			lunarList.add(day_info);
 			dateList[i]= calendar.get(Calendar.DAY_OF_MONTH);
 			if(calendar.get(Calendar.MONTH)==today.getMonth() && calendar.get(Calendar.DAY_OF_MONTH) == today.getDate()){

@@ -1,6 +1,7 @@
 package net.xinzeling.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 import net.xinzeling.MyApplication;
@@ -21,7 +22,11 @@ public class NoteModel extends MyApplication{
 		value.put("befored", befored);
 		value.put("repeat_type", repeat_type);
 		long noteid=dbh.insert("note", null, value);
-		ItemModel.add(ItemModel.REFER_NOTE, noteid,DateTime.getTodayYmd(null));
+		Date dd = new Date();
+		dd.setTime(started);
+		String str = DateTime.getTodayYmd(null);
+		Log.d("Datetime", " Datetime " + str);
+		ItemModel.add(ItemModel.REFER_NOTE, noteid,str);
 		Log.d("note model", "ItemModel for note add " + noteid);
 		return noteid;
 	}
