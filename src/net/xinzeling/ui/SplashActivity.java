@@ -15,6 +15,8 @@ import net.xinzeling2.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import cn.jpush.android.api.JPushInterface;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,6 +56,18 @@ public class SplashActivity extends BaseActivity {
 			}
 		}, 1500);
 
+	}
+	
+	@Override
+	protected void onResume() {
+		JPushInterface.onResume(this);
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		JPushInterface.onPause(this);
+		super.onPause();
 	}
 	
 	private void checkIfNeedReautoLogin(String userTokenExpireDate, String renewalToken) {
