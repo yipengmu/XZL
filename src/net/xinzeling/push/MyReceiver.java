@@ -2,6 +2,7 @@ package net.xinzeling.push;
 
 import net.xinzeling.MainActivity;
 import net.xinzeling.test.TestActivity;
+import net.xinzeling.ui.SplashActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,10 +47,10 @@ public class MyReceiver extends BroadcastReceiver {
             Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
             
         	//打开自定义的Activity
-        	Intent i = new Intent(context, MainActivity.class);
+        	Intent i = new Intent(context, SplashActivity.class);
         	i.putExtras(bundle);
         	//i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP );
+        	i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK);
         	context.startActivity(i);
         	
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {

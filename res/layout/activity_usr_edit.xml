@@ -302,10 +302,6 @@
                                 android:text="已婚" />
                         </RadioGroup>
 
-                        <EditText
-                            android:id="@+id/hunyin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

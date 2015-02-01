@@ -46,7 +46,8 @@ public class UsrEditActivity extends Activity {
 	private View avataChose;
 	private ImageView avataView;
 	private EditText inputNick,inputName,inputSurname,inputBirthday,inputPhone,inputEmail;
-	private EditText inputBirthAddr,inputNowAddr,inputJob,inputHunyin;
+	private EditText inputBirthAddr,inputNowAddr,inputJob;
+//	private EditText inputHunyin;
 	
 
 	private RadioButton radioWeihun;
@@ -115,12 +116,12 @@ public class UsrEditActivity extends Activity {
 		inputBirthAddr = (EditText)findViewById(R.id.birth_addr);
 		inputNowAddr = (EditText)findViewById(R.id.now_addr);
 		inputJob = (EditText)findViewById(R.id.job);
-		inputHunyin = (EditText)findViewById(R.id.hunyin);
+//		inputHunyin = (EditText)findViewById(R.id.hunyin);
 		
 		inputBirthAddr.setText(usr.getString("birthAddress", ""));
 		inputNowAddr.setText(usr.getString("nowaddr", ""));
 		inputJob.setText(usr.getString("career", ""));
-		inputHunyin.setText(usr.getString("marriage", ""));
+//		inputHunyin.setText(usr.getString("marriage", ""));
 		
 //		Bitmap avata =BitmapFactory.decodeFile("/data/data/net.xinzeling/avata.png");
 //		ImageView avataImg = (ImageView)findViewById(R.id.img_avata);
@@ -191,7 +192,7 @@ public class UsrEditActivity extends Activity {
 		editor.putString("birthAddress", inputBirthAddr.getText().toString());
 		editor.putString("nowaddr", inputNowAddr.getText().toString());
 		editor.putString("career", inputJob.getText().toString());
-		editor.putString("marriage", inputHunyin.getText().toString());
+//		editor.putString("marriage", inputHunyin.getText().toString());
 		
 		editor.apply();
 
@@ -260,7 +261,7 @@ public class UsrEditActivity extends Activity {
 			params.put("marriage", 0);//婚姻  0未婚1结婚
 			
 			try {
-				JSONObject jsonResp = RequestManager.getGet(MyApplication.update_usr_profile_url, params);
+				JSONObject jsonResp = RequestManager.getPost(MyApplication.update_usr_profile_url, params);
 				int resCode = jsonResp.getInt("resCode");
 				if(resCode ==0){
 					return true;

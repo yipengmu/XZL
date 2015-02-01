@@ -80,10 +80,10 @@
                 android:ems="10"
                 android:hint="邮箱/手机号码"
                 android:inputType="textEmailAddress"
-                android:text="316462198@qq.com"
+               
                 android:textColorHint="@color/grey"
                 android:textSize="14sp" >
-
+<!--  android:text="316462198@qq.com" -->
                 <requestFocus />
             </EditText>
 
@@ -99,10 +99,9 @@
                 android:ems="10"
                 android:hint="请输入密码"
                 android:inputType="textPassword"
-                android:text="111111"
                 android:textColorHint="@color/grey"
                 android:textSize="14sp" />
-
+<!--     android:text="111111" -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
