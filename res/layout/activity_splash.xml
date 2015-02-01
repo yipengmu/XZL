@@ -11,18 +11,18 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:src="@drawable/icon_logo_big" />
 
     <TextView
         android:layout_width="fill_parent"
         android:gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_top_appname"
-        android:text="神秘的选择也是一种选择"
+        android:text="神秘的选择 也是一种选择"
         android:textColor="@color/calendar_txt"
-        android:textSize="20sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,10 +30,10 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/tv_top_appname"
         android:layout_centerInParent="true"
-        android:textColor="@color/calendar_txt"
+        android:textColor="#CCCCCC"
         android:layout_marginTop="100dp"
         android:text="\@ 2015"
         android:layout_marginBottom="20dp"
-        android:textSize="20sp" />
+        android:textSize="14sp" />
 
 </RelativeLayout>

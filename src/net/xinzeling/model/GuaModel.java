@@ -44,7 +44,26 @@ public class GuaModel extends MyApplication{
 		return null;
 	}
 	
+	public static Gua fetchByType(int type){
+		Cursor cursor = dbh.rawQuery("SELECT _id,type,date,time,body,yao,result,inference FROM gua WHERE type=?", new String[]{String.valueOf(type)});
+		if(cursor.moveToFirst()){
+			Gua gua = new Gua();
+			gua.guaid = cursor.getInt(0);
+			gua.type = cursor.getInt(1);
+			gua.date = cursor.getString(2);
+			gua.time = cursor.getString(3);
+			gua.body = cursor.getString(4);
+			gua.yao = cursor.getString(5);
+			gua.result = cursor.getString(6);
+			gua.inference = cursor.getString(7);
+			cursor.close();
+			return gua;
+		}
+		return null;
+	}
+	
 	public static ArrayList<Gua> fetchAll(){
+		Utils.checkDBHInited(getContext());
 		ArrayList<Gua> list = new ArrayList<Gua>();
 		Cursor cursor = dbh.rawQuery("SELECT _id,type,date,time,body,yao,result,inference FROM gua ORDER BY _id DESC LIMIT 0,30", null);
 		cursor.moveToFirst();
@@ -67,6 +86,7 @@ public class GuaModel extends MyApplication{
 	
 	//找到有算卦的日期
 	public static ArrayList<String> fetchDateList(){
+		Utils.checkDBHInited(getContext());
 		ArrayList<String> list = new ArrayList<String>();
 		Cursor cursor = dbh.rawQuery("SELECT DISTINCT date FROM gua ORDER BY _id DESC LIMIT 0,30",null);
 		cursor.moveToFirst();
@@ -80,6 +100,7 @@ public class GuaModel extends MyApplication{
 	
 	//按照日期对算卦进行分组
 	public static ArrayList<ArrayList<Gua>> fetchByDate(ArrayList<String> dateList){
+		Utils.checkDBHInited(getContext());
 		ArrayList<ArrayList<Gua>> list = new ArrayList<ArrayList<Gua>>();
 		for(String date:dateList){
 			Cursor cursor = dbh.rawQuery("SELECT _id,title,type,date,time,body,yao,result,inference FROM gua WHERE date=?", new String[]{date});

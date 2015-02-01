@@ -12,7 +12,9 @@ import java.util.Date;
 
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
+import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.share.CommonShareActivity;
+import net.xinzeling.ui.SplashActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -326,5 +328,13 @@ public class Utils {
 
 		return t;
 
+	}
+
+	public static void checkDBHInited(Context c) {
+		if(MyApplication.dbh == null){
+			MyApplication.dbHelper = new DBHelper(c, "xinzeling.db");
+			MyApplication.dbh = MyApplication.dbHelper.getWritableDatabase();
+		
+		}
 	}
 }

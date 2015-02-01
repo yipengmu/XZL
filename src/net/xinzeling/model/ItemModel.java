@@ -14,16 +14,19 @@ public class ItemModel extends MyApplication{
 	public static final int REFER_MEM=3;
 
 	public static void add(int referType, long referId,String yyyymmdd){
+		checkDbH();
 		String sql =String.format(Locale.CHINA, "INSERT INTO item (refer_type,refer_id,date)VALUES(%d,%d,%d)",referType,referId,Integer.valueOf(yyyymmdd));
 		dbh.execSQL(sql);
 	}
 
 	public static void del(int referType, long referId){
+		checkDbH();
 		String sql =String.format(Locale.CHINA, "DELETE FROM item WHERE refer_type=%s AND refer_id=%d",referType,referId);
 		dbh.execSQL(sql);
 	}
 
 	public static ArrayList<Item> getItemList(int referType){
+		checkDbH();
 		ArrayList<Item> list = new ArrayList<Item>();
 		Cursor cursor;
 		String sql ="SELECT refer_type,refer_id FROM item";
@@ -56,6 +59,7 @@ public class ItemModel extends MyApplication{
 	}
 
 	public static ArrayList<Item> getItemList(int referType,String yyyymmddStart,String yyyymmddEnd){
+		checkDbH();
 		ArrayList<Item> list = new ArrayList<Item>();
 		Cursor cursor;
 		String sql ="SELECT refer_type,refer_id FROM item";
@@ -89,6 +93,7 @@ public class ItemModel extends MyApplication{
 	
 
 	public static ArrayList<Item> getItemList(int referType,String yyyymmddStart){
+		checkDbH();
 		ArrayList<Item> list = new ArrayList<Item>();
 		Cursor cursor;
 		String sql ="SELECT refer_type,refer_id FROM item";
@@ -120,7 +125,14 @@ public class ItemModel extends MyApplication{
 		return list;
 	}
 
+	private static void checkDbH() {
+		if(dbh == null){
+			dbh = MyApplication.dbHelper.getWritableDatabase();
+		}
+	}
+
 	private static Item fetchGua(int referId){
+		checkDbH();
 		Cursor cursor = dbh.rawQuery("SELECT title,date,time FROM gua WHERE _id=?", new String[]{String.valueOf(referId)});
 		if(cursor.moveToFirst()){
 			return new Item(cursor.getString(0),REFER_GUA,referId,cursor.getString(1),cursor.getString(2),1);
@@ -130,6 +142,7 @@ public class ItemModel extends MyApplication{
 	}
 
 	private static Item fetchNote(int referId){
+		checkDbH();
 		Cursor cursor = dbh.rawQuery("SELECT topic,started,ended FROM note WHERE _id=?", new String[]{String.valueOf(referId)});
 		if(cursor.moveToFirst()){
 			return new Item(cursor.getString(0),REFER_NOTE,referId,cursor.getString(1),cursor.getString(2),0);
@@ -139,6 +152,7 @@ public class ItemModel extends MyApplication{
 	}
 
 	private static Item fetchMem(int referId){
+		checkDbH();
 		Cursor cursor = dbh.rawQuery("SELECT contact FROM mem WHERE _id=?", new String[]{String.valueOf(referId)});
 		if(cursor.moveToFirst()){
 			return new Item(cursor.getString(0),REFER_MEM,referId,null,null,2);
@@ -149,6 +163,7 @@ public class ItemModel extends MyApplication{
 
 	//按日期和时间段查分组数据
 	public static ArrayList<ArrayList<Item>> fetchByHours(String date, ArrayList<String> hourList){
+		checkDbH();
 		ArrayList<ArrayList<Item>> list =new ArrayList<ArrayList<Item>>();
 		for(String hour:hourList){
 			Cursor cursor = dbh.rawQuery("SELECT * FROM item WHERE date =? AND time>=? AND time<=?", new String[]{});
@@ -163,9 +178,7 @@ public class ItemModel extends MyApplication{
 	}
 
 	public static HashMap<String,DayItem>fetchDayFlag(int startYYYYMMDD,int endYYYYMMDD) {
-		if(dbh == null){
-			
-		}
+		checkDbH();
 		Cursor cursor = dbh.rawQuery("select refer_type,date from item where date>=? and date<=? order by date asc", new String[]{startYYYYMMDD+"",endYYYYMMDD+""});
 		HashMap<String,DayItem> ret = new HashMap<String,DayItem>();
 		if(cursor.moveToFirst()){
@@ -227,7 +240,7 @@ public class ItemModel extends MyApplication{
 					this.showDaytime = start+" "+end;
 				}
 			}else{
-				this.showDaytime = "09月30日 08:21";
+				this.showDaytime = "00月00日 00:00";
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 package net.xinzeling.base;
 
+import com.umeng.analytics.MobclickAgent;
+
 import net.xinzeling2.R;
 import android.app.Activity;
 import android.os.Bundle;
@@ -42,6 +44,18 @@ public class BaseActivity extends Activity implements OnClickListener {
 
 	public void toast(String msg) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		MobclickAgent.onResume(this);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		MobclickAgent.onPause(this);
 	}
 
 	@Override

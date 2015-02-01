@@ -15,6 +15,8 @@ import net.xinzeling2.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.umeng.analytics.MobclickAgent;
+
 import cn.jpush.android.api.JPushInterface;
 
 import android.content.Intent;
@@ -53,6 +55,9 @@ public class SplashActivity extends BaseActivity {
 				MyApplication.mCommonAccountManager.renewalTokenExpire = MyApplication.sharedPreference.getString("renewalTokenExpire", "");
 				
 				checkIfNeedReautoLogin(MyApplication.mCommonAccountManager.userTokenExpireDate, MyApplication.mCommonAccountManager.renewalToken);
+				
+				//友盟统计
+				MobclickAgent.updateOnlineConfig(SplashActivity.this);
 			}
 		}, 1500);
 

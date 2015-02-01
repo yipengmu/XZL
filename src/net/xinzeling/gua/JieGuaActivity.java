@@ -17,23 +17,34 @@ import android.widget.TextView;
 
 public class JieGuaActivity extends Activity {
 	private int guaid;
-	private boolean isOld;//是否之前算过
+	private boolean isOld = false;//是否之前算过,即是否是从本地db拉的数据；默认为新的求卦路径近来的，不显示哭脸Linerlayout
 	private ImageView ben_up,ben_down,hu_up,hu_down,bian_up,bian_down;
 	private int FLAG_JIEGUA_SHARE = 2;
-	
+	private View ll_jieguo_next_time;
+	private TextView txt_gua_datetime_for_next;
+	private String oldInfo = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gua_jie);
 		guaid = getIntent().getIntExtra("guaid", 1);
-		isOld = getIntent().getBooleanExtra("isOld", true);
+		isOld = getIntent().getBooleanExtra("isOld", false);
+		oldInfo = getIntent().getStringExtra("oldInfo");
 		ben_up = (ImageView)findViewById(R.id.ben_up);
 		ben_down = (ImageView)findViewById(R.id.ben_down);
 		hu_up = (ImageView)findViewById(R.id.hu_up);
 		hu_down = (ImageView)findViewById(R.id.hu_down);
 		bian_up = (ImageView)findViewById(R.id.bian_up);
 		bian_down = (ImageView)findViewById(R.id.bian_down);
-
+		ll_jieguo_next_time = findViewById(R.id.ll_jieguo_next_time);
+		txt_gua_datetime_for_next= (TextView) findViewById(R.id.txt_gua_datetime_for_next)	;
+		
+		if(isOld){
+			ll_jieguo_next_time.setVisibility(View.VISIBLE);
+			txt_gua_datetime_for_next.setText(oldInfo);
+		}else{
+			ll_jieguo_next_time.setVisibility(View.GONE);
+		}
 		Gua gua = GuaModel.fetch(guaid);
 		if(gua !=null){
 			TextView inferenceTxt = (TextView)this.findViewById(R.id.txt_inference);

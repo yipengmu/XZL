@@ -562,7 +562,6 @@ public class QiuGuaActivity extends BaseActivity {
 				Intent intent = new Intent(getApplicationContext(), JieGuaActivity.class);
 				intent.putExtra("guaid", (int) guaid);
 				startActivity(intent);
-				finish();
 			} else {
 				if (gua_xz_info.isUsable) {
 					Toast.makeText(getApplicationContext(), resMsg, Toast.LENGTH_LONG).show();

@@ -58,17 +58,17 @@
         android:layout_alignLeft="@+id/layout_border"
         android:layout_alignRight="@+id/layout_border"
         android:layout_below="@+id/layout_header"
-        android:gravity="center_vertical|center_horizontal"
+        android:gravity="center_horizontal"
         android:lineSpacingExtra="4dp"
         android:orientation="vertical"
-        android:padding="18dp" >
+        android:paddingTop="40dp"
+        android:padding="10dp" >
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/jieguo_next_time"
-            android:visibility="gone"
+            android:id="@+id/ll_jieguo_next_time"
             android:orientation="vertical" >
 
             <ImageView
@@ -79,16 +79,17 @@
                 android:src="@drawable/gua_old" />
 
             <TextView
-                android:id="@+id/txt_gua_datetime"
+                android:id="@+id/txt_gua_datetime_for_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="12dp"
                 android:text="已算过，下次再算吧"
                 android:textColor="@color/bg_green" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/txt_inference"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="4dp"
@@ -110,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
+            android:visibility="gone"
             android:orientation="horizontal" >
 
             <ImageView

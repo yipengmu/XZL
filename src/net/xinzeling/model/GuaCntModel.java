@@ -3,12 +3,14 @@ package net.xinzeling.model;
 import java.util.ArrayList;
 
 import net.xinzeling.MyApplication;
+import net.xinzeling.utils.Utils;
 import android.content.ContentValues;
 import android.database.Cursor;
 
 public class GuaCntModel extends MyApplication{
 	
 	public static void update(GuaCnt guacnt){
+		Utils.checkDBHInited(MyApplication.getContext());
 		ContentValues values = new ContentValues();
 		values.put("cnt", guacnt.cnt);
 		values.put("next_time", guacnt.next_time);
@@ -16,6 +18,7 @@ public class GuaCntModel extends MyApplication{
 	}
 
 	public static GuaCnt fetch(int typeid){
+		Utils.checkDBHInited(MyApplication.getContext());
 		Cursor cursor = dbh.rawQuery("SELECT _id,type,cnt,all_cnt,next_time,xz_id FROM gua_tj WHERE type=?", new String[]{String.valueOf(typeid)});
 		if(cursor.moveToFirst()){
 			GuaCnt guacnt = new GuaCnt();
@@ -40,7 +43,9 @@ public class GuaCntModel extends MyApplication{
 		guacnt.isUsable = true;
 	}
 
+	/**从gua_tj 中查找 ，这里面有关于47个type对应的下次能查询的日期*/
 	public static ArrayList<GuaCnt> fetchAll(){
+		Utils.checkDBHInited(MyApplication.getContext());
 		ArrayList<GuaCnt> list = new ArrayList<GuaCnt>();
 		Cursor cursor = dbh.rawQuery("SELECT _id,type,cnt,all_cnt,next_time,xz_id FROM gua_tj ORDER BY _id DESC LIMIT 0,100", null);
 		cursor.moveToFirst();

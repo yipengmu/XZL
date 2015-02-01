@@ -6,8 +6,13 @@ import java.util.List;
 import net.xinzeling.MainActivity;
 import net.xinzeling.MyApplication;
 import net.xinzeling.common.PreferenceManager;
+import net.xinzeling.lib.DateTime;
 import net.xinzeling.lib.RadioGroup;
 import net.xinzeling.lib.RadioGroup.OnCheckedChangeListener;
+import net.xinzeling.model.GuaCntModel;
+import net.xinzeling.model.GuaCntModel.GuaCnt;
+import net.xinzeling.model.GuaModel;
+import net.xinzeling.model.GuaModel.Gua;
 import net.xinzeling2.R;
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -200,11 +205,34 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 	}
 
 	private void gototarget(int type) {
-		Intent intent = new Intent(GuaActivity.this, QiuGuaActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-		intent.putExtra("mode", mode);
-		intent.putExtra("type", type);
-		startActivity(intent);
+
+		ArrayList<GuaCnt> guaCntList = GuaCntModel.fetchAll();
+		
+		for(int i=0;i< guaCntList.size();i++){
+			if(type == guaCntList.get(i).type){
+				if (guaCntList.get(i).isUsable) {
+					Intent intent = new Intent(GuaActivity.this, QiuGuaActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+					intent.putExtra("mode", mode);
+					intent.putExtra("type", type);
+					startActivity(intent);
+				} else {
+					String oldInfo = DateTime.Timestamp2String(((long) guaCntList.get(i).next_time * 1000), "yyyy年MM月dd日");
+
+					Gua item = GuaModel.fetchByType((int) guaCntList.get(i)._id);
+					if(item != null){
+						Intent intent = new Intent(getApplicationContext(), JieGuaActivity.class);
+						intent.putExtra("guaid",item.guaid);
+						intent.putExtra("oldInfo","今天不可算了,下次可算时间:" + oldInfo);
+						intent.putExtra("isOld",true);
+						startActivity(intent);
+					}
+				}
+				break;
+			}
+			
+		}
+	
 	}
 
 	private class BackHomeBroadcastReceiver extends BroadcastReceiver {
