@@ -7,6 +7,7 @@ import net.xinzeling.MyApplication;
 import net.xinzeling.lib.DateTime;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 public class NoteModel extends MyApplication{
 	
@@ -21,6 +22,7 @@ public class NoteModel extends MyApplication{
 		value.put("repeat_type", repeat_type);
 		long noteid=dbh.insert("note", null, value);
 		ItemModel.add(ItemModel.REFER_NOTE, noteid,DateTime.getTodayYmd(null));
+		Log.d("note model", "ItemModel for note add " + noteid);
 		return noteid;
 	}
 

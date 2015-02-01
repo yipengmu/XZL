@@ -79,7 +79,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 		//默认文字颜色
 		int defaultTextColor = arr.getColor(R.styleable.CalendarView_text_color, Color.parseColor("#393b31"));
 		//选中文字颜色
-		int selectTextColor = arr.getColor(R.styleable.CalendarView_select_text_color, Color.parseColor("#ffffff"));
+		int selectTextColor = arr.getColor(R.styleable.CalendarView_select_text_color, getResources().getColor(R.color.white));
 		int notTextColor = arr.getColor(R.styleable.CalendarView_not_text_color, Color.parseColor("#AAAAAA"));
 		isWeek = arr.getBoolean(R.styleable.CalendarView_is_week, false);
 		arr.recycle();
@@ -143,7 +143,9 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 					if(isOtherSelected){
 						surface.drawCellText(canvas, i, String.valueOf(dateList[i]), lunarList.get(i)[0], surface.textColor);
 					}else{
-						surface.drawCellText(canvas, i, String.valueOf(dateList[i]), lunarList.get(i)[0], surface.selectTextColor);
+						//fix 2月头月 颜色不对问题
+						surface.drawCellText(canvas, i, String.valueOf(dateList[i]), lunarList.get(i)[0], surface.textColor);
+//						surface.drawCellText(canvas, i, String.valueOf(dateList[i]), lunarList.get(i)[0], surface.selectTextColor);
 					}
 				}else{
 					boolean isSelected = false;
@@ -152,6 +154,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 							isSelected = true;break;
 						}
 					}
+					//是否选中态，开始绘制每一天的cell格子
 					if(isSelected){
 						surface.drawCellText(canvas, i, String.valueOf(dateList[i]), lunarList.get(i)[0], surface.selectTextColor);
 					}else{
@@ -560,7 +563,6 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			init_cellHeight((int)MyApplication.getWidthHeight()[0]);
 			
 			datePaint.setFakeBoldText(false);
-//			datePaint.setTypeface(FontManager.getTypeface(context));
 			
 			cellBgPaint = new Paint();
 			cellBgPaint.setAntiAlias(true);
@@ -610,7 +612,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			}
 			//b100
 			if((oth & 4)>0){
-				//假日
+				//右上角 假日
 				//float n_left = left + cellWidth - borderWidth - 10;
 				//cellBgPaint.setColor(Color.parseColor("#AA0000"));
 				//canvas.drawRect(n_left, top, n_left + 10, top + 10, cellBgPaint);
@@ -619,7 +621,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			}
 			//b10
 			if((oth & 2)>0){
-				//左下角
+				//左下角 记事
 				//float n_top = top + cellHeight - borderWidth - 10;
 				//cellBgPaint.setColor(Color.parseColor("#dd0000"));
 				//canvas.drawRect(left, n_top, left + 10, n_top + 10, cellBgPaint);
@@ -632,7 +634,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 				//float n_top = top + cellHeight - borderWidth - 10;
 				//cellBgPaint.setColor(Color.parseColor("#00AA00"));
 				//canvas.drawRect(n_left, n_top, n_left + 10, n_top + 10, cellBgPaint);
-				//绘制当前有算卦的 小八卦
+				//右下角 算卦 ，绘制当前有算卦的 小八卦
 				Bitmap iconbit = MyApplication.getResIcon(R.drawable.dr_7_1);
 				canvas.drawBitmap(iconbit, left + cellWidth - 1.4f*iconbit.getWidth() - borderWidth , top + cellHeight - borderWidth - 1.4f*iconbit.getHeight(), cellBgPaint);
 			}

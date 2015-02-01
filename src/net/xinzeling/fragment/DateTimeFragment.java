@@ -154,7 +154,15 @@ public class DateTimeFragment extends BaseFragment implements OnClickListener {
 			@Override
 			public void onSelected(int selectedIndex, String item) {
 				System.out.println("selectedIndex: " + selectedIndex + ", item: " + item);
-				min = Integer.valueOf(item.replace("分", "").replace(" ", ""));
+				try {
+					min = Integer.valueOf(item.replace("分", "").replace(" ", ""));
+				} catch (Exception e) {
+					try {
+						min = Integer.valueOf(item.replace("分", "").replace(" ", "").substring(0, item.indexOf("分")));
+					} catch (Exception e2) {
+					}
+					e.printStackTrace();
+				}
 			}
 		});
 		view.findViewById(R.id.btn_ok).setOnClickListener(this);

@@ -21,22 +21,24 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 		if("xinzeling_alarm".equals(action)){
 			//调用提醒信息内容显示＋闹铃＋振动
-			AudioManager audiomanage = (AudioManager)arg0.getSystemService(Context.AUDIO_SERVICE);
-			int mode = audiomanage.getRingerMode();
-			//RINGER_MODE_NORMAL（普通）、RINGER_MODE_SILENT（静音）、RINGER_MODE_VIBRATE（震动）
-			if((mode & AudioManager.RINGER_MODE_NORMAL)>0){
-				//普通
-				Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-				ring(arg0,alert,audiomanage);
-			}
-			if((mode & AudioManager.RINGER_MODE_SILENT)>0){
-				//静音
-			}
-			if((mode & AudioManager.RINGER_MODE_VIBRATE)>0){
-				//震动
-				vibrator(arg0);
-			}
-
+			//暂时只进行震动提示
+			
+//			AudioManager audiomanage = (AudioManager)arg0.getSystemService(Context.AUDIO_SERVICE);
+//			int mode = audiomanage.getRingerMode();
+//			//RINGER_MODE_NORMAL（普通）、RINGER_MODE_SILENT（静音）、RINGER_MODE_VIBRATE（震动）
+//			if((mode & AudioManager.RINGER_MODE_NORMAL)>0){
+//				//普通
+//				Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+//				ring(arg0,alert,audiomanage);
+//			}
+//			if((mode & AudioManager.RINGER_MODE_SILENT)>0){
+//				//静音
+//			}
+//			if((mode & AudioManager.RINGER_MODE_VIBRATE)>0){
+//				//震动
+//				vibrator(arg0);
+//			}
+			vibrator(arg0);
 		}
 	}
 
