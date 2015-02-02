@@ -6,7 +6,9 @@ import java.util.Locale;
 
 import android.database.Cursor;
 import net.xinzeling.MyApplication;
+import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.lib.DateTime;
+import net.xinzeling.ui.SplashActivity;
 //记事和求卦的一个索引
 public class ItemModel extends MyApplication{
 	public static final int REFER_GUA=1;
@@ -127,6 +129,7 @@ public class ItemModel extends MyApplication{
 
 	private static void checkDbH() {
 		if(dbh == null){
+			dbHelper = new DBHelper(getContext(), "xinzeling.db");
 			dbh = MyApplication.dbHelper.getWritableDatabase();
 		}
 	}

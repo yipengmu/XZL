@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.xinzeling2.R;
+
 public class WheelView extends ScrollView {
     public static final String TAG = WheelView.class.getSimpleName();
     public static class OnWheelViewListener {
@@ -173,7 +175,7 @@ public class WheelView extends ScrollView {
         
         tv.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         tv.setSingleLine(true);
-        tv.setTextColor(Color.parseColor("#9fb521"));
+        tv.setTextColor(getResources().getColor(R.color.common_green));
         tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         tv.setText(item);
         tv.setTextIsSelectable(true);
@@ -272,7 +274,7 @@ public class WheelView extends ScrollView {
             if (position == i) {
                 itemView.setTextColor(Color.parseColor("#0288ce"));
             } else {
-                itemView.setTextColor(Color.parseColor("#9fb521"));
+                itemView.setTextColor(getResources().getColor(R.color.common_green));
             }
         }
     }
@@ -308,7 +310,7 @@ public class WheelView extends ScrollView {
 
         if (null == paint) {
             paint = new Paint();
-            paint.setColor(Color.parseColor("#9fb521"));
+            paint.setColor(getResources().getColor(R.color.common_green));
             paint.setStrokeWidth(1);
         }
 
