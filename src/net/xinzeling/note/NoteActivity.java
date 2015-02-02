@@ -523,7 +523,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 								// 00:00:00-
 							} else {
 								calendar.add(Calendar.DAY_OF_YEAR, 1);
-								NoteModel.add(title, contact, content, calendar.getTimeInMillis() / 1000, calendar.getTimeInMillis() / 1000 + 86400, before_second, repeat_type);
+								NoteModel.add(title, contact, content, calendar.getTimeInMillis(), calendar.getTimeInMillis() / 1000 + 86400, before_second, repeat_type);
 								// 00:00:00-
 							}
 						}
