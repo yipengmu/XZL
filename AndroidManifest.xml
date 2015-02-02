@@ -57,11 +57,11 @@
     <application
         android:name="net.xinzeling.MyApplication"
         android:allowBackup="true"
-        android:configChanges="keyboardHidden|orientation"
+        android:configChanges="orientation|keyboardHidden|screenSize"
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:screenOrientation="landscape"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="UMENG_APPKEY"
@@ -70,21 +70,25 @@
 
         <activity
             android:name="net.xinzeling.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:hardwareAccelerated="true"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
 
             <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>
             -->
         </activity>
         <activity
             android:name="net.xinzeling.ui.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:hardwareAccelerated="true"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -95,11 +99,14 @@
             android:name="net.xinzeling.test.TestActivity"
             android:label="test入口"
             android:launchMode="singleTask" >
-         <!--    <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> -->
+            </intent-filter>
+            -->
         </activity>
 
         <!-- ###################注册SDK使用的Activity###################### -->
@@ -141,18 +148,29 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- 其他继续 -->
 
-        <activity android:name="net.xinzeling.setting.MainSettingActivity" />
+        <activity
+            android:name="net.xinzeling.setting.MainSettingActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.HomeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:hardwareAccelerated="true"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity android:name="net.xinzeling.EarlyDateTimeActivity" />
         <activity android:name="net.xinzeling.PushSwitchActivity" />
         <activity android:name="net.xinzeling.news.GuaNewsActivity" />
         <activity android:name="net.xinzeling.news.GuaNewsDetailActivity" />
-        <activity android:name="net.xinzeling.ui.myxzl.MyXZLActivity" />
+        <activity
+            android:name="net.xinzeling.ui.myxzl.MyXZLActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name="net.xinzeling.share.CommonShareActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/translucent" />
         <activity android:name="net.xinzeling.ui.myzhuanfa.MyZhuanfaActivity" />
         <activity android:name="net.xinzeling.news.GuaShiActivity" />
@@ -169,10 +187,16 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo" />
         <activity android:name="net.xinzeling.webview.WebViewActivity" />
-        <activity android:name="net.xinzeling.setting.SigninActivity" />
+        <activity
+            android:name="net.xinzeling.setting.SigninActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name="net.xinzeling.setting.UsrActivity" />
         <activity android:name="net.xinzeling.setting.UsrEditActivity" />
-        <activity android:name="net.xinzeling.gua.GuaActivity" />
+        <activity
+            android:name="net.xinzeling.gua.GuaActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name="net.xinzeling.gua.QiuGuaActivity" />
         <activity android:name="net.xinzeling.gua.GuaInstruActivity" />
         <activity android:name="net.xinzeling.news.GuaNewsShareActivity" />
@@ -187,7 +211,10 @@
             </intent-filter>
         </activity>
         <activity android:name="net.xinzeling.setting.GuaListActivity" />
-        <activity android:name="net.xinzeling.note.NoteActivity" />
+        <activity
+            android:name="net.xinzeling.note.NoteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name="net.xinzeling.note.TopicActivity" />
         <activity
             android:name="net.xinzeling.note.NoteCheckActivity"
