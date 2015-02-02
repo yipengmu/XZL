@@ -20,7 +20,7 @@
 	<color name="setting_menu_bg">#f1f1f1</color>
 	<color name="grey">#b2b2b2</color>
     <color name="half_transparent">#7f000000</color>
-	<color name="common_green">#8c9f1d</color>
+	<color name="common_green">#9fb521</color>
     <color name="bg_green">@color/common_green</color>
 	<color name="common_white">#ffffff</color>
     <color name="global_background">#FFF5F5F5</color>

@@ -1,29 +1,24 @@
 package net.xinzeling.lib;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
-import net.xinzeling2.R;
 import net.xinzeling.MyApplication;
 import net.xinzeling.model.ItemModel;
 import net.xinzeling.model.ItemModel.DayItem;
 import net.xinzeling.model.LunarModel;
 import net.xinzeling.model.LunarModel.Lunar;
-import android.content.BroadcastReceiver;
+import net.xinzeling2.R;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.SparseIntArray;
@@ -64,7 +59,8 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 	private long firClick,secClick;
 	private Date from_title_txt_date;
 	private int from_title_txt_date_fresh_cnt = 0;
-
+	private float strokeSize = 0.4f;
+	 
 	public CalendarView(Context context, AttributeSet attrs){
 		this(context, attrs,0);
 	}
@@ -80,7 +76,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 		//默认文字颜色
 		int defaultTextColor = arr.getColor(R.styleable.CalendarView_text_color, Color.parseColor("#393b31"));
 		//选中文字颜色
-		int selectTextColor = arr.getColor(R.styleable.CalendarView_select_text_color, getResources().getColor(R.color.white));
+		int selectTextColor = arr.getColor(R.styleable.CalendarView_select_text_color, getResources().getColor(R.color.common_focus_green));
 		int notTextColor = arr.getColor(R.styleable.CalendarView_not_text_color, Color.parseColor("#AAAAAA"));
 		isWeek = arr.getBoolean(R.styleable.CalendarView_is_week, false);
 		arr.recycle();
@@ -168,6 +164,10 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 
 	private void setNewCellBg(Canvas canvas,int index,int color,boolean isredrawbg){
 		int oth = 0;
+		if(index == lunarList.size()){
+			return ;
+		}
+		
 		if("1".equals(lunarList.get(index)[1])){
 			oth = oth | 4;
 		}
@@ -656,13 +656,15 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			float cellY =  (y - 1)* cellHeight + fontHeight * (textLineSpaceCellHeightBegin+1.0f);//字是以中文点为计算点的
 			float cellX = (cellWidth * (x - 1))+ (cellWidth - datePaint.measureText(text))/ 2f;
 			canvas.drawText(text, cellX, cellY, datePaint);
-
-			datePaint.setTextSize(textSize);
+//			makeBorderDrawText(canvas, text, cellX, cellY, datePaint, color,2*textSize);
+			
 			// 农历日期
 			float topMagin = 12f;
+			datePaint.setTextSize(textSize);
 			cellY = (y - 1)* cellHeight + fontHeight*(textLineSpaceCellHeightBegin+1.0f+1.0f ) + topMagin;
 			cellX = (cellWidth * (x - 1))+ (cellWidth - datePaint.measureText(lunar))/ 2f;
 			canvas.drawText(lunar, cellX, cellY, datePaint);
+//			makeBorderDrawText(canvas, lunar, cellX, cellY, datePaint, color,textSize);
 		}
 	}
 
@@ -703,4 +705,27 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			return true;  
 		}
 	}
+	
+	public void makeBorderDrawText(Canvas canvas, String text, float x, float y, Paint mPaint, int originalColor, float originalColorFontSize) {
+		
+		Paint borderP = new Paint();
+		borderP.setAntiAlias(true);
+		borderP.setStyle(Paint.Style.FILL);
+		borderP.setColor(getResources().getColor(R.color.common_light_green));
+		borderP.setTextSize(originalColorFontSize);
+		
+		canvas.drawText(text, x, y - strokeSize, borderP);
+		canvas.drawText(text, x, y + strokeSize, borderP);
+		canvas.drawText(text, x + strokeSize, y, borderP);
+		canvas.drawText(text, x + strokeSize, y + strokeSize, borderP);
+		canvas.drawText(text, x + strokeSize, y - strokeSize, borderP);
+		canvas.drawText(text, x - strokeSize, y, borderP);
+		canvas.drawText(text, x - strokeSize, y + strokeSize, borderP);
+		canvas.drawText(text, x - strokeSize, y - strokeSize, borderP);
+		
+		canvas.drawText(text, x, y, mPaint);
+		
+		
+	}
+
 }
