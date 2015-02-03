@@ -398,6 +398,17 @@ public class QiuGuaActivity extends BaseActivity {
 		super.onStop();
 	}
 	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+	}
 	
 	
 	public boolean checkInputForm() {

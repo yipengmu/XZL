@@ -15,8 +15,6 @@ import net.xinzeling2.R;
 
 import org.json.JSONObject;
 
-import com.squareup.picasso.Picasso;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -24,7 +22,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,6 +29,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -42,7 +40,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class UsrEditActivity extends Activity {
+import com.squareup.picasso.Picasso;
+
+public class UsrEditActivity extends Activity implements OnClickListener {
 	private View avataChose;
 	private ImageView avataView;
 	private EditText inputNick,inputName,inputSurname,inputBirthday,inputPhone,inputEmail;
@@ -68,6 +68,7 @@ public class UsrEditActivity extends Activity {
 
 		avataView=(ImageView)this.findViewById(R.id.img_avata);
 		avataChose = this.findViewById(R.id.layout_avata_chose);
+		avataChose.setOnClickListener(this);
 		inputNick =(EditText)findViewById(R.id.input_nick);
 		inputName =(EditText)findViewById(R.id.input_name);
 		inputSurname=(EditText)findViewById(R.id.input_firstName);
@@ -164,6 +165,9 @@ public class UsrEditActivity extends Activity {
 			break;
 		case R.id.btn_forward:
 			onSubmit();
+			break;
+		case R.id.layout_avata_chose:
+			avataChose.setVisibility(View.GONE);
 			break;
 		}
 	}

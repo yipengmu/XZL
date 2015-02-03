@@ -3,6 +3,7 @@ package net.xinzeling.share.weixin;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.SendMessageToWX;
@@ -49,7 +50,10 @@ public class WeixinManager {
 		req.scene = isSendTimeLine ? SendMessageToWX.Req.WXSceneTimeline : SendMessageToWX.Req.WXSceneSession;
 
 		// 调用api接口发送数据到微信
-		api.sendReq(req);
+		if(!api.sendReq(req)){
+			//未检测到微信app
+			Toast.makeText(mContext, "未检测到应用程序，请安装后再分享", Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 
