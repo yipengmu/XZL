@@ -492,6 +492,9 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			 * @param alarmId
 			 *            定时器自定义id
 			 */
+			String StringFormatWithoutHour = "yyyy-MM-dd";
+			String StringFormatWithHour = "yyyy-MM-dd HH:mm";
+			
 			MyApplication.sendAlarmBroadCast(NoteActivity.this, false, 10, 0, 1001);
 			try {
 				// 这个％02d%02d%02d%02d 月 天 时 分 ,其他的时间
@@ -500,28 +503,30 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 				int before_second = Integer.valueOf(before_str);
 				int iscancel = 0;
 				if (noteid > 0) {
-					NoteModel.edit(noteid, title, contact, content, DateTime.String2Timestamp(started, "yyyy-MM-dd HH:mm"), DateTime.String2Timestamp(ended, "yyyy-MM-dd HH:mm"), before_second,
+					NoteModel.edit(noteid, title, contact, content, DateTime.String2Timestamp(started, StringFormatWithHour), DateTime.String2Timestamp(ended,StringFormatWithHour), before_second,
 							iscancel, repeat_type);
 				} else {
 					// 判断起始与终止时间是否在同一天，如果不是同一天，需要每天每天的进行保存
-					long betweenDays = DateTime.diffDayNumString1String2(ended, started, "yyyy-MM-dd HH:mm");
+					long betweenDays = DateTime.diffDayNumString1String2(ended, started, StringFormatWithHour);
 					if (betweenDays == 0) {
 						// 同一天
 						NoteModel
-								.add(title, contact, content, DateTime.String2Timestamp(started, "yyyy-MM-dd HH:mm"), DateTime.String2Timestamp(ended, "yyyy-MM-dd HH:mm"), before_second, repeat_type);
+								.add(title, contact, content, DateTime.String2Timestamp(started, StringFormatWithHour), DateTime.String2Timestamp(ended, StringFormatWithHour), before_second, repeat_type);
 					} else {
 						calendar = Calendar.getInstance();
 						for (long i = 0; i < betweenDays; i++) {
 							if (i == 0) {
-								NoteModel.add(title, contact, content, Utils.getDateByStringFormat(started, "yyyy-MM-dd HH:mm").getTime(),
-										 Utils.getDateByStringFormat(syear + "-" + smonth + "-" + sday + " 23:59", "yyyy-MM-dd HH:mm").getTime()
+								NoteModel.add(title, contact, content, Utils.getDateByStringFormat(started, StringFormatWithHour).getTime(),
+										 Utils.getDateByStringFormat(syear + "-" + smonth + "-" + sday + " 23:59", StringFormatWithHour).getTime()
 										, before_second, repeat_type);
 								// -23:59:59
-							} else if (i == betweenDays - 1) {
-								NoteModel.add(title, contact, content,Utils.getDateByStringFormat( eyear + "-" + emonth + "-" + eday + " 00:00", "yyyy-MM-dd HH:mm").getTime(),
-										Utils.getDateByStringFormat(ended, "yyyy-MM-dd HH:mm").getTime(), before_second, repeat_type);
-								// 00:00:00-
-							} else {
+							} 
+//							else if (i == betweenDays - 1) {
+//								NoteModel.add(title, contact, content,Utils.getDateByStringFormat( eyear + "-" + emonth + "-" + eday + " 00:00", StringFormatWithHour).getTime(),
+//										Utils.getDateByStringFormat(ended, StringFormatWithHour).getTime(), before_second, repeat_type);
+//								// 00:00:00-
+//							}
+							else {
 								calendar.add(Calendar.DAY_OF_YEAR, 1);
 								NoteModel.add(title, contact, content, calendar.getTimeInMillis(), calendar.getTimeInMillis() / 1000 + 86400, before_second, repeat_type);
 								// 00:00:00-

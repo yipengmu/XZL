@@ -19,13 +19,14 @@ public class NoteModel extends MyApplication{
 		value.put("content", content);
 		value.put("started",started);
 		value.put("ended", ended);
-		value.put("startedCal",new Date(started).toGMTString());
-		value.put("endedCal",new Date(ended).toGMTString());
+//		value.put("startedCal",new Date(started).toGMTString());
+//		value.put("endedCal",new Date(ended).toGMTString());
 		value.put("befored", befored);
 		value.put("repeat_type", repeat_type);
 		long noteid=dbh.insert("note", null, value);
-		String str = DateTime.getTodayYmd(null);
+		String str = DateTime.getTodayYmd(new Date(started));
 		Log.d("Datetime", " Datetime ：" + value.toString());
+		
 		ItemModel.add(ItemModel.REFER_NOTE, noteid,str);
 		return noteid;
 	}
