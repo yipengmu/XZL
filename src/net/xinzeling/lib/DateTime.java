@@ -46,14 +46,19 @@ public class DateTime {
 		return (int)(date1.getTime()/1000);
 	}
 	
-	public static long diffDayNumString1String2(String endstring,String beginstring,String format) throws ParseException{
-		Date end = String2Date(endstring,format);
-		Date begin = String2Date(beginstring,format);
-		long beginTime = begin.getTime();
-		long endTime = end.getTime();
-		
-		long betweenDays = (long)((endTime - beginTime)/(1000*60*60*24)+0.5);
-		
-		return betweenDays;
+	public static long diffDayNumString1String2(String endstring, String beginstring, String format) throws ParseException {
+		Date end = String2Date(endstring, format);
+		Date begin = String2Date(beginstring, format);
+
+		Calendar calStart = Calendar.getInstance();
+		calStart.setTime(begin);
+		Calendar calEnd = Calendar.getInstance();
+		calEnd.setTime(end);
+		int day1 = calStart.get(Calendar.DAY_OF_YEAR);
+		int day2 = calEnd.get(Calendar.DAY_OF_YEAR);
+		if(day2 == day1){
+			return 0;
+		}
+		return day2 - day1 + 1;
 	}
 }

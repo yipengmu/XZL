@@ -77,13 +77,13 @@ public class MainActivity extends TabActivity implements OnTouchListener, OnGest
 
 		// 初始化 4个模块
 		RelativeLayout menu_view_home = createView(0);
-		tabHost.addTab(tabHost.newTabSpec("home").setIndicator(menu_view_home).setContent(new Intent(this, HomeActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("home").setIndicator(menu_view_home).setContent(new Intent(this, HomeActivity.class).putExtras(getIntent())));
 		RelativeLayout menu_view_gua = createView(1);
-		tabHost.addTab(tabHost.newTabSpec("gua").setIndicator(menu_view_gua).setContent(new Intent(this, GuaActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("gua").setIndicator(menu_view_gua).setContent(new Intent(this, GuaActivity.class).putExtras(getIntent())));
 		RelativeLayout menu_view_note = createView(2);
-		tabHost.addTab(tabHost.newTabSpec("note").setIndicator(menu_view_note).setContent(new Intent(this, NoteActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("note").setIndicator(menu_view_note).setContent(new Intent(this, NoteActivity.class).putExtras(getIntent())));
 		RelativeLayout menu_view_setting = createView(3);
-		tabHost.addTab(tabHost.newTabSpec("setting").setIndicator(menu_view_setting).setContent(new Intent(this, SigninActivity.class)));
+		tabHost.addTab(tabHost.newTabSpec("setting").setIndicator(menu_view_setting).setContent(new Intent(this, SigninActivity.class).putExtras(getIntent())));
 
 		tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
 			public void onTabChanged(String arg0) {

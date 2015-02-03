@@ -86,7 +86,7 @@ public class NoteModel extends MyApplication{
 	}
 	
 	public static void del(int noteid){
-		String sql = String.format(Locale.CHINA, "DELETE FROM note WHERE noteid=%d", noteid);
+		String sql = String.format(Locale.CHINA, "DELETE FROM note WHERE _id=%d", noteid);
 		dbh.execSQL(sql);
 	}
 		
