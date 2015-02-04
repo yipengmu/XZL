@@ -380,6 +380,15 @@ public class QiuGuaActivity extends BaseActivity {
 		case R.id.btn_photo:
 			Intent photoIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 			startActivityForResult(photoIntent, REQUEST_PHOTO);
+			
+//			 Intent intent = new Intent();  
+//             /* 开启Pictures画面Type设定为image */  
+//             intent.setType("image/*");  
+//             /* 使用Intent.ACTION_GET_CONTENT这个Action */  
+//             intent.setAction(Intent.ACTION_GET_CONTENT);   
+//             /* 取得相片后返回本画面 */  
+//             startActivityForResult(intent, REQUEST_PHOTO);  
+             
 			break;
 		case R.id.txt_camera:
 		case R.id.btn_camera:
@@ -393,23 +402,6 @@ public class QiuGuaActivity extends BaseActivity {
 		}
 	}
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-	}
-	
-	@Override
-	protected void onPause() {
-		// TODO Auto-generated method stub
-		super.onPause();
-	}
-	
-	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-	}
-	
 	
 	public boolean checkInputForm() {
 		if (num1Input == null && num2Input == null) {

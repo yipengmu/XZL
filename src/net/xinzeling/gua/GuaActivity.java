@@ -212,7 +212,7 @@ public class GuaActivity extends Activity implements OnClickListener, OnCheckedC
 			if(type == guaCntList.get(i).type){
 				if (guaCntList.get(i).isUsable) {
 					Intent intent = new Intent(GuaActivity.this, QiuGuaActivity.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//					intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 					intent.putExtra("mode", mode);
 					intent.putExtra("type", type);
 					startActivity(intent);
