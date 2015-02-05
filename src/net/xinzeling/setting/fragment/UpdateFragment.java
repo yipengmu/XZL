@@ -41,7 +41,7 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 		btn_check_msg = (Button) view.findViewById(R.id.btn_check_msg);
 		tv_app_update_info_readme = (TextView) view.findViewById(R.id.tv_app_update_info_readme);
 		txt_version = (TextView) view.findViewById(R.id.txt_version);
-
+		txt_version.setText(Utils.getAppVersionName(getActivity()));
 		btn_check_msg.setOnClickListener(this);
 		return view;
 	}

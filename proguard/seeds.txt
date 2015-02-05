@@ -5947,6 +5947,12 @@ com.tencent.wpa.WPA: WPA(android.content.Context,com.tencent.connect.auth.QQAuth
 com.tencent.wpa.WPA: WPA(android.content.Context,com.tencent.connect.auth.QQToken)
 com.tencent.wpa.WPA: void getWPAUserOnlineState(java.lang.String,com.tencent.tauth.IUiListener)
 com.tencent.wpa.WPA: int startWPAConversation(java.lang.String,java.lang.String)
+com.umeng.analytics.Gender: com.umeng.analytics.Gender[] values()
+com.umeng.analytics.Gender: com.umeng.analytics.Gender valueOf(java.lang.String)
+com.umeng.analytics.social.UMPlatformData$GENDER: com.umeng.analytics.social.UMPlatformData$GENDER[] values()
+com.umeng.analytics.social.UMPlatformData$GENDER: com.umeng.analytics.social.UMPlatformData$GENDER valueOf(java.lang.String)
+com.umeng.analytics.social.UMPlatformData$UMedia: com.umeng.analytics.social.UMPlatformData$UMedia[] values()
+com.umeng.analytics.social.UMPlatformData$UMedia: com.umeng.analytics.social.UMPlatformData$UMedia valueOf(java.lang.String)
 com.umeng.socialize.bean.BaseMsg
 com.umeng.socialize.bean.BaseMsg: android.os.Parcelable$Creator CREATOR
 com.umeng.socialize.bean.CallbackConfig$ICallbackListener
@@ -6219,6 +6225,8 @@ net.xinzeling.note.NoteActivity: void onClick(android.view.View)
 net.xinzeling.note.NoteCheckActivity
 net.xinzeling.note.NoteCheckActivity: NoteCheckActivity()
 net.xinzeling.note.NoteCheckActivity: void onClick(android.view.View)
+net.xinzeling.note.NoteCheckActivity$1: void onClick(android.content.DialogInterface,int)
+net.xinzeling.note.NoteCheckActivity$2: void onClick(android.content.DialogInterface,int)
 net.xinzeling.push.MyReceiver
 net.xinzeling.push.MyReceiver: MyReceiver()
 net.xinzeling.receiver.AlarmReceiver
@@ -6367,8 +6375,10 @@ net.xinzeling2.R$color: int calendar_grid
 net.xinzeling2.R$color: int calendar_grid_seled
 net.xinzeling2.R$color: int calendar_grid_today
 net.xinzeling2.R$color: int calendar_txt
+net.xinzeling2.R$color: int common_focus_green
 net.xinzeling2.R$color: int common_green
 net.xinzeling2.R$color: int common_light_green
+net.xinzeling2.R$color: int common_white
 net.xinzeling2.R$color: int dark_grey
 net.xinzeling2.R$color: int divider_color
 net.xinzeling2.R$color: int global_background
@@ -6383,7 +6393,6 @@ net.xinzeling2.R$color: int tab_text_selector
 net.xinzeling2.R$color: int translucent
 net.xinzeling2.R$color: int translucent_background
 net.xinzeling2.R$color: int translucent_background_light
-net.xinzeling2.R$color: int translucent_common_light_green
 net.xinzeling2.R$color: int transparent
 net.xinzeling2.R$color: int umeng_socialize_color_group
 net.xinzeling2.R$color: int umeng_socialize_comments_bg
@@ -6508,8 +6517,8 @@ net.xinzeling2.R$drawable: int btn_share_weixin
 net.xinzeling2.R$drawable: int btn_signin
 net.xinzeling2.R$drawable: int btn_title_bar_down_nav_arraw
 net.xinzeling2.R$drawable: int btn_weibo_icon_dark
-net.xinzeling2.R$drawable: int btn_weibo_im_dark
 net.xinzeling2.R$drawable: int btn_weixin_friend_timeline_dark
+net.xinzeling2.R$drawable: int btn_weixin_im_dark
 net.xinzeling2.R$drawable: int btn_white_tri
 net.xinzeling2.R$drawable: int date_mode_selector
 net.xinzeling2.R$drawable: int dot
@@ -6941,7 +6950,6 @@ net.xinzeling2.R$id: int home_title
 net.xinzeling2.R$id: int horizontal
 net.xinzeling2.R$id: int hu_down
 net.xinzeling2.R$id: int hu_up
-net.xinzeling2.R$id: int hunyin
 net.xinzeling2.R$id: int icon_qiugua
 net.xinzeling2.R$id: int imageView2
 net.xinzeling2.R$id: int img_avata
@@ -6978,7 +6986,6 @@ net.xinzeling2.R$id: int item_hour
 net.xinzeling2.R$id: int iv_app_icon
 net.xinzeling2.R$id: int iv_title_mid_icon
 net.xinzeling2.R$id: int iv_top_appname
-net.xinzeling2.R$id: int jieguo_next_time
 net.xinzeling2.R$id: int job
 net.xinzeling2.R$id: int label_note_contact
 net.xinzeling2.R$id: int label_note_topic
@@ -6996,6 +7003,7 @@ net.xinzeling2.R$id: int listView
 net.xinzeling2.R$id: int list_gua
 net.xinzeling2.R$id: int list_note
 net.xinzeling2.R$id: int ll_dashi_menu_cell
+net.xinzeling2.R$id: int ll_jieguo_next_time
 net.xinzeling2.R$id: int ll_login_container
 net.xinzeling2.R$id: int ll_pop_myhistory_bg
 net.xinzeling2.R$id: int ll_pop_myhistory_type_choose_bg
@@ -7150,7 +7158,7 @@ net.xinzeling2.R$id: int tv_type
 net.xinzeling2.R$id: int tv_zf_date_title
 net.xinzeling2.R$id: int tv_zf_msg_title
 net.xinzeling2.R$id: int txt_camera
-net.xinzeling2.R$id: int txt_gua_datetime
+net.xinzeling2.R$id: int txt_gua_datetime_for_next
 net.xinzeling2.R$id: int txt_huangli_new
 net.xinzeling2.R$id: int txt_huangli_old
 net.xinzeling2.R$id: int txt_inference
@@ -7553,3 +7561,67 @@ net.xinzeling2.wxapi.WXEntryActivity
 net.xinzeling2.wxapi.WXEntryActivity: WXEntryActivity()
 org.apache.http.entity.mime.HttpMultipartMode: org.apache.http.entity.mime.HttpMultipartMode[] values()
 org.apache.http.entity.mime.HttpMultipartMode: org.apache.http.entity.mime.HttpMultipartMode valueOf(java.lang.String)
+u.aly.al: u.aly.al[] values()
+u.aly.al: u.aly.al valueOf(java.lang.String)
+u.aly.am$e: u.aly.am$e[] values()
+u.aly.am$e: u.aly.am$e valueOf(java.lang.String)
+u.aly.an$e: u.aly.an$e[] values()
+u.aly.an$e: u.aly.an$e valueOf(java.lang.String)
+u.aly.ao$e: u.aly.ao$e[] values()
+u.aly.ao$e: u.aly.ao$e valueOf(java.lang.String)
+u.aly.ap$e: u.aly.ap$e[] values()
+u.aly.ap$e: u.aly.ap$e valueOf(java.lang.String)
+u.aly.aq$e: u.aly.aq$e[] values()
+u.aly.aq$e: u.aly.aq$e valueOf(java.lang.String)
+u.aly.ar$e: u.aly.ar$e[] values()
+u.aly.ar$e: u.aly.ar$e valueOf(java.lang.String)
+u.aly.as$e: u.aly.as$e[] values()
+u.aly.as$e: u.aly.as$e valueOf(java.lang.String)
+u.aly.at$e: u.aly.at$e[] values()
+u.aly.at$e: u.aly.at$e valueOf(java.lang.String)
+u.aly.au: u.aly.au[] values()
+u.aly.au: u.aly.au valueOf(java.lang.String)
+u.aly.av$e: u.aly.av$e[] values()
+u.aly.av$e: u.aly.av$e valueOf(java.lang.String)
+u.aly.aw: u.aly.aw[] values()
+u.aly.aw: u.aly.aw valueOf(java.lang.String)
+u.aly.ax$e: u.aly.ax$e[] values()
+u.aly.ax$e: u.aly.ax$e valueOf(java.lang.String)
+u.aly.ay$e: u.aly.ay$e[] values()
+u.aly.ay$e: u.aly.ay$e valueOf(java.lang.String)
+u.aly.az$e: u.aly.az$e[] values()
+u.aly.az$e: u.aly.az$e valueOf(java.lang.String)
+u.aly.ba$e: u.aly.ba$e[] values()
+u.aly.ba$e: u.aly.ba$e valueOf(java.lang.String)
+u.aly.bb$e: u.aly.bb$e[] values()
+u.aly.bb$e: u.aly.bb$e valueOf(java.lang.String)
+u.aly.bc$e: u.aly.bc$e[] values()
+u.aly.bc$e: u.aly.bc$e valueOf(java.lang.String)
+u.aly.bd$e: u.aly.bd$e[] values()
+u.aly.bd$e: u.aly.bd$e valueOf(java.lang.String)
+u.aly.be$e: u.aly.be$e[] values()
+u.aly.be$e: u.aly.be$e valueOf(java.lang.String)
+u.aly.bf$e: u.aly.bf$e[] values()
+u.aly.bf$e: u.aly.bf$e valueOf(java.lang.String)
+u.aly.bg$e: u.aly.bg$e[] values()
+u.aly.bg$e: u.aly.bg$e valueOf(java.lang.String)
+u.aly.bh$a: u.aly.bh$a[] values()
+u.aly.bh$a: u.aly.bh$a valueOf(java.lang.String)
+u.aly.bi$e: u.aly.bi$e[] values()
+u.aly.bi$e: u.aly.bi$e valueOf(java.lang.String)
+u.aly.bj$e: u.aly.bj$e[] values()
+u.aly.bj$e: u.aly.bj$e valueOf(java.lang.String)
+u.aly.bk: u.aly.bk[] values()
+u.aly.bk: u.aly.bk valueOf(java.lang.String)
+u.aly.bl$e: u.aly.bl$e[] values()
+u.aly.bl$e: u.aly.bl$e valueOf(java.lang.String)
+u.aly.bm$e: u.aly.bm$e[] values()
+u.aly.bm$e: u.aly.bm$e valueOf(java.lang.String)
+u.aly.bn$e: u.aly.bn$e[] values()
+u.aly.bn$e: u.aly.bn$e valueOf(java.lang.String)
+u.aly.bo$e: u.aly.bo$e[] values()
+u.aly.bo$e: u.aly.bo$e valueOf(java.lang.String)
+u.aly.bp$e: u.aly.bp$e[] values()
+u.aly.bp$e: u.aly.bp$e valueOf(java.lang.String)
+u.aly.bv$a: u.aly.bv$a[] values()
+u.aly.bv$a: u.aly.bv$a valueOf(java.lang.String)

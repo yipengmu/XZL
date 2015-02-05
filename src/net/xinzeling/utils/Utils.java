@@ -15,6 +15,10 @@ import net.xinzeling.MyApplication;
 import net.xinzeling.common.database.DBHelper;
 import net.xinzeling.share.CommonShareActivity;
 import net.xinzeling.ui.SplashActivity;
+import net.xinzeling2.R;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -336,5 +340,48 @@ public class Utils {
 			MyApplication.dbh = MyApplication.dbHelper.getWritableDatabase();
 		
 		}
+	}
+	
+	
+	public static String getAppVersionName(Context c) {
+		PackageInfo nPackageInfo = null;
+		try {
+			PackageManager nPackageManager = c.getPackageManager();// 得到包管理器
+			nPackageInfo = nPackageManager.getPackageInfo(c.getPackageName(), 0);
+		} catch (NameNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		return nPackageInfo.versionName;
+	}
+	
+	public static int getAppVersionCode(Context c){
+		 PackageManager pm = c.getPackageManager();
+		 PackageInfo pi = null;
+		try {
+			pi = pm.getPackageInfo(c.getPackageName(), 0);
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}//getPackageName()是你当前类的包
+		 return pi.versionCode;
+	}
+	
+	public static void showNotifycation(Context context) {
+
+		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+		// 创建一个Notification
+		Notification.Builder builder = new Notification.Builder(context);
+        builder.setOngoing(true);
+        builder.setTicker("信则聆");//设置title
+        builder.setWhen(System.currentTimeMillis());
+        builder.setContentTitle("您有一条记事提醒");//设置内容
+        builder.setAutoCancel(true);//点击消失
+        builder.setSmallIcon(R.drawable.ic_launcher);
+        Intent intent = new Intent(context, SplashActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_HISTORY|Intent.FLAG_ACTIVITY_CLEAR_TASK| Notification.FLAG_AUTO_CANCEL);
+        builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));//这句和点击消失那句是“Notification点击消失但不会跳转”的必须条件，如果只有点击消失那句，这个功能是不能实现的
+
+        Notification notify = builder.getNotification();
+        mNotificationManager.notify(1,notify);
+        
 	}
 }

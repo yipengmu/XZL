@@ -71,6 +71,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_note);
+
 		inputTopic = (EditText) findViewById(R.id.input_note_topic);
 		inputContact = (EditText) findViewById(R.id.input_note_contact);
 		inputContent = (LineEditText) findViewById(R.id.input_note_content);
@@ -307,6 +308,8 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.btn_save:
 		case R.id.btn_forward:
+
+			Utils.showNotifycation(this);
 			new SubmitTask().execute();
 			break;
 		case R.id.topic_frame:
