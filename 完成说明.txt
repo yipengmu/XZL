@@ -16,6 +16,9 @@
 C:\Users\luoyuan.myp>adb pull /data/data/net.xinzeling2/databases/rep.db e://
 512 KB/s (24576 bytes in 0.046s)
 
+keystore:
+online-afe0881d55cd71362bd03c2a127550b7 
+daily -ce187ed67e05c2d8879bf66bbfdfc8b9
 
 备注：
 暂时代码里用的应用appkey是我自己申请的，到时候换成你的吧，上线了再改成他们的吧，主要我最近不在状态，该项目托了很久，界面上不是太擅长，辛苦你了，希望她早日上线吧！

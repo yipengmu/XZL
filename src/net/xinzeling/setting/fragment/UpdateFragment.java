@@ -66,8 +66,6 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 	}
 
 	private void getVersionUpdate() {
-		MyApplication.mAppUpdateBean.downloadUrl = "http://gdown.baidu.com/data/wisegame/0ef8e7b345561cbd/shoujibaidu_16786444.apk";
-		
 		final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setMessage("\n是否更新最新版本?\n").setCancelable(false).setPositiveButton("确认", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int id) {
@@ -129,7 +127,7 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 			
 			if (!result) {
 				// 失败
-				Toast.makeText(getActivity(), resMsg, Toast.LENGTH_LONG).show();
+				Toast.makeText(getActivity(), resMsg, Toast.LENGTH_SHORT).show();
 			} else {
 				progress.dismiss();
 				if(MyApplication.mAppUpdateBean.version > Utils.getAppVersion(getActivity())){
@@ -137,7 +135,7 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 					tv_app_update_info_readme.setText(jsonResp.optString("description"));
 					txt_version.setText("xzl " + jsonResp.optString("version"));
 				}else{
-					
+					Toast.makeText(getActivity(), "已是最新版本", Toast.LENGTH_SHORT).show();
 				}
 			}
 		}

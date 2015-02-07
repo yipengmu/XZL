@@ -126,7 +126,7 @@ public class Utils {
 		if (TextUtils.isEmpty(url)) {
 			return;
 		}
-		if (url.endsWith(".apk")) {
+		if (url.contains(".apk")) {
 			Uri uri = Uri.parse(url);
 			Intent viewIntent = new Intent(Intent.ACTION_VIEW, uri);
 			viewIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

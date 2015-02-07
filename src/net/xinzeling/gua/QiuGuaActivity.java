@@ -424,8 +424,10 @@ public class QiuGuaActivity extends BaseActivity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			Toast.makeText(getApplicationContext(), "相册资源已载入", Toast.LENGTH_SHORT).show();
 		} else if (resultCode == RESULT_OK && requestCode == REQUEST_CAMERA) {
 			photo = (Bitmap) data.getExtras().get("data");
+			Toast.makeText(getApplicationContext(), "相机资源已载入", Toast.LENGTH_SHORT).show();
 		}
 	}
 

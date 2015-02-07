@@ -13172,53 +13172,53 @@ net.xinzeling.fragment.MonthFragment -> net.xinzeling.fragment.m:
     android.widget.TextView tv_show_recent_dashi_kanfa -> r
     int selectDateYYYYMMDD -> s
     int selectGuaOrNote -> t
-    79:87:void onCreate(android.os.Bundle) -> onCreate
-    91:126:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
-    131:136:void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
-    160:171:void onClick(android.view.View) -> onClick
-    174:181:void collapseExpand() -> a
-    185:200:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    204:214:void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
-    218:233:void onResume() -> onResume
-    261:263:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-    279:284:void setTodayBtnShow(boolean) -> a
-    288:289:void onMonthChange(java.util.Date,boolean) -> a
-    293:303:void onDateSelect(java.util.Date,boolean) -> b
-    307:310:void onDoubleClick(java.util.Date) -> a
-    73:73:android.widget.TextView access$0(net.xinzeling.fragment.MonthFragment) -> a
-    59:59:void access$1(net.xinzeling.fragment.MonthFragment,java.util.ArrayList) -> a
-    60:60:net.xinzeling.adapter.ItemAdapter access$2(net.xinzeling.fragment.MonthFragment) -> b
-    56:56:net.xinzeling.HomeActivity access$3(net.xinzeling.fragment.MonthFragment) -> c
-    59:59:java.util.ArrayList access$4(net.xinzeling.fragment.MonthFragment) -> d
-    60:60:void access$5(net.xinzeling.fragment.MonthFragment,net.xinzeling.adapter.ItemAdapter) -> a
-    58:58:android.widget.ListView access$6(net.xinzeling.fragment.MonthFragment) -> e
-    173:173:void access$7(net.xinzeling.fragment.MonthFragment) -> f
-    67:67:net.xinzeling.model.ItemModel$Item access$8(net.xinzeling.fragment.MonthFragment) -> g
-    75:75:int access$9(net.xinzeling.fragment.MonthFragment) -> h
-    74:74:int access$10(net.xinzeling.fragment.MonthFragment) -> i
+    82:90:void onCreate(android.os.Bundle) -> onCreate
+    94:129:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
+    134:139:void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
+    166:177:void onClick(android.view.View) -> onClick
+    180:187:void collapseExpand() -> a
+    191:206:void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    210:220:void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
+    224:239:void onResume() -> onResume
+    267:269:boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    285:290:void setTodayBtnShow(boolean) -> a
+    294:295:void onMonthChange(java.util.Date,boolean) -> a
+    299:309:void onDateSelect(java.util.Date,boolean) -> b
+    313:316:void onDoubleClick(java.util.Date) -> a
+    76:76:android.widget.TextView access$0(net.xinzeling.fragment.MonthFragment) -> a
+    62:62:void access$1(net.xinzeling.fragment.MonthFragment,java.util.ArrayList) -> a
+    63:63:net.xinzeling.adapter.ItemAdapter access$2(net.xinzeling.fragment.MonthFragment) -> b
+    59:59:net.xinzeling.HomeActivity access$3(net.xinzeling.fragment.MonthFragment) -> c
+    62:62:java.util.ArrayList access$4(net.xinzeling.fragment.MonthFragment) -> d
+    63:63:void access$5(net.xinzeling.fragment.MonthFragment,net.xinzeling.adapter.ItemAdapter) -> a
+    61:61:android.widget.ListView access$6(net.xinzeling.fragment.MonthFragment) -> e
+    179:179:void access$7(net.xinzeling.fragment.MonthFragment) -> f
+    70:70:net.xinzeling.model.ItemModel$Item access$8(net.xinzeling.fragment.MonthFragment) -> g
+    78:78:int access$9(net.xinzeling.fragment.MonthFragment) -> h
+    77:77:int access$10(net.xinzeling.fragment.MonthFragment) -> i
 net.xinzeling.fragment.MonthFragment$1 -> net.xinzeling.fragment.n:
     net.xinzeling.fragment.MonthFragment this$0 -> a
-    193:197:void run() -> run
+    199:203:void run() -> run
 net.xinzeling.fragment.MonthFragment$2 -> net.xinzeling.fragment.o:
     net.xinzeling.fragment.MonthFragment this$0 -> a
-    223:230:void run() -> run
+    229:236:void run() -> run
 net.xinzeling.fragment.MonthFragment$GestureListener -> net.xinzeling.fragment.m$a:
     net.xinzeling.fragment.MonthFragment this$0 -> a
-    269:274:boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
+    275:280:boolean onFling(android.view.MotionEvent,android.view.MotionEvent,float,float) -> onFling
 net.xinzeling.fragment.MonthFragment$LoadTask -> net.xinzeling.fragment.m$b:
     net.xinzeling.fragment.MonthFragment this$0 -> a
-    241:245:java.lang.Void doInBackground(java.lang.Integer[]) -> a
-    250:256:void onPostExecute(java.lang.Void) -> a
+    247:251:java.lang.Void doInBackground(java.lang.Integer[]) -> a
+    256:262:void onPostExecute(java.lang.Void) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 net.xinzeling.fragment.MonthFragment$MyRecentDashiKanFaReceiver -> net.xinzeling.fragment.m$c:
     net.xinzeling.fragment.MonthFragment this$0 -> a
-    141:156:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-    138:138:net.xinzeling.fragment.MonthFragment access$0(net.xinzeling.fragment.MonthFragment$MyRecentDashiKanFaReceiver) -> a
+    144:162:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    141:141:net.xinzeling.fragment.MonthFragment access$0(net.xinzeling.fragment.MonthFragment$MyRecentDashiKanFaReceiver) -> a
 net.xinzeling.fragment.MonthFragment$MyRecentDashiKanFaReceiver$1 -> net.xinzeling.fragment.p:
     net.xinzeling.fragment.MonthFragment$MyRecentDashiKanFaReceiver this$1 -> a
     android.content.Intent val$intent -> b
-    148:154:void onClick(android.view.View) -> onClick
+    153:159:void onClick(android.view.View) -> onClick
 net.xinzeling.fragment.PushSWFragment -> net.xinzeling.fragment.q:
     android.widget.ImageView btn_yes -> a
     android.widget.ImageView btn_no -> b
@@ -13365,7 +13365,7 @@ net.xinzeling.gua.QiuGuaActivity -> net.xinzeling.gua.QiuGuaActivity:
     129:364:void setInGuaTitle(int) -> c
     367:403:void onClick(android.view.View) -> onClick
     407:415:boolean checkInputForm() -> b
-    420:430:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    420:432:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     45:45:int access$0(net.xinzeling.gua.QiuGuaActivity) -> a
     49:49:android.widget.EditText access$1(net.xinzeling.gua.QiuGuaActivity) -> b
     117:117:boolean access$2(net.xinzeling.gua.QiuGuaActivity,int) -> a
@@ -13387,10 +13387,10 @@ net.xinzeling.gua.QiuGuaActivity$GuaPostTask -> net.xinzeling.gua.QiuGuaActivity
     java.lang.String url -> f
     long guaid -> g
     net.xinzeling.gua.QiuGuaActivity this$0 -> a
-    460:477:void initView(java.util.HashMap) -> a
-    481:482:void onPreExecute() -> onPreExecute
-    486:562:java.lang.Boolean doInBackground(java.lang.Void[]) -> a
-    567:582:void onPostExecute(java.lang.Boolean) -> a
+    462:479:void initView(java.util.HashMap) -> a
+    483:484:void onPreExecute() -> onPreExecute
+    488:564:java.lang.Boolean doInBackground(java.lang.Void[]) -> a
+    569:584:void onPostExecute(java.lang.Boolean) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 net.xinzeling.gua.ShareActivity -> net.xinzeling.gua.ShareActivity:
@@ -14016,8 +14016,8 @@ net.xinzeling.net.http.RequestManager -> net.xinzeling.c.a.a:
     98:102:void checkNeedAutoLogin(org.json.JSONObject) -> b
     105:127:java.lang.String paramsEncode(java.util.HashMap) -> a
     131:131:org.json.JSONObject getPost(java.lang.String,java.util.HashMap) -> b
-    135:167:org.json.JSONObject getPost(java.lang.String,java.util.HashMap,java.io.File) -> a
-    171:182:java.lang.String inputStreamToString(java.io.InputStream) -> a
+    135:170:org.json.JSONObject getPost(java.lang.String,java.util.HashMap,java.io.File) -> a
+    174:185:java.lang.String inputStreamToString(java.io.InputStream) -> a
 net.xinzeling.news.GuaNewsActivity -> net.xinzeling.news.GuaNewsActivity:
     android.widget.ImageView TabSel -> a
     android.widget.ImageView BackHome -> b
@@ -14119,18 +14119,18 @@ net.xinzeling.note.NoteActivity -> net.xinzeling.note.NoteActivity:
     java.util.ArrayList mSelectedList -> g
     long mFirstime -> K
     android.widget.TextView tv_topic_icon_themes -> L
-    72:168:void onCreate(android.os.Bundle) -> onCreate
-    171:227:void loadNote(int) -> b
-    230:235:void showTopicFragment() -> b
-    238:255:void saveTopicFragment() -> c
-    258:266:void updateTopicThemes(java.util.ArrayList) -> a
-    274:320:void onClick(android.view.View) -> onClick
-    323:329:void showEarlyDateTimeFragment() -> d
-    332:337:void hideEarlyDateTimeFragment() -> e
-    340:364:void showDateTimeFragment(int) -> a
-    368:391:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
-    395:411:void hideDateTimeFragment() -> f
-    415:435:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    72:169:void onCreate(android.os.Bundle) -> onCreate
+    172:228:void loadNote(int) -> b
+    231:236:void showTopicFragment() -> b
+    239:256:void saveTopicFragment() -> c
+    259:267:void updateTopicThemes(java.util.ArrayList) -> a
+    275:321:void onClick(android.view.View) -> onClick
+    324:330:void showEarlyDateTimeFragment() -> d
+    333:338:void hideEarlyDateTimeFragment() -> e
+    341:365:void showDateTimeFragment(int) -> a
+    369:392:boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    396:412:void hideDateTimeFragment() -> f
+    416:436:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     45:45:android.widget.EditText access$0(net.xinzeling.note.NoteActivity) -> a
     68:68:android.widget.TextView access$1(net.xinzeling.note.NoteActivity) -> b
     45:45:android.widget.EditText access$2(net.xinzeling.note.NoteActivity) -> c
@@ -14156,25 +14156,25 @@ net.xinzeling.note.NoteActivity -> net.xinzeling.note.NoteActivity:
     54:54:android.view.animation.Animation access$22(net.xinzeling.note.NoteActivity) -> v
 net.xinzeling.note.NoteActivity$1 -> net.xinzeling.note.a:
     net.xinzeling.note.NoteActivity this$0 -> a
-    129:131:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
-    134:134:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-    137:137:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+    130:132:void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+    135:135:void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    138:138:void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
 net.xinzeling.note.NoteActivity$2 -> net.xinzeling.note.b:
     net.xinzeling.note.NoteActivity this$0 -> a
-    147:165:void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
+    148:166:void onCheckedChanged(android.widget.RadioGroup,int) -> onCheckedChanged
 net.xinzeling.note.NoteActivity$3 -> net.xinzeling.note.c:
     net.xinzeling.note.NoteActivity this$0 -> a
-    326:327:void run() -> run
+    327:328:void run() -> run
 net.xinzeling.note.NoteActivity$SubmitTask -> net.xinzeling.note.NoteActivity$a:
     boolean isValidate -> b
     net.xinzeling.MyApplication$note_error_code error_code -> c
     net.xinzeling.note.NoteActivity this$0 -> a
     int[] $SWITCH_TABLE$net$xinzeling$MyApplication$note_error_code -> d
-    444:540:java.lang.Void doInBackground(java.lang.Void[]) -> a
-    545:574:void onPostExecute(java.lang.Void) -> a
+    445:541:java.lang.Void doInBackground(java.lang.Void[]) -> a
+    546:575:void onPostExecute(java.lang.Void) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-    437:437:int[] $SWITCH_TABLE$net$xinzeling$MyApplication$note_error_code() -> a
+    438:438:int[] $SWITCH_TABLE$net$xinzeling$MyApplication$note_error_code() -> a
 net.xinzeling.note.NoteActivity$TopicEditTextHolder -> net.xinzeling.note.NoteActivity$b:
     java.lang.String imageTopicThemes -> a
     java.lang.String strTopicThemes -> b
@@ -14207,9 +14207,10 @@ net.xinzeling.push.PushManager -> net.xinzeling.push.a:
     14:17:net.xinzeling.push.PushManager getInstance() -> a
     21:27:void init() -> b
 net.xinzeling.receiver.AlarmReceiver -> net.xinzeling.receiver.AlarmReceiver:
-    19:43:void onReceive(android.content.Context,android.content.Intent) -> onReceive
-    47:49:void vibrator(android.content.Context) -> a
-    52:66:void ring(android.content.Context,android.net.Uri,android.media.AudioManager) -> a
+    android.content.Context mContext -> a
+    26:54:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    60:62:void vibrator(android.content.Context) -> a
+    65:79:void ring(android.content.Context,android.net.Uri,android.media.AudioManager) -> a
 net.xinzeling.setting.GuaListActivity -> net.xinzeling.setting.GuaListActivity:
     android.widget.ExpandableListView listView -> a
     net.xinzeling.adapter.GuaListAdapter guaListAdapter -> b
@@ -14428,26 +14429,26 @@ net.xinzeling.setting.fragment.UpdateFragment -> net.xinzeling.setting.a.h:
     40:46:android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle) -> onCreateView
     51:53:void onViewCreated(android.view.View,android.os.Bundle) -> onViewCreated
     57:66:void onClick(android.view.View) -> onClick
-    69:83:void getVersionUpdate() -> a
-    86:87:void checkVersionUpdate() -> b
+    69:81:void getVersionUpdate() -> a
+    84:85:void checkVersionUpdate() -> b
     29:29:android.widget.Button access$0(net.xinzeling.setting.fragment.UpdateFragment) -> a
     30:30:android.widget.TextView access$1(net.xinzeling.setting.fragment.UpdateFragment) -> b
     31:31:android.widget.TextView access$2(net.xinzeling.setting.fragment.UpdateFragment) -> c
 net.xinzeling.setting.fragment.UpdateFragment$1 -> net.xinzeling.setting.a.i:
     net.xinzeling.setting.fragment.UpdateFragment this$0 -> a
-    75:76:void onClick(android.content.DialogInterface,int) -> onClick
+    73:74:void onClick(android.content.DialogInterface,int) -> onClick
 net.xinzeling.setting.fragment.UpdateFragment$2 -> net.xinzeling.setting.a.j:
     net.xinzeling.setting.fragment.UpdateFragment this$0 -> a
-    79:80:void onClick(android.content.DialogInterface,int) -> onClick
+    77:78:void onClick(android.content.DialogInterface,int) -> onClick
 net.xinzeling.setting.fragment.UpdateFragment$CheckVersionUpdateTask -> net.xinzeling.setting.a.h$a:
     org.json.JSONObject jsonResp -> a
     android.app.ProgressDialog progress -> d
     java.lang.String resMsg -> b
     java.util.HashMap params -> e
     net.xinzeling.setting.fragment.UpdateFragment this$0 -> c
-    102:103:void onPreExecute() -> onPreExecute
-    108:121:java.lang.Boolean doInBackground(java.lang.Void[]) -> a
-    126:143:void onPostExecute(java.lang.Boolean) -> a
+    100:101:void onPreExecute() -> onPreExecute
+    106:119:java.lang.Boolean doInBackground(java.lang.Void[]) -> a
+    124:141:void onPostExecute(java.lang.Boolean) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 net.xinzeling.setting.net.AppUpdateBean -> net.xinzeling.setting.b.a:
@@ -14740,22 +14741,23 @@ net.xinzeling.utils.Utils -> net.xinzeling.d.a:
     java.lang.String SNS_SHARE_BUNDLE_URL -> c
     java.lang.String SNS_SHARE_BUNDLE_BITMAP_URL -> d
     java.lang.String SNS_SHARE_BUNDLE_WEIXIN_ONLY_TEXT -> e
-    45:69:android.graphics.Bitmap getBitmapFromURL(java.lang.String) -> a
-    75:77:boolean isInCorrectTimeSection(long,long,long) -> a
-    81:88:java.util.Date getDateByStringyyyyMMdd(java.lang.String) -> b
-    93:99:java.util.Date getDateByStringFormat(java.lang.String,java.lang.String) -> a
-    107:108:java.lang.String getStringByDate(java.lang.String,long) -> a
-    114:119:void openFile(java.io.File) -> a
-    122:131:void downloadApk(java.lang.String) -> c
-    134:142:float getAppVersion(android.content.Context) -> a
-    146:147:int getScreenWidth(android.content.Context) -> b
-    151:152:int getScreenHeight(android.content.Context) -> c
-    165:169:android.content.Intent getMaintabIndexIntent(android.content.Context,int) -> a
-    173:176:android.content.Intent getShareIntent(android.content.Context,java.lang.String,java.lang.String) -> a
-    180:329:java.lang.String getGuaTypeFromId(int) -> a
-    334:339:void checkDBHInited(android.content.Context) -> d
-    343:350:java.lang.String getAppVersionName(android.content.Context) -> e
-    354:361:int getAppVersionCode(android.content.Context) -> f
+    49:73:android.graphics.Bitmap getBitmapFromURL(java.lang.String) -> a
+    79:81:boolean isInCorrectTimeSection(long,long,long) -> a
+    85:92:java.util.Date getDateByStringyyyyMMdd(java.lang.String) -> b
+    97:103:java.util.Date getDateByStringFormat(java.lang.String,java.lang.String) -> a
+    111:112:java.lang.String getStringByDate(java.lang.String,long) -> a
+    118:123:void openFile(java.io.File) -> a
+    126:135:void downloadApk(java.lang.String) -> c
+    138:146:float getAppVersion(android.content.Context) -> a
+    150:151:int getScreenWidth(android.content.Context) -> b
+    155:156:int getScreenHeight(android.content.Context) -> c
+    169:173:android.content.Intent getMaintabIndexIntent(android.content.Context,int) -> a
+    177:180:android.content.Intent getShareIntent(android.content.Context,java.lang.String,java.lang.String) -> a
+    184:333:java.lang.String getGuaTypeFromId(int) -> a
+    338:343:void checkDBHInited(android.content.Context) -> d
+    347:354:java.lang.String getAppVersionName(android.content.Context) -> e
+    358:365:int getAppVersionCode(android.content.Context) -> f
+    370:386:void showNotifycation(android.content.Context) -> g
 net.xinzeling.webview.WebViewActivity -> net.xinzeling.webview.WebViewActivity:
     android.widget.TextView txtTitle -> a
     android.webkit.WebView webView -> b

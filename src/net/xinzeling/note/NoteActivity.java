@@ -480,6 +480,8 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 
 			String started = syear + "-" + smonth + "-" + sday + " " + shour + ":" + smin;
 			String ended = eyear + "-" + emonth + "-" + eday + " " + ehour + ":" + emin;
+
+				
 			/**
 			 * sendAlarmBroadCast 发送闹铃广播
 			 * 
@@ -487,16 +489,17 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			 * @param isRepeat
 			 *            定时器是否重复
 			 * @param firsttime
-			 *            第一次触发时间离现在的秒数
+			 *            第一次触发时间离现在的秒数 ，默认十分钟后再提醒 60 * 10
 			 * @param repeat_time
 			 *            定时器重复的间隔秒数
 			 * @param alarmId
 			 *            定时器自定义id
 			 */
+			MyApplication.sendAlarmBroadCast(NoteActivity.this, false, 60 * 10 , 0, 1001);
+			
 			String StringFormatWithoutHour = "yyyy-MM-dd";
 			String StringFormatWithHour = "yyyy-MM-dd HH:mm";
-			
-			MyApplication.sendAlarmBroadCast(NoteActivity.this, false, 10, 0, 1001);
+		
 			try {
 				// 这个％02d%02d%02d%02d 月 天 时 分 ,其他的时间
 				String before_str = String.format("%02d%02d%02d%02d", Integer.valueOf(earlyMonth.getText().toString()), Integer.valueOf(earlyDay.getText().toString()),

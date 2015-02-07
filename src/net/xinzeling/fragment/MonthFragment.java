@@ -36,6 +36,9 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.AdapterView;
@@ -139,8 +142,10 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 		@Override
 		public void onReceive(Context context, final Intent intent) {
 			tv_show_recent_dashi_kanfa.setVisibility(View.VISIBLE);
+			AlphaAnimation anim = new AlphaAnimation(0, 1);
+			anim.setDuration(600);
+			tv_show_recent_dashi_kanfa.startAnimation(anim);
 			tv_show_recent_dashi_kanfa.setText("大师看法: " + intent.getStringExtra("recentTitle"));
-			
 			tv_show_recent_dashi_kanfa.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -153,6 +158,7 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 					getActivity().startActivity(news);
 				}
 			});
+						
 		}
 	}
 

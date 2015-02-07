@@ -163,8 +163,11 @@ public class RequestManager {
 
 		HttpResponse httpResp = httpClient.execute(httpPost);  
 		String json = EntityUtils.toString(httpResp.getEntity(), "utf-8");
+		//未登录 {"resCode":"0104","resMsg":"Unknown User Token"}
 		System.out.println(json);
-		return new JSONObject(json);
+
+		JSONObject result = baseHandleHttpResult(json);
+		return result;
 	}
 	
 	private static String inputStreamToString(InputStream inputStream) throws IOException{
