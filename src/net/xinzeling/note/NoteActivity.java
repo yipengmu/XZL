@@ -308,6 +308,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.btn_save:
 		case R.id.btn_forward:
+//			Utils.showNotifycation(this);
 			new SubmitTask().execute();
 			break;
 		case R.id.topic_frame:

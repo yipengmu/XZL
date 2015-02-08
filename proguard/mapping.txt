@@ -14170,8 +14170,8 @@ net.xinzeling.note.NoteActivity$SubmitTask -> net.xinzeling.note.NoteActivity$a:
     net.xinzeling.MyApplication$note_error_code error_code -> c
     net.xinzeling.note.NoteActivity this$0 -> a
     int[] $SWITCH_TABLE$net$xinzeling$MyApplication$note_error_code -> d
-    445:541:java.lang.Void doInBackground(java.lang.Void[]) -> a
-    546:575:void onPostExecute(java.lang.Void) -> a
+    445:544:java.lang.Void doInBackground(java.lang.Void[]) -> a
+    549:578:void onPostExecute(java.lang.Void) -> a
     1:1:void onPostExecute(java.lang.Object) -> onPostExecute
     1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
     438:438:int[] $SWITCH_TABLE$net$xinzeling$MyApplication$note_error_code() -> a

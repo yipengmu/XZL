@@ -335,14 +335,13 @@ public class Utils {
 	}
 
 	public static void checkDBHInited(Context c) {
-		if(MyApplication.dbh == null){
+		if (MyApplication.dbh == null) {
 			MyApplication.dbHelper = new DBHelper(c, "xinzeling.db");
 			MyApplication.dbh = MyApplication.dbHelper.getWritableDatabase();
-		
+
 		}
 	}
-	
-	
+
 	public static String getAppVersionName(Context c) {
 		PackageInfo nPackageInfo = null;
 		try {
@@ -353,35 +352,59 @@ public class Utils {
 		}
 		return nPackageInfo.versionName;
 	}
-	
-	public static int getAppVersionCode(Context c){
-		 PackageManager pm = c.getPackageManager();
-		 PackageInfo pi = null;
+
+	public static int getAppVersionCode(Context c) {
+		PackageManager pm = c.getPackageManager();
+		PackageInfo pi = null;
 		try {
 			pi = pm.getPackageInfo(c.getPackageName(), 0);
 		} catch (NameNotFoundException e) {
 			e.printStackTrace();
-		}//getPackageName()是你当前类的包
-		 return pi.versionCode;
+		}// getPackageName()是你当前类的包
+		return pi.versionCode;
 	}
-	
+
 	public static void showNotifycation(Context context) {
 
-		NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-		// 创建一个Notification
-		Notification.Builder builder = new Notification.Builder(context);
-        builder.setOngoing(true);
-        builder.setTicker("信则聆");//设置title
-        builder.setWhen(System.currentTimeMillis());
-        builder.setContentTitle("您有一条记事提醒");//设置内容
-        builder.setAutoCancel(true);//点击消失
-        builder.setSmallIcon(R.drawable.ic_launcher);
-        Intent intent = new Intent(context, SplashActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_HISTORY|Intent.FLAG_ACTIVITY_CLEAR_TASK| Notification.FLAG_AUTO_CANCEL);
-        builder.setContentIntent(PendingIntent.getActivity(context, 0, intent, 0));//这句和点击消失那句是“Notification点击消失但不会跳转”的必须条件，如果只有点击消失那句，这个功能是不能实现的
+		// NotificationManager mNotificationManager = (NotificationManager)
+		// context.getSystemService(context.NOTIFICATION_SERVICE);
+		// // 创建一个Notification
+		// Notification.Builder builder = new Notification.Builder(context);
+		// builder.setOngoing(true);
+		// builder.setAutoCancel(true);
+		// builder.setTicker("信则聆");//设置title
+		// builder.setWhen(System.currentTimeMillis());
+		// builder.setContentTitle("您有一条记事提醒");//设置内容
+		// builder.setAutoCancel(true);//点击消失
+		// builder.setSmallIcon(R.drawable.ic_launcher);
+		// Intent intent = new Intent(context, SplashActivity.class);
+		// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NO_HISTORY|Intent.FLAG_ACTIVITY_CLEAR_TASK|
+		// Notification.FLAG_AUTO_CANCEL);
+		// builder.setContentIntent(PendingIntent.getActivity(context, 0,
+		// intent,
+		// 0));//这句和点击消失那句是“Notification点击消失但不会跳转”的必须条件，如果只有点击消失那句，这个功能是不能实现的
+		//
+		// Notification notify = builder.getNotification();
+		// mNotificationManager.notify(1,notify);
 
-        Notification notify = builder.getNotification();
-        mNotificationManager.notify(1,notify);
-        
+		String msgTitle = "信则聆";
+		String msgContent = "您有一条记事提醒";
+
+		NotificationManager notificationMgr = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		int icon = R.drawable.ic_launcher;
+		long when = System.currentTimeMillis();
+		Notification notification = new Notification(icon, msgTitle, when);
+
+		notification.defaults |= Notification.DEFAULT_SOUND;
+		notification.defaults |= Notification.DEFAULT_VIBRATE;
+		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+
+		Intent intent = new Intent(context, SplashActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TASK | Notification.FLAG_AUTO_CANCEL);
+		PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		notification.setLatestEventInfo(context, msgTitle, msgContent, pendingIntent);
+
+		notificationMgr.notify(0, notification);
+
 	}
 }
