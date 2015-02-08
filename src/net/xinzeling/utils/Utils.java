@@ -134,17 +134,17 @@ public class Utils {
 		}
 	}
 
-	public static float getAppVersion(Context c) {
-		float localVersion = 0;
-		try {
-			PackageManager nPackageManager = c.getPackageManager();// 得到包管理器
-			PackageInfo nPackageInfo = nPackageManager.getPackageInfo(c.getPackageName(), PackageManager.GET_CONFIGURATIONS);
-			localVersion = Float.valueOf(nPackageInfo.versionName);// 得到现在app的版本号
-		} catch (NameNotFoundException e1) {
-			e1.printStackTrace();
-		}
-		return localVersion;
-	}
+//	public static float getAppVersion(Context c) {
+//		float localVersion = 0;
+//		try {
+//			PackageManager nPackageManager = c.getPackageManager();// 得到包管理器
+//			PackageInfo nPackageInfo = nPackageManager.getPackageInfo(c.getPackageName(), PackageManager.GET_CONFIGURATIONS);
+//			localVersion = Float.valueOf(nPackageInfo.versionName);// 得到现在app的版本号
+//		} catch (Exception e1) {
+//			e1.printStackTrace();
+//		}
+//		return localVersion;
+//	}
 
 	public static int getScreenWidth(Context c) {
 		WindowManager wm = (WindowManager) c.getSystemService(Context.WINDOW_SERVICE);

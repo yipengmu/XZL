@@ -130,7 +130,7 @@ public class UpdateFragment extends Fragment implements OnClickListener {
 				Toast.makeText(getActivity(), resMsg, Toast.LENGTH_SHORT).show();
 			} else {
 				progress.dismiss();
-				if(MyApplication.mAppUpdateBean.version > Utils.getAppVersion(getActivity())){
+				if(MyApplication.mAppUpdateBean.version > Utils.getAppVersionCode(getActivity())){
 					btn_check_msg.setText("已检测到最新版本，点击更新");
 					tv_app_update_info_readme.setText(jsonResp.optString("description"));
 					txt_version.setText("xzl " + jsonResp.optString("version"));
