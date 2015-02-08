@@ -1,6 +1,7 @@
 package net.xinzeling.fragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import net.xinzeling.HomeActivity;
@@ -201,8 +202,9 @@ public class WeekFragment extends Fragment implements CalendarListener,OnClickLi
 	}
 
 	@Override
-	public void onDoubleClick(Date date) {
+	public void onDoubleClick(Date date, Calendar calendar) {
 		Intent intent = Utils.getMaintabIndexIntent(homeActivity, MainActivity.Maintab_Index_Note);
+		intent.putExtra("calendar", calendar);
 		this.startActivity(intent);
 	}
 }

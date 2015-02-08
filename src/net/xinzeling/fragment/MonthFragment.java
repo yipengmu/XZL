@@ -1,6 +1,7 @@
 package net.xinzeling.fragment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import net.xinzeling.HomeActivity;
@@ -27,12 +28,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -47,6 +50,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
@@ -55,7 +59,7 @@ import android.widget.TextView;
  * @author laomu 首页主体部分
  * 
  * */
-public class MonthFragment extends Fragment implements OnClickListener, OnItemClickListener, OnCheckedChangeListener, OnTouchListener, CalendarListener {
+public class MonthFragment extends Fragment implements OnLongClickListener,OnClickListener, OnItemClickListener, OnCheckedChangeListener, OnTouchListener, CalendarListener {
 	private HomeActivity homeActivity;
 	public CalendarView calendarView;
 	private ListView listView;
@@ -97,6 +101,7 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 
 		todayBtn = (ImageView) view.findViewById(R.id.goback_today);
 		todayBtn.setOnClickListener(this);
+		todayBtn.setOnLongClickListener(this);
 		tv_show_recent_dashi_kanfa = (TextView) view.findViewById(R.id.tv_show_recent_dashi_kanfa);
 		back_line_widthsize = (LinearLayout) view.findViewById(R.id.back_line_widthsize);
 		LayoutParams back_line_widthsize_layout = back_line_widthsize.getLayoutParams();
@@ -111,11 +116,15 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 		lunarSubTitle = (TextView) view.findViewById(R.id.lunar_sub_title);
 		lunarLucky = (TextView) view.findViewById(R.id.lunar_lucky);
 		lunarDemon = (TextView) view.findViewById(R.id.lunar_demon);
-		view.findViewById(R.id.lunar_layout).setOnClickListener(this);
-
+		
+		View lunar = view.findViewById(R.id.lunar_layout);
+		lunar.setOnClickListener(this);
+		lunar.setOnLongClickListener(this);
+		
 		expandBtn = view.findViewById(R.id.btn_expand);
 		expandBtn.setOnClickListener(this);
-
+		expandBtn.setOnLongClickListener(this);
+		
 		itemAdapter = null;
 		listView = (ListView) view.findViewById(R.id.list_note);
 		listView.setOnItemClickListener(this);
@@ -147,18 +156,18 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 			tv_show_recent_dashi_kanfa.startAnimation(anim);
 			tv_show_recent_dashi_kanfa.setText("大师看法: " + intent.getStringExtra("recentTitle"));
 			tv_show_recent_dashi_kanfa.setOnClickListener(new OnClickListener() {
-				
+
 				@Override
 				public void onClick(View v) {
 					Intent news = new Intent(getActivity(), GuaNewsDetailActivity.class);
 					Bundle bundle = new Bundle();
-					bundle.putInt("news_id", intent.getIntExtra("pushId",0));
+					bundle.putInt("news_id", intent.getIntExtra("pushId", 0));
 					news.putExtras(bundle);
 					news.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					getActivity().startActivity(news);
 				}
 			});
-						
+
 		}
 	}
 
@@ -222,7 +231,7 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
@@ -235,7 +244,7 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 				}
 			}
 		}, 600);
-	
+
 	}
 
 	// 参数1 类型 参数2 日期
@@ -266,9 +275,26 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 	public boolean onTouch(View view, MotionEvent event) {
 		gestureDetector.onTouchEvent(event);
 		view.performClick();
+	
+//		switch (event.getAction()) {
+//		case MotionEvent.Action_:
+//			int a = 0;
+//			a++;
+//			break;
+//		case MotionEvent.ACTION_UP:
+//			int b = 0;
+//			b++;
+//			break;
+//		case MotionEvent.ACTION_MOVE:
+//			int c = 0;
+//			c++;
+//			break;
+//		default:
+//			break;
+//		}
 		return false;
 	}
-
+	
 	private class GestureListener extends SimpleOnGestureListener {
 
 		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
@@ -309,10 +335,17 @@ public class MonthFragment extends Fragment implements OnClickListener, OnItemCl
 	}
 
 	@Override
-	public void onDoubleClick(Date date) {
+	public void onDoubleClick(Date date, Calendar calendar) {
 		Intent intent = new Intent(homeActivity, MainActivity.class);
 		intent.putExtra("tabIndex", MainActivity.Maintab_Index_Note);
+		intent.putExtra("calendar", calendar);
 		this.startActivity(intent);
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		Log.d("v", "v-long-click");
+		return false;
 	}
 
 }

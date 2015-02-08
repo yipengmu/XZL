@@ -24,9 +24,11 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
+import android.view.View.OnLongClickListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 首页 日历控件 主类
@@ -35,7 +37,7 @@ import android.widget.TextView;
  * 
  * 
  * */
-public class CalendarView extends TextView implements View.OnTouchListener {
+public class CalendarView extends TextView implements View.OnTouchListener,OnLongClickListener {
 	private Date today = new Date();
 	private Date downDate; // 手指按下状态时临时日期
 	private int downIndex; // 按下的格子索引
@@ -60,6 +62,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 	private Date from_title_txt_date;
 	private int from_title_txt_date_fresh_cnt = 0;
 	private float strokeSize = 0.4f;
+	private Context mContext;
 	 
 	public CalendarView(Context context, AttributeSet attrs){
 		this(context, attrs,0);
@@ -67,6 +70,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 
 	public CalendarView(Context context, AttributeSet attrs,int defStyle) {
 		super(context, attrs,defStyle);
+		mContext = context;
 		calendar = Calendar.getInstance();
 		lunar = new LunarCalendar(calendar);
 		TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.CalendarView, defStyle, 0);
@@ -83,6 +87,8 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 		float borderWidth = 1;//getResources().getDisplayMetrics().density;
 		surface = new Surface(getTextSize(),defaultTextColor,selectTextColor,notTextColor,borderWidth, borderColor,selectColor,pass_selectColor,context);
 		setOnTouchListener(this);
+		setOnLongClickListener(this);
+		
 		gestureDetector= new GestureDetector(context,new GestureListener());
 	}
 
@@ -408,6 +414,7 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 	public boolean onTouch(View v, MotionEvent event) {
 		v.performClick();
 		boolean isDoubleClick = false;
+
 		if(MotionEvent.ACTION_DOWN == event.getAction()){  
 			clickCnt++;  
 			if(clickCnt == 1){  
@@ -420,7 +427,8 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 					setSelectedDateByCoor(event.getX(), event.getY());
 					if(downDate!=null){
 						if(calendarListener!=null){
-							calendarListener.onDoubleClick(downDate);
+							//由于事件冲突问题，将double click 替换为 long click 处理时间
+//							calendarListener.onDoubleClick(downDate);
 						}
 					}
 				}  
@@ -450,13 +458,14 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 			}
 		}
 		gestureDetector.onTouchEvent(event);
-		return true;
+		
+		return super.onTouchEvent(event);
 	}
 
 	public interface CalendarListener{
 		public void onMonthChange(Date date, boolean isCurrent);	
 		public void onDateSelect(Date date,boolean isCurrent);
-		public void onDoubleClick(Date date);
+		public void onDoubleClick(Date date, Calendar calendar);
 	}
 
 	public void setCalendarListener(CalendarListener listener){
@@ -726,6 +735,15 @@ public class CalendarView extends TextView implements View.OnTouchListener {
 		canvas.drawText(text, x, y, mPaint);
 		
 		
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		// TODO Auto-generated method stub
+		Log.d("v", "v-long-click");
+//		Toast.makeText(mContext, "v-long-click", Toast.LENGTH_SHORT).show();
+		calendarListener.onDoubleClick(downDate,calendar);
+		return false;
 	}
 
 }

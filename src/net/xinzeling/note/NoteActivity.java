@@ -103,7 +103,7 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 		if (noteid > 0) {
 			this.loadNote(noteid);
 		} else {
-			Calendar calendar = Calendar.getInstance();
+			Calendar calendar = getNoteCalendarTime();
 			stimeYear.setText(calendar.get(Calendar.YEAR) + "年");
 			stimeMonth.setText(calendar.get(Calendar.MONTH) + 1 + "月");
 			stimeDay.setText(calendar.get(Calendar.DAY_OF_MONTH) + "日");
@@ -166,6 +166,25 @@ public class NoteActivity extends BaseActivity implements OnClickListener {
 			}
 		});
 
+	}
+
+	private Calendar getNoteCalendarTime() {
+		Calendar targetCalendar = Calendar.getInstance();
+		Calendar intentCalendar = null;
+		try {
+			Object intentObj = getIntent().getSerializableExtra("calendar");
+			if(intentObj != null){
+				intentCalendar = (Calendar) intentObj;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+		if(intentCalendar != null){
+			return intentCalendar;
+		}else{
+			return targetCalendar;
+		}
 	}
 
 	private void loadNote(int noteid) {
